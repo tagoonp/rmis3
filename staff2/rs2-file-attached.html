@@ -1,0 +1,617 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>:: RMIS :: สำหรับเจ้าหน้าที่ ::</title>
+
+    <!-- Data table CSS -->
+    <!-- <link href="../v4/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"> -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" rel="stylesheet">
+
+    <!--alerts CSS -->
+    <link href="../v3/vendors/bower_components/sweetalert/dist/sweetalert.css" rel="stylesheet" type="text/css">
+
+    <!-- Data table CSS -->
+    <link href="../v3/vendors/bower_components/datatables/media/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css"/>
+
+    <!-- Fontawesom -->
+    <link href="../v4/bower_components/fontawesome/web-fonts-with-css/css/fontawesome-all.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="../v4/node_modules/preload.js/dist/css/preload.css">
+
+    <link rel="stylesheet" href="../v4/assets/css/style.css">
+
+  </head>
+
+  <style media="screen">
+    body{
+      background: rgb(245, 245, 245);
+    }
+    ul {
+        list-style: none; /* Remove list bullets */
+        padding: 0px;
+    }
+  </style>
+
+  <body>
+
+    <div class="leftmenu" style="background: rgb(60, 68, 74);">
+      <div></div>
+      <div class="pd-10 fz09">
+        <div class="pd-10 txt-light">
+          <div class="row">
+            <div class="col-10">
+              <img src="../images/rmis2-logo.png" alt="" class="" style="width: 100%;">
+            </div>
+            <div class="col-2 text-right dn" id="divCloseLeft">
+              <i class="fas fa-times fa-1x cp mt-5" onclick="slideMenu('close')"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="pd-10 fz09">
+        <div class="pt-5 pb-5 pl-10 pr-10 txt-light cp mn" onclick="gotoInfoPage()">
+          <div class="fz09">สวัสดี</div>
+          <a href="profile.html" class="text-white">คุณ<span class="userFullname text-white">NA</span> (STAFF)</a>
+        </div>
+        <div class="pt-5 pb-5 pl-10 pr-10 txt-light cp mn mt-10" onclick="window.location = 'profile.html'">
+          <i class="fas fa-chevron-right mr-10"></i>ข้อมูลส่วนตัว
+        </div>
+        <div class="pt-5 pb-5 pl-10 pr-10 txt-light cp mn" onclick="window.location = 'changepassword.html'">
+          <i class="fas fa-chevron-right mr-10"></i>เปลี่ยนรหัสผ่าน
+        </div>
+        <div class="pt-5 pb-5 pl-10 pr-10 txt-light cp mn" onclick="main.signout()">
+          <i class="fas fa-chevron-right mr-10"></i>ออกจากระบบ
+        </div>
+      </div>
+      <div class="pd-10 fz09">
+        <div class="pd-10 txt-light fz08">
+          การดำเนินการ
+        </div>
+        <div class="pt-5 pb-5 pl-10 pr-10 txt-light cp mn" onclick="window.location = 'index.html'">
+          <i class="fas fa-home mr-10"></i>หน้าแรก
+        </div>
+        <div class="pd-10 txt-light fz08">
+          ข้อมูลโครงการวิจัย
+        </div>
+        <div class="pt-5 pb-5 pl-10 pr-10 txt-light cp mn" onclick="gotoInfoPage()">
+          <i class="fas fa-chevron-right mr-10"></i>ข้อมูลโครงการวิจัย
+        </div>
+        <div class="pt-5 pb-5 pl-10 pr-10 txt-light cp mn" onclick="window.location = 'rs2-synopsys.html'">
+          <i class="fas fa-chevron-right mr-10"></i>Synopsis
+        </div>
+        <div class="pt-5 pb-5 pl-10 pr-10 txt-light cp mn mn-active" onclick="window.location = 'rs2-file-attached.html'">
+          <i class="fas fa-chevron-right mr-10"></i>เอกสารแนบ
+        </div>
+        <div class="pt-5 pb-5 pl-10 pr-10 txt-light cp mn bg-danger" onclick="window.location = 'rs2-operation.html'" >
+          <i class="fas fa-wrench mr-10"></i>ดำเนินการ
+        </div>
+        <div class="pt-5 pb-5 pl-10 pr-10 txt-light cp mn" onclick="window.location = 'rs2-interview-info.html'">
+          <i class="fas fa-chevron-right mr-10"></i>ข้อมูลการประเมิน/ส่งประเมิน
+        </div>
+        <div class="pt-5 pb-5 pl-10 pr-10 txt-light cp mn" onclick="window.location = 'rs2-question.html'">
+          <i class="fas fa-chevron-right mr-10"></i>ข้อคำถาม/ข้อเสนอแนะ
+        </div>
+        <div class="pt-5 pb-5 pl-10 pr-10 txt-light cp mn"  onclick="window.location = 'rs2-board-agender.html'">
+          <i class="fas fa-chevron-right mr-10"></i>วาระการเข้าที่ประชุม
+        </div>
+        <div class="pt-5 pb-5 pl-10 pr-10 txt-light cp mn"  onclick="window.location = 'rs2-approve-docs.html'">
+          <i class="fas fa-chevron-right mr-10"></i>ใบรับรอง/รับทราบ
+        </div>
+        <div class="pt-5 pb-5 pl-10 pr-10 txt-light cp mn"  onclick="window.location = 'rs2-activity-log.html'">
+          <i class="fas fa-chevron-right mr-10"></i>Activity log
+        </div>
+        <div class="pt-5 pb-5 pl-10 pr-10 txt-light cp mn"  onclick="window.location = 'rs2-timeline.html'">
+          <i class="fas fa-chevron-right mr-10"></i>Timeline
+        </div>
+        <div class="pt-5 pb-5 pl-10 pr-10 txt-light cp mn"  onclick="window.location = 'rs2-messaging.html'">
+          <i class="fas fa-chevron-right mr-10"></i>Messaging
+        </div>
+      </div>
+
+    </div>
+
+    <div class="main-panal pt-20 mb-30">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="row">
+              <div class="col-sm-12">
+                <h4>ข้อมูลโครงการวิจัย</h4>
+              </div>
+              <div class="col-sm-12 fz08 pb-10">
+                <a href="index.html" class="txt-dark"><i class="fas fa-home mr-10"></i>หน้าหลัก</a> / <a href="Javascript:gotoInfoPage()" class="txtCodes">ยังไม่ระบุรหัสโครงการ</a> / เอกสารแนบ
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-12">
+            <div class="card mt-5 bsd">
+              <div class="card-header text-white pl-10" style="background: rgb(93, 129, 127);">
+                Submission form
+                <span class="thf fz08 cp" style="float: right;" onclick="showModal('modalUploadFile'); setUploadFileData('1');"><i class="fas fa-upload fz08 mr-5"></i>Upload file</span>
+              </div>
+              <div class="card-body pd-20">
+                <div class="row">
+                  <div class="col-sm-12">
+                    <div class="ft1 pt-0">
+                      <ul class="" id="ft_att_1">-</ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- .card -->
+
+            <div class="card mt-10 bsd">
+              <div class="card-header text-white pl-10" style="background: rgb(93, 129, 127);">
+                Protocol
+                <span class="thf fz08 cp" style="float: right;"onclick="showModal('modalUploadFile'); setUploadFileData('2');"><i class="fas fa-upload fz08 mr-5"></i>Upload file</span>
+              </div>
+              <div class="card-body pd-20">
+                <div class="row">
+                  <div class="col-sm-12">
+                    <div class="ft2 pt-0">
+                      <ul class="" id="ft_att_2">-</ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- .card -->
+
+            <div class="card mt-10 bsd">
+              <div class="card-header text-white pl-10" style="background: rgb(93, 129, 127);">
+                Information sheet and Consent Form
+                <span class="thf fz08 cp" style="float: right;" onclick="showModal('modalUploadFile'); setUploadFileData('3');"><i class="fas fa-upload fz08 mr-5"></i>Upload file</span>
+              </div>
+              <div class="card-body pd-20">
+                <div class="row">
+                  <div class="col-sm-12">
+                    <div class="ft3 pt-0">
+                      <ul class="" id="ft_att_3">-</ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- .card -->
+
+            <div class="card mt-10 bsd">
+              <div class="card-header text-white pl-10" style="background: rgb(93, 129, 127);">
+                Case Record Form
+                <span class="thf fz08 cp" style="float: right;" onclick="showModal('modalUploadFile'); setUploadFileData('4');"><i class="fas fa-upload fz08 mr-5"></i>Upload file</span>
+              </div>
+              <div class="card-body pd-20">
+                <div class="row">
+                  <div class="col-sm-12">
+                    <div class="ft4 pt-0">
+                      <ul class="" id="ft_att_4">-</ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- .card -->
+
+            <div class="card mt-10 bsd">
+              <div class="card-header text-white pl-10" style="background: rgb(93, 129, 127);">
+                Subject Material
+                <span class="thf fz08 cp" style="float: right;" onclick="showModal('modalUploadFile'); setUploadFileData('5');"><i class="fas fa-upload fz08 mr-5"></i>Upload file</span>
+              </div>
+              <div class="card-body pd-20">
+                <div class="row">
+                  <div class="col-sm-12">
+                    <div class="ft5 pt-0">
+                      <ul class="" id="ft_att_5">-</ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- .card -->
+
+            <div class="card mt-10 bsd">
+              <div class="card-header text-white pl-10" style="background: rgb(93, 129, 127);">
+                Legal Document
+                <span class="thf fz08 cp" style="float: right;" onclick="showModal('modalUploadFile'); setUploadFileData('6');"><i class="fas fa-upload fz08 mr-5"></i>Upload file</span>
+              </div>
+              <div class="card-body pd-20">
+                <div class="row">
+                  <div class="col-sm-12">
+                    <div class="ft6 pt-0">
+                      <ul class="" id="ft_att_6">-</ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- .card -->
+
+            <div class="card mt-10 bsd">
+              <div class="card-header text-white pl-10" style="background: rgb(93, 129, 127);">
+                เอกสารประกอบอื่น ๆ
+                <span class="thf fz08 cp" style="float: right;" onclick="showModal('modalUploadFile'); setUploadFileData('7');"><i class="fas fa-upload fz08 mr-5"></i>Upload file</span>
+              </div>
+              <div class="card-body pd-20">
+                <div class="row">
+                  <div class="col-sm-12">
+                    <div class="ft7 pt-0">
+                      <ul class="" id="ft_att_7">-</ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- .card -->
+
+            <div class="card mt-10 bsd">
+              <div class="card-header text-white pl-10" style="background: rgb(93, 129, 127);">
+                Updated CV, หลักฐานการอบรมจริยธรรมวิจัย
+                <span class="thf fz08 cp" style="float: right;" onclick="showModal('modalUploadFile'); setUploadFileData('8');"><i class="fas fa-upload fz08 mr-5"></i>Upload file</span>
+              </div>
+              <div class="card-body pd-20">
+                <div class="row">
+                  <div class="col-sm-12">
+                    <div class="ft8 pt-0">
+                      <ul class="" id="ft_att_8">-</ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- .card -->
+
+            <div class="card mt-10 bsd">
+              <div class="card-header text-white pl-10" style="background: rgb(93, 129, 127);">
+                ใบนำส่งเงินค่าธรรมเนียม
+                <span class="thf fz08 cp" style="float: right;" onclick="showModal('modalUploadFile'); setUploadFileData('9');"><i class="fas fa-upload fz08 mr-5"></i>Upload file</span>
+              </div>
+              <div class="card-body pd-20">
+                <div class="row">
+                  <div class="col-sm-12">
+                    <div class="ft10 pt-0">
+                      <ul class="" id="ft_att_9">-</ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- .card -->
+
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Update 20181008 -->
+    <div class="leftmenu-tool" style="position: fixed; top: 10px; left: -10px; ">
+      <button class="btn btn-sm btn-square_ btn-success ml-0 text-right cp" style="width: 50px; font-size:20px;" onclick="slideMenu('open')"><i class="fas fa-chevron-right"></i></button>
+      <br>
+      <button class="btn btn-sm btn-square_ btn-secondary ml-0 mt-0 text-right cp" onclick="window.location = 'index.html'" style="width: 50px; font-size: 18px;"><i class="fas fa-home" style="margin-left: -5px;"></i></button>
+      <br>
+      <button class="btn btn-sm btn-square_ btn-secondary ml-0 mt-0 text-right cp" onclick="window.location = 'profile.html'" style="width: 50px; font-size: 18px;"><i class="fas fa-user" style="margin-left: -3px;"></i></button>
+      <br>
+      <button class="btn btn-sm btn-square_ btn-secondary ml-0 mt-0 text-right cp" style="width: 50px; font-size: 20px;" onclick="window.history.back()"><i class="fas fa-chevron-left" style="margin-left: -1px;"></i></button>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="modalUploadFile" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel" style="font-weight: 400;">Upload file <i class="fas fa-chevron-right mr-5"></i> <span class="file_type">NA</span></h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form method="POST" enctype="multipart/form-data" id="uploadForm" onsubmit="return false;" >
+
+              <div class="form-group">
+                <input type="text" value="" id="txtIdRS" name="txtIdRS" readonly class="dn">
+              </div>
+
+              <div class="form-group">
+                <input type="text" value="" id="txtRssessionid" name="txtRssessionid" readonly class="dn">
+              </div>
+
+              <div class="form-group">
+                <input type="text" value="" id="txtOwnerID" name="txtOwnerID" readonly class="dn">
+              </div>
+
+              <div class="form-group">
+                <input type="text" value="" id="txtStaff" name="txtStaff" readonly class="dn">
+              </div>
+
+
+
+              <div class="form-group dn">
+                <label for="" class="fz08">File group</label>
+                <input type="text" class="form-control" placeholder="กรอกคำนำหน้าชื่อ ..." id="txtFileGroup" name="txtFileGroup">
+              </div>
+
+              <div class="form-group">
+                <label for="" class="fz08">สถานะไฟล์ <span class="text-danger">**</span></label>
+                <select name="txtAppstatus" id="txtAppstatus" class="form-control">
+                  <option value="0">ไฟล์ทั่วไป / ยังไม่รับรอง</option>
+                  <option value="1">ไฟล์ที่ผ่านการรับรองแล้ว</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="" class="f500 txt-dark">เลือกไฟล์และกดปุ่มอัพโหลด</label>
+                  ** ท่านสามารถทำการอัพโหลดไฟล์ได้หลายครั้ง
+                </span>
+                <div class="">
+                  <input id="media" name="media" type="file" class="file_upload form-group">
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary cp" data-dismiss="modal">ปิด</button>
+            <button type="button" class="btn btn-success cp" id="uploadFileAttahed">อัพโหลด</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- jQuery -->
+    <!-- <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script> -->
+    <script src="../v3/vendors/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script>
+  	<script src="../v3/dist/js/jquery.slimscroll.js"></script>
+    <!-- Sweet-Alert  -->
+  	<script src="../v3/vendors/bower_components/sweetalert/dist/sweetalert.min.js"></script>
+
+  	<!-- Init JavaScript -->
+    <script src="../v4/config.js"></script>
+  	<script src="../v3/dist/js/init.js"></script>
+    <script src="../v3/main.js"></script>
+    <script src="../v4/staff.js"></script>
+
+    <script type="text/javascript" src="../v4/node_modules/preload.js/dist/js/preload.js"></script>
+
+    <script type="text/javascript">
+
+      var current_rs_id = window.localStorage.getItem('current_selected_project_id')
+      var current_rs = window.localStorage.getItem('current_selected_project_session')
+      var files;
+      var owner_uid;
+
+      $(document).ready(function(){
+
+        // console.log(current_rs);
+        // console.log(current_rs_id);
+
+
+        $w = $(document).width()
+        if($w <= 800){
+          $('.main-panal').css('padding-left', '40px')
+          $('.leftmenu').css('margin-left', '-250px')
+          $('.leftmenu-tool').show()
+          $('#divCloseLeft').removeClass('dn')
+        }
+
+        staff.load_rs_info_2();
+        $('#txtIdRS').val(current_rs_id)
+        $('#txtRssessionid').val(current_rs)
+        $('#txtStaff').val(current_user)
+        setTimeout(function(){
+          $('#txtOwnerID').val(owner_uid)
+        }, 2000)
+        checkFileAttached()
+
+      })
+
+      $(function(){
+        $('.file_upload').on('change', prepareUpload);
+        $('#uploadFileAttahed').on('click', uploadFiles);
+      })
+
+      function uploadFiles(event){
+
+        if ( document.getElementById('media').value.length == 0 ){
+          swal("ขออภัย", "กรุณาเลือกไฟล์ก่อนทำการอัพโหลด", "error")
+          return ;
+        }
+
+        event.preventDefault();
+
+        var formData = new FormData($('#uploadForm')[0]);
+
+        $.each(files, function(key, value)
+        {
+            $.each(value, function(key, value){
+              formData.append(key, value);
+            })
+        });
+
+        $.ajax({
+
+          xhr: function(){
+            preload.hide()
+            var xhr = new window.XMLHttpRequest();
+            xhr.upload.addEventListener('progress', function(e){
+
+              if(e.lengthComputable){
+                console.log('Byte loaded : ' + e.loaded);
+                console.log('Total size : ' + e.total);
+                console.log('Percentage : ' + (e.loaded / e.total));
+
+                var percentage = Math.round((e.loaded / e.total) * 100);
+
+                $('#progressUploadBar').attr('aria-valuenow', percentage).css('width', percentage + '%')
+              }
+            })
+            return xhr;
+          },
+          url: ws_url + 'controller/upload_file_research_attach_backward.php?files',
+          type: 'POST',
+          data: formData,
+          processData: false, // Don't process the files
+          contentType: false, // Set content type to false as jQuery will tell the server its a query string request
+          success: function(data, textStatus, jqXHR)
+          {
+            preload.hide()
+                console.log(data);
+                console.log(textStatus);
+                console.log(jqXHR);
+                setTimeout(function(){
+                  $('#progressbar').addClass('dn')
+                  swal({    title: "อัพโหลดไฟล์สำเร็จ",
+                    text: "กด 'รับทราบ' เพื่อดำเนินการต่อ",
+                    type: "success",
+                    showCancelButton: false,
+                    confirmButtonColor: "#55a0dd",
+                    confirmButtonText: "รับทราบ",
+                    closeOnConfirm: true },
+                  function(){
+                    window.location.reload()
+                  });
+                }, 1000)
+
+                $('#media').val('')
+                // checkDataReplyFile()
+                return ;
+          },
+          error: function(jqXHR, textStatus, errorThrown)
+          {
+            preload.hide()
+                swal({    title: "ไม่สามารถอัพโหลดไฟล์ได้",
+                  text: "กรุณาลองใหม่ หรือส่งไฟล์ให้เจ้าหน้าที่ผ่านทางอีเมล์!",
+                  type: "error",
+                  showCancelButton: false,
+                  confirmButtonColor: "#DD6B55",
+                  confirmButtonText: "รับทราบ",
+                  closeOnConfirm: true },
+                function(){
+
+                });
+
+                // Handle errors here
+                console.log('ERRORS: ' + textStatus);
+                console.log(jqXHR);
+                console.log(textStatus);
+                console.log(errorThrown);
+                setTimeout(function(){
+                  $('#progressbar').addClass('dn')
+                }, 1000)
+                $('#progressbar').addClass('dn')
+          }
+        })
+        return ;
+      }
+      // End uploadFiles
+
+      function prepareUpload(event){
+        files = event.target.files;
+      }
+      // End prepareUpload
+
+      function showModal(id){
+        $("#" + id).modal();
+      }
+
+      function  loadList(){
+        var param = $.post(ws_url + 'controller/staff/check-board-status.php', function(){},'json')
+                     .always(function(snap){
+                       console.log(snap);
+                      if((snap!='') && (snap.length > 0)){
+                        $('#table_data_1').empty()
+                        snap.forEach(function(i){
+                          $row = '<tr>' +
+                                    '<td>' + i.code_apdu + '</td>' +
+                                    '<td>' + i.title_th +
+                                      '<div class="fz08 text-muted">' +
+                                        'หัวหน้าโครงการวิจัย : ' + i.fname + ' ' + i.lname + '<br>' +
+                                        'เลขา EC ผู้รับผิดชอบ : ' + i.fname + ' ' + i.lname + '<br>' +
+                                        'เลขาการประชุม : ' + i.fname + ' ' + i.lname + '<br>' +
+                                        'ลงทะเบียนเมื่อ : ' + main_app.convertThaidatetime(i.date_submit) +
+                                      '</div>' +
+                                      '<div class="fz08 text-muted">' +
+                                        '<button class="btn btn-success btn-sm btn-icon-anim btn-square ml-0" style="box-shadow: none;" data-toggle="tooltip" data-placement="top" title="ดูข้อมูลโครงการและดำเนินการต่อ" onclick="viewRsInfo_15(\'' + i.id_rs +'\')"><i class="fa fa-search"></i></button>' +
+                                        '<button class="btn btn-warning btn-sm btn-icon-anim btn-square ml-0" style="box-shadow: none;" data-toggle="tooltip" data-placement="top" title="เปลี่ยนเลขา EC ผู้รับผิดชอบ" onclick="set_reponse_ec(\'' + i.id_rs +'\')"><i class="fa fa-user"></i></button>' +
+                                        '<button class="btn btn-warning btn-sm btn-icon-anim btn-square ml-0" style="box-shadow: none;" data-toggle="tooltip" data-placement="top" title="เปลี่ยนเลขา EC ผู้รับผิดชอบ" onclick="set_reponse_ec(\'' + i.id_rs +'\')"><i class="fa fa-users"></i></button>' +
+                                        '<button class="btn btn-danger btn-sm btn-icon-anim btn-square ml-0" style="box-shadow: none;" data-toggle="tooltip" data-placement="top" title="เปลี่ยนเลขา EC ผู้รับผิดชอบ" onclick="set_reponse_ec(\'' + i.id_rs +'\')"><i class="fa fa-trash"></i></button>' +
+                                      '</div>' +
+                                    '</td>' +
+                                    '<td>' + i.ep + '</td>' +
+                                    '<td>' + i.status_name + '</td>' +
+                                 '</tr>'
+                          $('#table_data_1').append($row)
+
+                        })
+                        preload.hide()
+                        setTimeout(function(){ $('[data-toggle="tooltip"]').tooltip()}, 3000)
+                      }else{
+                        preload.hide()
+                      }
+                     })
+      }
+
+      function viewRsInfo_15(rid){
+        var param = {
+          id_rs: rid,
+          id: current_user
+        }
+        var jxhr = $.post(ws_url + '/controller/staff/check-rs-session.php', param, function(){}, 'json')
+              .always(function(snap){
+                if((snap != '') && (snap.length > 0)){
+                  snap.forEach(function(i){
+                    window.localStorage.setItem('current_selected_project_session', i.session_id)
+                    window.localStorage.setItem('current_selected_project_id', i.id_rs)
+                    window.location = 'reviewer_select_file.html'
+                  })
+                }else{
+                  swal("Error!", "error")
+                }
+              }, 'json')
+      }
+
+      function slideMenu(state){
+        if(state == 'open'){
+          $( ".leftmenu" ).animate({ "left": "+=250px" }, "slow" );
+          // $('.main-panal').animate({ "padding-left": "+=250px" }, "slow" );
+        }else{
+          $( ".leftmenu" ).animate({ "left": "-=250px" }, "slow" );
+          // $('.main-panal').animate({ "padding-left": "-=250px" }, "slow" );
+        }
+      }
+
+      function setUploadFileData(fgroup){
+        if(fgroup == '1'){
+          $('.file_type').text('Submission form')
+          $('#txtFileGroup').val(fgroup)
+        }else if(fgroup == '2'){
+          $('.file_type').text('Protocol')
+          $('#txtFileGroup').val(fgroup)
+        }else if(fgroup == '3'){
+          $('.file_type').text('Information sheet and Consent Form')
+          $('#txtFileGroup').val(fgroup)
+        }else if(fgroup == '4'){
+          $('.file_type').text('Case Record Form')
+          $('#txtFileGroup').val(fgroup)
+        }else if(fgroup == '5'){
+          $('.file_type').text('Subject Material')
+          $('#txtFileGroup').val(fgroup)
+        }else if(fgroup == '6'){
+          $('.file_type').text('Legal Document')
+          $('#txtFileGroup').val(fgroup)
+        }else if(fgroup == '7'){
+          $('.file_type').text('เอกสารประกอบอื่น ๆ')
+          $('#txtFileGroup').val(fgroup)
+        }else if(fgroup == '8'){
+          $('.file_type').text('Updated CV, หลักฐานการอบรมจริยธรรมวิจัย')
+          $('#txtFileGroup').val(fgroup)
+        }else if(fgroup == '9'){
+          $('.file_type').text('ใบนำส่งเงินค่าธรรมเนียม')
+          $('#txtFileGroup').val(fgroup)
+        }
+      }
+    </script>
+  </body>
+</html>

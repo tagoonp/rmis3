@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8" />
+  	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  	<title>:: RMIS :: สำหรับเจ้าหน้าที่ ::</title>
+
+    <!-- Data table CSS -->
+  	<link href="../v4/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!--alerts CSS -->
+  	<link href="../v3/vendors/bower_components/sweetalert/dist/sweetalert.css" rel="stylesheet" type="text/css">
+
+    <!-- Data table CSS -->
+    <link href="../v3/vendors/bower_components/datatables/media/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css"/>
+
+    <!-- Fontawesom -->
+    <link href="../v4/bower_components/fontawesome/web-fonts-with-css/css/fontawesome-all.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <!-- <link href="../v3/dist/css/style.css" rel="stylesheet" type="text/css">
+    <link href="../v3/fonts.css" rel="stylesheet" type="text/css">
+    <link href="../v3/style_v2.css" rel="stylesheet" type="text/css"> -->
+    <!-- Preload -->
+    <link rel="stylesheet" href="../v4/node_modules/preload.js/dist/css/preload.css">
+
+    <!-- Material Design Bootstrap -->
+    <link href="../v4/node_modules/mdbootstrap/css/mdb.min.css" rel="stylesheet">
+    <link href="../v4/node_modules/mdbootstrap/css/style.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="../v4/assets/css/style.css">
+    <link rel="stylesheet" href="../v4/assets/css/fonts.css">
+
+  </head>
+
+  <style media="screen">
+    body{
+      background: rgb(238, 238, 238);
+    }
+  </style>
+
+  <body>
+
+    <div class="header fixed-top" style="background: rgb(0, 110, 255) !important;">
+      <div class="container">
+        <!--Navbar-->
+        <nav class="navbar navbar-expand-lg navbar-dark blue" style="background: rgb(0, 110, 255) !important; box-shadow: none;">
+
+          <!-- Navbar brand -->
+          <a class="navbar-brand th_font fw500" href="index.html" style="font-size: 1.9em; margin-top: -10px;">RMIS@Medicine</a>
+
+          <!-- Collapse button -->
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav" aria-controls="basicExampleNav"
+              aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <!-- Collapsible content -->
+          <div class="collapse navbar-collapse" id="basicExampleNav" style="margin-top: -4px;">
+
+              <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                <li class="nav-item active dn">
+                  <a href="index.html" class="nav-link active">หน้าแรก</a>
+                </li>
+              </ul>
+
+              <div class="form-inline my-2 my-lg-0">
+                <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                  <li class="nav-item ">
+                    <a href="profile.html" class="nav-link">ยินดีต้อนรับ, คุณ<span class="userFullname text-white">NA</span> (STAFF)</a>
+                  </li>
+                  <li class="nav-item ">
+                    <a href="changepassword.html" class="nav-link">เปลี่ยนรหัสผ่าน</a>
+                  </li>
+                  <li class="nav-item ">
+                    <a href="#" class="nav-link" onclick="main.signout()">ออกจากระบบ</a>
+                  </li>
+                </ul>
+              </div>
+          </div>
+          <!-- Collapsible content -->
+
+        </nav>
+        <!--/.Navbar-->
+      </div>
+    </div>
+
+    <div class="group-1 pb-50" style="padding-top: 90px;">
+      <div class="container">
+
+        <div class="row">
+          <div class="col-sm-12">
+            <h3 class="fw500">หน้าแรก</h3>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-12 col-md-4">
+            <h5 class="panel-title txt-dark mb-10 fw500">โครงการวิจัยใหม่เพื่อการพิจารณา <br><small class="txt-dark pl-0">(Initial Review)</small></h5>
+            <button class="btn btn-custom-1 btn-block btn-lable-wrap left-label text-left pl-20 mb-5" id="btnN1" onclick="window.location = 'rs-init-new.html'">
+              <span class="btn-text"><i class="fas fa-bars mr-10"></i> ตรวจสอบความถูกต้องเอกสาร <span class="NewRegister"></span></span>
+            </button>
+
+            <button class="btn btn-custom-1 btn-block btn-lable-wrap left-label text-left pl-20 mb-5" onclick="window.location = 'rs-edit-list.html'">
+              <span class="btn-text"><i class="fas fa-pencil-alt mr-5"></i> ตรวจสอบโครงการที่ต้องแก้ไข <span class="NewWaitEdit"></span></span>
+            </button>
+
+            <button class="btn btn-custom-1 btn-block btn-lable-wrap left-label text-left pl-20 mb-5" id="btnN3" onclick="window.location = 'rs-list-wait-process.html'">
+              <span class="btn-text"><i class="fas fa-bars mr-10"></i> โครงการวิจัยรอดำเนินการ <span class="NewWaitAllProcess"></span></span>
+            </button>
+
+            <button class="btn btn-custom-1 btn-block btn-lable-wrap left-label text-left pl-20 mb-5" id="btnN7" onclick="window.location = 'rs-list-wait-process-fb.html'">
+              <span class="btn-text"><i class="fas fa-bars mr-10"></i> โครงการวิจัยรอดำเนินการ FB <span class="NewWaitAllProcess7"></span></span>
+            </button>
+
+            <button class="btn btn-custom-1 btn-block btn-lable-wrap left-label text-left pl-20 mb-5" id="btnN6" onclick="window.location = 'rs-list-wait-process-review.html'">
+              <span class="btn-text"><i class="fas fa-bars mr-10"></i> โครงการรอสรุปข้อเสนอแนะ <span class="NewWaitAllProcess3"></span></span>
+            </button>
+
+            <button class="btn btn-custom-1 btn-block btn-lable-wrap left-label text-left pl-20 mb-5 dn" id="btnN4" onclick="window.location = 'rs-list-board-wait-process.html'">
+              <span class="btn-text"><i class="fas fa-bars mr-10"></i> โครงการรอสรุปผลจากการประชุม <span class="NewWaitBoardSum"></span></span>
+            </button>
+
+            <button class="btn btn-custom-1 btn-block btn-lable-wrap left-label text-left pl-20 mb-5" onclick="window.location = 'report/report-1.html'">
+              <span class="btn-text"><i class="fas fa-bars mr-10"></i> รายงานเพื่อนำเข้าการประชุม</span>
+            </button>
+
+            <button class="btn btn-custom-1 btn-block btn-lable-wrap left-label text-left pl-20 mb-5" onclick="window.location = 'rs-list.html'">
+              <span class="btn-text"><i class="fas fa-bars mr-10"></i> โครงการวิจัยทั้งหมด <span class="NewWaitProcess"></span></span>
+            </button>
+
+            <button class="btn btn-custom-1 btn-block btn-lable-wrap left-label text-left pl-20 mb-5" window.location = 'rs-search.html'>
+              <span class="btn-text"><i class="fas fa-search  mr-10"></i>ค้นหาข้อมูลโครงการวิจัย</span>
+            </button>
+
+          </div>
+
+          <div class="col-sm-12 col-md-4">
+            <h5 class="panel-title txt-dark mb-10 fw500">โครงการวิจัยที่กำลังดำเนินการ  <br><small class="txt-dark pl-0">(Continuing Review)</small></h5>
+
+            <button class="btn btn-custom-1 btn-block btn-lable-wrap left-label  text-left pl-20 mb-5" onclick="window.location = 'new-cont-list.html'" id="cont_n_1_btn">
+              <span class="btn-text"><i class="fas fa-bars mr-10"></i> ตรวจสอบความถูกต้องเอกสาร <span id="cont_n_1"></span></span>
+            </button>
+
+            <button class="btn btn-custom-1 btn-block btn-lable-wrap left-label text-left pl-20 mb-5">
+              <span class="btn-text"><i class="fas fa-bars mr-10"></i> ตรวจสอบโครงการที่ต้องแก้ไข</span>
+            </button>
+
+            <button class="btn btn-custom-1 btn-block btn-lable-wrap left-label text-left pl-20 mb-5">
+              <span class="btn-text"><i class="fas fa-bars mr-10"></i> โครงการวิจัยทั้งหมด</span>
+            </button>
+
+            <button class="btn btn-custom-1 btn-block btn-lable-wrap left-label text-left pl-20 mb-5">
+              <span class="btn-text"><i class="fas fa-search mr-10"></i>ค้นหาข้อมูลโครงการวิจัย</span>
+            </button>
+
+            <button class="btn btn-custom-1 btn-block btn-lable-wrap left-label text-left pl-20 mb-5">
+              <span class="btn-text"><i class="fas fa-pencil-alt mr-10"></i> ปรับสถานะโครงการวิจัย</span>
+            </button>
+
+            <button class="btn btn-custom-1 btn-block btn-lable-wrap left-label text-left pl-20 mb-5" onclick="window.location = 'rs_wait_approve_cont.html'">
+              <span class="btn-text"><i class="fas fa-plus mr-10"></i> เพิ่มโครงการวิจัย Continuing</span>
+            </button>
+
+            <button class="btn btn-custom-1 btn-block btn-lable-wrap left-label text-left pl-20 mb-5" onclick="window.location = 'rs_wait_approve_cont.html'">
+              <span class="btn-text"><i class="fas fa-bars mr-10"></i> ปรับปรุงงบประมาณที่ได้รับล่าสุด</span>
+            </button>
+
+            <div style="padding-top: 20px;">
+              <button class="btn btn-custom-1 btn-block btn-lable-wrap left-label text-left pl-20 mb-5" onclick="window.location = './funding_system/index'">
+                <span class="btn-text"><i class="fas fa-bars mr-10"></i> ระบบทุนวิจัย</span>
+              </button>
+            </div>
+
+          </div>
+
+          <div class="col-sm-12 col-md-4">
+            <h5 class="panel-title txt-dark mb-10 fw500">โครงการวิจัยย้อนหลัง  <br><small class="txt-dark pl-0">(Retro-entry Research)</small></h5>
+            <button class="btn btn-custom-1 btn-block btn-lable-wrap left-label  text-left pl-20 mb-5" id="btnRetro1" onclick="window.location = 'rs-retro-new.html'">
+              <span class="btn-text"><i class="fas fa-eye mr-10 mt-5"></i> ตรวจสอบความถูกต้องเอกสาร <span class="retro1"></span></span>
+            </button>
+
+            <button class="btn btn-custom-1 btn-block btn-lable-wrap left-label text-left pl-20 mb-5">
+              <span class="btn-text"><i class="fas fa-bars mr-10"></i> โครงการวิจัยย้อนหลังทั้งหมด</span>
+            </button>
+
+            <button class="btn btn-custom-1 btn-block btn-lable-wrap left-label text-left pl-20 mb-5">
+              <span class="btn-text"><i class="fas fa-plus mr-10"></i> ลงทะเบียนโครงการวิจัยย้อนหลัง</span>
+            </button>
+          </div>
+        </div>
+        <!-- .row -->
+
+        <div class="row mt-20">
+          <div class="col-sm-12 col-md-4">
+            <h5 class="panel-title txt-dark mb-10 fw500">รายงาน  <br><small class="txt-dark pl-0">(Reports)</small></h5>
+            <button class="btn btn-custom-1 btn-block btn-lable-wrap left-label text-left pl-20 mb-5" onclick="window.location = 'report/report-table-1.html'">
+              <span class="btn-text">รายงานรูปแบบตาราง</span>
+            </button>
+
+            <button class="btn btn-custom-1 btn-block btn-lable-wrap left-label text-left pl-20 mb-5"  onclick="window.location = 'report/report-2.html'">
+              <span class="btn-text">สัดส่วนการประเมินของผู้เชี่ยวชาญ ฯ (1)</span>
+            </button>
+
+            <button class="btn btn-custom-1 btn-block btn-lable-wrap left-label text-left pl-20 mb-5"  onclick="window.location = 'report/report-3.html'">
+              <span class="btn-text">สัดส่วนการประเมินของผู้เชี่ยวชาญ ฯ (2)</span>
+            </button>
+
+            <button class="btn btn-custom-1 btn-block btn-lable-wrap left-label  text-left pl-20 mb-5">
+              <span class="btn-text">ส่งออกข้อมูล</span>
+            </button>
+          </div>
+
+          <div class="col-sm-12 col-md-8">
+            <h5 class="panel-title txt-dark mb-10 fw500">อื่น ๆ<br><small class="txt-dark pl-0">(Other)</small></h5>
+            <div class="row">
+              <div class="col-sm-12 col-md-6">
+                <button class="btn btn-custom-1 btn-block btn-lable-wrap left-label text-left pl-20 mb-5"  data-toggle="modal" data-target="#myModal">
+                  <span class="btn-text"><i class="fas fa-users mr-10"></i> หัวหน้าโครงการ (ภายใน)</span>
+                </button>
+
+                <button class="btn btn-custom-1 btn-block btn-lable-wrap left-label text-left pl-20 mb-5"  data-toggle="modal" data-target="#myModal">
+                  <span class="btn-text"><i class="fas fa-users mr-10"></i> หัวหน้าโครงการ (ภายนอก)</span>
+                </button>
+
+
+              </div>
+              <div class="col-sm-12 col-md-6">
+                <button class="btn btn-custom-1 btn-block btn-lable-wrap left-label text-left pl-20 mb-5" data-toggle="modal" data-target="#myModal">
+                  <span class="btn-text"><i class="fas fa-users mr-10"></i> ผู้เชี่ยวชาญอิสระ (ภายนอก)</span>
+                </button>
+                <button class="btn btn-custom-1 btn-block btn-lable-wrap left-label text-left pl-20 mb-5"  data-toggle="modal" data-target="#myModal">
+                  <span class="btn-text"><i class="fas fa-users mr-10"></i> ผู้เชี่ยวชาญอิสระ (ภายใน)</span>
+                </button>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+
+    <div class="custom-footer pt-30">
+      <div class="container text-center">
+        2017 © RMIS. หน่วยส่งเสริมและพัฒนาทางวิชาการ คณะแพทยศาสตร์ มหาวิทยาลัยสงขลานครินทร์. .
+      </div>
+    </div>
+
+    <!-- jQuery -->
+    <script src="../v3/vendors/bower_components/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="../v3/vendors/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+  	<!-- Slimscroll JavaScript -->
+  	<script src="../v3/dist/js/jquery.slimscroll.js"></script>
+  	<!-- Fancy Dropdown JS -->
+  	<script src="../v3/dist/js/dropdown-bootstrap-extended.js"></script>
+    <!-- Sweet-Alert  -->
+  	<script src="../v3/vendors/bower_components/sweetalert/dist/sweetalert.min.js"></script>
+    <!-- Data table JavaScript -->
+    <script src="../v3/vendors/bower_components/datatables/media/js/jquery.dataTables.min.js"></script>
+    <script src="../v3/dist/js/dataTables-data.js"></script>
+    <!-- Data table JavaScript -->
+    <script type="text/javascript" src="../v3/vendors/bower_components/ckeditor/ckeditor.js"></script>
+
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="../v4/node_modules/mdbootstrap/js/mdb.min.js"></script>
+
+  	<!-- Init JavaScript -->
+    <script src="../v4/config.js"></script>
+  	<script src="../v3/dist/js/init.js"></script>
+    <script src="../v3/main.js"></script>
+    <script src="../v4/staff.js"></script>
+
+    <script type="text/javascript" src="../v4/node_modules/preload.js/dist/js/preload.js"></script>
+
+    <script type="text/javascript">
+
+      var current_user = window.localStorage.getItem('rmis_current_user')
+      var current_role = window.localStorage.getItem('rmis_current_role')
+
+      $(document).ready(function(){
+
+        staff.init()
+
+        staff.checkNewInit()
+        staff.checkNewWaitEdit()
+        staff.checkNewWaitProgess()
+        staff.checkNewWaitProgess_fb()
+        staff.checkNewRetro()
+
+        preload.hide()
+
+        checkReviewerNonResponse()
+        checkReviewerWP()
+
+        staff.checkNewContALl()
+
+      })
+
+      $(function(){
+        $('#txtYear').change(function(){
+          loadList()
+        })
+      })
+
+      function goto_report(progress_id){
+        window.localStorage.setItem('rmis_current_progress_id', progress_id)
+        window.location = 'create_report.html'
+      }
+
+      function checkReviewerNonResponse(){
+        var jxhr = $.post(ws_url + 'controller/check-no-acknowledge-reviewer.php', function(){}, 'json')
+                    .always(function(snap){
+                      if((snap!='') && (snap.length > 0)){
+                        $('.NewWaitAllProcess2').text('(' + snap.length +')')
+                        // $('#btnN5').addClass('btn-error')
+                        // $('#btnN5').removeClass('btn-custom-1')
+                        // $('#btnN5').addClass('btn-orange')
+                        $('#btnN5').removeClass('btn-custom-1')
+                        $('#btnN5').addClass('btn-custom-orange')
+                      }
+                    }, 'json')
+      }
+
+      function checkReviewerWP(){
+        var jxhr = $.post(ws_url + 'controller/staff/check-new-wait-process-review.php', function(){}, 'json')
+                    .always(function(snap){
+                      console.log(snap);
+                      if((snap!='') && (snap.length > 0)){
+                        $('.NewWaitAllProcess3').text('(' + snap.length +')')
+                        // $('#btnN6').removeClass('btn-custom-1')
+                        // $('#btnN6').addClass('btn-orange')
+                        $('#btnN6').removeClass('btn-custom-1')
+                        $('#btnN6').addClass('btn-custom-orange')
+                      }
+                    }, 'json')
+      }
+
+    </script>
+
+  </body>
+</html>

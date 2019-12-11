@@ -1,0 +1,114 @@
+html{
+
+
+
+}
+body{
+	margin:17px 0 15px 0;
+	padding:0;
+	text-align:center;
+	font-size:small;
+	font-family:"Lucida Grande", Tahoma, Arial, Verdana, sans-serif;
+}
+
+article, aside, figure, figure img, figcaption, hgroup,
+footer, header, nav, section, video, object, output {
+	display: block;
+}
+
+#container{
+	text-align:left;
+	background:#fff;
+	border:1px solid #ccc;
+	-webkit-box-shadow:rgba(0,0,0,.2) 0px 0px 5px;
+	-moz-box-shadow:rgba(0,0,0,.2) 0px 0px 5px;
+	-o-box-shadow:rgba(0,0,0,.2) 0px 0px 5px;
+	box-shadow:rgba(0,0,0,.2) 0px 0px 5px;
+}
+#container, #bottom{
+	margin:0 auto;
+	width:940px;
+}
+#bottom{
+	width:940px;
+	height:10px !important;
+	margin-bottom:10px;
+	display:block !important;
+}
+
+form.wufoo{
+	margin:20px 14px 0 14px;
+	padding:0 0 20px 0;
+	position:relative;
+}
+
+/* ----- LOGO ----- */
+
+img, a img{
+	border:none;
+	-ms-interpolation-mode: bicubic;
+}
+* html #bottom{ 
+	_behavior: url(../images/iepngfix.htc);
+}
+.hide, .cloak div, .cloak span, .likert.cloak tbody, .likert.cloak thead{
+	display:none !important;
+}
+.likert.cloak table{
+	border:none;
+}
+
+input, textarea,table { 
+	padding: 10px;
+	border: solid 1px #E5E5E5;
+	outline: 0;
+	font:  12px Verdana, Tahoma, sans-serif;
+
+	box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
+	-moz-box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
+	-webkit-box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
+	border-radius: 5px;
+    -moz-box-shadow: 0px 0px 5px #B1B3B8;
+     -webkit-box-shadow: 0px 0px 5px #B1B3B8;
+      box-shadow: 0px 0px 5px #B1B3B8;
+	}
+
+textarea { 
+	width: 400px;
+	max-width: 400px;
+	height: 150px;
+	line-height: 150%;
+	}
+
+input:hover, textarea:hover,
+input:focus, textarea:focus { 
+	border-color: #C9C9C9; 
+	-webkit-box-shadow: rgba(0, 0, 0, 0.15) 0px 0px 8px;
+	}
+
+.form label { 
+	margin-left: 10px; 
+	color: #999999; 
+	}
+
+.submit input {
+	width: auto;
+	padding: 9px 15px;
+	background: #617798;
+	border: 0;
+	font-size: 14px;
+	color: #FFFFFF;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	}
+form.required{
+
+}
+
+label.error {
+font-size:12px;
+float:none;
+color: red;
+display:none;
+}
+

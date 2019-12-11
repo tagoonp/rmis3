@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv='cache-control' content='no-cache'>
+  <meta http-equiv='expires' content='0'>
+  <meta http-equiv='pragma' content='no-cache'>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<title>:: RMIS :: สำหรับเจ้าหน้าที่ ::</title>
+
+	<!-- Data table CSS -->
+	<link href="../v3/vendors/bower_components/datatables/media/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css"/>
+
+  <!--alerts CSS -->
+	<link href="../v3/vendors/bower_components/sweetalert/dist/sweetalert.css" rel="stylesheet" type="text/css">
+
+  <!-- Data table CSS -->
+  <link href="../v3/vendors/bower_components/datatables/media/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css"/>
+
+	<!-- Custom CSS -->
+	<link href="../v3/dist/css/style.css" rel="stylesheet" type="text/css">
+  <link href="../v3/fonts.css" rel="stylesheet" type="text/css">
+  <link href="../v3/style.css" rel="stylesheet" type="text/css">
+
+</head>
+
+<body>
+	<!--Preloader-->
+	<div class="preloader-it">
+		<div class="la-anim-1"></div>
+	</div>
+	<!--/Preloader-->
+    <div class="wrapper theme-1-active pimary-color-red">
+
+        <!-- Top Menu Items -->
+		<nav class="navbar navbar-inverse navbar-fixed-top">
+			<div class="mobile-only-brand pull-left">
+				<div class="nav-header pull-left">
+					<div class="logo-wrap">
+						<a href="index.html">
+							<img class="brand-img" src="../v3/dist/img/logo.png" alt="brand"/>
+							<span class="brand-text">RMIS</span>
+						</a>
+					</div>
+				</div>
+				<a id="toggle_nav_btn" class="toggle-left-nav-btn inline-block ml-20 pull-left" href="javascript:void(0);"><i class="zmdi zmdi-menu"></i></a>
+				<a id="toggle_mobile_nav" class="mobile-only-view" href="javascript:void(0);"><i class="zmdi zmdi-more"></i></a>
+			</div>
+			<div id="mobile_only_nav" class="mobile-only-nav pull-right">
+				<ul class="nav navbar-right top-nav pull-right">
+          <li>
+            <a href="profile.html">ยินดีต้อนรับ <span class="userFullname text-info">NA</span> (STAFF)</a>
+          </li>
+					<li class="dropdown alert-drp">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="zmdi zmdi-notifications top-nav-icon"></i><span class="notification_number"></span></a>
+						<ul  class="dropdown-menu alert-dropdown" data-dropdown-in="bounceIn" data-dropdown-out="bounceOut">
+							<li>
+								<div class="notification-box-head-wrap">
+									<span class="notification-box-head pull-left inline-block">การแจ้งเตือน</span>
+									<a class="txt-danger pull-right clear-notifications inline-block" href="javascript:main.clear_notify()"> ล้างทั้งหมด </a>
+									<div class="clearfix"></div>
+									<hr class="light-grey-hr ma-0"/>
+								</div>
+							</li>
+              <li>
+                <div class="streamline message-nicescroll-bar notification_panal">
+                </div>
+              </li>
+							<li>
+								<div class="notification-box-bottom-wrap">
+									<hr class="light-grey-hr ma-0"/>
+									<a class="block text-center read-all" href="view_activity_log.html"> อ่านทั้งหมด </a>
+									<div class="clearfix"></div>
+								</div>
+							</li>
+						</ul>
+					</li>
+					<li class="dropdown auth-drp">
+						<a href="#" class="dropdown-toggle pr-0" data-toggle="dropdown"><span id="profileImg"></span><span class="user-online-status"></span></a>
+						<ul class="dropdown-menu user-auth-dropdown" data-dropdown-in="flipInX" data-dropdown-out="flipOutX">
+							<li>
+								<a href="profile.html"><i class="zmdi zmdi-account"></i><span>ข้อมูลส่วนตัว</span></a>
+							</li>
+							<li>
+								<a href="#" onclick="main.mailbox()"><i class="zmdi zmdi-email"></i><span>Inbox</span></a>
+							</li>
+							<li>
+								<a href="changepassword.html"><i class="zmdi zmdi-settings"></i><span>เปลี่ยนรหัสผ่าน</span></a>
+							</li>
+							<li class="divider"></li>
+							<li>
+								<a href="#" onclick="main.signout()"><i class="zmdi zmdi-power"></i><span>ออกจากระบบ</span></a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</nav>
+		<!-- /Top Menu Items -->
+
+		<!-- Left Sidebar Menu -->
+		<div class="fixed-sidebar-left">
+			<ul class="nav navbar-nav side-nav nicescroll-bar">
+				<li class="navigation-header">
+					<span>Main</span>
+					<i class="zmdi zmdi-more"></i>
+				</li>
+
+        <li>
+					<a  href="./"><div class="pull-left"><i class="zmdi zmdi-home mr-20"></i><span class="right-nav-text">หน้าแรก</span></div><div class="clearfix"></div></a>
+				</li>
+        <li>
+						<a href="javascript:void(0);" data-toggle="collapse" data-target="#dashboard_dr"><div class="pull-left"><i class="zmdi zmdi-landscape mr-20"></i><span class="right-nav-text">กระดานภาพรวม</span></div><div class="pull-right"><i class="zmdi zmdi-caret-down"></i></div><div class="clearfix"></div></a>
+						<ul id="dashboard_dr" class="collapse collapse-level-1">
+							<li>
+								<a href="dashboard_1.html">ภาพรวมโครงการวิจัย</a>
+							</li>
+						</ul>
+					</li>
+
+				<li><hr class="light-grey-hr mb-10"/></li>
+				<li class="navigation-header">
+					<span>อื่น ๆ</span>
+					<i class="zmdi zmdi-more"></i>
+				</li>
+
+        <li>
+					<a href="documentation.html"><div class="pull-left"><i class="zmdi zmdi-book mr-20"></i><span class="right-nav-text">คู่มือการใช้งาน (STAFF)</span></div><div class="clearfix"></div></a>
+				</li>
+
+			</ul>
+		</div>
+		<!-- /Left Sidebar Menu -->
+
+
+		<!-- Main Content -->
+		<div class="page-wrapper" style="padding-left: 15px; padding-right: 15px;">
+      <div class="container-fluid">
+
+				<!-- Title -->
+        <div class="row heading-bg mb-0">
+					<div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+						<h5 class="txt-dark">ข้อมูลโครงการวิจัย</h5>
+					</div>
+					<!-- Breadcrumb -->
+					<div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+						<ol class="breadcrumb">
+							<li><a href="./">หน้าแรก</a></li>
+							<li class="active"><span>ข้อมูลโครงการวิจัย</span></li>
+						</ol>
+					</div>
+					<!-- /Breadcrumb -->
+				</div>
+				<!-- /Title -->
+
+        <!-- Row -->
+        <div class="row">
+
+          <div class="col-sm-12">
+
+            <div class="row">
+              <div class="col-sm-6 pl-10 pr-10 pb-10 pt-0 hidden-xs">
+                <button class="btn btn-default btn-icon-anim btn-square" onclick="window.history.back()"><i class="zmdi zmdi-chevron-left"></i></button>
+              </div>
+              <div class="col-sm-6 col-xs-12 pl-10 pr-10 pb-10 pt-0 text-right">
+                <button class="btn btn-success btn-icon-anim btn-square" id="btnEdit" onclick="window.location = 'research_register.html'"><i class="zmdi zmdi-wrench"></i></button>
+                <button class="btn btn-success btn-icon-anim btn-square disabled" onclick="printForm('printArea')" id="btnPrint"><i class="zmdi zmdi-print"></i></button>
+                <button class="btn btn-info" onclick="sendData()" id="btnSending"><i class="zmdi zmdi-mail-send"></i> ส่งข้อมูล</button>
+              </div>
+            </div>
+
+            <div class="panel panel-default card-view">
+
+              <div class="panel-wrapper collapse in">
+								<div class="panel-body">
+
+                  <div class="loaddiv" style="padding: 100px 0px;">
+                    <div class="row">
+                      <div class="col-sm-2 col-sm-offset-5">
+                        <img src="../images/Rolling.gif" alt="" width="100%">
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="contentdiv dn">
+                    <div class="row" id="printArea">
+                      <div class="col-md-12 pl-20 pr-20 pt-20">
+                        <!-- <div class="row">
+                          <div class="col-xs-12">
+                            <div class="text-center mb-20 txt-dark" style="font-size: 15px; padding-top: 10px;">
+                              <strong>แบบเสนอเพื่อลงทะเบียนโครงการวิจัยและขอรับการพิจารณาด้านจริยธรรมการวิจัยในมนุษย์<br>
+                              คณะแพทยศาสตร์ มหาวิทยาลัยสงขลานครินทร์</strong>
+                              <div class="text-center" style="font-size: 12px; padding-top: 10px;">
+                                แบบฟอร์มออนไลน์ EC.01-1 พิมพ์เมื่อ <span class="toDayThaiDate"></span> โดย <u><span class="userFullname"></span></u>
+                              </div>
+                            </div>
+                          </div>
+                        </div> -->
+                        <!-- <hr> -->
+                        <div style="padding-left: 20px; padding-right: 20px;">
+                          <div class="row pb-20">
+                            <div class="col-sm-12">
+                              รหัสการลงทะเบียน : <span id="txtIdrs" class="txt-success">NA</span> <br> รหัสโครงการ <span id="txtCode" class="txt-danger">ยังไม่กำหนด</span>
+                            </div>
+                            <div class="col-sm-12">
+                              <div id="txtThtitle" class="txt-dark f500"  style="font-size: 18px;">NA</div>
+                              <div id="txtEntitle" class="txt-dark f500" style="font-size: 16px;">NA</div>
+                            </div>
+                            <div class="col-sm-12">
+                              หัวหน้าโครงการ : <span id="txtPi" class="txt-dark">NA</span>
+                            </div>
+                          </div>
+
+                          <div  class="tab-struct custom-tab-1 mt-10">
+        										<ul role="tablist" class="nav nav-tabs" id="myTabs_7">
+        											<li class="active" role="presentation"><a aria-expanded="true"  data-toggle="tab" role="tab" id="home_tab_7" href="#home_7">ข้อมูลโครงการ</a></li>
+        											<li role="presentation" class=""><a  data-toggle="tab" id="profile_tab_7" role="tab" href="#profile_7" aria-expanded="false">เอกสารแนบ</a></li>
+                              <li role="presentation" class=""><a  data-toggle="tab" id="profile_tab_7" role="tab" href="#profile_8" aria-expanded="false">การดำเนินการต่อ</a></li>
+        											<!-- <li class="dropdown" role="presentation">
+        												<a  data-toggle="dropdown" class="dropdown-toggle" id="myTabDrop_7" href="#" aria-expanded="false">Dropdown <span class="caret"></span></a>
+        												<ul id="myTabDrop_7_contents"  class="dropdown-menu">
+        													<li class=""><a  data-toggle="tab" id="dropdown_13_tab" role="tab" href="#dropdown_13" aria-expanded="true">@fat</a></li>
+        													<li class=""><a  data-toggle="tab" id="dropdown_14_tab" role="tab" href="#dropdown_14" aria-expanded="false">@mdo</a></li>
+        												</ul>
+        											</li> -->
+        										</ul>
+        										<div class="tab-content" id="myTabContent_7">
+        											<div  id="home_7" class="tab-pane fade active in" role="tabpanel">
+                                <table class="table customtable table-bordered" border="0" style="border:none !important; font-size: 1.0em;">
+                                  <tbody>
+                                    <tr>
+                                      <td style="width: 200px;" class="f500 txt-dark">คำสำคัญ</td>
+                                      <td>
+                                        [ภาษาไทย] <span id="txtThkeyword">NA</span>
+                                        <br>
+                                        [English] <span id="txtEnkeyword">NA</span>
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                      <td style="width: 200px;" class="f500 txt-dark">ประเภทโครงการวิจัย</td>
+                                      <td>
+                                        <span id="txtRtype">NA</span>
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                      <td style="width: 200px;" class="f500 txt-dark">ระยะเวลาโครงการ</td>
+                                      <td>
+                                        <span id="txtRduration">NA</span>
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                      <td style="width: 200px;" class="f500 txt-dark">งบประมาณ</td>
+                                      <td>
+                                        <span id="txtRBudget">NA</span>
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                      <td style="width: 200px;" class="f500 txt-dark">ทุนวิจัย</td>
+                                      <td>
+                                        <span id="txtFundingtype">NA</span>
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                      <td style="width: 200px;" class="f500 txt-dark">กลุ่มแหล่งทุน</td>
+                                      <td>
+                                        <span  id="txtFundinggroup">NA</span>
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                      <td style="width: 200px;" class="f500 txt-dark">ชื่อแหล่งทุน</td>
+                                      <td>
+                                        <span id="txtFundingname">NA</span>
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                      <td style="width: 200px;" class="f500 txt-dark">ผู้ร่วมวิจัย</td>
+                                      <td>
+                                        <span id="txtCopi">NA</span>
+                                      </td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+        											</div>
+        											<div  id="profile_7" class="tab-pane fade" role="tabpanel">
+                                <table class="table customtable table-bordered" border="0" style="border:none !important; font-size: 1.0em;">
+                                  <tbody>
+                                    <tr>
+                                      <td style="width: 200px;" class="f500 txt-dark">Submission form</td>
+                                      <td>
+                                        <div class="ft1 pt-0">
+                                          <ul class="" id="ft_att_1">-</ul>
+                                        </div>
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                      <td style="width: 200px;" class="f500 txt-dark">Protocol</td>
+                                      <td>
+                                        <div class="ft2 pt-0">
+                                          <ul class="" id="ft_att_2">-</ul>
+                                        </div>
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                      <td style="width: 200px;" class="f500 txt-dark">Information sheet and Consent Form </td>
+                                      <td>
+                                        <div class="ft3 pt-0">
+                                          <ul class="" id="ft_att_3">-</ul>
+                                        </div>
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                      <td style="width: 200px;" class="f500 txt-dark">Case Record Form </td>
+                                      <td>
+                                        <div class="ft4 pt-0">
+                                          <ul class="" id="ft_att_4">-</ul>
+                                        </div>
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                      <td style="width: 200px;" class="f500 txt-dark">Subject Material </td>
+                                      <td>
+                                        <div class="ft5 pt-0">
+                                          <ul class="" id="ft_att_5">-</ul>
+                                        </div>
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                      <td style="width: 200px;" class="f500 txt-dark">Legal Document</td>
+                                      <td>
+                                        <div class="ft6 pt-0">
+                                          <ul class="" id="ft_att_6">-</ul>
+                                        </div>
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                      <td style="width: 200px;" class="f500 txt-dark">เอกสารประกอบอื่น ๆ</td>
+                                      <td>
+                                        <div class="ft7 pt-0">
+                                          <ul class="" id="ft_att_7">-</ul>
+                                        </div>
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                      <td style="width: 200px;" class="f500 txt-dark">Updated CV, หลักฐานการอบรมจริยธรรมวิจัย </td>
+                                      <td>
+                                        <div class="ft8 pt-0">
+                                          <ul class="" id="ft_att_8">-</ul>
+                                        </div>
+                                      </td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+        											</div>
+        											<div id="profile_8" class="tab-pane fade " role="tabpanel">
+        												<div class="ld dn">
+                                  <div class="row">
+                                    <div class="col-sm-12 text-center" style="padding: 50px 0px;">
+                                      <img src="../images/Rolling.gif" alt="" width="100px;">
+                                    </div>
+                                  </div>
+        												</div>
+
+                                <div class="cd">
+                                  <div class="row">
+                                    <div class="col-sm-12">
+                                      <form onsubmit="return false;" class="myForm">
+              												  <div class="form-group">
+              												    <label for="" class="f500 txt-dark">ผลการตรวจสอบเอกสาร <span class="txt-danger">**</span></label>
+                                          <select class="form-control" name="txtResult" id="txtResult" required>
+                                            <option value="">-- กรุณาเลือกผลการตรวจสอบเอกสาร --</option>
+                                            <option value="2">เอกสารไม่ถูกต้อง</option>
+                                            <option value="3">เอกสารถูกต้อง รอเสนอเลขา EC</option>
+                                          </select>
+              												  </div>
+
+                                        <div class="passPanal dn">
+                                          <div class="form-group">
+                												    <label for="" class="f500 txt-dark">ส่งต่อเลขา ฯ <span class="txt-danger">**</span></label>
+                                            <select class="form-control" name="txtEC" id="txtEC">
+                                              <option value="">-- กรุณาเลือกเลขา EC --</option>
+                                            </select>
+                												  </div>
+
+                                          <div class="row">
+                                            <div class="col-sm-3">
+                                              <div class="form-group">
+                    												    <label for="" class="f500 txt-dark">รหัสปี <span class="txt-danger">**</span></label>
+                                                <!-- <input type="number" name="txtYear" id="txtYear" value="" min="1" max="99" class="form-control"> -->
+                                                <select class="form-control" name="txtYear" id="txtYear">
+                                                  <option value="">-- เลือกปี --</option>
+                                                </select>
+                    												  </div>
+                                            </div>
+                                            <div class="col-sm-3">
+                                              <div class="form-group">
+                    												    <label for="" class="f500 txt-dark">รหัสลำดับ <span class="txt-danger">**</span></label>
+                                                <input type="text" name="txtOrd" id="txtOrd" value="Auto" class="form-control" readonly>
+                    												  </div>
+                                            </div>
+                                            <div class="col-sm-3">
+                                              <div class="form-group">
+                    												    <label for="" class="f500 txt-dark">รหัสภาควิชา/หน่วยงาน <span class="txt-danger">**</span></label>
+                                                <input type="number" name="txtDept" id="txtDept" value="" min="1" max="99" class="form-control">
+                    												  </div>
+                                            </div>
+                                            <div class="col-sm-3">
+                                              <div class="form-group">
+                    												    <label for="" class="f500 txt-dark">รหัสประเภทบุคลากร <span class="txt-danger">**</span></label>
+                                                <input type="number" name="txtPertype" id="txtPertype" value="" min="1" max="99" class="form-control">
+                    												  </div>
+                                            </div>
+                                          </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                          <label for="exampleInputuname_3" class="control-label"><span class="f500">ข้อความตอบกลับหัวหน้าโครงการ หรือ Note ถึงเลขา EC <span class="txt-danger">**</span> </label>
+                                          <textarea name="brief_reports" id="brief_reports" rows="8" cols="80" class="form-control" placeholder=""></textarea>
+                                        </div>
+
+                                        <div class="form-group text-right">
+                                          <button class="btn btn-success" type="submit">บันทึกและส่ง</button>
+                                        </div>
+
+              												</form>
+                                    </div>
+                                  </div>
+                                </div>
+        											</div>
+        										</div>
+        									</div>
+
+
+                        </div>
+                        <div class="row">
+                          <div class="col-sm-12 text-right pr-50 pt-0" style="font-size: 0.8em;">
+                            หมายเลขอ้างอิง : <span class="txtSessid">NA</span>
+                          </div>
+                        </div>
+            					</div>
+                    </div>
+                  </div>
+                  <!-- .contentdiv -->
+
+
+
+                </div>
+                <!-- .panel-body -->
+              </div>
+              <!-- .panel-wrapper -->
+            </div>
+            <!-- .panel -->
+          </div>
+
+
+
+
+
+        </div>
+        <!-- .Row -->
+
+
+
+				<!-- Footer -->
+				<footer class="footer container-fluid pl-30 pr-30">
+					<div class="row">
+						<div class="col-sm-12">
+							<p>2017 &copy; <a href="http://rmis.medicine.psu.ac.th/project/" target="_blank">RMIS</a>. หน่วยส่งเสริมและพัฒนาทางวิชาการ คณะแพทยศาสตร์ มหาวิทยาลัยสงขลานครินทร์. Develop by <a href="https://wisniorproject.com" target="_blank">Wisnior Corp.</a></p>
+						</div>
+					</div>
+				</footer>
+				<!-- /Footer -->
+			</div>
+		</div>
+        <!-- /Main Content -->
+
+    </div>
+    <!-- /#wrapper -->
+
+	<!-- JavaScript -->
+
+  <!-- jQuery -->
+  <script src="../v3/vendors/bower_components/jquery/dist/jquery.min.js"></script>
+
+  <!-- Bootstrap Core JavaScript -->
+  <script src="../v3/vendors/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+	<!-- Data table JavaScript -->
+	<script src="../v3/vendors/bower_components/datatables/media/js/jquery.dataTables.min.js"></script>
+	<script src="../v3/dist/js/dataTables-data.js"></script>
+
+	<!-- Slimscroll JavaScript -->
+	<script src="../v3/dist/js/jquery.slimscroll.js"></script>
+
+	<!-- Owl JavaScript -->
+	<script src="../v3/vendors/bower_components/owl.carousel/dist/owl.carousel.min.js"></script>
+
+	<!-- Switchery JavaScript -->
+	<script src="../v3/vendors/bower_components/switchery/dist/switchery.min.js"></script>
+
+	<!-- Fancy Dropdown JS -->
+	<script src="../v3/dist/js/dropdown-bootstrap-extended.js"></script>
+
+  <!-- Sweet-Alert  -->
+	<script src="../v3/vendors/bower_components/sweetalert/dist/sweetalert.min.js"></script>
+
+  <!-- Data table JavaScript -->
+  <script src="../v3/vendors/bower_components/datatables/media/js/jquery.dataTables.min.js"></script>
+  <script src="../v3/dist/js/dataTables-data.js"></script>
+
+  <script type="text/javascript" src="../v3/vendors/bower_components/ckeditor/ckeditor.js"></script>
+
+	<!-- Init JavaScript -->
+	<script src="../v3/dist/js/init.js"></script>
+  <script src="../v3/main.js"></script>
+  <script src="../v3/staff.js"></script>
+
+  <script type="text/javascript">
+
+    var current_user = window.localStorage.getItem('rmis_current_user')
+    var current_role = window.localStorage.getItem('rmis_current_role')
+    var current_rs = window.localStorage.getItem('current_selected_project_session')
+    var current_rs_id = window.localStorage.getItem('current_selected_project_id')
+    var editData = '';
+
+    $(document).ready(function(){
+
+      if(current_rs == null){
+        swal({    title: "เกิดข้อผิดพลาด",
+                    text: "ไม่พบข้อมูลงานวิจัยที่ต้องการ กรุณาลองใหม่ หรือติดต่อเจ้าหน้าที่!",
+                    type: "error",
+                    showCancelButton: false,
+                    confirmButtonColor: "#DD6B55",
+                    confirmButtonText: "รับทราบ",
+                    closeOnConfirm: false },
+                    function(){
+                     window.location = './'
+                    });
+      }
+
+      console.log(current_rs);
+
+      main.load_year();
+
+      staff.init()
+
+      setTimeout(function(){
+        staff.load_rs_info();
+      }, 1000)
+
+      staff.load_ec_list();
+
+      checkFileAttached()
+
+      editData = CKEDITOR.replace( 'brief_reports', {
+        wordcount : {
+					showCharCount : false,
+					showWordCount : true,
+          maxWordCount: 500
+				},
+        height: '250px'
+      });
+    })
+
+    $(function(){
+      $('#txtResult').change(function(){
+        if($('#txtResult').val()=='2'){
+          $('.passPanal').addClass('dn')
+        }else if($('#txtResult').val()=='3'){
+          $('.passPanal').removeClass('dn')
+        }else{
+          $('.passPanal').addClass('dn')
+        }
+      })
+
+      $('.myForm').submit(function(){
+        if($('#txtResult').val() == '2'){
+          if(editData.getData() == ''){
+            swal("คำเตือน", "กรุณากรอกข้อความที่จะส่งถึงหัวหน้าโครงการวิจัยก่อนทำการบันทึก", "error")
+            return ;
+          }
+
+          var param = {
+            sess_id: current_rs,
+            id_rs: current_rs_id,
+            info: editData.getData(),
+            id: current_user,
+            next_status: '2'
+          }
+
+          var jxhr = $.post(ws_url + 'controller/staff/replay_back_2.php', param, function(){}, 'json')
+                      .always(function(snap){
+                        if((snap!='') && (snap.length > 0)){
+
+                          snap.forEach(function(i){
+
+                            if(i.status == 'Y'){
+
+                              var dataContent = '<h3>ผลการตรวจสอบความถูกต้องของเอกสารโครงการวิจัยเพื่อขอพิจารณาจริยธรรมการวิจัยในมนุษย์</h3>' +
+                                                '<p>เรียน ' + i.fullname + '</p>' +
+                                                '<p>เจ้าหน้าสำนักงานจริยธรรมการวิจัยในมนุษย์ได้ทำการตรวจสอบความครบถ้วนและถูกต้องเอกสารเรียบร้อยแล้ว โดยผลการพิจารณาได้แก่ <span style="font-size: 1.3em; color: red;">เอกสารไม่ถูกต้อง</span> ตามข้อมูลดังต่อไปนี้' +
+                                                '</p>' +
+                                                '<p>' +
+                                                  '<div style="padding: 20px; background: rgb(240, 240, 240);">' + editData.getData() + '</div>' +
+                                                '</p>' +
+                                                '<p>ทั้งนี้ ท่านสามารถตรวจสอบข้อมูลอื่น ๆ เพิ่มเติมได้ที่ <a href="' + root_domain + '" target="_blank">' + root_domain +'</a></p>' +
+                                                '<p>จึงเรียนมาเพื่อทราบ <br>ระบบสารสนเทศเพื่อการจัดการงานวิจัย (RMIS)</p>';
+
+                              var emailParam = {
+                                email: emailConfig.user,
+                                api_key: emailConfig.key,
+                                title: "{ No-reply-from-RMIS } ผลการพิจารณาความถูกต้องของเอกสารโครงการวิจัยเพื่อขอพิจารณาจริยธรรมการวิจัยในมนุษย์",
+                                to_email: i.email ,
+                                content: dataContent
+                              }
+                              var jxhr = $.post(emailProvider, emailParam, function(){})
+                                          .always(function(res){
+                                            if(res!='Y'){
+                                              // main_app.emailErr('Change password', window.localStorage.getItem('rmis_current_user_email'))
+                                            }
+                                          })
+
+                              swal({
+                                title: "ดำเนินการสำเร็จ",
+                                text: "กดตกลงเพื่อกลับสู่หน้ารายการ",
+                                type: "success",
+                                showCancelButton: false,
+                                confirmButtonColor: "#126cd5",
+                                confirmButtonText: "ตกลง",
+                                closeOnConfirm: false
+                              },
+                              function(){
+                                window.location = 'rs-init-new.html'
+                              });
+
+                            }else{
+                              swal("เกิดข้อผิดพลาด", "ไม่สามารถส่งข้อมูลได้", "error")
+                              return ;
+                            }
+                          })
+                        }else{
+                          swal("เกิดข้อผิดพลาด", "ไม่สามารถส่งข้อมูลได้", "error")
+                          return ;
+                        }
+                      }, 'json')
+                      .fail(function(){
+                        swal("เกิดข้อผิดพลาด", "ไม่สามารถเชื่อมต่อฐานข้อมูลได้ กรุณาลองใหม่ภายหลัง", "error")
+                        return ;
+                      })
+        }
+        // In Correct
+        else {
+
+          var check = 0;
+          if(editData.getData() == ''){
+            check++;
+          }
+
+          if($('#txtEC').val() == ''){
+            check++;
+          }
+
+          if($('#txtYear').val() == ''){
+            check++;
+          }
+
+          if($('#txtDept').val() == ''){
+            check++;
+          }
+
+          if($('#txtPertype').val() == ''){
+            check++;
+          }
+
+          if(check!=0){
+            swal("คำเตือน", "กรุณากรอกข้อมูลให้ครบถ้วนก่อนทำการบันทึก", "error")
+            return ;
+          }
+
+          var param = {
+            sess_id: current_rs,
+            id_rs: current_rs_id,
+            info: editData.getData(),
+            id: current_user,
+            ec: $('#txtEC').val(),
+            year: $('#txtYear').val(),
+            dept: $('#txtDept').val(),
+            ptype: $('#txtPertype').val(),
+            next_status: '3'
+          }
+
+          swal({
+            title: "คำเตือน",
+            text: "ท่านต้องการปรับปรุงข้อมูล รหัสปี รหัสภาควิชา หรือรหัสประเภทบุคคลกร จากข้อมูลนี้หรือไม่ กด 'ตกลง' เพื่อให้ระบบทำการเปลี่ยนข้อมูลของโครงการิวัยและหัวหน้าโครงการโดยอัตโนมัติ หรือ กดปุ่ม 'ไม่เปลี่ยน' เพื่อยืนยันค่าเดิมโดยไม่เปลี่ยนแปลงข้อมูลหัวหน้าโครงการ ",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#DD6B55",
+            confirmButtonText: "ตกลง",
+            cancelButtonText: "ไม่เปลี่ยน",
+            closeOnConfirm: false,
+            closeOnCancel: false
+          },
+            function(isConfirm){
+
+              lp.sl();
+               if (isConfirm) { // เปลี่ยนด้วย
+                  var jxhr = $.post(ws_url + 'controller/staff/replay_back_3_update.php', param, function(){}, 'json')
+                              .always(function(snap){
+
+                                if((snap!='') && (snap.length > 0)){
+
+                                  snap.forEach(function(i){
+
+                                    if(i.status == 'Y'){
+
+                                      var dataContent = '<h3>ผลการตรวจสอบความถูกต้องของเอกสารโครงการวิจัยเพื่อขอพิจารณาจริยธรรมการวิจัยในมนุษย์ REC.' + i.rec_id + '</h3>' +
+                                                        '<p>เรียน ' + i.fullname + '</p>' +
+                                                        '<p>เจ้าหน้าสำนักงานจริยธรรมการวิจัยในมนุษย์ได้ทำการตรวจสอบความครบถ้วนและถูกต้องเอกสารเรียบร้อยแล้ว โดยผลการพิจารณาได้แก่ <span style="font-size: 1.3em; color: green;">เอกสารถูกต้อง</span> และอยู่ระหว่างกระบวนส่งต่อเลขา EC เพื่อทำการพิจารณาต่อไป' +
+                                                        '</p>' +
+                                                        '<p>ทั้งนี้ ท่านสามารถตรวจสอบข้อมูลอื่น ๆ เพิ่มเติมได้ที่ <a href="' + root_domain + '" target="_blank">' + root_domain +'</a></p>' +
+                                                        '<p>จึงเรียนมาเพื่อทราบ <br>ระบบสารสนเทศเพื่อการจัดการงานวิจัย (RMIS)</p>';
+
+                                      var emailParam = {
+                                        email: emailConfig.user,
+                                        api_key: emailConfig.key,
+                                        title: "{ No-reply } REC." + i.rec_id + " : ผลการพิจารณาความถูกต้องของเอกสารโครงการวิจัยเพื่อขอพิจารณาจริยธรรมการวิจัยในมนุษย์",
+                                        to_email: i.email ,
+                                        content: dataContent
+                                      }
+                                      var jxhr = $.post(emailProvider, emailParam, function(){})
+                                                  .always(function(res){
+                                                    if(res!='Y'){
+                                                      // main_app.emailErr('Change password', window.localStorage.getItem('rmis_current_user_email'))
+                                                    }
+                                                  })
+
+                                      swal({
+                                        title: "ดำเนินการสำเร็จ",
+                                        text: "กดตกลงเพื่อกลับสู่หน้ารายการ",
+                                        type: "success",
+                                        showCancelButton: false,
+                                        confirmButtonColor: "#126cd5",
+                                        confirmButtonText: "ตกลง",
+                                        closeOnConfirm: false
+                                      },
+                                      function(){
+                                        window.location = 'rs-init-new.html'
+                                      });
+
+                                    }else{
+                                      lp.hl();
+                                      swal("เกิดข้อผิดพลาด", "ไม่สามารถส่งข้อมูลได้", "error")
+                                      return ;
+                                    }
+                                  })
+                                }else{
+                                  lp.hl();
+                                  swal("เกิดข้อผิดพลาด", "ไม่สามารถส่งข้อมูลได้", "error")
+                                  return ;
+                                }
+                              }, 'json')
+                              .fail(function(){
+                                lp.hl();
+                                swal("เกิดข้อผิดพลาด", "ไม่สามารถเชื่อมต่อฐานข้อมูลได้ กรุณาลองใหม่ภายหลัง", "error")
+                                return ;
+                              })
+               }
+               else { //ไม่เปลี่ยน
+                 var jxhr = $.post(ws_url + 'controller/staff/replay_back_3.php', param, function(){}, 'json')
+                             .always(function(snap){
+
+                               if((snap!='') && (snap.length > 0)){
+
+                                 snap.forEach(function(i){
+
+                                   if(i.status == 'Y'){
+
+                                     var dataContent = '<h3>ผลการตรวจสอบความถูกต้องของเอกสารโครงการวิจัยเพื่อขอพิจารณาจริยธรรมการวิจัยในมนุษย์ REC.' + i.rec_id + '</h3>' +
+                                                       '<p>เรียน ' + i.fullname + '</p>' +
+                                                       '<p>เจ้าหน้าสำนักงานจริยธรรมการวิจัยในมนุษย์ได้ทำการตรวจสอบความครบถ้วนและถูกต้องเอกสารเรียบร้อยแล้ว โดยผลการพิจารณาได้แก่ <span style="font-size: 1.3em; color: green;">เอกสารถูกต้อง</span> และอยู่ระหว่างกระบวนส่งต่อเลขา EC เพื่อทำการพิจารณาต่อไป' +
+                                                       '</p>' +
+                                                       '<p>ทั้งนี้ ท่านสามารถตรวจสอบข้อมูลอื่น ๆ เพิ่มเติมได้ที่ <a href="' + root_domain + '" target="_blank">' + root_domain +'</a></p>' +
+                                                       '<p>จึงเรียนมาเพื่อทราบ <br>ระบบสารสนเทศเพื่อการจัดการงานวิจัย (RMIS)</p>';
+
+                                     var emailParam = {
+                                       email: emailConfig.user,
+                                       api_key: emailConfig.key,
+                                       title: "{ No-reply } REC." + i.rec_id + " : ผลการพิจารณาความถูกต้องของเอกสารโครงการวิจัยเพื่อขอพิจารณาจริยธรรมการวิจัยในมนุษย์",
+                                       to_email: i.email ,
+                                       content: dataContent
+                                     }
+                                     var jxhr = $.post(emailProvider, emailParam, function(){})
+                                                 .always(function(res){
+                                                   if(res!='Y'){
+                                                     // main_app.emailErr('Change password', window.localStorage.getItem('rmis_current_user_email'))
+                                                   }
+                                                 })
+
+                                     swal({
+                                       title: "ดำเนินการสำเร็จ",
+                                       text: "กดตกลงเพื่อกลับสู่หน้ารายการ",
+                                       type: "success",
+                                       showCancelButton: false,
+                                       confirmButtonColor: "#126cd5",
+                                       confirmButtonText: "ตกลง",
+                                       closeOnConfirm: false
+                                     },
+                                     function(){
+                                       window.location = 'rs-init-new.html'
+                                     });
+
+                                   }else{
+                                     lp.hl();
+                                     swal("เกิดข้อผิดพลาด", "ไม่สามารถส่งข้อมูลได้", "error")
+                                     return ;
+                                   }
+                                 })
+                               }else{
+                                 lp.hl();
+                                 swal("เกิดข้อผิดพลาด", "ไม่สามารถส่งข้อมูลได้", "error")
+                                 return ;
+                               }
+                             }, 'json')
+                             .fail(function(){
+                               lp.hl();
+                               swal("เกิดข้อผิดพลาด", "ไม่สามารถเชื่อมต่อฐานข้อมูลได้ กรุณาลองใหม่ภายหลัง", "error")
+                               return ;
+                             })
+               }
+          });
+
+        }
+      })
+    })
+  </script>
+</body>
+
+</html>

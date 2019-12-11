@@ -1,0 +1,1309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<title>:: RMIS :: สำหรับหัวหน้าโครงการ ::</title>
+
+	<!-- Data table CSS -->
+	<link href="../v3/vendors/bower_components/datatables/media/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css"/>
+  <!-- switchery CSS -->
+	<link href="../v3/vendors/bower_components/switchery/dist/switchery.min.css" rel="stylesheet" type="text/css"/>
+
+  <link rel="stylesheet" href="../v3/vendors/bower_components/dropzonejs/dropzone.min.css" />
+  <!--alerts CSS -->
+	<link href="../v3/vendors/bower_components/sweetalert/dist/sweetalert.css" rel="stylesheet" type="text/css">
+
+  <!-- bootstrap-select CSS -->
+	<link href="../v3/vendors/bower_components/bootstrap-select/dist/css/bootstrap-select.min.css" rel="stylesheet" type="text/css"/>
+
+  <link rel="stylesheet" href="../v3/vendors/bower_components/bootstrap-datepicker/bootstrap-datepicker3.min.css" />
+
+  <!-- Bootstrap Switches CSS -->
+	<link href="../v3/vendors/bower_components/bootstrap-switch/dist/css/bootstrap3/bootstrap-switch.min.css" rel="stylesheet" type="text/css"/>
+  <!-- vector map CSS -->
+	<!-- <link href="../v3/vendors/bower_components/jquery-wizard.js/css/wizard.css" rel="stylesheet" type="text/css"/> -->
+
+	<!-- jquery-steps css -->
+	<!-- <link rel="stylesheet" href="../v3/vendors/bower_components/jquery.steps/demo/css/jquery.steps.css"> -->
+
+	<!-- Custom CSS -->
+	<link href="../v3/dist/css/style.css" rel="stylesheet" type="text/css">
+  <link href="../v3/fonts.css" rel="stylesheet" type="text/css">
+  <link href="../v3/style.css" rel="stylesheet" type="text/css">
+
+</head>
+
+<body>
+	<!--Preloader-->
+	<div class="preloader-it">
+		<div class="la-anim-1"></div>
+	</div>
+	<!--/Preloader-->
+    <div class="wrapper theme-1-active pimary-color-red">
+
+        <!-- Top Menu Items -->
+		<nav class="navbar navbar-inverse navbar-fixed-top">
+			<div class="mobile-only-brand pull-left">
+				<div class="nav-header pull-left">
+					<div class="logo-wrap">
+						<a href="./">
+							<img class="brand-img" src="../v3/dist/img/logo.png" alt="brand"/>
+							<span class="brand-text">RMIS</span>
+						</a>
+					</div>
+				</div>
+				<a id="toggle_nav_btn" class="toggle-left-nav-btn inline-block ml-20 pull-left" href="javascript:void(0);"><i class="zmdi zmdi-menu"></i></a>
+				<a id="toggle_mobile_nav" class="mobile-only-view" href="javascript:void(0);"><i class="zmdi zmdi-more"></i></a>
+			</div>
+			<div id="mobile_only_nav" class="mobile-only-nav pull-right">
+				<ul class="nav navbar-right top-nav pull-right">
+          <li>
+            <a href="profile.html">ยินดีต้อนรับ <span class="userFullname text-info">NA</span> (PI)</a>
+          </li>
+
+
+					<li class="dropdown alert-drp">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="zmdi zmdi-notifications top-nav-icon"></i><span class="notification_number"></span></a>
+						<ul  class="dropdown-menu alert-dropdown" data-dropdown-in="bounceIn" data-dropdown-out="bounceOut">
+							<li>
+								<div class="notification-box-head-wrap">
+									<span class="notification-box-head pull-left inline-block">การแจ้งเตือน</span>
+									<a class="txt-danger pull-right clear-notifications inline-block" href="javascript:main.clear_notify()"> ล้างทั้งหมด </a>
+									<div class="clearfix"></div>
+									<hr class="light-grey-hr ma-0"/>
+								</div>
+							</li>
+              <li>
+                <div class="streamline message-nicescroll-bar notification_panal">
+                </div>
+              </li>
+							<li>
+								<div class="notification-box-bottom-wrap">
+									<hr class="light-grey-hr ma-0"/>
+									<a class="block text-center read-all" href="view_activity_log.html"> อ่านทั้งหมด </a>
+									<div class="clearfix"></div>
+								</div>
+							</li>
+						</ul>
+					</li>
+
+          <li class="dropdown auth-drp">
+						<a href="#" class="dropdown-toggle pr-0" data-toggle="dropdown"><span id="profileImg"></span><span class="user-online-status"></span></a>
+						<ul class="dropdown-menu user-auth-dropdown" data-dropdown-in="flipInX" data-dropdown-out="flipOutX">
+							<li>
+								<a href="profile.html"><i class="zmdi zmdi-account"></i><span>ข้อมูลส่วนตัว</span></a>
+							</li>
+							<li>
+								<a href="#" onclick="main.inbox()"><i class="zmdi zmdi-email"></i><span>Inbox</span></a>
+							</li>
+							<li>
+								<a href="changepassword.html"><i class="zmdi zmdi-settings"></i><span>เปลี่ยนรหัสผ่าน</span></a>
+							</li>
+							<li class="divider"></li>
+							<li>
+								<a href="#" onclick="main.signout()"><i class="zmdi zmdi-power"></i><span>ออกจากระบบ</span></a>
+							</li>
+						</ul>
+					</li>
+
+
+				</ul>
+			</div>
+		</nav>
+		<!-- /Top Menu Items -->
+
+		<!-- Left Sidebar Menu -->
+		<div class="fixed-sidebar-left">
+			<ul class="nav navbar-nav side-nav nicescroll-bar">
+				<li class="navigation-header">
+					<span>Main</span>
+					<i class="zmdi zmdi-more"></i>
+				</li>
+
+        <li>
+					<a href="./"><div class="pull-left"><i class="zmdi zmdi-home mr-20"></i><span class="right-nav-text">หน้าแรก</span></div><div class="clearfix"></div></a>
+				</li>
+        <li>
+						<a href="javascript:void(0);" data-toggle="collapse" data-target="#dashboard_dr"><div class="pull-left"><i class="zmdi zmdi-landscape mr-20"></i><span class="right-nav-text">กระดานภาพรวม</span></div><div class="pull-right"><i class="zmdi zmdi-caret-down"></i></div><div class="clearfix"></div></a>
+						<ul id="dashboard_dr" class="collapse collapse-level-1">
+							<li>
+								<a href="dashboard_1.html">ภาพรวมโครงการวิจัย</a>
+							</li>
+						</ul>
+					</li>
+
+				<li><hr class="light-grey-hr mb-10"/></li>
+				<li class="navigation-header">
+					<span>จัดการงานวิจัย</span>
+					<i class="zmdi zmdi-more"></i>
+				</li>
+				<li>
+					<a href="javascript:void(0);" data-toggle="collapse" data-target="#ui_dr"><div class="pull-left"><i class="zmdi zmdi-edit mr-20"></i><span class="right-nav-text">โครงการวิจัยใหม่</span></div><div class="pull-right"><i class="zmdi zmdi-caret-down"></i></div><div class="clearfix"></div></a>
+					<ul id="ui_dr" class="collapse collapse-level-1 two-col-list">
+						<li>
+							<a data-toggle="modal" data-target="#myModal">ลงทะเบียนโครงการวิจัย (ใหม่)</a>
+						</li>
+            <li>
+							<a href="research_unconf_list.html">โครงการวิจัยที่ยังไม่ยืนยันการส่ง</a>
+						</li>
+            <li>
+							<a href="research_draft_list.html">แบบเสนอโครงการฉบับร่าง</a>
+						</li>
+						<li>
+							<a href="research_reply_list.html">แบบเสนอโครงการที่รอแก้ไข</a>
+						</li>
+						<li>
+							<a href="rs_list.html">โครงการวิจัยใหม่ทั้งหมด</a>
+						</li>
+					</ul>
+				</li>
+
+        <li>
+					<a href="javascript:void(0);" data-toggle="collapse" data-target="#ui_dr2"><div class="pull-left"><i class="zmdi zmdi-flip-to-back mr-20"></i><span class="right-nav-text">โครงการวิจัยย้อนหลัง</span></div><div class="pull-right"><i class="zmdi zmdi-caret-down"></i></div><div class="clearfix"></div></a>
+					<ul id="ui_dr2" class="collapse collapse-level-1 two-col-list">
+						<li>
+							<a href="../rs_add_back.php">ลงทะเบียนโครงการวิจัย (ย้อนหลัง)</a>
+						</li>
+						<li>
+							<a href="../rs_back_list_nc.php">โครงการวิจัยที่ยังไม่ยืนยันการส่ง</a>
+						</li>
+						<li>
+							<a href="../rs_back_list.php">โครงการวิจัยย้อนหลัง</a>
+						</li>
+					</ul>
+				</li>
+
+        <li>
+					<a class="active" href="javascript:void(0);" data-toggle="collapse" data-target="#ui_dr3"><div class="pull-left"><i class="zmdi zmdi-8tracks mr-20"></i><span class="right-nav-text">โครงการกำลังดำเนินการ</span></div><div class="pull-right"><i class="zmdi zmdi-caret-down"></i></div><div class="clearfix"></div></a>
+					<ul id="ui_dr3" class="collapse collapse-level-1 two-col-list">
+            <li>
+							<a class="active-page" href="goto_report_cont.html">โครงการที่อยู่ระหว่างการดำเนินการทั้งหมด</a>
+						</li>
+						<li>
+							<a href="#" onclick="goto_report(1)">รายงานความก้าวหน้า (Progress report)</a>
+						</li>
+						<li>
+							<a href="#" onclick="goto_report('2')" >ขอต่ออายุการรับรอง (Renewal)</a>
+						</li>
+						<li>
+							<a href="#" onclick="goto_report('3')" >ขอปรับปรุงแก้ไขโครงการวิจัย (Amendment)</a>
+						</li>
+            <li>
+							<a href="#" onclick="goto_report('4')" >รายงานเหตุการณ์ไม่พึงประสงค์ (SAE)</a>
+						</li>
+            <li>
+							<a href="#" onclick="goto_report('5')" >รายงานการดำเนินงานที่เบี่ยงเบน (Deviation/Violation)</a>
+						</li>
+            <li>
+							<a href="#" onclick="goto_report('6')" >รายงานการยุติ/สิ้นสุดโครการ (Termination/Closing)</a>
+						</li>
+            <li>
+							<a href="goto_report_edit.html" >โครงการวิจัยที่ต้องแก้ไข</a>
+						</li>
+					</ul>
+				</li>
+
+				<li><hr class="light-grey-hr mb-10"/></li>
+				<li class="navigation-header">
+					<span>อื่น ๆ</span>
+					<i class="zmdi zmdi-more"></i>
+				</li>
+				<li>
+					<a href="javascript:void(0);" data-toggle="collapse" data-target="#pages_dr2"><div class="pull-left"><i class="zmdi zmdi-account mr-20"></i><span class="right-nav-text">ข้อมูลหัวหน้าโครงการ</span></div><div class="pull-right"><i class="zmdi zmdi-caret-down"></i></div><div class="clearfix"></div></a>
+					<ul id="pages_dr2" class="collapse collapse-level-1 two-col-list">
+						<li>
+							<a href="../curriculum_vitae_add.php">Academic performance & CGP</a>
+						</li>
+
+            <li>
+							<a href="../curriculum_vitae_list.php">การตีพิมพ์ผลงานวิจัย</a>
+						</li>
+					</ul>
+				</li>
+
+        <li>
+					<a href="../rs_list_beforepayment.php"><div class="pull-left"><i class="zmdi zmdi-filter-list mr-20"></i><span class="right-nav-text">นำส่งเงินค่าธรรมเนียม</span></div><div class="clearfix"></div></a>
+				</li>
+
+        <li>
+					<a href="documentation.html"><div class="pull-left"><i class="zmdi zmdi-book mr-20"></i><span class="right-nav-text">คู่มือการใช้งาน (PI)</span></div><div class="clearfix"></div></a>
+				</li>
+
+			</ul>
+		</div>
+		<!-- /Left Sidebar Menu -->
+
+
+		<!-- Main Content -->
+		<div class="page-wrapper" style="padding-left: 15px; padding-right: 15px;">
+      <div class="container-fluid">
+
+				<!-- Title -->
+				<div class="row heading-bg">
+					<div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+						<h5 class="txt-dark">รายงานความก้าวหน้า/ต่ออายุใบรับรอง</h5>
+					</div>
+					<!-- Breadcrumb -->
+					<div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+						<ol class="breadcrumb">
+							<li><a href="./">หน้าแรก</a></li>
+							<li class="active"><span>รายงานความก้าวหน้า/ต่ออายุใบรับรอง</span></li>
+						</ol>
+					</div>
+					<!-- /Breadcrumb -->
+				</div>
+				<!-- /Title -->
+
+        <!-- Row -->
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="panel panel-default card-view">
+
+              <div class="panel-wrapper collapse in">
+								<div class="panel-body">
+
+                  <div class="form-group">
+                    <label for="" class="txt-dark">เลือกโครงการวิจัย <span class="txt-danger">**</span></label>
+                    <select class="form-control" name="txtResearch" id="txtResearch">
+                      <option value="">--- กรุณาเลือกโครงการวิจัยของท่าน ---</option>
+                    </select>
+                  </div>
+
+                </div>
+                <!-- .panel-body -->
+              </div>
+              <!-- .panel-wrapper -->
+            </div>
+            <!-- .panel -->
+
+          </div>
+          <!-- .col-sm-4 -->
+        </div>
+        <!-- .Row -->
+
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="panel panel-default card-view">
+
+              <div class="panel-wrapper collapse in">
+								<div class="panel-body">
+
+                  <div class="loaddiv dn" style="padding: 100px 0px;">
+                    <div class="row">
+                      <div class="col-sm-2 col-sm-offset-5">
+                        <img src="../images/Rolling.gif" alt="" width="100%">
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="contentdiv">
+
+                    <div class="alert alert-success alert-dismissable">
+											<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+											<i class="zmdi zmdi-info-outline pr-15 pull-left"></i><p class="pull-left">กรุณากรอกข้อมูลให้ครบถ้วน โดยเฉพาะส่วนที่มีเครื่องหมาย **</p>
+											<div class="clearfix"></div>
+										</div>
+
+                    <form onsubmit="return false;" class="contForm">
+                      <div class="row">
+                        <div class="col-sm-6">
+                          <div class="form-group">
+                            <label for="" class="fs08 txt-dark f500">REC.</label>
+                            <input type="text" name="txtCode" id="txtCode" class="form-control" readonly>
+                          </div>
+                        </div>
+                        <div class="col-sm-6">
+                          <div class="form-group">
+                            <label for="" class="fs08 txt-dark f500">PROROCAL NO. (sponsored).</label>
+                            <input type="text" name="txtProtocal" id="txtProtocal" class="form-control">
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="row">
+                        <div class="col-sm-12">
+                          <div class="form-group">
+                            <label for="" class="fs08 txt-dark f500">ชื่อโครงการ (ไทย)</label>
+                            <textarea name="txtThTitle" id="txtThTitle" rows="3" cols="80" class="form-control" readonly></textarea>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="row">
+                        <div class="col-sm-12">
+                          <div class="form-group">
+                            <label for="" class="fs08 txt-dark f500">Title (Eng)</label>
+                            <textarea name="txtEnTitle" id="txtEnTitle" rows="3" cols="80" class="form-control" readonly></textarea>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="row">
+                        <div class="col-sm-2">
+                          <div class="form-group">
+                            <label for="" class="fs08 txt-dark f500">รายงานครั้งที่ <span class="txt-danger">**</span></label>
+                            <input type="number" class="form-control" name="txtRound" id="txtRound" min="1" max="20">
+                          </div>
+                        </div>
+                        <div class="col-sm-5">
+                          <div class="form-group">
+                            <label for="" class="fs08 txt-dark f500">การดำเนินงานระหว่างวันที่ <span class="txt-danger">**</span></label>
+                            <!-- <input type="number" class="form-control" name="txtDateStart" id="txtDateStart"> -->
+                            <input class="form-control js-datepicker "  type="text" id="txtDateStart" name="txtDateStart"  data-provide="datepicker" data-date-language="th-th"  data-date-format="yyyy-mm-dd" placeholder="yyyy-mm-dd" style="margin-bottom: 0px;" readonly />
+                          </div>
+                        </div>
+                        <div class="col-sm-5">
+                          <div class="form-group">
+                            <label for="" class="fs08 txt-dark f500">ถึงวันที่ <span class="txt-danger">**</span></label>
+                            <!-- <input type="number" class="form-control" name="txtDateEnd" id="txtDateEnd"> -->
+                            <input class="form-control js-datepicker "  type="text" id="txtDateEnd" name="txtDateEnd"  data-provide="datepicker" data-date-language="th-th"  data-date-format="yyyy-mm-dd" placeholder="yyyy-mm-dd" style="margin-bottom: 0px;" readonly />
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="row">
+                        <div class="col-sm-12">
+                          <div class="form-group">
+                            <label for="" class="fs08 txt-dark f500">ลักษณะการดำเนินการ คือ <span class="txt-danger">**</span></label>
+                            <select class="form-control" name="txtProcessType" id="txtProcessType">
+                              <option value="">--- กรุณาเลือกลักษณะการดำเนินการ ---</option>
+                              <option value="1">รายงานความก้าวหน้า 6 เดือน</option>
+                              <option value="2">รายงานความก้าวหน้า 6 เดือนพร้อมต่ออายุ</option>
+                              <option value="3">รายงานความก้าวหน้า 12 เดือนพร้อมต่ออายุ</option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="row">
+                        <div class="col-sm-12">
+                          <table class="table table-bordered txt-dark">
+                            <tr>
+                              <td colspan="2" style="background: rgb(31, 166, 64);"><span class="f500 txt-light" style="font-size: 1.3em;">การยื่นเอกสาร</span></td>
+                            </tr>
+                            <tr>
+                              <td colspan="2" class="f500 txt-success" style="background: rgb(241, 241, 241);">
+                                Trial Progres
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <div class="checkbox checkbox-success">
+      														<input type="checkbox" id="checkbox01"/>
+      														<label for="checkbox01">โครงการไม่เกี่ยวข้องกับการมีปฏิสัมพันธ์โดยตรงกับอาสาสมัคร เช่น retrospective review, left over, secondary data analysis (ข้ามไปข้อ 3) ระบุ </label>
+      													</div>
+                                <div class="form-group">
+                                  <label for="" class="fs08 txt-dark f500">หากใช่ ให้ระบุ</label>
+                                  <input type="text" class="form-control" name="q1_info" id="q1_info">
+                                </div>
+
+
+                                <div class="">
+                                  1. จำนวนอาสาสมัคร (ตั้งแต่เริ่มโครงการ)
+                                  <div class="row">
+                                    <div class="col-sm-6">
+                                      <div class="form-group">
+                                        <label for="" class="fs08 txt-dark f500">a) จำนวนที่ EC รับรองให้เก็บข้อมูล (total sample size) </label>
+                                        <input type="number" class="form-control" min="0" name="q1_1" id="q1_1">
+                                      </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                      <div class="form-group">
+                                        <label for="" class="fs08 txt-dark f500">e) จำนวนผู้ที่อยู่ในช่วงติดตาม (inactive subject) </label>
+                                        <input type="number" class="form-control" min="0" name="q1_5" id="q1_5">
+                                      </div>
+                                    </div>
+                                  </div>
+
+                                  <div class="row">
+                                    <div class="col-sm-6">
+                                      <div class="form-group">
+                                        <label for="" class="fs08 txt-dark f500">b) จำนวนผู้ลงชื่อยินยอม (total subject consented) </label>
+                                        <input type="number" class="form-control" min="0" name="q1_2" id="q1_2">
+                                      </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                      <div class="form-group">
+                                        <label for="" class="fs08 txt-dark f500">f) จำนวนผู้ที่ถอนตัว (รวมถึงเสียชีวิต) (withdrawal/death) </label>
+                                        <input type="number" class="form-control" min="0" name="q1_6" id="q1_6">
+                                      </div>
+                                    </div>
+                                  </div>
+
+                                  <div class="row">
+                                    <div class="col-sm-6">
+                                      <div class="form-group">
+                                        <label for="" class="fs08 txt-dark f500">c) จำนวนผู้ไม่ผ่านการคัดกรอง (screening failure) </label>
+                                        <input type="number" class="form-control" min="0" name="q1_3" id="q1_3">
+                                      </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                      <div class="form-group">
+                                        <label for="" class="fs08 txt-dark f500">g) จำนวนผู้ที่เสร็จสิ้นทั้งกระบวนการศึกษา (completed) </label>
+                                        <input type="number" class="form-control" min="0" name="q1_7" id="q1_7">
+                                      </div>
+                                    </div>
+                                  </div>
+
+                                  <div class="row">
+                                    <div class="col-sm-6">
+                                      <div class="form-group">
+                                        <label for="" class="fs08 txt-dark f500">d) จำนวนผู้ที่ยังอยู่ในช่วงมี intervention (active subject)  </label>
+                                        <input type="number" class="form-control" min="0" name="q1_4" id="q1_4">
+                                      </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                    </div>
+                                  </div>
+
+                                  <div class="row">
+                                    <div class="col-sm-12">
+                                      <div class="form-group">
+                                        <label for="" class="fs08 txt-dark f500">หมายเหตุ (ถ้ามี)</label>
+                                        <textarea name="bf1" id="bf1" rows="3" cols="80" class="form-control"></textarea>
+                                      </div>
+                                    </div>
+                                  </div>
+
+                                  <div class="row">
+                                    <div class="col-sm-12">
+                                      2. มีอาสาสมัครที่ถอนตัวหรือถูกถอนจากโครงการ (นับตั้งแต่วันที่ EC อนุญาตหรือต่ออายุครั้งล่าสุด) หรือไม่ ถ้ามี ระบุเหตุการณ์โดยสรุป
+                                      <div class="row">
+                                        <div class="col-sm-4">
+                                          <div class="checkbox checkbox-success">
+                														<input type="checkbox" id="checkbox02-1"/>
+                														<label for="checkbox02-1">มี</label>
+                													</div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                          <div class="checkbox checkbox-success">
+                														<input type="checkbox" id="checkbox02-2"/>
+                														<label for="checkbox02-2">ไม่มี</label>
+                													</div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                          <div class="checkbox checkbox-success">
+                														<input type="checkbox" id="checkbox02-3"/>
+                														<label for="checkbox02-3">ไม่เกี่ยว</label>
+                													</div>
+                                        </div>
+                                      </div>
+
+                                      <div class="row">
+                                        <div class="col-sm-12">
+                                          <div class="form-group">
+                                            <label for="" class="fs08 txt-dark f500">หมายเหตุจากข้อ 2 (ถ้ามี)</label>
+                                            <textarea name="bf2" id="bf2" rows="3" cols="80" class="form-control"></textarea>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+
+                                </div>
+                              </td>
+                            </tr>
+
+                            <tr>
+                              <td colspan="2" class="f500 txt-success" style="background: rgb(241, 241, 241);">
+                                Protocol related documents
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <div class="row">
+                                  <div class="col-sm-12">
+                                    3. นับจากวันอนุมัติต่ออายุครั้งล่าสุด มีการเปลี่ยนแปลง protocol และเอกสารที่เกี่ยวข้องเพิ่มหรือไม่
+ถ้ามี โปรดสรุป และแนบหลักฐานประกอบ เช่น ใบรับรอง amendment จาก EC
+                                    <div class="row">
+                                      <div class="col-sm-4">
+                                        <div class="checkbox checkbox-success">
+                                          <input type="checkbox" id="checkbox03-1"/>
+                                          <label for="checkbox03-1">มี</label>
+                                        </div>
+                                      </div>
+                                      <div class="col-sm-4">
+                                        <div class="checkbox checkbox-success">
+                                          <input type="checkbox" id="checkbox03-2"/>
+                                          <label for="checkbox03-2">ไม่มี</label>
+                                        </div>
+                                      </div>
+                                    </div>
+
+                                    <div class="row">
+                                      <div class="col-sm-12">
+                                        <div class="form-group">
+                                          <label for="" class="fs08 txt-dark f500">หมายเหตุจากข้อ 3 (ถ้ามี)</label>
+                                          <textarea name="bf3" id="bf3" rows="3" cols="80" class="form-control"></textarea>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+
+                                <div class="row">
+                                  <div class="col-sm-12">
+                                    4. นับจากวันอนุมัติต่ออายุครั้งล่าสุด มีการปรับ Investigator’s Brochure หรือไม่? ถ้ามี โปรดสรุป และแนบหลักฐานประกอบ เช่น ใบรับรอง amendment จาก EC
+                                    <div class="row">
+                                      <div class="col-sm-4">
+                                        <div class="checkbox checkbox-success">
+                                          <input type="checkbox" id="checkbox04-1"/>
+                                          <label for="checkbox02-1">มี</label>
+                                        </div>
+                                      </div>
+                                      <div class="col-sm-4">
+                                        <div class="checkbox checkbox-success">
+                                          <input type="checkbox" id="checkbox04-2"/>
+                                          <label for="checkbox04-2">ไม่มี</label>
+                                        </div>
+                                      </div>
+                                      <div class="col-sm-4">
+                                        <div class="checkbox checkbox-success">
+                                          <input type="checkbox" id="checkbox04-3"/>
+                                          <label for="checkbox04-3">ไม่เกี่ยว</label>
+                                        </div>
+                                      </div>
+                                    </div>
+
+                                    <div class="row">
+                                      <div class="col-sm-12">
+                                        <div class="form-group">
+                                          <label for="" class="fs08 txt-dark f500">หมายเหตุจากข้อ 4 (ถ้ามี)</label>
+                                          <textarea name="bf4" id="bf4" rows="3" cols="80" class="form-control"></textarea>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+
+                                <div class="row">
+                                  <div class="col-sm-12">
+                                    5. นับจากวันอนุมัติต่ออายุครั้งล่าสุด มีข้อมูลใหม่เพิ่มเติมเกี่ยวกับความเสี่ยงที่เกี่ยวข้องกับการวิจัยหรือไม่  ถ้ามี โปรดสรุป และแนบเอกสารมาประกอบ
+                                    <div class="row">
+                                      <div class="col-sm-4">
+                                        <div class="checkbox checkbox-success">
+                                          <input type="checkbox" id="checkbox05-1"/>
+                                          <label for="checkbox05-1">มี</label>
+                                        </div>
+                                      </div>
+                                      <div class="col-sm-4">
+                                        <div class="checkbox checkbox-success">
+                                          <input type="checkbox" id="checkbox05-2"/>
+                                          <label for="checkbox05-2">ไม่มี</label>
+                                        </div>
+                                      </div>
+                                    </div>
+
+                                    <div class="row">
+                                      <div class="col-sm-12">
+                                        <div class="form-group">
+                                          <label for="" class="fs08 txt-dark f500">หมายเหตุจากข้อ 5 (ถ้ามี)</label>
+                                          <textarea name="bf5" id="bf5" rows="3" cols="80" class="form-control"></textarea>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </td>
+                            </tr>
+
+                            <tr>
+                              <td colspan="2" class="f500 txt-success" style="background: rgb(241, 241, 241);">
+                                Risk & Benefit
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <div class="row">
+                                  <div class="col-sm-12">
+                                    6. นับจากวันอนุมัติต่ออายุครั้งล่าสุด มีปัญหาที่ไม่คาดคิดมาก่อน (unanticipated research-related problem) ที่มีผลต่อความเสี่ยงต่ออาสาสมัครหรือไม่ ถ้ามี โปรดสรุป และแนบเอกสารมาประกอบ
+                                    <div class="row">
+                                      <div class="col-sm-4">
+                                        <div class="checkbox checkbox-success">
+                                          <input type="checkbox" id="checkbox06-1"/>
+                                          <label for="checkbox06-1">มี</label>
+                                        </div>
+                                      </div>
+                                      <div class="col-sm-4">
+                                        <div class="checkbox checkbox-success">
+                                          <input type="checkbox" id="checkbox06-2"/>
+                                          <label for="checkbox06-2">ไม่มี</label>
+                                        </div>
+                                      </div>
+                                    </div>
+
+                                    <div class="row">
+                                      <div class="col-sm-12">
+                                        <div class="form-group">
+                                          <label for="" class="fs08 txt-dark f500">หมายเหตุจากข้อ 6 (ถ้ามี)</label>
+                                          <textarea name="bf6" id="bf6" rows="3" cols="80" class="form-control"></textarea>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+
+                                <div class="row">
+                                  <div class="col-sm-12">
+                                    7. นับจากวันอนุมัติต่ออายุครั้งล่าสุด risk: benefit ratio มีการเปลี่ยนแปลงหรือไม่ ถ้ามี โปรดอธิบาย
+                                    <div class="row">
+                                      <div class="col-sm-4">
+                                        <div class="checkbox checkbox-success">
+                                          <input type="checkbox" id="checkbox07-1"/>
+                                          <label for="checkbox07-1">มี</label>
+                                        </div>
+                                      </div>
+                                      <div class="col-sm-4">
+                                        <div class="checkbox checkbox-success">
+                                          <input type="checkbox" id="checkbox07-2"/>
+                                          <label for="checkbox07-2">ไม่มี</label>
+                                        </div>
+                                      </div>
+                                    </div>
+
+                                    <div class="row">
+                                      <div class="col-sm-12">
+                                        <div class="form-group">
+                                          <label for="" class="fs08 txt-dark f500">หมายเหตุจากข้อ 7 (ถ้ามี)</label>
+                                          <textarea name="bf7" id="bf7" rows="3" cols="80" class="form-control"></textarea>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </td>
+                            </tr>
+
+                            <tr>
+                              <td colspan="2" class="f500 txt-success" style="background: rgb(241, 241, 241);">
+                                Informed consent
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <div class="row">
+                                  <div class="col-sm-12">
+                                    8. นับจากวันอนุมัติต่ออายุครั้งล่าสุด มีการปรับ informed consent document หรือไม่ ถ้ามี โปรดสรุป และแนบเอกสารชี้แจงฉบับล่าสุด
+                                    <div class="row">
+                                      <div class="col-sm-4">
+                                        <div class="checkbox checkbox-success">
+                                          <input type="checkbox" id="checkbox08-1"/>
+                                          <label for="checkbox08-1">มี</label>
+                                        </div>
+                                      </div>
+                                      <div class="col-sm-4">
+                                        <div class="checkbox checkbox-success">
+                                          <input type="checkbox" id="checkbox08-2"/>
+                                          <label for="checkbox08-2">ไม่มี</label>
+                                        </div>
+                                      </div>
+                                      <div class="col-sm-4">
+                                        <div class="checkbox checkbox-success">
+                                          <input type="checkbox" id="checkbox08-3"/>
+                                          <label for="checkbox08-3">ไม่เกี่ยว</label>
+                                        </div>
+                                      </div>
+                                    </div>
+
+                                    <div class="row">
+                                      <div class="col-sm-12">
+                                        <div class="form-group">
+                                          <label for="" class="fs08 txt-dark f500">หมายเหตุจากข้อ 8 (ถ้ามี)</label>
+                                          <textarea name="bf8" id="bf8" rows="3" cols="80" class="form-control"></textarea>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+
+                                <div class="row">
+                                  <div class="col-sm-12">
+                                    9. นับจากวันอนุมัติต่ออายุครั้งล่าสุด มี ปัญหาเกี่ยวกับกระบวนการขอความยินยอมหรือไม่ ถ้ามี โปรดสรุป
+                                    <div class="row">
+                                      <div class="col-sm-4">
+                                        <div class="checkbox checkbox-success">
+                                          <input type="checkbox" id="checkbox09-1"/>
+                                          <label for="checkbox09-1">มี</label>
+                                        </div>
+                                      </div>
+                                      <div class="col-sm-4">
+                                        <div class="checkbox checkbox-success">
+                                          <input type="checkbox" id="checkbox09-2"/>
+                                          <label for="checkbox09-2">ไม่มี</label>
+                                        </div>
+                                      </div>
+                                      <div class="col-sm-4">
+                                        <div class="checkbox checkbox-success">
+                                          <input type="checkbox" id="checkbox09-3"/>
+                                          <label for="checkbox09-3">ไม่เกี่ยว</label>
+                                        </div>
+                                      </div>
+                                    </div>
+
+                                    <div class="row">
+                                      <div class="col-sm-12">
+                                        <div class="form-group">
+                                          <label for="" class="fs08 txt-dark f500">หมายเหตุจากข้อ 9 (ถ้ามี)</label>
+                                          <textarea name="bf9" id="bf9" rows="3" cols="80" class="form-control"></textarea>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </td>
+                            </tr>
+
+                            <tr>
+                              <td colspan="2" class="f500 txt-success" style="background: rgb(241, 241, 241);">
+                                Local issues
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <div class="row">
+                                  <div class="col-sm-12">
+                                    10. นับจากวันอนุมัติต่ออายุครั้งล่าสุด มีเรื่องร้องเรียน เกี่ยวกับโครงการวิจัยจากอาสาสมัครหรือไม่ ถ้ามี โปรดสรุปเหตุการณ์ ประเมิน และการแก้ปัญหา
+                                    <div class="row">
+                                      <div class="col-sm-4">
+                                        <div class="checkbox checkbox-success">
+                                          <input type="checkbox" id="checkbox010-1"/>
+                                          <label for="checkbox010-1">มี</label>
+                                        </div>
+                                      </div>
+                                      <div class="col-sm-4">
+                                        <div class="checkbox checkbox-success">
+                                          <input type="checkbox" id="checkbox010-2"/>
+                                          <label for="checkbox010-2">ไม่มี</label>
+                                        </div>
+                                      </div>
+                                      <div class="col-sm-4">
+                                        <div class="checkbox checkbox-success">
+                                          <input type="checkbox" id="checkbox010-3"/>
+                                          <label for="checkbox010-3">ไม่เกี่ยว</label>
+                                        </div>
+                                      </div>
+                                    </div>
+
+                                    <div class="row">
+                                      <div class="col-sm-12">
+                                        <div class="form-group">
+                                          <label for="" class="fs08 txt-dark f500">หมายเหตุจากข้อ 10 (ถ้ามี)</label>
+                                          <textarea name="bf10" id="bf10" rows="3" cols="80" class="form-control"></textarea>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+
+                                <div class="row">
+                                  <div class="col-sm-12">
+                                    11. นับจากวันอนุมัติต่ออายุครั้งล่าสุด มี ผลกระทบเชิงลบต่อชุมชนที่เกี่ยวข้อง ที่เป็นผลจากโครงการหรือไม่ ถ้ามี โปรดสรุป
+                                    <div class="row">
+                                      <div class="col-sm-4">
+                                        <div class="checkbox checkbox-success">
+                                          <input type="checkbox" id="checkbox011-1"/>
+                                          <label for="checkbox011-1">มี</label>
+                                        </div>
+                                      </div>
+                                      <div class="col-sm-4">
+                                        <div class="checkbox checkbox-success">
+                                          <input type="checkbox" id="checkbox011-2"/>
+                                          <label for="checkbox011-2">ไม่มี</label>
+                                        </div>
+                                      </div>
+                                    </div>
+
+                                    <div class="row">
+                                      <div class="col-sm-12">
+                                        <div class="form-group">
+                                          <label for="" class="fs08 txt-dark f500">หมายเหตุจากข้อ 11 (ถ้ามี)</label>
+                                          <textarea name="bf11" id="bf11" rows="3" cols="80" class="form-control"></textarea>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </td>
+                            </tr>
+
+                            <tr>
+                              <td colspan="2" class="f500 txt-success" style="background: rgb(241, 241, 241);">
+                                Investigators
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <div class="row">
+                                  <div class="col-sm-12">
+                                    12. นับจากวันอนุมัติต่ออายุครั้งล่าสุด มีการเปลี่ยนแปลงในทีมผู้วิจัย เพิ่มอีกหรือไม่ ถ้ามี โปรดแนบเอกสารที่เกี่ยวข้อง เช่น ใบรับรอง amendment จาก EC
+                                    <div class="row">
+                                      <div class="col-sm-4">
+                                        <div class="checkbox checkbox-success">
+                                          <input type="checkbox" id="checkbox012-1"/>
+                                          <label for="checkbox012-1">มี</label>
+                                        </div>
+                                      </div>
+                                      <div class="col-sm-4">
+                                        <div class="checkbox checkbox-success">
+                                          <input type="checkbox" id="checkbox012-2"/>
+                                          <label for="checkbox012-2">ไม่มี</label>
+                                        </div>
+                                      </div>
+                                    </div>
+
+                                    <div class="row">
+                                      <div class="col-sm-12">
+                                        <div class="form-group">
+                                          <label for="" class="fs08 txt-dark f500">หมายเหตุจากข้อ 12 (ถ้ามี)</label>
+                                          <textarea name="bf12" id="bf12" rows="3" cols="80" class="form-control"></textarea>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+
+                                <div class="row">
+                                  <div class="col-sm-12">
+                                    13. นับจากวันอนุมัติต่ออายุครั้งล่าสุด มีการเปลี่ยนแปลงของสถานะหรือสังกัดของนักวิจัย หรือไม่ ถ้ามี โปรดสรุป และแนบเอกสารที่เกี่ยวข้องมาประกอบ (CV)
+                                    <div class="row">
+                                      <div class="col-sm-4">
+                                        <div class="checkbox checkbox-success">
+                                          <input type="checkbox" id="checkbox013-1"/>
+                                          <label for="checkbox013-1">มี</label>
+                                        </div>
+                                      </div>
+                                      <div class="col-sm-4">
+                                        <div class="checkbox checkbox-success">
+                                          <input type="checkbox" id="checkbox013-2"/>
+                                          <label for="checkbox013-2">ไม่มี</label>
+                                        </div>
+                                      </div>
+                                    </div>
+
+                                    <div class="row">
+                                      <div class="col-sm-12">
+                                        <div class="form-group">
+                                          <label for="" class="fs08 txt-dark f500">หมายเหตุจากข้อ 13 (ถ้ามี)</label>
+                                          <textarea name="bf13" id="bf13" rows="3" cols="80" class="form-control"></textarea>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </td>
+                            </tr>
+
+                            <tr>
+                              <td colspan="2" class="f500 txt-success" style="background: rgb(241, 241, 241);">
+                                Other issues
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <div class="row">
+                                  <div class="col-sm-12">
+                                    14. นับจากวันอนุมัติต่ออายุครั้งล่าสุด มี investigator’s concerns เกี่ยวกับการทำวิจัยที่สถานวิจัยนี้ หรือไม่  ถ้ามี โปรดสรุปเกี่ยวกับเรื่องที่นักวิจัยกังวล
+                                    <div class="row">
+                                      <div class="col-sm-4">
+                                        <div class="checkbox checkbox-success">
+                                          <input type="checkbox" id="checkbox014-1"/>
+                                          <label for="checkbox014-1">มี</label>
+                                        </div>
+                                      </div>
+                                      <div class="col-sm-4">
+                                        <div class="checkbox checkbox-success">
+                                          <input type="checkbox" id="checkbox014-2"/>
+                                          <label for="checkbox014-2">ไม่มี</label>
+                                        </div>
+                                      </div>
+                                    </div>
+
+                                    <div class="row">
+                                      <div class="col-sm-12">
+                                        <div class="form-group">
+                                          <label for="" class="fs08 txt-dark f500">หมายเหตุจากข้อ 14 (ถ้ามี)</label>
+                                          <textarea name="bf14" id="bf14" rows="3" cols="80" class="form-control"></textarea>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+
+                                <div class="row">
+                                  <div class="col-sm-12">
+                                    15. นับจากวันอนุมัติต่ออายุครั้งล่าสุด มีข้อมูลจาก data monitoring committees (DMCs) ถ้ามี โปรดสรุป และแนบเอกสารที่เกี่ยวข้องมาประกอบ เช่น DMC report
+                                    <div class="row">
+                                      <div class="col-sm-4">
+                                        <div class="checkbox checkbox-success">
+                                          <input type="checkbox" id="checkbox015-1"/>
+                                          <label for="checkbox015-1">มี</label>
+                                        </div>
+                                      </div>
+                                      <div class="col-sm-4">
+                                        <div class="checkbox checkbox-success">
+                                          <input type="checkbox" id="checkbox015-2"/>
+                                          <label for="checkbox015-2">ไม่มี</label>
+                                        </div>
+                                      </div>
+                                      <div class="col-sm-4">
+                                        <div class="checkbox checkbox-success">
+                                          <input type="checkbox" id="checkbox015-3"/>
+                                          <label for="checkbox015-3">ไม่เกี่ยว</label>
+                                        </div>
+                                      </div>
+                                    </div>
+
+                                    <div class="row">
+                                      <div class="col-sm-12">
+                                        <div class="form-group">
+                                          <label for="" class="fs08 txt-dark f500">หมายเหตุจากข้อ 15 (ถ้ามี)</label>
+                                          <textarea name="bf15" id="bf15" rows="3" cols="80" class="form-control"></textarea>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </td>
+                            </tr>
+
+                            <tr>
+                              <td colspan="2">
+                                <div class="row">
+                                  <div class="col-sm-12">
+                                    16. ผลการดำเนินงานที่ผ่านมา (โดยสรุป ประมาณ 0.5 - 1 หน้า A4)
+                                    <div class="form-group">
+                                      <textarea name="bf16" id="bf16" rows="3" cols="80" class="form-control"></textarea>
+                                    </div>
+                                  </div>
+                                </div>
+
+                                <div class="row">
+                                  <div class="col-sm-12">
+                                    17. แผนการดำเนินการระยะต่อไป
+                                    <div class="form-group">
+                                      <textarea name="bf17" id="bf17" rows="3" cols="80" class="form-control"></textarea>
+                                    </div>
+                                  </div>
+                                </div>
+
+                                <div class="row">
+                                  <div class="col-sm-12">
+                                    18. คำชี้แจงเกี่ยวปัญหา อุปสรรรค (ถ้ามี) และแนวทางแก้ไขปัญหาเพื่อให้งานดำเนินสำเร็จตามกำหนด
+                                    <div class="form-group">
+                                      <textarea name="bf18" id="bf18" rows="3" cols="80" class="form-control"></textarea>
+                                    </div>
+                                  </div>
+                                </div>
+                              </td>
+                            </tr>
+
+                            <tr>
+                              <td colspan="2">
+                                <span class="f500">** หมายเหตุ</span>: หากโครงการหมดอายุการรับรองไปก่อนยื่นเอกสาร ต้องแนบ submission form: deviation report (AP-019) ชื้แจงเหตุผล และแนวทางแก้ไขที่เป็นรูปธรรม และแจกแจงกิจกรรมการวิจัยที่ดำเนินไปในช่วงที่โครงการขาดการต่ออายุมาพร้อมกัน (หากโครงการมีการขอความยินยอม ให้แนบสำเนาใบแสดงความยินยอมของอาสาสมัครช่วงที่โครงการขาดอายุมาด้วย)
+                              </td>
+                            </tr>
+
+                          </table>
+                        </div>
+                      </div>
+
+                      <div class="row">
+                        <div class="col-sm-12 text-center">
+                          ข้าพเจ้าขอรับรองว่าข้อความข้างต้นเป็นความจริง และเข้าใจความหมายโดยชัดเจนทุกประการ
+                        </div>
+                      </div>
+
+                      <div class="row">
+                        <div class="col-sm-12 text-center pt-20">
+                          <button class="btn btn-success btn-lg" type="submit">บันทึกร่าง</button>
+                          <button class="btn btn-success btn-lg" type="submit">ดูข้อมูลก่อนส่ง</button>
+                          <button class="btn btn-default btn-lg" type="reset">รีเซ็ต</button>
+                        </div>
+                      </div>
+
+                    </form>
+
+
+
+
+
+                  </div>
+                  <!-- .contentdiv -->
+
+                </div>
+                <!-- .panel-body -->
+              </div>
+              <!-- .panel-wrapper -->
+            </div>
+            <!-- .panel -->
+
+
+
+          </div>
+          <!-- .col-sm-4 -->
+
+        </div>
+        <!-- .Row -->
+
+
+
+				<!-- Footer -->
+				<footer class="footer container-fluid pl-30 pr-30">
+					<div class="row">
+						<div class="col-sm-12">
+							<p>2017 &copy; <a href="http://rmis.medicine.psu.ac.th/project/" target="_blank">RMIS</a>. หน่วยส่งเสริมและพัฒนาทางวิชาการ คณะแพทยศาสตร์ มหาวิทยาลัยสงขลานครินทร์. Develop by <a href="https://wisniorproject.com" target="_blank">Wisnior Corp.</a></p>
+						</div>
+					</div>
+				</footer>
+				<!-- /Footer -->
+			</div>
+		</div>
+        <!-- /Main Content -->
+
+    </div>
+    <!-- /#wrapper -->
+
+
+
+    <button class="dn" id="btnNotify" data-toggle="modal" data-target=".bs-example-modal-sm" >notify</button>
+    <!-- sample modal content -->
+    <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" style="display: none;">
+      <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true" id="btnClosecheck">×</button>
+            <h5 class="modal-title" id="mySmallModalLabel">การตรวจสอบข้อมูล</h5>
+          </div>
+          <div class="modal-body">
+            <div class="row">
+              <div class="col-sm-12 text-center">
+                <div class="lp1 pt-50 pb-50">
+                  <img src="../images/Rolling.gif" alt="" width="100"><br>
+                  <span class="loadMsg"></span>
+                </div>
+
+                <div class="cp1 dn">
+                  <p id="nofity_msg"></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- /.modal-content -->
+      </div>
+      <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+
+	<!-- JavaScript -->
+
+  <!-- jQuery -->
+  <script src="../v3/vendors/bower_components/jquery/dist/jquery.min.js"></script>
+
+  <!-- Bootstrap Core JavaScript -->
+  <script src="../v3/vendors/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+	<!-- Data table JavaScript -->
+	<script src="../v3/vendors/bower_components/datatables/media/js/jquery.dataTables.min.js"></script>
+	<script src="../v3/dist/js/dataTables-data.js"></script>
+
+	<!-- Slimscroll JavaScript -->
+	<script src="../v3/dist/js/jquery.slimscroll.js"></script>
+
+	<!-- Owl JavaScript -->
+	<script src="../v3/vendors/bower_components/owl.carousel/dist/owl.carousel.min.js"></script>
+
+	<!-- Switchery JavaScript -->
+	<script src="../v3/vendors/bower_components/switchery/dist/switchery.min.js"></script>
+
+	<!-- Fancy Dropdown JS -->
+	<script src="../v3/dist/js/dropdown-bootstrap-extended.js"></script>
+
+  <!-- Bootstrap Switch JavaScript -->
+	<script src="../v3/vendors/bower_components/bootstrap-switch/dist/js/bootstrap-switch.min.js"></script>
+
+  <!-- Select2 JavaScript -->
+	<script src="../v3/vendors/bower_components/select2/dist/js/select2.full.min.js"></script>
+
+  <!-- Bootstrap Tagsinput JavaScript -->
+	<script src="../v3/vendors/bower_components/bootstrap-tagsinput/dist/bootstrap-tagsinput.min.js"></script>
+
+	<!-- Bootstrap Touchspin JavaScript -->
+	<script src="../v3/vendors/bower_components/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.js"></script>
+
+	<!-- Multiselect JavaScript -->
+	<script src="../v3/vendors/bower_components/multiselect/js/jquery.multi-select.js"></script>
+
+  <!-- Sweet-Alert  -->
+	<script src="../v3/vendors/bower_components/sweetalert/dist/sweetalert.min.js"></script>
+
+  <script src="../v3/vendors/bower_components/dropzonejs/dropzone.min.js"></script>
+
+  <!-- Bootstrap Select JavaScript -->
+	<script src="../v3/vendors/bower_components/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
+
+  <script src="../v3/vendors/bower_components/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
+	<script src="../v3/vendors/bower_components/bootstrap-datepicker-thai-thai/js/bootstrap-datepicker-thai.js"></script>
+	<script src="../v3/vendors/bower_components/bootstrap-datepicker-thai-thai/js/locales/bootstrap-datepicker.th.js"></script>
+
+  <!-- Form Advance Init JavaScript -->
+	<script src="../v3/dist/js/form-advance-data.js"></script>
+
+  <script type="text/javascript" src="../v3/vendors/bower_components/ckeditor/ckeditor.js"></script>
+	<!-- Init JavaScript -->
+	<script src="../v3/dist/js/init.js"></script>
+  <script src="../v3/main.js"></script>
+  <script src="../v3/pi.js"></script>
+  <script src="../v3/progress1.js"></script>
+
+  <script type="text/javascript">
+
+    var dt = $('#tableView').dataTable().api();
+    var current_user = window.localStorage.getItem('rmis_current_user')
+    var current_role = window.localStorage.getItem('rmis_current_role')
+    var log_login_session = window.localStorage.getItem('rmis_login_session_check');
+    var current_page = 'research_register.html';
+
+    var pi_pct = 100;
+    var co_pi = [];
+    var rr_notify = [];
+    var num_file_upload = 0;
+    var num_cv = 0;
+    var session_id = main_app.randomString(20);
+    var last_session_id = window.localStorage.getItem('rmis_current_rs_session_id');
+    var selectes_session = window.localStorage.getItem('current_selected_project_session');
+    var current_session_id = last_session_id;
+
+    $(document).ready(function(){
+
+      pi.init()
+
+      // if(last_session_id == null){
+      //   window.localStorage.setItem('rmis_current_rs_session_id', session_id)
+      //   current_session_id = session_id;
+      // }
+      //
+      // if(selectes_session!=null){
+      //   window.localStorage.setItem('rmis_current_rs_session_id', selectes_session)
+      //   current_session_id = selectes_session;
+      // }
+
+      // loadPrevData(current_session_id)
+      // loadPrevCopiData(current_session_id)
+
+      // console.log('Current session id ' + current_session_id);
+      // $('.docSess').val(current_session_id)
+      // $('.docSessuser').val(current_user)
+      //
+      // main.load_researchtype()
+      // main.load_prefix()
+
+      // checkFileAttached();
+
+      setTimeout(function(){
+        main.load_notify_pm();
+        loadWonResearchInPahse2();
+      }, 10)
+
+      setInterval(function(){
+        saveDraft()
+      }, 60000);
+
+    })
+
+    function saveDraft(){
+
+      var p1_q1 = 0;
+      var p1_q1_info = '';
+      if($('#checkbox01').is(':checked')){
+        p1_q1 = 1;
+        p1_q1_info = editData.getData()
+      }
+
+
+
+      if($('#txtResearch').val() != ''){
+        var param = {
+          id: current_user,
+          id_rs: $('#txtResearch').val(),
+          protocal_no: $('#txtProtocal').val(),
+          progress_round: $('#txtRound').val(),
+          oper_start: '',
+          oper_end: '',
+          oper_type: ''
+        }
+      }
+    }
+
+    function loadWonResearchInPahse2(){
+      var param = {
+        id: current_user
+      }
+
+      var jxhr = $.post(ws_url + 'controller/pm/check-phase2-list-all.php', param, function(){}, 'json')
+                  .always(function(snap){
+                    // console.log(snap);
+                    if((snap != '') && (snap.length > 0)){
+                      snap.forEach(function(i){
+                        $buffer = '<option value="' + i.id_rs +'">REC.' + i.code_apdu + ' :: ' + i.title_th + '</option>'
+                        $('#txtResearch').append($buffer)
+                      })
+                    }else{
+                      swal("ไม่พบข้อมูล!", "ท่านยังไม่มีโครงการที่กำลังดำเนินโครงการวิจัย หากมีข้อสงสัยกรุณาติดต่อเจ้าหน้าที่!", "error")
+                    }
+                  }, 'json')
+    }
+
+    $(function(){
+
+      $('#txtResearch').change(function(){
+        if($('#txtResearch').val() != ''){
+
+          var param = {
+            id_rs: $('#txtResearch').val(),
+            id: current_user
+          }
+
+          var jxhr = $.post(ws_url + 'controller/pm/load_rec_info.php', param, function(){}, 'json')
+                      .always(function(snap){
+                        if((snap != '') && (snap.length > 0)){
+                          snap.forEach(function(i){
+                            $('#txtCode').val(i.code_apdu)
+                            $('#txtThTitle').val(i.title_th)
+                            $('#txtEnTitle').val(i.title_en)
+                          })
+                        }else{
+                          swal("ไม่พบข้อมูล!", "ท่านยังไม่มีโครงการที่กำลังดำเนินโครงการวิจัย หากมีข้อสงสัยกรุณาติดต่อเจ้าหน้าที่!", "error")
+                        }
+                      }, 'json')
+        }else{
+          resetForm();
+        }
+      })
+
+
+
+      $('#cb6').click(function(){
+        if($("#cb6").is(':checked')){
+          $("#otherfunding").removeClass('dn');  // checked
+        }
+        else{
+          $("#otherfunding").addClass('dn');  // checked
+          $('#txtOtherFundSource').val('')
+        }
+      });
+
+    })
+
+
+
+
+    function goto_report(progress_id){
+      window.localStorage.setItem('rmis_current_progress_id', progress_id)
+      window.location = 'create_report.html'
+    }
+  </script>
+</body>
+
+</html>

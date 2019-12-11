@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>RMIS:ระบบสารสนเทศเพื่อการจัดการงานวิจัย คณะแพทยศาสตร์ มอ.</title>
+    <!-- Meta Tags -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+    <!-- Data table CSS -->
+    <link href="../v4/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!--alerts CSS -->
+    <link href="../v3/vendors/bower_components/sweetalert/dist/sweetalert.css" rel="stylesheet" type="text/css">
+    <!-- Fontawesom -->
+    <link href="../v4/bower_components/fontawesome/web-fonts-with-css/css/fontawesome-all.css" rel="stylesheet">
+    <!-- Preload -->
+    <link rel="stylesheet" href="../v4/node_modules/preload.js/dist/css/preload.css">
+
+    <link rel="stylesheet" href="../v4/assets/css/style.0.1.1.css">
+
+    <style media="screen">
+      body{
+        background: rgb(242, 242, 242);
+      }
+    </style>
+  </head>
+  <body>
+
+    <nav class="navbar bs navbar-expand-lg navbar-light" style="background: #fff;">
+      <div class="navbar-brand">
+        <div class="d-block d-sm-none">
+          <a href="" class="btn btn-success mr-10">
+            <i class="fas fa-bars"></i>
+          </a>
+          <a href="index.html">
+            <img src="../images/logo-20190225-2.png" alt="" class="img-fluid" style="width: 150px;">
+          </a>
+        </div>
+
+        <div class="d-none d-sm-block">
+          <a href="index.html">
+            <img src="../images/logo-20190225-2.png" alt="" class="img-fluid" style="width: 150px;">
+          </a>
+        </div>
+
+
+      </div>
+
+      <div class="d-none d-sm-block">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </div>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="index.html">หน้าแรก <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="documents.html">คู่มือการใช้งาน</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="chat.html">ข้อความสนทนา</a>
+          </li>
+        </ul>
+
+        <div class="">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                สวัสดี, <span class="userFullname" style="color: #02946c; ">NA</span> (เลขา EC)
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="profile.html">ข้อมูลส่วนตัว</a>
+                <a class="dropdown-item" href="changepassword.html">เปลี่ยนรหัสผ่าน</a>
+                <a class="dropdown-item" href="activity.html">บันทึกกิจกรรม</a>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <form class="form-inline my-2 my-lg-0">
+          <button class="btn btn-success my-2 my-sm-0" type="button" onclick="core.signout()">ออกจากระบบ</button>
+        </form>
+      </div>
+    </nav>
+
+    <div class="main-content mt-20 mb-30">
+      <div class="container-fluid">
+        <h5>โครงการวิจัยทั้งหมด <small class="text-muted">(All initial project list)</small></h5>
+
+        <div class="row">
+          <div class="col-sm-10 col-7">
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="ค้นหา ...">
+            </div>
+          </div>
+          <div class="col-sm-2 col-5">
+            <select name="txtYear" id="txtYear" class="form-control">
+              <option value="">ทุกปี</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="row">
+              <div class="col-6">
+                <button class="btn btn-success btn-square" id="btn_prev"><i class="fas fa-chevron-left"></i></button>
+              </div>
+              <div class="col-6 text-right">
+                <button class="btn btn-success btn-square" id="btn_next"><i class="fas fa-chevron-right"></i></button>
+              </div>
+            </div>
+            <div class="card mt-5">
+              <div class="card-body pd-0">
+                <table class="table table-bordered mb-0">
+                  <thead>
+                    <tr style="background: rgb(11, 175, 140);" class="text-white">
+                      <th>
+                        <div class="row">
+                          <div class="col-1 d-none d-sm-block">#</div>
+                          <div class="col-2 d-none d-sm-block">รหัส</div>
+                          <div class="col">ชื่อโครงการ</div>
+                          <div class="col-1 d-none d-sm-block">ฉบับที่</div>
+                          <div class="col-3 d-none d-sm-block">สถานะ</div>
+                          <div class="col-1 d-none d-sm-block"></div>
+                        </div>
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody id="projectList">
+                    <tr scope="row">
+                      <td colspan="6">
+                        <div class="row">
+                          <div class="col-12">
+                            กำลังดึงข้อมูล ....
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- .row -->
+
+        <div class="row">
+          <div class="col-12 text-center fz08">
+            <hr>
+            2017 © RMIS. หน่วยส่งเสริมและพัฒนาทางวิชาการ คณะแพทยศาสตร์ มหาวิทยาลัยสงขลานครินทร์.
+          </div>
+        </div>
+
+
+
+      </div>
+      <!-- .container -->
+    </div>
+    <!-- .main-content -->
+
+
+    <!-- jQuery -->
+    <script src="../v3/vendors/bower_components/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="../v4/bower_components/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Slimscroll JavaScript -->
+    <script src="../v3/dist/js/jquery.slimscroll.js"></script>
+    <!-- Fancy Dropdown JS -->
+    <script src="../v3/dist/js/dropdown-bootstrap-extended.js"></script>
+    <!-- Sweet-Alert  -->
+    <script src="../v3/vendors/bower_components/sweetalert/dist/sweetalert.min.js"></script>
+
+    <script src="../v4/config.js"></script>
+    <script type="text/javascript" src="../v4/node_modules/preload.js/dist/js/preload.js"></script>
+
+    <script src="../v3/main.js"></script>
+    <script src="../v4/core.0.2.1.js"></script>
+    <script src="../v4/ec.0.2.1.js"></script>
+
+    <script>
+      $(document).ready(function(){
+        core.check_load_stage(3)
+        core.get_year()
+        ec.get_ec_info()
+        ec.get_all_init(row_per_page, start_row)
+      })
+
+      $(function(){
+        $('#txtYear').change(function(){ ec.get_all_init() })
+        $('#btn_prev').click(function(){
+          if(start_row <= 0){
+            swal("ขออภัย!", "ไม่สามารถดึงข้อมูลก่อนหน้าได้!", "error")
+            return ;
+          }
+          core.check_load_stage(1)
+          start_row = start_row - row_per_page
+          ec.get_all_init(row_per_page, start_row)
+        })
+
+        $('#btn_next').click(function(){
+          core.check_load_stage(1)
+          start_row = start_row + row_per_page
+          ec.get_all_init(row_per_page, start_row)
+        })
+      })
+
+      function viewRsInfoOnly(rid){
+        var param = {
+          id_rs: rid,
+          id: current_user
+        }
+
+        console.log(param);
+        var jxhr = $.post(ws_url + '/controller/ec/check-rs-session.php', param, function(){}, 'json')
+                    .always(function(snap){
+                      if((snap != '') && (snap.length > 0)){
+                        snap.forEach(function(i){
+                          window.localStorage.setItem('current_selected_project_session', i.session_id)
+                          window.localStorage.setItem('current_selected_project_id', i.id_rs)
+                          window.location = 'research_info_only.html'
+                        })
+                      }else{
+                        swal("เกิดข้อผิดพลาด!", "ไม่พบข้อมูลโครงการวิจัย กรุณาติดต่อเจ้าหน้าที่!", "error")
+                      }
+                    }, 'json')
+                    .fail(function(){
+                      swal("เกิดข้อผิดพลาด!", "ไม่พบข้อมูลโครงการวิจัย กรุณาติดต่อเจ้าหน้าที่!", "error")
+                    })
+      }
+
+    </script>
+
+  </body>
+</html>

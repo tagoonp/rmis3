@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<title>:: RMIS :: สำหรับหัวหน้าโครงการ ::</title>
+
+	<!-- Data table CSS -->
+	<link href="../v3/vendors/bower_components/datatables/media/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css"/>
+  <!-- switchery CSS -->
+	<link href="../v3/vendors/bower_components/switchery/dist/switchery.min.css" rel="stylesheet" type="text/css"/>
+
+  <link rel="stylesheet" href="../v3/vendors/bower_components/dropzonejs/dropzone.min.css" />
+  <!--alerts CSS -->
+	<link href="../v3/vendors/bower_components/sweetalert/dist/sweetalert.css" rel="stylesheet" type="text/css">
+
+  <!-- bootstrap-select CSS -->
+	<link href="../v3/vendors/bower_components/bootstrap-select/dist/css/bootstrap-select.min.css" rel="stylesheet" type="text/css"/>
+
+  <link rel="stylesheet" href="../v3/vendors/bower_components/bootstrap-datepicker/bootstrap-datepicker3.min.css" />
+
+  <!-- Bootstrap Switches CSS -->
+	<link href="../v3/vendors/bower_components/bootstrap-switch/dist/css/bootstrap3/bootstrap-switch.min.css" rel="stylesheet" type="text/css"/>
+  <!-- vector map CSS -->
+	<!-- <link href="../v3/vendors/bower_components/jquery-wizard.js/css/wizard.css" rel="stylesheet" type="text/css"/> -->
+
+	<!-- jquery-steps css -->
+	<!-- <link rel="stylesheet" href="../v3/vendors/bower_components/jquery.steps/demo/css/jquery.steps.css"> -->
+
+	<!-- Custom CSS -->
+	<link href="../v3/dist/css/style.css" rel="stylesheet" type="text/css">
+  <link href="../v3/fonts.css" rel="stylesheet" type="text/css">
+  <link href="../v3/style.css" rel="stylesheet" type="text/css">
+
+</head>
+
+<body>
+	<!--Preloader-->
+	<div class="preloader-it">
+		<div class="la-anim-1"></div>
+	</div>
+	<!--/Preloader-->
+    <div class="wrapper theme-1-active pimary-color-red">
+
+        <!-- Top Menu Items -->
+		<nav class="navbar navbar-inverse navbar-fixed-top">
+			<div class="mobile-only-brand pull-left">
+				<div class="nav-header pull-left">
+					<div class="logo-wrap">
+						<a href="./">
+							<img class="brand-img" src="../v3/dist/img/logo.png" alt="brand"/>
+							<span class="brand-text">RMIS</span>
+						</a>
+					</div>
+				</div>
+				<a id="toggle_nav_btn" class="toggle-left-nav-btn inline-block ml-20 pull-left" href="javascript:void(0);"><i class="zmdi zmdi-menu"></i></a>
+				<a id="toggle_mobile_nav" class="mobile-only-view" href="javascript:void(0);"><i class="zmdi zmdi-more"></i></a>
+			</div>
+			<div id="mobile_only_nav" class="mobile-only-nav pull-right">
+				<ul class="nav navbar-right top-nav pull-right">
+          <li>
+            <a href="profile.html">ยินดีต้อนรับ <span class="userFullname text-info">NA</span> (PI)</a>
+          </li>
+
+
+					<li class="dropdown alert-drp">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="zmdi zmdi-notifications top-nav-icon"></i><span class="notification_number"></span></a>
+						<ul  class="dropdown-menu alert-dropdown" data-dropdown-in="bounceIn" data-dropdown-out="bounceOut">
+							<li>
+								<div class="notification-box-head-wrap">
+									<span class="notification-box-head pull-left inline-block">การแจ้งเตือน</span>
+									<a class="txt-danger pull-right clear-notifications inline-block" href="javascript:main.clear_notify()"> ล้างทั้งหมด </a>
+									<div class="clearfix"></div>
+									<hr class="light-grey-hr ma-0"/>
+								</div>
+							</li>
+              <li>
+                <div class="streamline message-nicescroll-bar notification_panal">
+                </div>
+              </li>
+							<li>
+								<div class="notification-box-bottom-wrap">
+									<hr class="light-grey-hr ma-0"/>
+									<a class="block text-center read-all" href="view_activity_log.html"> อ่านทั้งหมด </a>
+									<div class="clearfix"></div>
+								</div>
+							</li>
+						</ul>
+					</li>
+
+          <li class="dropdown auth-drp">
+						<a href="#" class="dropdown-toggle pr-0" data-toggle="dropdown"><span id="profileImg"></span><span class="user-online-status"></span></a>
+						<ul class="dropdown-menu user-auth-dropdown" data-dropdown-in="flipInX" data-dropdown-out="flipOutX">
+							<li>
+								<a href="profile.html"><i class="zmdi zmdi-account"></i><span>ข้อมูลส่วนตัว</span></a>
+							</li>
+							<li>
+								<a href="#" onclick="main.inbox()"><i class="zmdi zmdi-email"></i><span>Inbox</span></a>
+							</li>
+							<li>
+								<a href="changepassword.html"><i class="zmdi zmdi-settings"></i><span>เปลี่ยนรหัสผ่าน</span></a>
+							</li>
+							<li class="divider"></li>
+							<li>
+								<a href="#" onclick="main.signout()"><i class="zmdi zmdi-power"></i><span>ออกจากระบบ</span></a>
+							</li>
+						</ul>
+					</li>
+
+
+				</ul>
+			</div>
+		</nav>
+		<!-- /Top Menu Items -->
+
+		<!-- Left Sidebar Menu -->
+		<div class="fixed-sidebar-left">
+			<ul class="nav navbar-nav side-nav nicescroll-bar">
+				<li class="navigation-header">
+					<span>Main</span>
+					<i class="zmdi zmdi-more"></i>
+				</li>
+
+        <li>
+					<a href="./"><div class="pull-left"><i class="zmdi zmdi-home mr-20"></i><span class="right-nav-text">หน้าแรก</span></div><div class="clearfix"></div></a>
+				</li>
+        <li>
+						<a href="javascript:void(0);" data-toggle="collapse" data-target="#dashboard_dr"><div class="pull-left"><i class="zmdi zmdi-landscape mr-20"></i><span class="right-nav-text">กระดานภาพรวม</span></div><div class="pull-right"><i class="zmdi zmdi-caret-down"></i></div><div class="clearfix"></div></a>
+						<ul id="dashboard_dr" class="collapse collapse-level-1">
+							<li>
+								<a href="dashboard_1.html">ภาพรวมโครงการวิจัย</a>
+							</li>
+						</ul>
+					</li>
+
+				<li><hr class="light-grey-hr mb-10"/></li>
+				<li class="navigation-header">
+					<span>จัดการงานวิจัย</span>
+					<i class="zmdi zmdi-more"></i>
+				</li>
+				<li>
+					<a href="javascript:void(0);" data-toggle="collapse" data-target="#ui_dr"><div class="pull-left"><i class="zmdi zmdi-edit mr-20"></i><span class="right-nav-text">โครงการวิจัยใหม่</span></div><div class="pull-right"><i class="zmdi zmdi-caret-down"></i></div><div class="clearfix"></div></a>
+					<ul id="ui_dr" class="collapse collapse-level-1 two-col-list">
+						<li>
+							<a data-toggle="modal" data-target="#myModal">ลงทะเบียนโครงการวิจัย (ใหม่)</a>
+						</li>
+            <li>
+							<a href="research_unconf_list.html">โครงการวิจัยที่ยังไม่ยืนยันการส่ง</a>
+						</li>
+            <li>
+							<a href="research_draft_list.html">แบบเสนอโครงการฉบับร่าง</a>
+						</li>
+						<li>
+							<a href="research_reply_list.html">แบบเสนอโครงการที่รอแก้ไข</a>
+						</li>
+						<li>
+							<a href="rs_list.html">โครงการวิจัยใหม่ทั้งหมด</a>
+						</li>
+					</ul>
+				</li>
+
+        <li>
+					<a href="javascript:void(0);" data-toggle="collapse" data-target="#ui_dr2"><div class="pull-left"><i class="zmdi zmdi-flip-to-back mr-20"></i><span class="right-nav-text">โครงการวิจัยย้อนหลัง</span></div><div class="pull-right"><i class="zmdi zmdi-caret-down"></i></div><div class="clearfix"></div></a>
+					<ul id="ui_dr2" class="collapse collapse-level-1 two-col-list">
+						<li>
+							<a href="../rs_add_back.php">ลงทะเบียนโครงการวิจัย (ย้อนหลัง)</a>
+						</li>
+						<li>
+							<a href="../rs_back_list_nc.php">โครงการวิจัยที่ยังไม่ยืนยันการส่ง</a>
+						</li>
+						<li>
+							<a href="../rs_back_list.php">โครงการวิจัยย้อนหลัง</a>
+						</li>
+					</ul>
+				</li>
+
+        <li>
+					<a class="active" href="javascript:void(0);" data-toggle="collapse" data-target="#ui_dr3"><div class="pull-left"><i class="zmdi zmdi-8tracks mr-20"></i><span class="right-nav-text">โครงการกำลังดำเนินการ</span></div><div class="pull-right"><i class="zmdi zmdi-caret-down"></i></div><div class="clearfix"></div></a>
+					<ul id="ui_dr3" class="collapse collapse-level-1 two-col-list">
+            <li>
+							<a class="active-page" href="goto_report_cont.html">โครงการที่อยู่ระหว่างการดำเนินการทั้งหมด</a>
+						</li>
+						<li>
+							<a href="#" onclick="goto_report(1)">รายงานความก้าวหน้า (Progress report)</a>
+						</li>
+						<li>
+							<a href="#" onclick="goto_report('2')" >ขอต่ออายุการรับรอง (Renewal)</a>
+						</li>
+						<li>
+							<a href="#" onclick="goto_report('3')" >ขอปรับปรุงแก้ไขโครงการวิจัย (Amendment)</a>
+						</li>
+            <li>
+							<a href="#" onclick="goto_report('4')" >รายงานเหตุการณ์ไม่พึงประสงค์ (SAE)</a>
+						</li>
+            <li>
+							<a href="#" onclick="goto_report('5')" >รายงานการดำเนินงานที่เบี่ยงเบน (Deviation/Violation)</a>
+						</li>
+            <li>
+							<a href="#" onclick="goto_report('6')" >รายงานการยุติ/สิ้นสุดโครการ (Termination/Closing)</a>
+						</li>
+            <li>
+							<a href="goto_report_edit.html" >โครงการวิจัยที่ต้องแก้ไข</a>
+						</li>
+					</ul>
+				</li>
+
+				<li><hr class="light-grey-hr mb-10"/></li>
+				<li class="navigation-header">
+					<span>อื่น ๆ</span>
+					<i class="zmdi zmdi-more"></i>
+				</li>
+				<li>
+					<a href="javascript:void(0);" data-toggle="collapse" data-target="#pages_dr2"><div class="pull-left"><i class="zmdi zmdi-account mr-20"></i><span class="right-nav-text">ข้อมูลหัวหน้าโครงการ</span></div><div class="pull-right"><i class="zmdi zmdi-caret-down"></i></div><div class="clearfix"></div></a>
+					<ul id="pages_dr2" class="collapse collapse-level-1 two-col-list">
+						<li>
+							<a href="../curriculum_vitae_add.php">Academic performance & CGP</a>
+						</li>
+
+            <li>
+							<a href="../curriculum_vitae_list.php">การตีพิมพ์ผลงานวิจัย</a>
+						</li>
+					</ul>
+				</li>
+
+        <li>
+					<a href="../rs_list_beforepayment.php"><div class="pull-left"><i class="zmdi zmdi-filter-list mr-20"></i><span class="right-nav-text">นำส่งเงินค่าธรรมเนียม</span></div><div class="clearfix"></div></a>
+				</li>
+
+        <li>
+					<a href="documentation.html"><div class="pull-left"><i class="zmdi zmdi-book mr-20"></i><span class="right-nav-text">คู่มือการใช้งาน (PI)</span></div><div class="clearfix"></div></a>
+				</li>
+
+			</ul>
+		</div>
+		<!-- /Left Sidebar Menu -->
+
+
+		<!-- Main Content -->
+		<div class="page-wrapper" style="padding-left: 15px; padding-right: 15px;">
+      <div class="container-fluid">
+
+				<!-- Title -->
+				<div class="row heading-bg">
+					<div class="col-lg-9 col-md-8 col-sm-8 col-xs-12">
+						<h5 class="txt-dark">แบบรายงานสรุปผลการวิจัย <br><small>(กรณีปิดโครงการตามปกติ)</small></h5>
+					</div>
+					<!-- Breadcrumb -->
+					<div class="col-lg-3 col-sm-4 col-md-4 col-xs-12">
+						<ol class="breadcrumb">
+							<li><a href="./">หน้าแรก</a></li>
+							<li class="active"><span>แบบรายงานสรุปผลการวิจัย (ปกติ)</span></li>
+						</ol>
+					</div>
+					<!-- /Breadcrumb -->
+				</div>
+				<!-- /Title -->
+
+        <!-- Row -->
+
+        <div class="dn_" id="report_form">
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="panel panel-default card-view">
+
+                <div class="panel-wrapper collapse in">
+  								<div class="panel-body">
+
+                    <div class="loaddiv dn" style="padding: 100px 0px;">
+                      <div class="row">
+                        <div class="col-sm-2 col-sm-offset-5">
+                          <img src="../images/Rolling.gif" alt="" width="100%">
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="contentdiv">
+
+                      <div class="alert alert-success alert-dismissable">
+  											<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+  											<i class="zmdi zmdi-info-outline pr-15 pull-left"></i><p class="pull-left">กรุณากรอกข้อมูลให้ครบถ้วน โดยเฉพาะส่วนที่มีเครื่องหมาย **</p>
+  											<div class="clearfix"></div>
+  										</div>
+
+                      <!-- <form onsubmit="return false;" class="contForm"> -->
+                        <div class="row">
+                          <div class="col-sm-6">
+                            <div class="form-group">
+                              <label for="" class="fs08 txt-dark f500">REC.</label>
+                              <input type="text" name="txtCode" id="txtCode" class="form-control" readonly>
+                            </div>
+                          </div>
+                          <div class="col-sm-6">
+                            <div class="form-group">
+                              <label for="" class="fs08 txt-dark f500">PROROCAL NO. (sponsored).</label>
+                              <input type="text" name="txtProtocal" id="txtProtocal" class="form-control">
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="row">
+                          <div class="col-sm-12">
+                            <div class="form-group">
+                              <label for="" class="fs08 txt-dark f500">ชื่อโครงการ (ไทย)</label>
+                              <textarea name="txtThTitle" id="txtThTitle" rows="3" cols="80" class="form-control" readonly></textarea>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="row">
+                          <div class="col-sm-12">
+                            <div class="form-group">
+                              <label for="" class="fs08 txt-dark f500">Title (Eng)</label>
+                              <textarea name="txtEnTitle" id="txtEnTitle" rows="3" cols="80" class="form-control" readonly></textarea>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="row">
+                          <div class="col-sm-12">
+                            <table class="table table-bordered txt-dark">
+                              <tr>
+                                <td colspan="2" style="background: rgb(31, 166, 64);"><span class="f500 txt-light" style="font-size: 1.3em;">สรุปจำนวนอาสาสมัคร</span></td>
+                              </tr>
+                              <tr>
+                                <td>
+                                  <div class="checkbox checkbox-success">
+        														<input type="checkbox" id="checkbox01"/>
+        														<label for="checkbox01">1. โครงการไม่เกี่ยวข้องอาสาสมัคร (เช่น retrospective ไม่มีข้อมูลระบุตัวตน) ข้ามไปข้อ 4 </label>
+        													</div>
+                                  <div class="form-group">
+                                    <label for="" class="fs08 txt-dark f500">หมายเหตุ</label>
+                                    <input type="text" class="form-control" name="q1_info" id="q1_info">
+                                  </div>
+
+
+                                  <div class="subform_1">
+                                    <div class="checkbox checkbox-success">
+          														<input type="checkbox" id="checkbox02" checked/>
+          														<label for="checkbox02">2. โครงการเกี่ยวข้องกับการมีอาสาสมัคร</label>
+          													</div>
+                                    <div class="row">
+                                      <div class="col-sm-6">
+                                        <div class="form-group">
+                                          <label for="" class="fs08 txt-dark f500">- จำนวนอาสาสมัครที่ EC รับรอง </label>
+                                          <input type="number" class="form-control" min="0" name="q1_1" id="q1_1">
+                                        </div>
+                                      </div>
+                                      <div class="col-sm-6">
+                                        <div class="form-group">
+                                          <label for="" class="fs08 txt-dark f500">- จำนวนที่เซ็นยินยอม </label>
+                                          <input type="number" class="form-control" min="0" name="q1_2" id="q1_2">
+                                        </div>
+                                      </div>
+                                    </div>
+
+                                    <div class="row">
+                                      <div class="col-sm-6">
+                                        <div class="form-group">
+                                          <label for="" class="fs08 txt-dark f500">- จำนวนที่ไม่ผ่านคัดกรอง </label>
+                                          <input type="number" class="form-control" min="0" name="q1_3" id="q1_3">
+                                        </div>
+                                      </div>
+                                      <div class="col-sm-6">
+                                        <div class="form-group">
+                                          <label for="" class="fs08 txt-dark f500">- จำนวนที่ถอนตัว </label>
+                                          <input type="number" class="form-control" min="0" name="q1_4" id="q1_4">
+                                        </div>
+                                      </div>
+                                    </div>
+
+                                    <div class="row">
+                                      <div class="col-sm-6">
+                                        <div class="form-group">
+                                          <label for="" class="fs08 txt-dark f500">- จำนวนที่เสียชีวิต </label>
+                                          <input type="number" class="form-control" min="0" name="q1_5" id="q1_5">
+                                        </div>
+                                      </div>
+                                      <div class="col-sm-6">
+                                        <div class="form-group">
+                                          <label for="" class="fs08 txt-dark f500">- จำนวนที่อยู่จนสิ้นสุดการศึกษา</label>
+                                          <input type="number" class="form-control" min="0" name="q1_6" id="q1_6">
+                                        </div>
+                                      </div>
+                                    </div>
+
+                                    <div class="row">
+                                      <div class="col-sm-12">
+                                        3. จำนวนอาสาสมัครที่เกิด serious adverse event
+                                      </div>
+                                    </div>
+                                    <div class="row">
+                                      <div class="col-sm-6">
+                                        <div class="form-group">
+                                          <label for="" class="fs08 txt-dark f500">- อาสาสมัครในสถานวิจัย </label>
+                                          <input type="number" class="form-control" min="0" name="q3_1" id="q3_1">
+                                        </div>
+                                      </div>
+                                      <div class="col-sm-6">
+                                        <div class="form-group">
+                                          <label for="" class="fs08 txt-dark f500">- อาสาสมัครในประเทศ (ถ้ามี SUSAR)</label>
+                                          <input type="number" class="form-control" min="0" name="q3_2" id="q3_2">
+                                        </div>
+                                      </div>
+                                    </div>
+
+                                    <div class="row">
+                                      <div class="col-sm-6">
+                                        <div class="form-group">
+                                          <label for="" class="fs08 txt-dark f500">- อาสาสมัครทั่วโลก (ถ้ามี SUSAR) </label>
+                                          <input type="number" class="form-control" min="0" name="q3_3" id="q3_3">
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div>
+                                    <div class="row req" id="q4">
+                                      <div class="col-sm-12">
+                                        4. ตั้งแต่เริ่มโครงการ เคยมี protocol deviation/violation หรือ compliance issues หรือไม่
+                                        <div class="row">
+
+                                          <div class="col-sm-4">
+                                            <div class="checkbox checkbox-success">
+                  														<input type="checkbox" id="checkbox4_1" name="checkbox4"/>
+                  														<label for="checkbox4_1">ไม่เคย</label>
+                  													</div>
+
+                                          </div>
+
+                                          <div class="col-sm-4">
+                                            <div class="checkbox checkbox-success">
+                  														<input type="checkbox" id="checkbox4_2" name="checkbox4"/>
+                  														<label for="checkbox4_2">เคย (กรุณาแนบหลักฐานประกอบ)</label>
+                  													</div>
+                                          </div>
+
+                                        </div>
+                                      </div>
+                                    </div>
+
+                                    <div class="row req" id="q5">
+                                      <div class="col-sm-12">
+                                        5. ตั้งแต่เริ่มโครงการเคยมีเรื่องร้องเรียนเกี่ยวกับโครงการหรือไม่
+                                        <div class="row">
+
+                                          <div class="col-sm-4">
+                                            <div class="checkbox checkbox-success">
+                  														<input type="checkbox" id="checkbox5_1"/>
+                  														<label for="checkbox5_1">ไม่เคย</label>
+                  													</div>
+                                          </div>
+
+                                          <div class="col-sm-4">
+                                            <div class="checkbox checkbox-success">
+                  														<input type="checkbox" id="checkbox5_2"/>
+                  														<label for="checkbox5_2">เคย (กรุณาแนบหลักฐานประกอบ)</label>
+                  													</div>
+                                          </div>
+
+                                        </div>
+                                      </div>
+                                    </div>
+
+                                    <div class="row req" id="q6">
+                                      <div class="col-sm-12">
+                                        6. การนำเสนอผล มี<u>ข้อมูลที่ระบุตัวตน</u> หรือมีโอกาสที่จะเกิด<u>ผลกระทบเชิงลบ</u>ต่ออาสาสมัครหรือชุมชนของอาสาสมัครหรือไม่
+                                        <div class="row">
+
+                                          <div class="col-sm-4">
+                                            <div class="checkbox checkbox-success">
+                  														<input type="checkbox" id="checkbox6_1"/>
+                  														<label for="checkbox6_1">โครงการไม่เกี่ยวข้องกับอาสาสมัคร</label>
+                  													</div>
+                                          </div>
+
+                                          <div class="col-sm-4">
+                                            <div class="checkbox checkbox-success">
+                  														<input type="checkbox" id="checkbox6_2"/>
+                  														<label for="checkbox6_2">ไม่มีความเสี่ยง</label>
+                  													</div>
+                                          </div>
+
+                                          <div class="col-sm-4">
+                                            <div class="checkbox checkbox-success">
+                  														<input type="checkbox" id="checkbox6_3"/>
+                  														<label for="checkbox6_3">มีความเสี่ยงบ้าง และมีแผนลดความเสี่ยง คือ</label>
+                  													</div>
+
+                                            <div class="form-group">
+                                              <textarea name="name" class="form-control" id="q6_4" rows="3" cols="80" placeholder="ระบุีแผนลดความเสี่ยง ..."></textarea>
+                                            </div>
+                                          </div>
+
+                                        </div>
+                                      </div>
+                                    </div>
+
+                                    <div class="row req" id="q7">
+                                      <div class="col-sm-12">
+                                        7. มีแผนติดตามและดูแลอาสาสมัครหลังสิ้นสุดโครงการอย่างไร
+                                        <div class="row">
+
+                                          <div class="col-sm-4">
+                                            <div class="checkbox checkbox-success">
+                  														<input type="checkbox" id="checkbox7_1"/>
+                  														<label for="checkbox7_1">โครงการไม่เกี่ยวข้องกับอาสาสมัคร</label>
+                  													</div>
+                                          </div>
+
+                                          <div class="col-sm-4">
+                                            <div class="checkbox checkbox-success">
+                  														<input type="checkbox" id="checkbox7_2"/>
+                  														<label for="checkbox7_2">ไม่มีแผน <u>ต้องชี้แจงเหตุผล</u> </label>
+                  													</div>
+                                            <div class="form-group">
+                                              <textarea name="name" class="form-control" rows="3" cols="80" placeholder="ระบุเหตุผล ..." id="q7_1"></textarea>
+                                            </div>
+                                          </div>
+
+                                          <div class="col-sm-4">
+                                            <div class="checkbox checkbox-success">
+                  														<input type="checkbox" id="checkbox7_3"/>
+                  														<label for="checkbox7_3">มีแผนการจัดการและดูแล คือ </label>
+                  													</div>
+
+                                            <div class="form-group">
+                                              <textarea name="name" class="form-control" id="q7_4" rows="3" cols="80" placeholder="ระบุแผนการจัดการและดูแล ..."></textarea>
+                                            </div>
+                                          </div>
+
+                                        </div>
+                                      </div>
+                                    </div>
+
+                                    <div class="row req" id="q8">
+                                      <div class="col-sm-12">
+                                        8. Final report/Manuscript ฉบับสมบูรณ์
+                                        <div class="row">
+
+                                          <div class="col-sm-4">
+                                            <div class="checkbox checkbox-success">
+                  														<input type="checkbox" id="checkbox8_1"/>
+                  														<label for="checkbox8_1">มี (แนบหลักฐานประกอบ)</label>
+                  													</div>
+                                          </div>
+
+                                          <div class="col-sm-8">
+                                            <div class="checkbox checkbox-success">
+                  														<input type="checkbox" id="checkbox8_2"/>
+                  														<label for="checkbox8_2">ยังไม่มี (*เจ้าหน้าที่จะลงบันทึกว่านักวิจัยยังค้างรายงานวิจัย)</label>
+                  													</div>
+                                            <div class="form-group">
+                                              <textarea name="name" class="form-control" id="q8_3" rows="3" cols="80" placeholder="ระบุเหตุผล ..."></textarea>
+                                            </div>
+                                          </div>
+
+                                        </div>
+                                      </div>
+                                    </div>
+
+
+
+                                    <div class="row">
+                                      <div class="col-sm-12">
+                                        9. สรุปผลการศึกษา (ไม่เกิน 1 หน้า A4 ประกอบด้วย Rationale, Objectives, Design, Methods, Results และ Conclusion)
+                                        <div class="row">
+
+                                          <div class="col-sm-12">
+                                            <input type="text" class="form-control" name="bf1" id="bf1">
+                                          </div>
+
+                                        </div>
+                                      </div>
+                                    </div>
+
+                                    <div class="row">
+                                      <div class="col-sm-12 pt-10">
+                                        <label for="checkbox7_3">ไฟล์ที่เกี่ยวข้องทั้งหมด (ถ้ามี) </label>
+                                        <form class="dropzone" id="myFile1" action="../controller/upload_file_research_progress.php" style="max-height: 100px !important; min-height: 120px;" >
+                                          <input type="text" value="5" id="docType" name="docType" readonly class="dn">
+                                          <input type="text" value="" id="docIdrs" name="docIdrs" class="dn" readonly>
+                                          <input type="text" value="" id="docCodeapdu" name="docCodeapdu" class="dn" readonly>
+                                          <input type="text" value="" id="docSession" name="docSession" class="dn" readonly>
+                                        </form>
+                                        <div class="ft1 pt-10">
+                                          <ul class="" id="file_attached_5"></ul>
+                                        </div>
+                                      </div>
+                                    </div>
+
+                                  </div>
+                                </td>
+                              </tr>
+
+                            </table>
+                          </div>
+                        </div>
+
+                        <div class="row">
+                          <div class="col-sm-12 text-center">
+                            ข้าพเจ้าขอรับรองว่าข้อความข้างต้นเป็นความจริง และเข้าใจความหมายโดยชัดเจนทุกประการ
+                          </div>
+                        </div>
+
+                        <div class="row">
+                          <div class="col-sm-12 text-center pt-20">
+                            <button class="btn btn-success btn-lg" type="button" onclick="update_Report_5()">บันทึก</button>
+                          </div>
+                        </div>
+
+                      <!-- </form> -->
+
+
+
+
+
+                    </div>
+                    <!-- .contentdiv -->
+
+                  </div>
+                  <!-- .panel-body -->
+                </div>
+                <!-- .panel-wrapper -->
+              </div>
+              <!-- .panel -->
+
+
+
+            </div>
+            <!-- .col-sm-4 -->
+
+          </div>
+          <!-- .Row -->
+        </div>
+
+
+
+				<!-- Footer -->
+				<footer class="footer container-fluid pl-30 pr-30">
+					<div class="row">
+						<div class="col-sm-12">
+							<p>2017 &copy; <a href="http://rmis.medicine.psu.ac.th/project/" target="_blank">RMIS</a>. หน่วยส่งเสริมและพัฒนาทางวิชาการ คณะแพทยศาสตร์ มหาวิทยาลัยสงขลานครินทร์. Develop by <a href="https://wisniorproject.com" target="_blank">Wisnior Corp.</a></p>
+						</div>
+					</div>
+				</footer>
+				<!-- /Footer -->
+			</div>
+		</div>
+        <!-- /Main Content -->
+
+    </div>
+    <!-- /#wrapper -->
+
+
+
+    <button class="dn" id="btnNotify" data-toggle="modal" data-target=".bs-example-modal-sm" >notify</button>
+    <!-- sample modal content -->
+    <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" style="display: none;">
+      <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true" id="btnClosecheck">×</button>
+            <h5 class="modal-title" id="mySmallModalLabel">การตรวจสอบข้อมูล</h5>
+          </div>
+          <div class="modal-body">
+            <div class="row">
+              <div class="col-sm-12 text-center">
+                <div class="lp1 pt-50 pb-50">
+                  <img src="../images/Rolling.gif" alt="" width="100"><br>
+                  <span class="loadMsg"></span>
+                </div>
+
+                <div class="cp1 dn">
+                  <p id="nofity_msg"></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- /.modal-content -->
+      </div>
+      <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+
+	<!-- JavaScript -->
+
+  <!-- jQuery -->
+  <script src="../v3/vendors/bower_components/jquery/dist/jquery.min.js"></script>
+
+  <!-- Bootstrap Core JavaScript -->
+  <script src="../v3/vendors/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+	<!-- Data table JavaScript -->
+	<script src="../v3/vendors/bower_components/datatables/media/js/jquery.dataTables.min.js"></script>
+	<script src="../v3/dist/js/dataTables-data.js"></script>
+
+	<!-- Slimscroll JavaScript -->
+	<script src="../v3/dist/js/jquery.slimscroll.js"></script>
+
+	<!-- Owl JavaScript -->
+	<script src="../v3/vendors/bower_components/owl.carousel/dist/owl.carousel.min.js"></script>
+
+	<!-- Switchery JavaScript -->
+	<script src="../v3/vendors/bower_components/switchery/dist/switchery.min.js"></script>
+
+	<!-- Fancy Dropdown JS -->
+	<script src="../v3/dist/js/dropdown-bootstrap-extended.js"></script>
+
+  <!-- Bootstrap Switch JavaScript -->
+	<script src="../v3/vendors/bower_components/bootstrap-switch/dist/js/bootstrap-switch.min.js"></script>
+
+  <!-- Select2 JavaScript -->
+	<script src="../v3/vendors/bower_components/select2/dist/js/select2.full.min.js"></script>
+
+  <!-- Bootstrap Tagsinput JavaScript -->
+	<script src="../v3/vendors/bower_components/bootstrap-tagsinput/dist/bootstrap-tagsinput.min.js"></script>
+
+	<!-- Bootstrap Touchspin JavaScript -->
+	<script src="../v3/vendors/bower_components/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.js"></script>
+
+	<!-- Multiselect JavaScript -->
+	<script src="../v3/vendors/bower_components/multiselect/js/jquery.multi-select.js"></script>
+
+  <!-- Sweet-Alert  -->
+	<script src="../v3/vendors/bower_components/sweetalert/dist/sweetalert.min.js"></script>
+
+  <script src="../v3/vendors/bower_components/dropzonejs/dropzone.min.js"></script>
+
+  <!-- Bootstrap Select JavaScript -->
+	<script src="../v3/vendors/bower_components/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
+
+  <script src="../v3/vendors/bower_components/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
+	<script src="../v3/vendors/bower_components/bootstrap-datepicker-thai-thai/js/bootstrap-datepicker-thai.js"></script>
+	<script src="../v3/vendors/bower_components/bootstrap-datepicker-thai-thai/js/locales/bootstrap-datepicker.th.js"></script>
+
+  <!-- Form Advance Init JavaScript -->
+	<script src="../v3/dist/js/form-advance-data.js"></script>
+
+  <script type="text/javascript" src="../v3/vendors/bower_components/ckeditor/ckeditor.js"></script>
+	<!-- Init JavaScript -->
+	<script src="../v3/dist/js/init.js"></script>
+  <script src="../v3/main.js"></script>
+  <script src="../v3/pi.js"></script>
+  <script src="../v3/progress5_1.js"></script>
+
+  <script type="text/javascript">
+
+    var dt = $('#tableView').dataTable().api();
+    var current_user = window.localStorage.getItem('rmis_current_user')
+    var current_role = window.localStorage.getItem('rmis_current_role')
+    var log_login_session = window.localStorage.getItem('rmis_login_session_check');
+    var current_page = 'research_register.html';
+
+    var pi_pct = 100;
+    var co_pi = [];
+    var rr_notify = [];
+    var num_file_upload = 0;
+    var num_cv = 0;
+    var session_id = main_app.randomString(20);
+    var last_session_id = window.localStorage.getItem('rmis_current_rs_session_id');
+    var selectes_session = window.localStorage.getItem('current_selected_project_session');
+    var current_session_id = last_session_id;
+    var tem_session = main_app.randomString(20);
+    var current_id_rs = null;
+    var current_id_pm = null;
+    var current_code_apdu = null;
+    var current_id_year = null;
+
+    var current_pid = window.localStorage.getItem('current_progress_id') //rp_progress_id
+    var current_page = 'progress_5_1_info.html';
+
+    $(document).ready(function(){
+
+      pi.init()
+
+      setTimeout(function(){
+        main.load_notify_pm();
+        load_progress_info_update()
+      }, 10)
+
+      setInterval(function(){
+        saveDraft()
+      }, 60000);
+
+    })
+
+    function saveDraft(){
+
+      var p1_q1 = 0;
+      var p1_q1_info = '';
+      if($('#checkbox01').is(':checked')){
+        p1_q1 = 1;
+        p1_q1_info = editData.getData()
+      }
+
+    }
+
+    function loadWonResearchInPahse2(){
+      var param = {
+        id: current_user
+      }
+
+      var jxhr = $.post(ws_url + 'controller/pm/check-phase2-list-all.php', param, function(){}, 'json')
+                  .always(function(snap){
+                    // console.log(snap);
+                    if((snap != '') && (snap.length > 0)){
+                      snap.forEach(function(i){
+                        $buffer = '<option value="' + i.id_rs +'">REC.' + i.code_apdu + ' :: ' + i.title_th + '</option>'
+                        $('#txtResearch').append($buffer)
+                      })
+                    }else{
+                      swal("ไม่พบข้อมูล!", "ท่านยังไม่มีโครงการที่กำลังดำเนินโครงการวิจัย หากมีข้อสงสัยกรุณาติดต่อเจ้าหน้าที่!", "error")
+                    }
+                  }, 'json')
+    }
+
+    $(function(){
+
+      $('#txtResearch').change(function(){
+        if($('#txtResearch').val() != ''){
+
+          var param = {
+            id_rs: $('#txtResearch').val(),
+            id: current_user
+          }
+
+          var jxhr = $.post(ws_url + 'controller/pm/load_rec_info.php', param, function(){}, 'json')
+                      .always(function(snap){
+                        if((snap != '') && (snap.length > 0)){
+
+                          $('#report_form').removeClass('dn')
+                          snap.forEach(function(i){
+                            $('#txtCode').val(i.code_apdu)
+                            $('#txtThTitle').val(i.title_th)
+                            $('#txtEnTitle').val(i.title_en)
+
+                            $('#docIdrs').val(i.id_rs)
+                            $('#docCodeapdu').val(i.code_apdu)
+                            $('#txtProtocal').val(i.protocol_no)
+
+                            current_id_year = i.id_year
+                            current_code_apdu = i.code_apdu
+                            current_id_rs = i.id_rs
+                            tem_session = main_app.randomString(20)
+                            current_id_pm = i.id_pm
+                            $('#docSession').val(tem_session)
+
+                          })
+
+                          checkProgress(5)
+
+                        }else{
+                          $('#report_form').addClass('dn')
+                          swal("ไม่พบข้อมูล!", "ท่านยังไม่มีโครงการที่กำลังดำเนินโครงการวิจัย หากมีข้อสงสัยกรุณาติดต่อเจ้าหน้าที่!", "error")
+                        }
+                      }, 'json')
+        }else{
+          $('#report_form').addClass('dn')
+        }
+      })
+
+
+
+      $('#cb6').click(function(){
+        if($("#cb6").is(':checked')){
+          $("#otherfunding").removeClass('dn');  // checked
+        }
+        else{
+          $("#otherfunding").addClass('dn');  // checked
+          $('#txtOtherFundSource').val('')
+        }
+      });
+
+    })
+
+
+
+
+    function goto_report(progress_id){
+      window.localStorage.setItem('rmis_current_progress_id', progress_id)
+      window.location = 'create_report.html'
+    }
+  </script>
+</body>
+
+</html>

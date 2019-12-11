@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8" />
+  	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  	<title>:: RMIS :: สำหรับเจ้าหน้าที่ ::</title>
+
+    <!-- Data table CSS -->
+  	<link href="../v3/vendors/bower_components/datatables/media/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css"/>
+
+    <!--alerts CSS -->
+  	<link href="../v3/vendors/bower_components/sweetalert/dist/sweetalert.css" rel="stylesheet" type="text/css">
+
+    <!-- Data table CSS -->
+    <link href="../v3/vendors/bower_components/datatables/media/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css"/>
+
+    <!-- Custom CSS -->
+    <link href="../v3/dist/css/style.css" rel="stylesheet" type="text/css">
+    <link href="../v3/fonts.css" rel="stylesheet" type="text/css">
+    <link href="../v3/style_v2.css" rel="stylesheet" type="text/css">
+
+  </head>
+  <body>
+
+    <div class="header bsd pd-15 pt-20 pb-20" style="background: rgb(77, 90, 96); border: solid; border-width: 0px 0px 0px 0px; border-color: rgb(1, 179, 93);">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-xs-3 pt-0">
+              <a href="./"><h1 class="md-0 pd-0 txt-light f500" style="line-height: 22px; font-size: 45px;">RMIS</h1></a>
+          </div>
+          <div class="col-xs-9 text-right txt-light" style="padding-top: 0px;">
+            สวัสดี, คุณ<span class="userFullname text-warning f500">NA</span> (Staff) <i class="fa fa-bars fs08 ml-10"></i>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="header pd-10 pl-5 pr-5 pt-20 fs08" style="background: ; border: solid; border-width: 0px 0px 0px 0px; border-color: rgb(1, 179, 93);">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-xs-6 text-left txt-gray">
+            <a href="index.html"><i class="fa fa-home"></i> หน้าแรก</a> / <a href="#">โครงการวิจัยรอดำเนินการ</a>
+          </div>
+          <div class="col-xs-6 text-right text-muted">
+            <a href="" class=" text-muted mr-10 ml-10"><i class="zmdi zmdi-info"></i> คำแนะนำ </a>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-12">
+            <hr class="mb-10">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="group-1 pb-50">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-3 pt-10">
+            <h6 style="border:solid; border-width: 0px 0px 3px 0px; border-color: rgb(35, 176, 83);" class="pb-5 mb-10 f500">กำหนดการแสดงผลข้อมูล</h6>
+            <div class="row">
+              <div class="col-md-12 col-sm-6 col-xs-12">
+                <div class="form-group">
+                  <label for="" class="f500 txt-dark fs08">ปี พ.ศ. :</label>
+                  <select class="form-control" name="txtYear" id="txtYear">
+
+                  </select>
+                </div>
+              </div>
+              <div class="col-sm-12">
+                <button class="dn" data-toggle="modal" data-target="#myModal_responce_ec" id="btn_reponse_ec" style="display: none;"></button>
+                <button class="dn" data-toggle="modal" data-target="#myModal_fb_ec" id="btn_fb_ec" style="display: none;"></button>
+                <button class="dn" data-toggle="modal" data-target="#myModal_change_status" id="btn_change_status" style="display: none;"></button>
+              </div>
+            </div>
+
+
+          </div>
+          <!-- .col-sm-3 -->
+
+          <div class="col-md-9">
+            <h6 class="f500 mb-5">รายการโครงการวิจัยรอดำเนินการ</h6>
+            <div class="pd-20" style="background: #fff; border: solid; border-width: 0px 0px 5px 0px; border-color: rgb(1, 179, 93);">
+              <div class="row">
+                <div class="col-sm-12">
+                  <div class="table-wrap">
+                    <div class="table-responsive_">
+                      <table id="datable_1" class="table table-hover display  pb-30" >
+                        <thead>
+                          <tr>
+                            <th style="width: 30px;">#</th>
+                            <th style="width: 80px;">รหัสโครงการ</th>
+                            <th>โครงการวิจัย</th>
+                            <th style="width: 80px;">ประเภทการพิจารณา</th>
+                            <!-- <th style="width: 180px;">สถานะ</th> -->
+                          </tr>
+                        </thead>
+                        <tbody>
+
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- .g1 -->
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- jQuery -->
+    <script src="../v3/vendors/bower_components/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="../v3/vendors/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+  	<!-- Slimscroll JavaScript -->
+  	<script src="../v3/dist/js/jquery.slimscroll.js"></script>
+  	<!-- Fancy Dropdown JS -->
+  	<script src="../v3/dist/js/dropdown-bootstrap-extended.js"></script>
+    <!-- Sweet-Alert  -->
+  	<script src="../v3/vendors/bower_components/sweetalert/dist/sweetalert.min.js"></script>
+    <!-- Data table JavaScript -->
+    <script src="../v3/vendors/bower_components/datatables/media/js/jquery.dataTables.min.js"></script>
+    <script src="../v3/dist/js/dataTables-data.js"></script>
+    <!-- Data table JavaScript -->
+    <script type="text/javascript" src="../v3/vendors/bower_components/ckeditor/ckeditor.js"></script>
+
+  	<!-- Init JavaScript -->
+  	<script src="../v3/dist/js/init.js"></script>
+    <script src="../v3/main.js"></script>
+    <script src="../v3/staff.js"></script>
+    <script src="../v3/loading.js"></script>
+
+    <script type="text/javascript">
+
+      var current_user = window.localStorage.getItem('rmis_current_user')
+      var current_role = window.localStorage.getItem('rmis_current_role')
+      var editData_reponse_ec = '';
+      var editData_fb_ec = '';
+      var editData_sc = '';
+
+
+
+      $(document).ready(function(){
+
+        staff.init()
+        main.load_year();
+        loading.show()
+        load_ec();
+
+        setTimeout(function(){
+          var dt = new Date();
+          var cyear = parseInt(dt.getFullYear()) - 1999;
+          $('#txtYear').val(cyear);
+          loadList()
+        }, 1000)
+
+        editData_reponse_ec = CKEDITOR.replace( 'txt_note_reponse_ec', {
+          height: '150px'
+        });
+
+        editData_fb_ec = CKEDITOR.replace( 'txt_note_fb_ec', {
+          height: '150px'
+        });
+
+        editData_sc = CKEDITOR.replace( 'txt_note_sc', {
+          height: '150px'
+        });
+
+      })
+
+      $(function(){
+        $('#txtYear').change(function(){
+          loadList()
+        })
+      })
+
+      function loadList(){
+
+        loading.show()
+
+        var param = {
+          id_year: $('#txtYear').val()
+        }
+
+        var param = $.post(ws_url + 'controller/staff/check-new-wait-process.php', param ,function(){},'json')
+                     .always(function(snap){
+                       var dt = $('#datable_1').dataTable().api();
+                       if((snap!='') && (snap.length > 0)){
+
+                        console.log(snap);
+
+                         dt.clear().draw();
+                         $c = 1;
+
+                         snap.forEach(function(i){
+
+                           console.log(i.id_rs);
+
+                           $bt1 = '';
+                           $bt2 = '';
+                           $bt3 = '';
+
+                           if((i.id_status_research != 1) && (i.id_status_research != 2) && (i.id_status_research != 9)) {
+                             $bt2 = 'disabled ';
+                           }
+
+                           if((i.id_status_research == 10) || (i.id_status_research == 11) || (i.id_status_research == 12) || (i.id_status_research == 13) || (i.id_status_research == 14) || (i.id_status_research == 16)  || (i.id_status_research == 18)) {
+                             $bt3 = 'disabled ';
+                           }
+
+                           $ec = '';
+
+                           if(i.ec_name != null){
+                             $ec = '<div style="font-size: 0.8em;">เลขา EC ที่รับผิดชอบ : ' + i.ec_name + '</div>';
+                           }
+
+
+                          $dboard = 'disabled'
+                           if(i.ec_fb == 'Y'){
+                             if((i.consider_type == 'Fullboard (Bio)') || (i.consider_type == 'Fullboard (Social)')){
+                               // $crt = '<div style="font-size: 0.8em;"><span class="txt-danger">' + i.consider_type + '</span></div>';
+                               $ec = $ec + '<div style="font-size: 0.8em;">เลขาการประชุม : ' + i.ec_fb_name + '</div>';
+                               $dboard = '';
+                             }
+                             // $ec = $ec + '<div style="font-size: 0.8em;">เลขาการประชุม : ' + i.ec_fb_name + '</div>';
+                             // $dboard = '';
+                           }
+
+                           $crt = '<div style="font-size: 0.8em;"><span class="text-muted">ยังไม่ระบุ</span></div>';
+
+                           if(i.consider_type != null){
+                             // if((i.consider_type == 'Fullboard (Bio)') || (i.consider_type == 'Fullboard (Social)')){
+                             //   $crt = '<div style="font-size: 0.8em;"><span class="txt-danger">' + i.consider_type + '</span></div>';
+                             // }
+                             // $crt = '<div style="font-size: 0.8em;">ประเภทการพิจารณา : <span class="txt-danger">' + i.consider_type + '</span></div>';
+                              $crt = '<div style="font-size: 0.8em;"><span class="txt-danger">' + i.consider_type + '</span></div>';
+                           }
+
+                           var command_btn = '<div class="text-left mt-5"><div class="btn-group_ btn-group-xs" role="group">' +
+                             '<button class="btn btn-success btn-xs btn-icon-anim btn-square pd-5 mr-5" onclick=viewRsInfo3("' + i.id_rs +'") data-toggle="tooltip" data-placement="top" title="ดำเนินการต่อ"><i class="fa fa-pencil"></i></button>' +
+                             '<button class="btn btn-success btn-xs btn-icon-anim btn-square mr-5" data-toggle="tooltip" data-placement="top" title="เปลี่ยนเลขา EC ผู้รับผิดชอบ" onclick="set_reponse_ec(\'' + i.id_rs +'\')"><i class="fa fa-user"></i></button>' +
+                             '<button class="btn btn-success btn-xs btn-icon-anim btn-square mr-5" ' + $dboard + ' data-toggle="tooltip" data-placement="top" title="เปลี่ยนเลขาการประชุม" onclick="set_fb_ec(\'' + i.id_rs +'\')"><i class="fa fa-users"></i></button>' +
+                             '<button class="btn btn-warning btn-xs btn-icon-anim btn-square mr-5" ' + $dboard + ' data-toggle="tooltip" data-placement="top" title="เปลี่ยนสถานะฉับพลัน" onclick="set_rapid_status(\'' + i.id_rs + '\')"><i class="fa fa-retweet"></i></button>' +
+                             '<button class="btn btn-warning btn-xs btn-icon-anim btn-square" data-toggle="tooltip" data-placement="top" title="ลบจากรายการรอดำเนินการ" onclick="set_blind_status(\'' + i.id_rs + '\')"><i class="fa fa-eye-slash"></i></button>' +
+                           '</div></div>';
+
+                           if(i.id_status_research == 21){
+                             command_btn = '<div class="text-left mt-5"><div class="btn-group_ btn-group-xs" role="group">' +
+                               '<button class="btn btn-success btn-xs btn-icon-anim btn-square pd-5 mr-5" onclick=viewRsInfo21("' + i.id_rs +'") data-toggle="tooltip" data-placement="top" title="ดำเนินการต่อ"><i class="fa fa-pencil"></i></button>' +
+                               '<button class="btn btn-success btn-xs btn-icon-anim btn-square mr-5" data-toggle="tooltip" data-placement="top" title="เปลี่ยนเลขา EC ผู้รับผิดชอบ" onclick="set_reponse_ec(\'' + i.id_rs +'\')"><i class="fa fa-user"></i></button>' +
+                               '<button class="btn btn-success btn-xs btn-icon-anim btn-square mr-5" ' + $dboard + ' data-toggle="tooltip" data-placement="top" title="เปลี่ยนเลขาการประชุม" onclick="set_fb_ec(\'' + i.id_rs +'\')"><i class="fa fa-users"></i></button>' +
+                               '<button class="btn btn-warning btn-xs btn-icon-anim btn-square mr-5" ' + $dboard + ' data-toggle="tooltip" data-placement="top" title="เปลี่ยนสถานะฉับพลัน" onclick="set_rapid_status(\'' + i.id_rs + '\')"><i class="fa fa-retweet"></i></button>' +
+                               '<button class="btn btn-warning btn-xs btn-icon-anim btn-square" data-toggle="tooltip" data-placement="top" title="ลบจากรายการรอดำเนินการ" onclick="set_blind_status(\'' + i.id_rs + '\')"><i class="fa fa-eye-slash"></i></button>' +
+                             '</div></div>';
+                           }
+
+                           if(i.id_status_research == 17){
+                             command_btn = '<div class="text-left mt-5"><div class="btn-group_ btn-group-xs" role="group">' +
+                               '<button class="btn btn-success btn-xs btn-icon-anim btn-square pd-5 mr-5" onclick=viewRsInfo17("' + i.id_rs +'") data-toggle="tooltip" data-placement="top" title="ดำเนินการต่อ"><i class="fa fa-pencil"></i></button>' +
+                               '<button class="btn btn-success btn-xs btn-icon-anim btn-square mr-5" data-toggle="tooltip" data-placement="top" title="เปลี่ยนเลขา EC ผู้รับผิดชอบ" onclick="set_reponse_ec(\'' + i.id_rs +'\')"><i class="fa fa-user"></i></button>' +
+                               '<button class="btn btn-success btn-xs btn-icon-anim btn-square mr-5" ' + $dboard + ' data-toggle="tooltip" data-placement="top" title="เปลี่ยนเลขาการประชุม" onclick="set_fb_ec(\'' + i.id_rs +'\')"><i class="fa fa-users"></i></button>' +
+                               '<button class="btn btn-warning btn-xs btn-icon-anim btn-square mr-5" ' + $dboard + ' data-toggle="tooltip" data-placement="top" title="เปลี่ยนสถานะฉับพลัน" onclick="set_rapid_status(\'' + i.id_rs + '\')"><i class="fa fa-retweet"></i></button>' +
+                               '<button class="btn btn-warning btn-xs btn-icon-anim btn-square" data-toggle="tooltip" data-placement="top" title="ลบจากรายการรอดำเนินการ" onclick="set_blind_status(\'' + i.id_rs + '\')"><i class="fa fa-eye-slash"></i></button>' +
+                             '</div></div>';
+                           }
+
+                           var code = i.code_apdu;
+
+                           if(code == ''){
+                             if(i.ord_id == ''){
+                               code = '<div style="font-size: 0.8em;" class="txt-danger">ยังไม่ได้ยืนยันการส่งข้อมูล</div>'
+                             }else{
+                               code = i.year_name + '-' + i.ord_id + '-' + i.id_dept + '-' + i.id_personnel + '<div style="font-size: 0.8em;" class="txt-danger">ยังไม่ได้การตรวจสอบจากเจ้าหน้าที่</div>'
+                             }
+                           }
+
+                           if(i.id_status_research == 21){
+                             dt.row.add([
+                               $c,
+                               i.code_apdu + '<br>[' + i.id_rs +']',
+                               '<a href="#" onclick=viewRsInfo("' + i.id_rs +'") class="f500 "><span class="lh-20">'+ i.title_th + '</span></a><div style="font-size: 0.8em;">หัวหน้าโครงการวิจัย : ' + i.fname + ' ' + i.lname + ', ลงทะเบียนเมื่อ : ' + main_app.convertThaidatetime(i.date_submit) + '</div>'  + $ec +
+                               '<div class="fs08">สถานะปัจจุบัน : <span class="txt-danger">' + i.status_name +'</span></div>' + command_btn,
+                               $crt
+                             ]);
+                             $c++;
+
+                           }else{
+                             dt.row.add([
+                               $c,
+                               i.code_apdu + '<br>[' + i.id_rs +']',
+                               '<a href="#" onclick=viewRsInfo("' + i.id_rs +'") class="f500 "><span class="lh-20">'+ i.title_th + '</span></a><div style="font-size: 0.8em;">หัวหน้าโครงการวิจัย : ' + i.fname + ' ' + i.lname + ', ลงทะเบียนเมื่อ : ' + main_app.convertThaidatetime(i.date_submit) + '</div>'  + $ec +
+                               '<div class="fs08">สถานะปัจจุบัน : <span class="txt-danger">' + i.status_name +'</span></div>' + command_btn,
+                               $crt
+                             ]);
+                             $c++;
+                           }
+                         })
+                         // dt.draw();
+
+                         setTimeout(function(){
+                           dt.draw();
+                           lp.hl()
+                           loading.hide()
+                           $('[data-toggle="tooltip"]').tooltip()
+                         },1000)
+
+                       }else{
+                         dt.clear().draw();
+                         lp.hl()
+                         loading.hide()
+                         $('[data-toggle="tooltip"]').tooltip()
+                       }
+                     }, 'json')
+      }
+
+      function set_reponse_ec(id_rs){
+        $('#btn_reponse_ec').trigger('click')
+        $('#txt_id_rs_reponse_ec').val(id_rs)
+      }
+
+      function set_fb_ec(id_rs){
+        $('#btn_fb_ec').trigger('click')
+        $('#txt_id_rs_fb_ec').val(id_rs)
+      }
+
+      function set_rapid_status(id_rs){
+        $('#btn_change_status').trigger('click')
+        $('#txt_id_rs_sc').val(id_rs)
+      }
+
+      function load_ec(){
+        var jxhr = $.post(ws_url + 'controller/staff/get-ec-list.php', function(){}, 'json')
+                    .always(function(snap){
+                      if((snap!='') && (snap.length > 0)){
+                        snap.forEach(function(i){
+                          $buffer = '<option value="' + i.id + '">' + i.prefix_name + i.fname + ' ' + i.lname + '</option>';
+                          $('.txtEC').append($buffer)
+                        })
+                      }
+                    }, 'json')
+      }
+
+      function save_fb_ec(){
+
+        var msg = editData_fb_ec.getData()
+
+        if($('#txtEC_fb').val() == ''){
+          swal("คำเตือน", "กรุณาเลือกเลขาการประชุมก่อน", "error")
+          return ;
+        }
+
+        if(msg == ''){
+          swal("คำเตือน", "กรุณาเพิ่มบันทึกก่อน", "error")
+          return ;
+        }
+
+        swal({
+          title: "คุณแน่ใจหรือไม่",
+          text: "คุณยืนยันการเปลี่ยนเลขาการประชุมนี้หรือไม่",
+          type: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#0ab051",
+          confirmButtonText: "ตกลง",
+          cancelButtonText: "ยกเลิก",
+          closeOnConfirm: true },
+        function(){
+          loading.show()
+
+          var param = {
+            id_rs: $('#txt_id_rs_fb_ec').val(),
+            message: msg,
+            id_ec: $('#txtEC_fb').val(),
+            id: current_user,
+            role: current_role
+          }
+
+          var jxr = $.post(ws_url + 'controller/reset_fullboard_ec.php', param, function(){})
+                     .always(function(resp){
+                       if(resp == 'Y'){
+                         loading.hide()
+                         setTimeout(function(){
+                            swal({    title: "ดำเนินการสำเร็จ",
+                            text: "กด ตกลง เพื่อรีโหลดข้อมูล",
+                            type: "success",
+                            showCancelButton: false,
+                            confirmButtonColor: "#0eb967",
+                            confirmButtonText: "ตกลง",
+                            closeOnConfirm: false },
+                            function(){
+                             window.location.reload()
+                            });
+                         }, 300)
+                       }else{
+                         loading.hide()
+                         setTimeout(function(){
+                           swal("Error", "เกิดข้อผิดพลาด กรุณาลองใหม่ภายหลัง", "error")
+                         })
+
+                       }
+                     })
+                     .fail(function(){
+                       loading.hide()
+                       setTimeout(function(){
+                         swal("Error", "เกิดข้อผิดพลาด กรุณาลองใหม่ภายหลัง", "error")
+                       })
+
+                     })
+        });
+      }
+
+      function save_response_ec(){
+        var msg = editData_reponse_ec.getData()
+
+        if($('#txtEC_reponse').val() == ''){
+          swal("คำเตือน", "กรุณาเลือกเลขา EC ผู้รับผิดชอบก่อน", "error")
+          return ;
+        }
+
+        if(msg == ''){
+          swal("คำเตือน", "กรุณาเพิ่มบันทึกก่อน", "error")
+          return ;
+        }
+
+
+
+        swal({
+          title: "คุณแน่ใจหรือไม่",
+          text: "คุณยืนยันการเปลี่ยนเลขาผู้รับผิดชอบโครงการนี้หรือไม่",
+          type: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#0ab051",
+          confirmButtonText: "ตกลง",
+          cancelButtonText: "ยกเลิก",
+          closeOnConfirm: true },
+        function(){
+          loading.show()
+
+          var param = {
+            id_rs: $('#txt_id_rs_reponse_ec').val(),
+            message: msg,
+            id_ec: $('#txtEC_reponse').val(),
+            id: current_user,
+            role: current_role
+          }
+
+          if($('#txtECsendStage').val() == 1){
+            param = {
+              id_rs: $('#txt_id_rs_reponse_ec').val(),
+              message: msg,
+              id_ec: $('#txtEC_reponse').val(),
+              id: current_user,
+              role: current_role,
+              next_stage: '3'
+            }
+          }else{
+            param = {
+              id_rs: $('#txt_id_rs_reponse_ec').val(),
+              message: msg,
+              id_ec: $('#txtEC_reponse').val(),
+              id: current_user,
+              role: current_role,
+              next_stage: ''
+            }
+          }
+
+          var jxr = $.post(ws_url + 'controller/reset_reponse_ec.php', param, function(){})
+                     .always(function(resp){
+                       if(resp == 'Y'){
+                         loading.hide()
+                         setTimeout(function(){
+                            swal({    title: "ดำเนินการสำเร็จ",
+                            text: "กด ตกลง เพื่อรีโหลดข้อมูล",
+                            type: "success",
+                            showCancelButton: false,
+                            confirmButtonColor: "#0eb967",
+                            confirmButtonText: "ตกลง",
+                            closeOnConfirm: false },
+                            function(){
+                             window.location.reload()
+                            });
+                         }, 300)
+                       }else{
+                         loading.hide()
+                         setTimeout(function(){
+                           swal("Error", "เกิดข้อผิดพลาด กรุณาลองใหม่ภายหลัง", "error")
+                         })
+
+                       }
+                     })
+                     .fail(function(){
+                       loading.hide()
+                       setTimeout(function(){
+                         swal("Error", "เกิดข้อผิดพลาด กรุณาลองใหม่ภายหลัง", "error")
+                       })
+
+                     })
+        });
+      }
+
+      function save_sc(){
+        var msg = editData_sc.getData()
+
+        if($('#txtSc').val() == ''){
+          swal("คำเตือน", "กรุณาสถานะโครงการก่อน", "error")
+          return ;
+        }
+
+        if(msg == ''){
+          swal("คำเตือน", "กรุณาเพิ่มบันทึกก่อน", "error")
+          return ;
+        }
+
+        swal({
+          title: "คุณแน่ใจหรือไม่",
+          text: "คุณยืนยันการเปลี่ยนสถานะของโครงการวิจัยนี้หรือไม่",
+          type: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#0ab051",
+          confirmButtonText: "ตกลง",
+          cancelButtonText: "ยกเลิก",
+          closeOnConfirm: true },
+        function(){
+          loading.show()
+
+          var param = {
+            id_rs: $('#txt_id_rs_sc').val(),
+            message: msg,
+            id_status: $('#txtSc').val(),
+            id: current_user,
+            role: current_role
+          }
+
+          var jxr = $.post(ws_url + 'controller/reset_rapid_research_status.php', param, function(){})
+                     .always(function(resp){
+                       if(resp == 'Y'){
+
+                         // Send email process
+                         // 1. get ec_email and information
+                         var param = {
+                          id_rs: $('#txt_id_rs_sc').val(),
+                          id_status: $('#txtSc').val()
+                         }
+
+                         var jxr = $.post(ws_url + 'controller/set_content_for_email_in_rapid_change_status.php', param, function(){}, 'json')
+                                    .always(function(snap){
+                                      if((snap != '') && (snap.length > 0)){
+                                        snap.forEach(function(i){
+                                          var param = {
+                                            title: 'ข้อมูลปรับปรุงรหัสผ่านเพื่อเข้าใช้งานระบบสารสนเทศเพื่อการจัดการงานวิจัย (RMIS)',
+                                            content: i.email_content,
+                                            user: 'tagoon.p@gmail.com',
+                                            key: 'idj&skeoXf2**r123X',
+                                            toemail: window.localStorage.getItem('rmis_current_user_email'),
+                                            toname: $('.userFullname').text()
+                                          }
+                                        })
+                                      }else{
+
+                                      }
+                                    })
+                                    .fail(function(){
+
+                                    })
+
+                         // 2. send email function
+                         // End send email process
+
+                         loading.hide()
+                         setTimeout(function(){
+                            swal({    title: "ดำเนินการสำเร็จ",
+                            text: "กด ตกลง เพื่อรีโหลดข้อมูล",
+                            type: "success",
+                            showCancelButton: false,
+                            confirmButtonColor: "#0eb967",
+                            confirmButtonText: "ตกลง",
+                            closeOnConfirm: false },
+                            function(){
+                             window.location.reload()
+                            });
+                         }, 300)
+                       }else{
+                         loading.hide()
+                         setTimeout(function(){
+                           swal("Error", "เกิดข้อผิดพลาด กรุณาลองใหม่ภายหลัง", "error")
+                         })
+
+                       }
+                     })
+                     .fail(function(){
+                       loading.hide()
+                       setTimeout(function(){
+                         swal("Error", "เกิดข้อผิดพลาด กรุณาลองใหม่ภายหลัง", "error")
+                       })
+
+                     })
+        });
+      }
+    </script>
+
+  </body>
+</html>
+
+<!-- sample modal content -->
+<div id="myModal_responce_ec" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header" style="background: #5cb85c;">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h5 class="modal-title f500 txt-light" id="myModalLabel">เปลี่ยนเลขา EC ผู้รับผิดขอบโครงการ</h5>
+      </div>
+      <div class="modal-body">
+        <div class="form-group dn">
+          <label for="" class="txt-dark f500">รหัสลงทะเบียน <span class="txt-danger">**</span></label>
+          <input type="text" class="form-control" id="txt_id_rs_reponse_ec" readonly>
+        </div>
+        <div class="form-group">
+          <label for="" class="txt-dark f500">เลือกเลขา EC ผู้รับผิดชอบ <span class="txt-danger">**</span></label>
+          <select class="form-control txtEC" name="txtEC_reponse" id="txtEC_reponse">
+            <option value=""> -- เลือกเลขา ec -- </option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="" class="txt-dark f500">เลือกสถานะการส่ง <span class="txt-danger">**</span></label>
+          <select class="form-control txtECsendStage" name="txtECsendStage" id="txtECsendStage">
+            <option value="0" selected>ไม่ทำการส่งต่อด้วยสถานะใด ๆ</option>
+            <option value="1">ส่งต่อด้วยสถานะรอเลือกประเภทการพิจารณา</option>
+          </select>
+        </div>
+        <label for="" class="f500 txt-dark fs08">บันทึกสำหรับการเปลี่ยนข้อมูลครั้งนี้ <span class="txt-danger">**</span></label>
+        <textarea name="txt_note_reponse_ec" id="txt_note_reponse_ec" rows="8" cols="80"></textarea>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-success" onclick="save_response_ec()">บันทึก</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">ปิด</button>
+      </div>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+
+<!-- sample modal content -->
+<div id="myModal_fb_ec" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header" style="background: #5cb85c;">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h5 class="modal-title f500 txt-light" id="myModalLabel">เปลี่ยนเลขาการประชุม</h5>
+      </div>
+      <div class="modal-body">
+        <div class="form-group dn">
+          <label for="" class="txt-dark f500">รหัสลงทะเบียน <span class="txt-danger">**</span></label>
+          <input type="text" class="form-control" id="txt_id_rs_fb_ec" readonly>
+        </div>
+        <div class="form-group">
+          <label for="" class="txt-dark f500">เลือกเลขาการประชุม <span class="txt-danger">**</span></label>
+          <select class="form-control txtEC" name="txtEC_fb" id="txtEC_fb">
+            <option value=""> -- เลือกเลขา ec -- </option>
+          </select>
+        </div>
+        <label for="" class="f500 txt-dark fs08">บันทึกสำหรับการเปลี่ยนข้อมูลครั้งนี้ <span class="txt-danger">**</span></label>
+        <textarea name="txt_note_fb_ec" id="txt_note_fb_ec" rows="8" cols="80"></textarea>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-success" onclick="save_fb_ec()">บันทึก</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">ปิด</button>
+      </div>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+
+<!-- sample modal content -->
+<div id="myModal_change_status" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header" style="background: #5cb85c;">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h5 class="modal-title f500 txt-light" id="myModalLabel">เปลี่ยนสถานะโครงการฉับพลัน</h5>
+      </div>
+      <div class="modal-body" style="background: rgb(242, 242, 242);">
+        <div class="row">
+          <div class="col-xs-4 text-center pt-10 pb-10">
+            <i class="fa fa-warning fa-4x"></i>
+          </div>
+          <div class="col-xs-7 pt-10 pb-10">
+            <h5 class="f500">คำเตือน!</h5>
+            การดำเนินการนี้ ควรใช้ในกรุณีที่ไม่สามารถดำเนินการใด ๆ ตามกระบวนการหลัก (SOP) ของระบบได้เท่านั้น <span class="text-danger f500">ห้ามกระทำกระบวนการนี้โดยไม่จำเป็น</span>
+          </div>
+        </div>
+      </div>
+      <div class="modal-body">
+        <div class="form-group dn">
+          <label for="" class="txt-dark f500">รหัสลงทะเบียน <span class="txt-danger">**</span></label>
+          <input type="text" class="form-control" id="txt_id_rs_sc" readonly>
+        </div>
+        <div class="form-group">
+          <label for="" class="txt-dark f500">เลือกสถานะโครงการ <span class="txt-danger">**</span></label>
+          <select class="form-control" name="txtSc" id="txtSc">
+            <option value=""> -- เลือกสถานะโครงการที่ต้องการเปลี่ยน -- </option>
+            <option value="3">เอกสารถูกต้อง รอเสนอเลขา EC</option>
+            <option value="6">รอผลพิจารณาจากเลขา EC (เมื่อเคยมีการส่งพิจารณาข้อเสนอแนะจากผู้เชี่ยวชาญแล้ว)</option>
+            <option value="24">เลขาตรวจสอบใบรับรอง (เมื่อเคยมีการส่งใบรับรองให้ตรวจสอบแล้ว)</option>
+          </select>
+        </div>
+        <label for="" class="f500 txt-dark fs08">บันทึกสำหรับการเปลี่ยนข้อมูลครั้งนี้ <span class="txt-danger">**</span></label>
+        <textarea name="txt_note_sc" id="txt_note_sc" rows="8" cols="80"></textarea>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-success" onclick="save_sc()">บันทึก</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">ปิด</button>
+      </div>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->

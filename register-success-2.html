@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>ลงทะเบียน RMIS สำหรับบุคลากรคณะแพทยศาสตร์</title>
+        <!-- Meta Tags -->
+        <meta charset="UTF-8" />
+    		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+        <!-- CSS -->
+        <link rel="shortcut icon" href="./favicon.ico">
+
+        <!-- Custom CSS -->
+    		<link href="v3/dist/css/style.css" rel="stylesheet" type="text/css">
+        <link href="v3/fonts.css" rel="stylesheet" type="text/css">
+        <link href="v3/style.css" rel="stylesheet" type="text/css">
+
+        <!--alerts CSS -->
+      	<link href="v3/vendors/bower_components/sweetalert/dist/sweetalert.css" rel="stylesheet" type="text/css">
+
+    </head>
+
+    <style>
+      .header{
+          background: rgb(39, 143, 5);
+      }
+    </style>
+    <div class="header bsd">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-xs-2">
+              <a href="./"><h1 style="color: #fff; font-size: 25px;">RMIS@2018</h1></a>
+          </div>
+          <div class="col-xs-10 text-right pt-10">
+              <button class="btn btn-default btn-rounded_ btn-outline txt-light" style="color: #fff !important;" onclick="window.location = 'index.html'">เข้าสู่ระบบ</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <body style="background: rgb(255, 255, 255);">
+
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12" style="margin-top: 20px;">
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="text-center pt-30">
+                  <img src="images/rmis3-logo-2.png" alt="logo_header.png" style="width: 400px;">
+                  <h2>ลงทะเบียนสำเร็จ<br><small>ท่านสามารถใช้ E-mail address และรหัสผ่านของท่านเข้าสู่ระบบได้หลังจากท่านได้ทำการยืนยันตัวตนจากลิงค์ที่ส่งให้ทางอีเมล์แล้ว หากท่านไม่ได้รับอีเมล์ภายใน 5 นาที ให้ทำการติดต่อเจ้าหน้าที่</small></h2>
+                  <div class="row">
+                    <div class="col-sm-12 pt-20 pb-20">
+                      <button class="btn btn-success" onclick="window.location = './'">เข้าสู่ระบบ</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+
+
+
+
+            <div class="row" style="margin-top: 10px;">
+              <div class="col-sm-12 text-center" style="color:rgb(115, 115, 115);">
+                Copyright &copy; 2013 หน่วยส่งเสริมและพัฒนาทางวิชาการ<br>คณะแพทยศาสตร์ มหาวิทยาลัยสงขลานครินทร์
+              </div>
+            </div>
+
+
+
+          </div>
+        </div>
+      </div>
+
+
+
+
+
+    <!-- jQuery -->
+		<script src="v3/vendors/bower_components/jquery/dist/jquery.min.js"></script>
+
+		<!-- Bootstrap Core JavaScript -->
+		<script src="v3/vendors/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+		<!-- Slimscroll JavaScript -->
+		<script src="v3/dist/js/jquery.slimscroll.js"></script>
+
+		<!-- Fancy Dropdown JS -->
+		<script src="v3/dist/js/dropdown-bootstrap-extended.js"></script>
+
+    <!-- Sweet-Alert  -->
+  	<script src="v3/vendors/bower_components/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="v3/main.js"></script>
+
+    <script type="text/javascript">
+
+      var pid = null;
+
+      $(document).ready(function(){
+
+        // main.init('', '', 'index.html'
+
+
+
+      })
+
+      function internal_sianup(){
+        $check = 0;
+
+        $('.form-group').removeClass('has-error')
+
+        if($('#txtPid').val() == ''){
+          $('#txtPid').parent().addClass('has-error')
+          $check++;
+        }
+
+        if($('#txtPrefix').val() == ''){
+          $('#txtPrefix').parent().addClass('has-error')
+          $check++;
+        }
+
+        if($('#txtFname').val() == ''){
+          $('#txtFname').parent().addClass('has-error')
+          $check++;
+        }
+
+        if($('#txtLname').val() == ''){
+          $('#txtLname').parent().addClass('has-error')
+          $check++;
+        }
+
+        if($('#txtPosition').val() == ''){
+          $('#txtPosition').parent().addClass('has-error')
+          $check++;
+        }
+
+        if($('#txtDept').val() == ''){
+          $('#txtDept').parent().addClass('has-error')
+          $check++;
+        }
+
+
+
+        if($('#txtExp').val() == ''){
+          $('#txtExp').parent().addClass('has-error')
+          $check++;
+        }
+
+        if($('#txtRI').val() == ''){
+          $('#txtRI').parent().addClass('has-error')
+          $check++;
+        }
+
+        if($('#txtAddress').val() == ''){
+          $('#txtAddress').parent().addClass('has-error')
+          $check++;
+        }
+
+        if($('#txtMobile').val() == ''){
+          $('#txtMobile').parent().addClass('has-error')
+          $check++;
+        }
+
+        if($('#txtOffice').val() == ''){
+          $('#txtOffice').parent().addClass('has-error')
+          $check++;
+        }
+
+        if($('#txtEmail').val() == ''){
+          $('#txtEmail').parent().addClass('has-error')
+          $check++;
+        }
+
+        if($('#txtPassword').val() == ''){
+          $('#txtPassword').parent().addClass('has-error')
+          $check++;
+        }
+
+        if($check!=0){
+          swal("ขออภัย!", "กรุณากรอกข้อมูลให้ครบถ้วน", "error")
+          return ;
+        }
+
+        lp.sl();
+
+        var param = {
+          email: $('#txtEmail').val(),
+          pid: $('#txtPid').val(),
+          prefix: $('#txtPrefix').val(),
+          fname: $('#txtFname').val(),
+          lname: $('#txtLname').val(),
+          position: $('#txtPosition').val(),
+          exp: $('#txtExp').val(),
+          ri: $('#txtRI').val(),
+          address: $('#txtAddress').val(),
+          mobile: $('#txtMobile').val(),
+          dept: $('#txtDept').val(),
+          office: $('#txtOffice').val(),
+          password: $('#txtPassword').val(),
+          fax: $('#txtFax').val()
+        }
+
+        var jxhr = $.post(ws_url + 'controller/internal-register.php', param, function(){})
+                    .always(function(resp){
+
+                      console.log(resp);
+
+                      if(resp == 'D'){
+                        swal("ขออภัย!", "อีเมล์นี้ถูกใช้แล้ว กรุณาใช้อีเมล์อื่น!", "error")
+                        lp.hl();
+                      }else if(resp == 'Y'){
+
+                        var code = main_app.randomString(30);
+                        var verify = {
+                          email: $('#txtEmail').val(),
+                          sid: code,
+                          pid: $('#txtPid').val()
+                        }
+
+                        var jxr = $.post(ws_url + 'controller/insternal-register-2.php', param, function(){})
+
+                        var dataContent = '<h3>แจ้งผลการลงทะเบียนเพื่อเข้าใช้งานระบบ RMIS </h3>' +
+                                          '<p>เรียน คุณ' + $('#txtFname').val() + ' ' + $('#txtLname').val() + '</p>' +
+                                          '<p>ท่านได้ทำการลงทะเบียนเพื่อใช้งานระบบสารสนเทศเพื่อการจัดการงานวิจัย (RMIS) เรียบร้อยแล้ว ทั้งนี้ ท่านสามารถเข้าใช้งานระบบได้ทาง <a href="' + root_domain + '" target="_blank">' + root_domain + '</a> โดยใช้ข้อมูลดังต่อไปนี้' +
+                                          '</p>' +
+                                          '<p>ชื่อบัญชีผู้ใช้ : ' + $('#txtEmail').val() + '<br>รหัสผ่าน <span style="color:red;">: ' + $('#txtPassword').val() + '<span></p>' +
+                                          '<p>จึงเรียนมาเพื่อทราบ <br>ระบบสารสนเทศเพื่อการจัดการงานวิจัย (RMIS)</p>' + '<p style="color:red;">** กรุณาเก็บข้อมูลอีเมล์ฉบับนี้ไว้เนื่องจากท่านอาจต้องใช้ในอนาคต</p>'
+
+                        var emailParam = {
+                          email: emailConfig.user,
+                          api_key: emailConfig.key,
+                          title: "{ No-reply } แจ้งผลการลงทะเบียนเพื่อเข้าใช้งานระบบ RMIS",
+                          to_email: $('#txtEmail').val(),
+                          content: dataContent
+                        }
+
+                        var jxhr2 = $.post(emailProvider, emailParam, function(){})
+                                    .always(function(res){
+                                      if(res=='Y'){
+                                        window.location = 'register-success.html'
+                                      }else{
+                                        swal("เกิดข้อผิดพลาด!", "ระบบไม่สามารถส่งข้อมูลไปยัง E-mail ของท่านได้ กรุณาติดต่อเจ้าหน้าที่เพื่อทำการอนุมัติสิทธิการใช้งาน", "error")
+                                        lp.hl();
+                                      }
+                                    })
+                      }else{
+                        swal("ขออภัย!", "ไม่สามารถทำการบันทึกข้อมูลได้ กรุณาลองใหม่ภายหลัง หรือติดต่อเจ้าหน้าที่", "error")
+                        lp.hl();
+                      }
+                    })
+                    .fail(function(){
+                      swal("ขออภัย!", "ไม่สามารถเชื่อมต่อฐานข้อมูลได้!", "error")
+                      lp.hl();
+                    })
+      }
+
+      $(function(){
+
+      })
+    </script>
+</body>
+</html>

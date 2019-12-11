@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>ระบบสารสนเทศเพื่อการจัดการงานวิจัย RMIS</title>
+
+    <link href="v3/fonts.css" rel="stylesheet" type="text/css">
+
+    <link href="v3/dist/css/style.css" rel="stylesheet" type="text/css">
+    <link href="v3/style.css" rel="stylesheet" type="text/css">
+
+    <!--alerts CSS -->
+    <link href="v3/vendors/bower_components/sweetalert/dist/sweetalert.css" rel="stylesheet" type="text/css">
+  </head>
+
+  <style media="screen">
+  /*@import url(https://fonts.googleapis.com/css?family=Roboto:300);*/
+
+    .login-page {
+    width: 360px;
+    padding: 1% 0 0;
+    margin: auto;
+    }
+    .form {
+    position: relative;
+    z-index: 1;
+    /* background: #FFFFFF; */
+    background: #1cac56;
+    max-width: 360px;
+    margin: 0 auto 20px;
+    padding: 45px;
+    text-align: center;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+    }
+    .form input {
+    /*font-family: "Roboto", sans-serif;*/
+    outline: 0;
+    background: #f2f2f2;
+    width: 100%;
+    border: 0;
+    margin: 0 0 15px;
+    padding: 8px 15px;
+    box-sizing: border-box;
+    }
+    .form button {
+    /*font-family: "Roboto", sans-serif;*/
+    text-transform: uppercase;
+    outline: 0;
+    /* background: #4CAF50; */
+    background: #064f23;
+    width: 100%;
+    border: 0;
+    padding: 15px;
+    color: #FFFFFF;
+    font-size: 14px;
+    -webkit-transition: all 0.3 ease;
+    transition: all 0.3 ease;
+    cursor: pointer;
+    /*font-family: 'thsarabun' !important;
+    font-size: 1em !important;
+    line-height: 100%;
+    font-weight: bold !important;*/
+    }
+    .form button:hover,.form button:active,.form button:focus {
+    background: #43A047;
+    }
+    .form .message {
+    margin: 15px 0 0;
+    color: #b3b3b3;
+    font-size: 14px;
+    }
+    .form .message a {
+    color: #4CAF50;
+    text-decoration: none;
+    }
+    .form .register-form {
+    display: none;
+    }
+    body {
+    /* background: #76b852; */
+    background: #f7f7f7;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    }
+
+    .news-title{
+      font-size: 0.8em;
+    }
+
+    .news-content{
+      font-size: 1em;
+    }
+
+    blockquote{
+      font-size: 0.9em;
+      margin-bottom: 5px;
+      background: rgb(246, 246, 246);
+      border-left: none;
+      border-bottom: 1px solid #0e825c;
+    }
+  </style>
+  <body>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-6 col-md-7">
+          <!-- <div class="row">
+            <div class="col-sm-12 text center">
+              <div class="text-center" style="padding-bottom: 10px; padding-top: 4%;">
+                <a href="index.html"title="Research Management Information System (RMIS)">
+                  <img src="images/rmis3-logo-2.png" alt="logo_header.png" style="width: 100%; max-width: 300px;">
+                </a>
+              </div>
+            </div>
+          </div> -->
+
+          <!-- <div class="row hidden-xs">
+            <div class="col-sm-12">
+              <blockquote style="">
+                <div class="row">
+                  <div class="col-sm-1 pt-5">
+                    <i class="fa fa-bookmark fa-2x txt-success"></i>
+                  </div>
+                  <div class="col-sm-10">
+                    <div class="news-title">
+                      <span class="f500">วันที่</span> : <span class="txt-success">8 มกราคม พ.ศ. 2561</span>
+                    </div>
+                    <div class="news-content f500">
+                      แจ้งประบปรุงระบบประจำวันที่ 8 มกราคม พ.ศ. 2561
+                    </div>
+                  </div>
+                </div>
+              </blockquote>
+            </div>
+
+            <div class="col-sm-12">
+              <blockquote style="">
+
+
+                <div class="row">
+                  <div class="col-sm-1 pt-5">
+                    <i class="fa fa-bookmark fa-2x txt-success"></i>
+                  </div>
+                  <div class="col-sm-10">
+                    <div class="news-title">
+                      <span class="f500">วันที่</span> : <span class="txt-success">5 มกราคม พ.ศ. 2561</span>
+                    </div>
+                    <div class="news-content f500">
+                      แจ้งข้อมูลการปรับปรุงระบบประจำวันที่ 5 มกราคม พ.ศ. 2561
+                    </div>
+                  </div>
+                </div>
+              </blockquote>
+            </div>
+
+          </div> -->
+        </div>
+        <div class="col-sm-6 col-sm-offset-3" style="padding-top: 0%;">
+
+          <div class="text-center" style="padding-bottom: 10px; padding-top: 4%;">
+            <a href="index.html"title="Research Management Information System (RMIS)">
+              <img src="images/rmis3-logo-2.png" alt="logo_header.png" style="width: 100%; max-width: 300px;">
+            </a>
+          </div>
+
+          <div class="form">
+
+
+
+            <div class="ld dn">
+              <div class="row">
+                <div class="col-sm-12 text-center" style="padding: 50px 0px;">
+                  <img src="./images/Rolling.gif" alt="" width="100px;">
+                </div>
+              </div>
+            </div>
+
+            <div class="cd" >
+              <h3 class="txt-light text-left pb-10">เข้าสู่ระบบ</h3>
+              <form class="register-form">
+                <input type="email" placeholder="E-mail address ของท่าน ... " id="txtPassword2"/>
+                <button class="f500" onclick="sendPassword()"  style="font-size: 1.1em; padding: 10px 0px;">ส่งรหัสผ่าน</button>
+                <p class="message"><a href="#" class="ad txt-light">กลับสู่หน้าเข้าสู่ระบบ</a></p>
+              </form>
+              <form class="login-form" onsubmit="return false;" autocomplete="off">
+                <input type="text" placeholder="E-mail address ... " autofocus id="username" />
+                <input type="password" placeholder="รหัสผ่าน ..." id="password" />
+                <div class="form-group">
+                  <select class="form-control" name="txt-role" id="txt-role">
+                    <option value="pm">นักวิจัยหลัก (หัวหน้าโครงการ)</option>
+                    <option value="staff">เจ้าหน้าที่</option>
+                    <option value="ec">เลขา EC</option>
+                    <option value="reviewer">ผู้เชี่ยวชาญอิสระ</option>
+                    <option value="chairman">ประธาน EC</option>
+                    <option value="administrator">ผู้ดูแลระบบ</option>
+                  </select>
+                </div>
+                <button type="submit" class="f500" style="font-size: 1.1em; padding: 10px 0px;">เข้าสู่ระบบ</button>
+                <button type="button" class="f500 mt-10" onclick="window.location = 'register.html'" style="font-size: 1.1em; padding: 10px 0px;">สมัครใช้งานสำหรับบุคคลภายนอกคณะ</button>
+
+                <p class="message"><a href="#" class="ad txt-light">ลืมรหัสผ่าน</a> | <a href="#" class="txt-light" data-toggle="modal" data-target="#myModal">คู่มือการใช้งาน</a>
+                  <!-- | <a href="" class="">ส่ง Verification email ซ้ำ</a> -->
+                </p>
+              </form>
+            </div>
+
+
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="login-page mt-10" >
+
+
+
+      <div class="row" style="margin-top: 0px;">
+        <div class="col-sm-12 text-center" style="color: #676767;">
+          Copyright &copy; 2013 หน่วยส่งเสริมและพัฒนาทางวิชาการ<br>คณะแพทยศาสตร์ มหาวิทยาลัยสงขลานครินทร์
+        </div>
+      </div>
+
+
+    </div>
+
+    <!-- sample modal content -->
+            <div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header" style="background: rgb(76, 161, 41);">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h5 class="modal-title f500 txt-light" id="myModalLabel">คู่มือ</h5>
+                  </div>
+                  <div class="modal-body txt-dark">
+                    <h5 class="mb-15">เฉพาะบุคลากรคณะแพทย์ (การเข้าระบบครั้งแรก)</h5>
+                    <p>
+                      <ol style="padding-left: 30px; padding-bottom: 20px;">
+                        <li>Username = รหัสบุคลากร </li>
+                        <li>Password = วันเกิด ใช้ปี คศ. (dd/mm/yyyy) เช่น 07/08/1982 </li>
+                      </ol>
+                      ระบบจะเข้าสู่หน้าข้อมูลส่วนตัว ให้ท่านทำการตรวจสอบข้อมูลและแก้ไขให้ถูกต้อง <br>บันทึกชื่อ e-mail ที่จะใช้เป็น user name  และกำหนด password ใหม่ กดปุ่มบันทึก
+
+                    </p>
+                    <p class="f500 txt-danger">
+                      การเข้าใช้งานครั้งต่อไป ต้องใช้ e-mail address และ password ดังกล่าวเพื่อเข้าระบบ
+                    </p>
+
+                    <p class="text-left">
+                      พบปัญหา ติดต่อ คุณณัฎฐา (กิ๊ก) หน่วยส่งเสริมและพัฒนาทางวิชาการ (โทร. 1149, 1157)
+                    </p>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-success" data-dismiss="modal">ปิดหน้านี้</button>
+                  </div>
+                </div>
+                <!-- /.modal-content -->
+              </div>
+              <!-- /.modal-dialog -->
+            </div>
+            <!-- /.modal -->
+
+    <!-- jQuery -->
+		<script src="v3/vendors/bower_components/jquery/dist/jquery.min.js"></script>
+
+		<!-- Bootstrap Core JavaScript -->
+		<script src="v3/vendors/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+		<!-- Slimscroll JavaScript -->
+		<script src="v3/dist/js/jquery.slimscroll.js"></script>
+
+		<!-- Fancy Dropdown JS -->
+		<script src="v3/dist/js/dropdown-bootstrap-extended.js"></script>
+
+    <!-- Sweet-Alert  -->
+  	<script src="v3/vendors/bower_components/sweetalert/dist/sweetalert.min.js"></script>
+
+    <script src="v3/main.js"></script>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+
+        // swal("แจ้งเพื่อทราบ", "ระบบจะทำงานได้มีประสิทธิภาพบน Google Chrome", "warning")
+        window.localStorage.removeItem('rmis_current_user')
+        window.localStorage.removeItem('rmis_current_role')
+        localStorage.clear();
+      })
+
+      $(function(){
+        $('.message .ad').click(function(){
+         $('form').animate({height: "toggle", opacity: "toggle"}, "slow");
+        });
+
+        $('.login-form').submit(function(){
+          $check = 0;
+          if($('#username').val()==''){
+            $check++;
+          }
+
+          if($('#password').val()==''){
+            $check++;
+          }
+
+          if($check!=0){
+            swal("ขออภัย!", "กรุณากรอกข้อมูลให้ครบถ้วน!", "error")
+            return ;
+          }
+
+          lp.sl()
+
+          var param = {
+            username: $('#username').val(),
+            password: $('#password').val(),
+            role: $('#txt-role').val()
+          }
+
+          var jxhr = $.post(ws_url + 'controller/authen.php', param, function(){}, 'json')
+                      .always(function(snap){
+                        // console.log(snap);
+                        // return ;
+                        if((snap!='') && (snap.length > 0)){
+                          snap.forEach(function(i){
+
+                            console.log(i.authen_status );
+
+                            if(i.authen_status == 'Already register'){
+                              localStorage.setItem('rmis_current_id_pm', $('#username').val())
+                              window.location = 'already-register.html';
+                            }else if(i.authen_status == 'Found by useraccount'){
+
+                              window.localStorage.setItem('rmis_current_user', i.data.id)
+                              window.localStorage.setItem('rmis_current_role', $('#txt-role').val())
+
+                              setTimeout(function(){
+                                window.location = ws_url + $('#txt-role').val() + '/';
+                              }, 2000)
+
+
+                            }else if(i.authen_status == 'Found by personnel'){
+                              localStorage.setItem('rmis_current_id_pm', $('#username').val())
+                              window.location = 'personnel-register.html';
+                            }else{
+
+                              console.log('Not found');
+                              lp.hl()
+                              swal("ขออภัย!", "ไม่พบข้อมูลบัญชีผู้ใช้งานระบบ!", "error")
+                              return ;
+                            }
+
+                          })
+
+                        }else{
+                          lp.hl()
+                          swal("ขออภัย!", "ไม่พบข้อมูลบัญชีผู้ใช้งานระบบ!", "error")
+                          return ;
+                        }
+                      }, 'json')
+                      .fail(function(){
+                        lp.hl()
+                        swal("ขออภัย!", "ไม่สามารถเชื่อมต่อฐานข้อมูลได้!", "error")
+                        return ;
+                      })
+
+        })
+      })
+
+      function sendPassword(){
+        $pwd = $('#txtPassword2').val()
+        $check = 0;
+
+        if($('#txtPassword2').val()==''){
+          $check++;
+        }
+        if($check!=0){
+          swal("ขออภัย!", "กรุณากรอกข้อมูลให้ครบถ้วน!", "error")
+          return ;
+        }
+
+        lp.sl()
+
+        var param = {
+          email: $pwd
+        }
+
+        var jxhr = $.post(ws_url + 'controller/getPassword.php', param, function(){}, 'json')
+                    .always(function(snap){
+
+                      if((snap!='') && (snap.length > 0)){
+                        snap.forEach(function(i){
+                          var dataContent = '<h3>แจ้งรหัสผ่านสำหรับการเข้าใช้งานระบบ RMIS </h3>' +
+                                            '<p>เรียน คุณ' + i.fname + ' ' + i.lname + '</p>' +
+                                            '<p>เนื่องจากท่านได้ทำการขอทราบรหัสผ่านเพื่อเข้าใช้งานระบบสารสนเทศเพื่อการจัดการงานวิจัย (RMIS) ทั้งนี้ ท่านสามารถเข้าใช้งานระบบได้ทาง <a href="' + root_domain + '" target="_blank">' + root_domain + '</a> โดยใช้ข้อมูลดังต่อไปนี้' +
+                                            '</p>' +
+                                            '<p>ชื่อบัญชีผู้ใช้ : ' + $pwd + '<br>รหัสผ่าน <span style="color:red;">: ' + i.password + '<span></p>' +
+                                            '<p>จึงเรียนมาเพื่อทราบ <br>ระบบสารสนเทศเพื่อการจัดการงานวิจัย (RMIS)</p>' + '<p style="color:red;">** กรุณาเก็บข้อมูลอีเมล์ฉบับนี้ไว้เนื่องจากท่านอาจต้องใช้ในอนาคต</p>'
+
+                          var emailParam = {
+                            email: emailConfig.user,
+                            api_key: emailConfig.key,
+                            title: "{ No-reply } แจ้งรหัสผ่านสำหรับการเข้าใช้งานระบบ RMIS",
+                            to_email: $pwd,
+                            content: dataContent
+                          }
+
+                          var jxhr2 = $.post(emailProvider, emailParam, function(){})
+                                      .always(function(res){
+                                        if(res=='Y'){
+                                          swal({
+                                          title: "ส่งข้อมูลสำเร็จ",
+                                          text: "ระบบได้ทำการส่งข้อมูลรหัสผ่านไปยังอีเมล์ของท่านเรียบร้อยแล้ว",
+                                          type: "success",
+                                          showCancelButton: false,
+                                          confirmButtonColor: "#DD6B55",
+                                          confirmButtonText: "รับทราบ",
+                                          closeOnConfirm: false },
+                                          function(){
+                                          window.location.reload()
+                                          });
+                                        }else{
+                                          swal("เกิดข้อผิดพลาด!", "ระบบไม่สามารถส่งข้อมูลไปยัง E-mail ของท่านได้ กรุณาติดต่อเจ้าหน้าที่เพื่อขอทราบรหัสผ่าน", "error")
+                                          lp.hl();
+                                        }
+                                      })
+                        })
+                        return ;
+                      }else{
+                        lp.hl()
+                        swal("ขออภัย!", "ไม่พบข้อมูลผู้ใช้งาน กรุณาติดต่อเจ้าหน้าที่!", "error")
+                        return ;
+                      }
+                    }, 'json')
+                    .fail(function(){
+                      lp.hl()
+                      swal("ขออภัย!", "ไม่สามารถเชื่อมต่อฐานข้อมูลได้!", "error")
+                      return ;
+                    })
+
+      }
+    </script>
+  </body>
+</html>

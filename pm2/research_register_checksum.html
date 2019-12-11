@@ -1,0 +1,278 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>:: RMIS :: สำหรับหัวหน้าโครงการ ::</title>
+
+    <!-- Data table CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" rel="stylesheet">
+
+    <!--alerts CSS -->
+    <link href="../v3/vendors/bower_components/sweetalert/dist/sweetalert.css" rel="stylesheet" type="text/css">
+
+    <!-- Data table CSS -->
+    <link href="../v3/vendors/bower_components/datatables/media/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css"/>
+
+    <!-- Fontawesom -->
+    <link href="../v4/bower_components/fontawesome/web-fonts-with-css/css/fontawesome-all.css" rel="stylesheet">
+
+    <!-- Preload -->
+    <link rel="stylesheet" href="../v4/node_modules/preload.js/dist/css/preload.css">
+
+    <!-- Material Design Bootstrap -->
+    <link href="../v4/node_modules/mdbootstrap/css/mdb.min.css" rel="stylesheet">
+    <link href="../v4/node_modules/mdbootstrap/css/style.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="../v4/assets/css/style.css">
+
+  </head>
+
+  <style media="screen">
+    body{
+      background: rgb(245, 245, 245);
+    }
+  </style>
+
+  <body>
+
+    <div class="leftmenu" style="background: rgb(60, 68, 74);">
+      <div></div>
+      <div class="pd-10 fz09">
+        <div class="pd-10 txt-light">
+          <div class="row">
+            <div class="col-10">
+              <img src="../images/rmis2-logo.png" alt="" class="" style="width: 100%;">
+            </div>
+            <div class="col-2 text-right dn" id="divCloseLeft">
+              <i class="fas fa-times fa-1x cp mt-5" onclick="slideMenu('close')"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="pd-10 fz09">
+        <div class="pt-5 pb-5 pl-10 pr-10 txt-light cp mn" onclick="gotoInfoPage()">
+          <div class="fz09">สวัสดี</div>
+          <a href="profile.html" class="text-white">คุณ<span class="userFullname text-white">NA</span> (PI)</a>
+        </div>
+        <div class="pt-5 pb-5 pl-10 pr-10 txt-light cp mn mt-10" onclick="window.location = 'profile.html'">
+          <i class="fas fa-chevron-right mr-10"></i>ข้อมูลส่วนตัว
+        </div>
+        <div class="pt-5 pb-5 pl-10 pr-10 txt-light cp mn" onclick="window.location = 'changepassword.html'">
+          <i class="fas fa-chevron-right mr-10"></i>เปลี่ยนรหัสผ่าน
+        </div>
+        <div class="pt-5 pb-5 pl-10 pr-10 txt-light cp mn" onclick="main.signout()">
+          <i class="fas fa-chevron-right mr-10"></i>ออกจากระบบ
+        </div>
+      </div>
+      <div class="pd-10 fz09">
+        <div class="pd-10 txt-light fz08">
+          การดำเนินการ
+        </div>
+        <div class="pt-5 pb-5 pl-10 pr-10 txt-light cp mn" onclick="window.location = 'index.html'">
+          <i class="fas fa-home mr-10"></i>กลับหน้าแรก
+        </div>
+      </div>
+      <div class="pd-10 fz09">
+        <div class="pd-10 txt-light fz08">
+          ลงทะเบียนโครงการวิจัย
+        </div>
+        <div class="pt-5 pb-5 pl-10 pr-10 txt-light cp mn" onclick="window.location = 'research_register.html'">
+          <i class="fas fa-chevron-right mr-10"></i>ส่วนที่ 1 ข้อมูลโครงการวิจัย
+        </div>
+        <div class="pt-5 pb-5 pl-10 pr-10 txt-light cp mn" onclick="window.location = 'research_register_copi.html'">
+          <i class="fas fa-chevron-right mr-10"></i>ส่วนที่ 2 ผู้ร่วมวิจัย
+        </div>
+        <div class="pt-5 pb-5 pl-10 pr-10 txt-light cp mn" onclick="window.location = 'research_register_funding.html'">
+          <i class="fas fa-chevron-right mr-10"></i>ส่วนที่ 3 ทุนวิจัย
+        </div>
+        <div class="pt-5 pb-5 pl-10 pr-10 txt-light cp mn" onclick="window.location = 'research_register_brief.html'">
+          <i class="fas fa-chevron-right mr-10"></i>ส่วนที่ 4 สรุปย่อโครงการวจัย
+        </div>
+        <div class="pt-5 pb-5 pl-10 pr-10 txt-light cp mn" onclick="window.location = 'research_register_upload.html'">
+          <i class="fas fa-chevron-right mr-10"></i>ส่วนที่ 5 อัพโหลดเอกสาร
+        </div>
+        <div class="pt-5 pb-5 pl-10 pr-10 txt-light cp mn mn-active" onclick="window.location = 'research_register_checksum.html'">
+          <i class="fas fa-chevron-right mr-10"></i>ส่วนที่ 6 ตรวจสอบข้อมูลและส่ง
+        </div>
+      </div>
+
+    </div>
+
+    <div class="main-panal pt-20 pb-30">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12">
+            <h4>ลงทะเบียนเสนอโครงการวิจัย<br><small>Project registration</small></h4>
+          </div>
+          <div class="col-sm-12 fz08 pb-10">
+            <a href="index.html" class="txt-dark"><i class="fas fa-home mr-10"></i>หน้าหลัก</a> / ลงทะเบียนเสนอโครงการวิจัย
+          </div>
+          <div class="col-sm-12">
+
+            <div class="alert alert-danger alert-dismissable">
+              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+              <i class="fa fa-info-circle pr-15 pull-left"></i><span class="pull-left">กรุณาตรอจสอบข้อมูลส่วนที่ยังไม่ได้กรอกข้อมูลในรายการด้านล่างนี้</span>
+              <div class="clearfix"></div>
+            </div>
+
+          </div>
+          <div class="col-sm-12">
+            <div class="card mt-5 bsd">
+              <div class="card-header text-white pl-10" style="background: rgb(93, 129, 127);">
+                ส่วนที่ 6 :: ตรวจสอบความครบถ้วนก่อนส่งสำนักงาน
+              </div>
+              <div class="card-body pt-0 pl-0 pr-0 pb-30">
+
+                <div class="row">
+                  <div class="col-sm-12">
+
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-sm-12 text-right pt-30 pr-30">
+                    <button class="btn btn-success btn-lg pt-10 p-10 bsn">บันทึกแบบร่าง</button>
+                    <button class="btn btn-danger btn-lg pt-10 p-10 bsn">บันทึกและส่ง</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Update 20181008 -->
+    <div class="leftmenu-tool" style="position: fixed; top: 10px; left: -10px; ">
+      <button class="btn btn-sm btn-square_ btn-success ml-0 text-right cp" style="width: 50px; font-size:20px;" onclick="slideMenu('open')"><i class="fas fa-chevron-right"></i></button>
+      <br>
+      <button class="btn btn-sm btn-square_ btn-secondary ml-0 mt-0 text-right cp" onclick="window.location = 'index.html'" style="width: 50px; font-size: 18px;"><i class="fas fa-home" style="margin-left: -5px;"></i></button>
+      <br>
+      <button class="btn btn-sm btn-square_ btn-secondary ml-0 mt-0 text-right cp" onclick="window.location = 'profile.html'" style="width: 50px; font-size: 18px;"><i class="fas fa-user" style="margin-left: -3px;"></i></button>
+      <br>
+      <button class="btn btn-sm btn-square_ btn-secondary ml-0 mt-0 text-right cp" style="width: 50px; font-size: 20px;" onclick="window.history.back()"><i class="fas fa-chevron-left" style="margin-left: -1px;"></i></button>
+    </div>
+
+    <!-- jQuery -->
+    <script src="../v3/vendors/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script>
+    <script src="../v3/dist/js/jquery.slimscroll.js"></script>
+    <!-- Sweet-Alert  -->
+  	<script src="../v3/vendors/bower_components/sweetalert/dist/sweetalert.min.js"></script>
+
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="../v4/node_modules/mdbootstrap/js/mdb.min.js"></script>
+
+  	<!-- Init JavaScript -->
+    <script src="../v4/config.js"></script>
+  	<script src="../v3/dist/js/init.js"></script>
+    <script src="../v3/main.js"></script>
+    <script src="../v3/pi.js"></script>
+
+    <script type="text/javascript" src="../v4/node_modules/preload.js/dist/js/preload.js"></script>
+
+    <script type="text/javascript">
+
+      var current_user = window.localStorage.getItem('rmis_current_user')
+      var current_role = window.localStorage.getItem('rmis_current_role')
+      var editData = ''
+
+      $(document).ready(function(){
+        pi.init()
+
+        $w = $(document).width()
+        if($w <= 800){
+          $('.main-panal').css('padding-left', '40px')
+          $('.leftmenu').css('margin-left', '-250px')
+          $('.leftmenu-tool').show()
+        }
+
+        preload.hide()
+
+      })
+
+      $(function(){
+
+      })
+
+
+
+      function  loadList(){
+        var param = {
+          id_year: $('#txtYear').val(),
+          id: current_user
+        }
+        var param = $.post(ws_url + 'controller/pm/rs-list-status-2.php', param, function(){},'json')
+                     .always(function(snap){
+                       console.log(snap);
+                      if((snap!='') && (snap.length > 0)){
+                        $('#table_data_1').empty()
+                        snap.forEach(function(i){
+                          $title = i.title_th
+                          if(i.title_th == '-'){
+                            $title = i.title_en
+                          }
+                          $row = '<tr>' +
+                                    '<td>' + i.id_rs + '</td>' +
+                                    '<td>' + $title +
+                                      '<div class="fz08 text-muted">' +
+                                        'หัวหน้าโครงการวิจัย : ' + i.fname + ' ' + i.lname + '<br>' +
+                                        'ลงทะเบียนเมื่อ : ' + main_app.convertThaidatetime(i.date_submit) +
+                                      '</div>' +
+                                      '<div class="fz08 text-muted">' +
+                                        '<button class="btn btn-success btn-sm btn-icon-anim ml-0" style="box-shadow: none;" onclick="viewRsInfo_15(\'' + i.id_rs +'\')"><i class="fa fa-wrench"></i> แก้ไขข้อเสนอ</button>' +
+                                        '<button class="btn btn-success btn-sm btn-icon-anim ml-0" style="box-shadow: none;" onclick="showModal(\'MessageModal2\'); setMessageContent(\'' + i.id_rs +'\')"><i class="fa fa-comment-alt"></i> ดูข้อความ</button>' +
+                                        '<button class="btn btn-danger btn-sm btn-icon-anim ml-0" style="box-shadow: none;" onclick="set_reponse_ec(\'' + i.id_rs +'\')"><i class="fa fa-times"></i> ถอนโครงการ</button>' +
+                                      '</div>' +
+                                    '</td>' +
+                                    '<td>' + i.ep + '</td>' +
+                                    '<td>' + i.status_name + '</td>' +
+                                 '</tr>'
+                          $('#table_data_1').append($row)
+
+                        })
+                        preload.hide()
+                        // setTimeout(function(){ $('[data-toggle="tooltip"]').tooltip()}, 3000)
+                      }else{
+                        $('#table_data_1').empty()
+                        $('#table_data_1').append('<tr><td colspan="4">ไม่พบรายการ</td></tr>')
+                        preload.hide()
+                      }
+                     })
+      }
+
+      function viewRsInfo_15(rid){
+        var param = {
+          id_rs: rid,
+          id: current_user
+        }
+        var jxhr = $.post(ws_url + '/controller/staff/check-rs-session.php', param, function(){}, 'json')
+              .always(function(snap){
+                if((snap != '') && (snap.length > 0)){
+                  snap.forEach(function(i){
+                    window.localStorage.setItem('current_selected_project_session', i.session_id)
+                    window.localStorage.setItem('current_selected_project_id', i.id_rs)
+                    window.location = 'research_register_update.html'
+                  })
+                }else{
+                  swal("Error!", "error")
+                }
+              }, 'json')
+      }
+
+      function slideMenu(state){
+        if(state == 'open'){
+          $( ".leftmenu" ).animate({ "left": "+=250px" }, "slow" );
+          $('.main-panal').animate({ "padding-left": "+=250px" }, "slow" );
+        }else{
+          $( ".leftmenu" ).animate({ "left": "-=250px" }, "slow" );
+          $('.main-panal').animate({ "padding-left": "-=250px" }, "slow" );
+        }
+      }
+
+
+    </script>
+  </body>
+</html>

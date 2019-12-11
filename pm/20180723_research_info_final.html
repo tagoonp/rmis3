@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<title></title>
+
+  <!--alerts CSS -->
+	<link href="../v3/vendors/bower_components/sweetalert/dist/sweetalert.css" rel="stylesheet" type="text/css">
+
+	<!-- Custom CSS -->
+	<link href="../v3/dist/css/style.css" rel="stylesheet" type="text/css">
+  <link href="../v3/fonts.css" rel="stylesheet" type="text/css">
+  <link href="../v3/style.css" rel="stylesheet" type="text/css">
+  <style media="screen">
+    #doc_info .txt-danger{
+      color: #000 !important;
+    }
+
+    #doc_info p, #doc_info span, #doc_info div{
+      color: #000 !important;
+    }
+    span{
+      font-family: 'sukhumvit' !important;
+      font-size: 14px !important;
+    }
+    .txt-danger{
+      color: #000 !important;
+    }
+
+    .col-xs-2{
+      max-width: 120px !important;
+    }
+  </style>
+
+</head>
+
+<body>
+	<!--Preloader-->
+	<div class="preloader-it">
+		<div class="la-anim-1"></div>
+	</div>
+	<!--/Preloader-->
+    <div class="wrapper theme-1-active pimary-color-red">
+
+        <!-- Top Menu Items -->
+		<nav class="navbar navbar-inverse navbar-fixed-top">
+			<div class="mobile-only-brand pull-left">
+				<div class="nav-header pull-left">
+					<div class="logo-wrap">
+						<a href="index.html">
+							<img class="brand-img" src="../v3/dist/img/logo.png" alt="brand"/>
+							<span class="brand-text">RMIS</span>
+						</a>
+					</div>
+				</div>
+				<a id="toggle_nav_btn" class="toggle-left-nav-btn inline-block ml-20 pull-left" href="javascript:void(0);"><i class="zmdi zmdi-menu"></i></a>
+				<a id="toggle_mobile_nav" class="mobile-only-view" href="javascript:void(0);"><i class="zmdi zmdi-more"></i></a>
+			</div>
+			<div id="mobile_only_nav" class="mobile-only-nav pull-right">
+				<ul class="nav navbar-right top-nav pull-right">
+          <li>
+            <a href="profile.html">ยินดีต้อนรับ <span class="userFullname text-info">NA</span> (PI)</a>
+          </li>
+					<li class="dropdown alert-drp">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="zmdi zmdi-notifications top-nav-icon"></i><span class="notification_number"></span></a>
+						<ul  class="dropdown-menu alert-dropdown" data-dropdown-in="bounceIn" data-dropdown-out="bounceOut">
+							<li>
+								<div class="notification-box-head-wrap">
+									<span class="notification-box-head pull-left inline-block">การแจ้งเตือน</span>
+									<a class="txt-danger pull-right clear-notifications inline-block" href="javascript:main.clear_notify()"> ล้างทั้งหมด </a>
+									<div class="clearfix"></div>
+									<hr class="light-grey-hr ma-0"/>
+								</div>
+							</li>
+              <li>
+                <div class="streamline message-nicescroll-bar notification_panal">
+                </div>
+              </li>
+							<li>
+								<div class="notification-box-bottom-wrap">
+									<hr class="light-grey-hr ma-0"/>
+									<a class="block text-center read-all" href="view_activity_log.html"> อ่านทั้งหมด </a>
+									<div class="clearfix"></div>
+								</div>
+							</li>
+						</ul>
+					</li>
+					<li class="dropdown auth-drp">
+						<a href="#" class="dropdown-toggle pr-0" data-toggle="dropdown"><span id="profileImg"></span><span class="user-online-status"></span></a>
+						<ul class="dropdown-menu user-auth-dropdown" data-dropdown-in="flipInX" data-dropdown-out="flipOutX">
+							<li>
+								<a href="profile.html"><i class="zmdi zmdi-account"></i><span>ข้อมูลส่วนตัว</span></a>
+							</li>
+							<li>
+								<a href="#" onclick="main.mailbox()"><i class="zmdi zmdi-email"></i><span>Inbox</span></a>
+							</li>
+							<li>
+								<a href="changepassword.html"><i class="zmdi zmdi-settings"></i><span>เปลี่ยนรหัสผ่าน</span></a>
+							</li>
+							<li class="divider"></li>
+							<li>
+								<a href="#" onclick="main.signout()"><i class="zmdi zmdi-power"></i><span>ออกจากระบบ</span></a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</nav>
+		<!-- /Top Menu Items -->
+
+		<!-- Left Sidebar Menu -->
+		<div class="fixed-sidebar-left">
+			<ul class="nav navbar-nav side-nav nicescroll-bar">
+				<li class="navigation-header">
+					<span>Main</span>
+					<i class="zmdi zmdi-more"></i>
+				</li>
+
+        <li>
+					<a  href="./"><div class="pull-left"><i class="zmdi zmdi-home mr-20"></i><span class="right-nav-text">หน้าแรก</span></div><div class="clearfix"></div></a>
+				</li>
+        <li>
+						<a href="javascript:void(0);" data-toggle="collapse" data-target="#dashboard_dr"><div class="pull-left"><i class="zmdi zmdi-landscape mr-20"></i><span class="right-nav-text">กระดานภาพรวม</span></div><div class="pull-right"><i class="zmdi zmdi-caret-down"></i></div><div class="clearfix"></div></a>
+						<ul id="dashboard_dr" class="collapse collapse-level-1">
+							<li>
+								<a href="dashboard_1.html">ภาพรวมโครงการวิจัย</a>
+							</li>
+						</ul>
+					</li>
+
+				<li><hr class="light-grey-hr mb-10"/></li>
+				<li class="navigation-header">
+					<span>อื่น ๆ</span>
+					<i class="zmdi zmdi-more"></i>
+				</li>
+
+        <li>
+					<a href="documentation.html"><div class="pull-left"><i class="zmdi zmdi-book mr-20"></i><span class="right-nav-text">คู่มือการใช้งาน (STAFF)</span></div><div class="clearfix"></div></a>
+				</li>
+
+			</ul>
+		</div>
+		<!-- /Left Sidebar Menu -->
+
+
+		<!-- Main Content -->
+		<div class="page-wrapper" style="padding-left: 15px; padding-right: 15px;">
+      <div class="container-fluid">
+
+				<!-- Title -->
+        <div class="row heading-bg mb-0">
+					<div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+						<h5 class="txt-dark">ข้อมูลโครงการวิจัย</h5>
+					</div>
+					<!-- Breadcrumb -->
+					<div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+						<ol class="breadcrumb">
+							<li><a href="./">หน้าแรก</a></li>
+							<li class="active"><span>ข้อมูลโครงการวิจัย</span></li>
+						</ol>
+					</div>
+					<!-- /Breadcrumb -->
+				</div>
+				<!-- /Title -->
+
+        <!-- Row -->
+        <div class="row">
+
+          <div class="col-sm-12">
+
+            <div class="row">
+              <div class="col-sm-6 pl-10 pr-10 pb-10 pt-0 hidden-xs">
+                <button class="btn btn-default btn-icon-anim btn-square" onclick="window.location = 'index.html'"><i class="zmdi zmdi-home"></i></button>
+              </div>
+              <div class="col-sm-6 col-xs-12 pl-10 pr-10 pb-10 pt-0 text-right">
+                <button class="btn btn-success btn-icon-anim btn-square" id="btnEdit" onclick="window.location = 'research_register.html'"><i class="zmdi zmdi-wrench"></i></button>
+                <button class="btn btn-success btn-icon-anim btn-square disabled" onclick="printForm('printArea')" id="btnPrint"><i class="zmdi zmdi-print"></i></button>
+                <button class="btn btn-info" onclick="sendData()" id="btnSending"><i class="zmdi zmdi-mail-send"></i> ส่งข้อมูล</button>
+              </div>
+            </div>
+
+            <div class="panel panel-default card-view">
+
+              <div class="panel-wrapper collapse in">
+								<div class="panel-body">
+
+                  <div class="loaddiv" style="padding: 100px 0px;">
+                    <div class="row">
+                      <div class="col-sm-2 col-sm-offset-5">
+                        <img src="../images/Rolling.gif" alt="" width="100%">
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="contentdiv dn">
+                    <div class="row" id="printArea_">
+                      <div class="col-md-12 pl-20 pr-20 pt-20">
+                        <div style="padding-left: 20px; padding-right: 20px;">
+                          <div class="row pb-20">
+                            <div class="col-sm-12">
+                              รหัสการลงทะเบียน : <span id="txtIdrs" class="txt-success">NA</span>  | รหัสโครงการ : <span id="txtCode" class="txt-danger">ยังไม่กำหนด</span> | ประเภทการพิจารณา : <span id="txtRTypess" class="txt-danger">NA</span>
+                            </div>
+                            <div class="col-sm-12">
+                              <div class="row">
+                                <div class="col-xs-4">ชื่อโครงการ (ภาษาไทย) :</div>
+                                <div class="col-xs-8"><div id="txtThtitle" class="txt-dark f500">NA</div></div>
+                              </div>
+                              <div class="row">
+                                <div class="col-xs-4">ชื่อโครงการ (ภาษาอังกฤษ) :</div>
+                                <div class="col-xs-8"><div id="txtEntitle" class="txt-dark f500">NA</div></div>
+                              </div>
+                              <div class="row">
+                                <div class="col-xs-4">หัวหน้าโครงการ :</div>
+                                <div class="col-xs-8"><span id="txtPi" class="txt-dark">NA</span></div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="row">
+                            <div class="col-sm-12">
+                              <div  class="pills-struct">
+            										<ul role="tablist" class="nav nav-pills" id="myTabs_6">
+            											<li class="active" role="presentation"><a aria-expanded="true"  data-toggle="tab" role="tab" id="home_tab_6" href="#home_6">ข้อมูลโครงการ</a></li>
+            											<li role="presentation" class=""><a  data-toggle="tab" id="profile_tab_6" role="tab" href="#profile_6" aria-expanded="false">ไฟล์แนบเพื่อขอพิจารณา</a></li>
+                                  <li role="presentation" class=""><a  data-toggle="tab" id="profile_tab_7" role="tab" href="#profile_7" aria-expanded="false">ข้อมูลใบรับรอง/รับทราบ</a></li>
+                                  <!-- <li role="presentation" class=""><a  data-toggle="tab" id="profile_tab_8" role="tab" href="#profile_8" aria-expanded="false">ดำเนินการต่อ/ลงนาม</a></li> -->
+            										</ul>
+            										<div class="tab-content" id="myTabContent_6">
+            											<div  id="home_6" class="tab-pane fade active in" role="tabpanel">
+                                    <table class="table customtable table-bordered" border="0" style="border:none !important; font-size: 1.0em;">
+                                      <tbody>
+                                        <tr>
+                                          <td style="width: 200px;" class="f500 txt-dark">คำสำคัญ</td>
+                                          <td>
+                                            [ภาษาไทย] <span id="txtThkeyword">NA</span>
+                                            <br>
+                                            [English] <span id="txtEnkeyword">NA</span>
+                                          </td>
+                                        </tr>
+                                        <tr>
+                                          <td style="width: 200px;" class="f500 txt-dark">ประเภทโครงการวิจัย</td>
+                                          <td>
+                                            <span id="txtRtype">NA</span>
+                                          </td>
+                                        </tr>
+                                        <tr>
+                                          <td style="width: 200px;" class="f500 txt-dark">ระยะเวลาโครงการ</td>
+                                          <td>
+                                            <span id="txtRduration">NA</span>
+                                          </td>
+                                        </tr>
+                                        <tr>
+                                          <td style="width: 200px;" class="f500 txt-dark">งบประมาณ</td>
+                                          <td>
+                                            <span id="txtRBudget">NA</span>
+                                          </td>
+                                        </tr>
+                                        <tr>
+                                          <td style="width: 200px;" class="f500 txt-dark">ทุนวิจัย</td>
+                                          <td>
+                                            <span id="txtFundingtype">NA</span>
+                                          </td>
+                                        </tr>
+                                        <tr>
+                                          <td style="width: 200px;" class="f500 txt-dark">กลุ่มแหล่งทุน</td>
+                                          <td>
+                                            <span  id="txtFundinggroup">NA</span>
+                                          </td>
+                                        </tr>
+                                        <tr>
+                                          <td style="width: 200px;" class="f500 txt-dark">ชื่อแหล่งทุน</td>
+                                          <td>
+                                            <span id="txtFundingname">NA</span>
+                                          </td>
+                                        </tr>
+                                        <tr>
+                                          <td style="width: 200px;" class="f500 txt-dark">ผู้ร่วมวิจัย</td>
+                                          <td>
+                                            <span id="txtCopi">NA</span>
+                                          </td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
+            											</div>
+            											<div  id="profile_6" class="tab-pane fade" role="tabpanel">
+                                    <table class="table customtable table-bordered" border="0" style="border:none !important; font-size: 1.0em;">
+                                      <tbody>
+                                        <tr>
+                                          <td style="width: 200px;" class="f500 txt-dark">Submission form</td>
+                                          <td>
+                                            <div class="ft1 pt-0">
+                                              <ul class="" id="ft1">-</ul>
+                                            </div>
+                                          </td>
+                                        </tr>
+                                        <tr>
+                                          <td style="width: 200px;" class="f500 txt-dark">Protocol</td>
+                                          <td>
+                                            <div class="ft2 pt-0">
+                                              <ul class="" id="ft2">-</ul>
+                                            </div>
+                                          </td>
+                                        </tr>
+                                        <tr>
+                                          <td style="width: 200px;" class="f500 txt-dark">Information sheet and Consent Form </td>
+                                          <td>
+                                            <div class="ft3 pt-0">
+                                              <ul class="" id="ft3">-</ul>
+                                            </div>
+                                          </td>
+                                        </tr>
+                                        <tr>
+                                          <td style="width: 200px;" class="f500 txt-dark">Case Record Form </td>
+                                          <td>
+                                            <div class="ft4 pt-0">
+                                              <ul class="" id="ft4">-</ul>
+                                            </div>
+                                          </td>
+                                        </tr>
+                                        <tr>
+                                          <td style="width: 200px;" class="f500 txt-dark">Subject Material </td>
+                                          <td>
+                                            <div class="ft5 pt-0">
+                                              <ul class="" id="ft5">-</ul>
+                                            </div>
+                                          </td>
+                                        </tr>
+                                        <tr>
+                                          <td style="width: 200px;" class="f500 txt-dark">Legal Document</td>
+                                          <td>
+                                            <div class="ft6 pt-0">
+                                              <ul class="" id="ft6">-</ul>
+                                            </div>
+                                          </td>
+                                        </tr>
+                                        <tr>
+                                          <td style="width: 200px;" class="f500 txt-dark">เอกสารประกอบอื่น ๆ</td>
+                                          <td>
+                                            <div class="ft7 pt-0">
+                                              <ul class="" id="ft7">-</ul>
+                                            </div>
+                                          </td>
+                                        </tr>
+                                        <tr>
+                                          <td style="width: 200px;" class="f500 txt-dark">Updated CV, หลักฐานการอบรมจริยธรรมวิจัย </td>
+                                          <td>
+                                            <div class="ft8 pt-0">
+                                              <ul class="" id="ft8">-</ul>
+                                            </div>
+                                          </td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
+            											</div>
+                                  <div  id="profile_7" class="tab-pane fade" role="tabpanel">
+            												<div id="printArea">
+                                      <div class="row" id="doc_info">
+                                        <ul id="ft_final"></ul>
+                                      </div>
+                                    </div>
+            											</div>
+
+            										</div>
+            									</div>
+                            </div>
+                          </div>
+
+
+                        </div>
+                        <!-- <div class="row">
+                          <div class="col-sm-12 text-right pr-50 pt-0" style="font-size: 0.8em;">
+                            หมายเลขอ้างอิง : <span class="txtSessid">NA</span>
+                          </div>
+                        </div> -->
+            					</div>
+                    </div>
+                  </div>
+                  <!-- .contentdiv -->
+
+
+
+                </div>
+                <!-- .panel-body -->
+              </div>
+              <!-- .panel-wrapper -->
+            </div>
+            <!-- .panel -->
+          </div>
+
+
+
+
+
+        </div>
+        <!-- .Row -->
+
+
+
+
+				<!-- Footer -->
+				<footer class="footer container-fluid pl-30 pr-30">
+					<div class="row">
+						<div class="col-sm-12">
+							<p>2017 &copy; <a href="http://rmis.medicine.psu.ac.th/project/" target="_blank">RMIS</a>. หน่วยส่งเสริมและพัฒนาทางวิชาการ คณะแพทยศาสตร์ มหาวิทยาลัยสงขลานครินทร์. Develop by <a href="https://wisniorproject.com" target="_blank">Wisnior Corp.</a></p>
+						</div>
+					</div>
+				</footer>
+				<!-- /Footer -->
+			</div>
+		</div>
+        <!-- /Main Content -->
+
+    </div>
+    <!-- /#wrapper -->
+
+	<!-- JavaScript -->
+
+  <!-- jQuery -->
+  <script src="../v3/vendors/bower_components/jquery/dist/jquery.min.js"></script>
+
+  <!-- Bootstrap Core JavaScript -->
+  <script src="../v3/vendors/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+	<!-- Slimscroll JavaScript -->
+	<script src="../v3/dist/js/jquery.slimscroll.js"></script>
+
+	<!-- Owl JavaScript -->
+	<script src="../v3/vendors/bower_components/owl.carousel/dist/owl.carousel.min.js"></script>
+
+	<!-- Switchery JavaScript -->
+	<script src="../v3/vendors/bower_components/switchery/dist/switchery.min.js"></script>
+
+	<!-- Fancy Dropdown JS -->
+	<script src="../v3/dist/js/dropdown-bootstrap-extended.js"></script>
+
+  <!-- Sweet-Alert  -->
+	<script src="../v3/vendors/bower_components/sweetalert/dist/sweetalert.min.js"></script>
+
+  <!-- Data table JavaScript -->
+
+	<!-- Init JavaScript -->
+	<script src="../v3/dist/js/init.js"></script>
+  <script src="../v3/main.js"></script>
+  <script src="../v3/pi.js"></script>
+
+  <script type="text/javascript">
+
+    var current_user = window.localStorage.getItem('rmis_current_user')
+    var current_role = window.localStorage.getItem('rmis_current_role')
+    var current_rs = window.localStorage.getItem('current_selected_project_session')
+    var current_rs_id = window.localStorage.getItem('current_selected_project_id')
+    var editData = '';
+    var filenum = 0;
+    var cn_session_id = main_app.randomString(20);
+
+
+    $(document).ready(function(){
+
+      if(current_rs == null){
+        swal({
+          title: "เกิดข้อผิดพลาด",
+          text: "ไม่พบข้อมูลงานวิจัยที่ต้องการ กรุณาลองใหม่ หรือติดต่อเจ้าหน้าที่!",
+          type: "error",
+          showCancelButton: false,
+          confirmButtonColor: "#DD6B55",
+          confirmButtonText: "รับทราบ",
+          closeOnConfirm: false },
+        function(){
+           window.location = './'
+        });
+      }
+
+      $('.docSess').val(cn_session_id)
+      $('.docSessID').val(current_rs_id)
+      $('.docUser').val(current_user)
+
+
+      checkFileAttached()
+      main.load_year();
+
+      pi.init()
+
+      setTimeout(function(){
+        pi.load_rs_info_2();
+      }, 1000)
+
+      loadRS_acknowledge_doc();
+
+    })
+
+    function loadRS_acknowledge_doc(){
+      var param = {
+        id_rs: current_rs_id
+      }
+
+      var jxhr = $.post(ws_url + 'controller/get_file_final.php', param, function(){}, 'json')
+                  .always(function(snap){
+                    if((snap != '') && (snap.length > 0)){
+                      $('#ft_final').empty();
+                      snap.forEach(function(childSnap){
+
+                        var data = '<li class=""><div style="border: solid; border-width: 0px; border-color: rgb(179, 179, 179); padding: 10px;">' +
+                                    '<div class="row">' +
+                                      '<div class="col-sm-1 pt-0 text-right"><i class="zmdi zmdi-file zmdi-hc-3x"></i></div>' +
+                                      '<div class="col-sm-9 pt-0"><span class="f500 txt-dark">' + childSnap.rfad_filename + '</span><br><span class="fs08">ออกเมื่อวันที่ : ' + main_app.convertThaidatetime(childSnap.rfad_upload_datetime) + '</span></div>' +
+                                      '<div class="col-sm-2">' +
+                                        '<a href="' + childSnap.rfad_filefullpart + '" target="_blank" class="btn btn-success btn-md txt-light btm-block"><i class="fa fa-download txt-light mr-5"></i> <span class="hidden-sm">ดาวน์โหลด</span> </a>' +
+                                      '</div>' +
+                                    '</div></li>';
+                        $('#ft_final').append(data);
+                      })
+                    }else{
+                      var param = {
+                        id: current_user,
+                        sess: current_rs,
+                        id_rs: current_rs_id
+                      }
+
+                      var jxhr2 = $.post(ws_url + 'controller/chairman/get-rs-info-2.php', param, function(){}, 'json')
+                                   .always(function(snap2){
+                                     if((snap2!='') && (snap2.length > 0)){
+                                       snap2.forEach(function(i){
+                                         // console.log(i.rai_full_content);
+                                         var str = i.rai_full_content
+                                         var replaceString = str.replace(/txt-danger/g, 'txt-dark')
+                                         var replaceString = replaceString.replace(/zmdi zmdi-edit/g, '')
+                                         var replaceString = replaceString.replace(/col-xs-3/g, 'col-xs-2')
+                                         var replaceString = replaceString.replace(/col-xs-9/g, 'col-xs-10')
+                                         replaceString = str.replace(/txtPiDept/g, '')
+                                         // var replaceString = replaceString.replace(/col-xs-5/g, 'col-xs-7')
+
+                                          $('#doc_info').html(replaceString)
+                                          console.log(replaceString);
+
+
+                                          setTimeout(function(){
+                                            if(i.rai_sign_status == '1'){
+                                              if(i.rai_lang == 'th'){
+                                                $('.sign_panal').html('<div class="row">' +
+                                                  '<div class="col-xs-5 text-right" style="padding-top: 20px;">&nbsp;</div>' +
+                                                  '<div class="col-xs-4 text-left" style="margin-left: -10px;">' +
+                                                    '<span class="signature"><img src="../images/signate/sig2-th.png" width="120"></span>' +
+                                                  '</div>' +
+                                                '</div>')
+
+                                                $('.approveDate_1').text('วันที่ ' + main_app.convertThaidate(i.rai_sign_date))
+                                                $('.approveDate_2').text('วันที่ ' + main_app.convertThaidate(i.rai_sign_date))
+
+                                                $('#noDoc').text(i.rafa_docnumber_full)
+
+                                                $('#appDate1').text(main_app.convertThaidate(i.rai_sign_date))
+                                                $('#expDate1').text(main_app.convertThaidate(i.rai_expired_date))
+                                              }else{
+                                                $('.sign_panal').html('<div class="row">' +
+                                                  '<div class="col-xs-5 text-right" style="padding-top: 20px;">&nbsp;</div>' +
+                                                  '<div class="col-xs-4 text-left" style="margin-left: -10px;">' +
+                                                    '<span class="signature"><img src="../images/signate/sig2-eng.png" width="120"></span>' +
+                                                  '</div>' +
+                                                '</div>')
+
+                                                $('.approveDate_1').text(main_app.convertEndate(i.rai_sign_date))
+                                                $('.approveDate_2').text(main_app.convertEndate(i.rai_sign_date))
+
+                                                $('#appDate1').text(main_app.convertThaidate(i.rai_sign_date))
+                                                $('#expDate1').text(main_app.convertThaidate(i.rai_expired_date))
+
+                                                $('#noDoc').text(i.rafa_docnumber_full)
+                                              }
+
+                                              $('#profile_tab_8').hide()
+                                            }
+                                          }, 500)
+                                       })
+                                     }else{
+
+                                     }
+                                   }, 'json')
+                    }
+                  }, 'json')
+    }
+
+    function saveExemptAcknowledge(){
+
+      if(filenum == 0){
+        swal("คำเตือน", "กรุณาอัพโหลดไฟล์ใบรับทราบก่อนดำเนินการ", "error")
+        return ;
+      }
+
+      swal({    title: "ยืนยันการดำเนินการ",
+              text: "คุณยืนยันที่ดำเนินการดังกล่าวหรือไม่",
+              type: "warning",
+              showCancelButton: true,
+              confirmButtonColor: "#DD6B55",
+              confirmButtonText: "ยืนยัน",
+              cancelButtonText: "ยกเลิก",
+              closeOnConfirm: false },
+              function(){
+
+                var param = {
+                  id: current_user,
+                  id_rs: current_rs_id,
+                  csession: cn_session_id
+                }
+
+                var jxhr = $.post(ws_url + 'controller/staff/add_acknowledge_final.php', param, function(){}, 'json')
+                            .always(function(resp){
+                              if((resp!= '') && (resp.length > 0)){
+                                resp.forEach(function(i){
+                                  if(i.status == 'Y'){
+                                    swal({
+                                        title: "ดำเนินการสำเร็จ",
+                                        text: "ท่านได้แนบและส่งใบรับทราบเรียบร้อยแล้ว!",
+                                        type: "success",
+                                        showCancelButton: false,
+                                        confirmButtonColor: "#DD6B55",
+                                        confirmButtonText: "รีโหลดข้อมูล",
+                                        closeOnConfirm: false },
+                                        function(){
+                                          window.location = 'research_info_final.html'
+                                        });
+                                  }else{
+                                    alert(i.status)
+                                  }
+                                })
+                              }else{
+                                alert(resp)
+                              }
+
+                            }, 'json')
+              });
+    }
+
+    function loadProgressTransection(){
+      var param = {
+        id: current_user,
+        id_rs: current_rs_id,
+        id_rs_session: current_rs
+      }
+
+      var jxhr = $.post(ws_url + 'controller/staff/rs_pg_trasection.php', param, function(){}, 'json')
+                  .always(function(snap){
+                    var dt = $('#datable_1').dataTable().api();
+                    if((snap !='') && (snap.length > 0)){
+                      dt.clear().draw();
+                      $c = 1;
+                      snap.forEach(function(i){
+
+                        $bt1 = '';
+                        $bt2 = '';
+                        $bt3 = '';
+
+                        if((i.id_status_research != 1) && (i.id_status_research != 2) && (i.id_status_research != 9)) {
+                          $bt2 = 'disabled ';
+                        }
+
+                        if((i.id_status_research == 10) || (i.id_status_research == 11) || (i.id_status_research == 12) || (i.id_status_research == 13) || (i.id_status_research == 14) || (i.id_status_research == 16)  || (i.id_status_research == 18)) {
+                          $bt3 = 'disabled ';
+                        }
+
+                        var command_btn = '<div class="text-center" style="width: 140px !important; float: right;"><div class="btn-group btn-group-xs" role="group">' +
+                          '<button class="btn btn-primary btn-xs btn-icon-anim btn-square" onclick=viewRsInfo3("' + i.id_rs +'") ><i class="fa fa-wrench"></i></button>' +
+                        '</div></div>';
+
+                        if(i.id_status_research == 14){
+                          command_btn = '<div class="text-center" style="width: 140px !important; float: right;"><div class="btn-group btn-group-xs" role="group">' +
+                            '<button class="btn btn-primary btn-xs btn-icon-anim btn-square" data-toggle="modal" data-target="#myModal_add_ackonwlege" ><i class="fa fa-wrench"></i></button>' +
+                          '</div></div>';
+                        }
+
+
+
+                        var code = i.code_apdu;
+
+                        if(code == ''){
+                          if(i.ord_id == ''){
+                            code = '<div style="font-size: 0.8em;" class="txt-danger">ยังไม่ได้ยืนยันการส่งข้อมูล</div>'
+                          }else{
+                            code = i.year_name + '-' + i.ord_id + '-' + i.id_dept + '-' + i.id_personnel + '<div style="font-size: 0.8em;" class="txt-danger">ยังไม่ได้การตรวจสอบจากเจ้าหน้าที่</div>'
+                          }
+                        }
+
+
+                        dt.row.add([
+                          $c,
+                          i.code_apdu,
+                          i.rwp_title,
+                          '<span class="txt-danger">' + i.status_name +'</span>',
+                          command_btn
+                        ]);
+                        $c++;
+
+                      })
+                      dt.draw();
+                    }
+                  }, 'json')
+    }
+
+    $(function(){
+
+    })
+  </script>
+</body>
+
+</html>

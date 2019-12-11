@@ -1,0 +1,777 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>:: RMIS :: สำหรับเจ้าหน้าที่ ::</title>
+
+    <!-- Data table CSS -->
+    <!-- <link href="../v4/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"> -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" rel="stylesheet">
+
+    <!--alerts CSS -->
+    <link href="../v3/vendors/bower_components/sweetalert/dist/sweetalert.css" rel="stylesheet" type="text/css">
+
+    <!-- Data table CSS -->
+    <link href="../v3/vendors/bower_components/datatables/media/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css"/>
+
+    <!-- Fontawesom -->
+    <link href="../v4/bower_components/fontawesome/web-fonts-with-css/css/fontawesome-all.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="../v4/node_modules/preload.js/dist/css/preload.css">
+
+    <link rel="stylesheet" href="../v4/assets/css/style.css">
+
+  </head>
+
+  <style media="screen">
+    body{
+      background: rgb(245, 245, 245);
+    }
+  </style>
+
+  <body>
+
+    <div class="leftmenu" style="background: rgb(60, 68, 74);">
+      <div></div>
+      <div class="pd-10 fz09">
+        <div class="pd-10 txt-light">
+          <div class="row">
+            <div class="col-10">
+              <img src="../images/rmis2-logo.png" alt="" class="" style="width: 100%;">
+            </div>
+            <div class="col-2 text-right dn" id="divCloseLeft">
+              <i class="fas fa-times fa-1x cp mt-5" onclick="slideMenu('close')"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="pd-10 fz09">
+        <div class="pt-5 pb-5 pl-10 pr-10 txt-light cp mn" onclick="gotoInfoPage()">
+          <div class="fz09">สวัสดี</div>
+          <a href="profile.html" class="text-white">คุณ<span class="userFullname text-white">NA</span> (STAFF)</a>
+        </div>
+        <div class="pt-5 pb-5 pl-10 pr-10 txt-light cp mn mt-10" onclick="window.location = 'profile.html'">
+          <i class="fas fa-chevron-right mr-10"></i>ข้อมูลส่วนตัว
+        </div>
+        <div class="pt-5 pb-5 pl-10 pr-10 txt-light cp mn" onclick="window.location = 'changepassword.html'">
+          <i class="fas fa-chevron-right mr-10"></i>เปลี่ยนรหัสผ่าน
+        </div>
+        <div class="pt-5 pb-5 pl-10 pr-10 txt-light cp mn" onclick="main.signout()">
+          <i class="fas fa-chevron-right mr-10"></i>ออกจากระบบ
+        </div>
+      </div>
+      <div class="pd-10 fz09">
+        <div class="pd-10 txt-light fz08">
+          การดำเนินการ
+        </div>
+        <div class="pt-5 pb-5 pl-10 pr-10 txt-light cp mn" onclick="window.location = 'index.html'">
+          <i class="fas fa-home mr-10"></i>หน้าแรก
+        </div>
+        <div class="pd-10 txt-light fz08">
+          ข้อมูลโครงการวิจัย
+        </div>
+        <div class="pt-5 pb-5 pl-10 pr-10 txt-light cp mn  mn-active" onclick="gotoInfoPage()">
+          <i class="fas fa-chevron-right mr-10"></i>ข้อมูลโครงการวิจัย
+        </div>
+        <div class="pt-5 pb-5 pl-10 pr-10 txt-light cp mn" onclick="window.location = 'rs2-synopsys.html'">
+          <i class="fas fa-chevron-right mr-10"></i>Synopsis
+        </div>
+        <div class="pt-5 pb-5 pl-10 pr-10 txt-light cp mn" onclick="window.location = 'rs2-file-attached.html'">
+          <i class="fas fa-chevron-right mr-10"></i>เอกสารแนบ
+        </div>
+        <div class="pt-5 pb-5 pl-10 pr-10 txt-light cp mn bg-danger" onclick="window.location = 'rs2-operation.html'" >
+          <i class="fas fa-wrench mr-10"></i>ดำเนินการ
+        </div>
+        <div class="pt-5 pb-5 pl-10 pr-10 txt-light cp mn" onclick="window.location = 'rs2-interview-info.html'">
+          <i class="fas fa-chevron-right mr-10"></i>ข้อมูลการประเมิน/ส่งประเมิน
+        </div>
+        <div class="pt-5 pb-5 pl-10 pr-10 txt-light cp mn" onclick="window.location = 'rs2-question.html'">
+          <i class="fas fa-chevron-right mr-10"></i>ข้อคำถาม/ข้อเสนอแนะ
+        </div>
+        <div class="pt-5 pb-5 pl-10 pr-10 txt-light cp mn"  onclick="window.location = 'rs2-board-agender.html'">
+          <i class="fas fa-chevron-right mr-10"></i>วาระการเข้าที่ประชุม
+        </div>
+        <div class="pt-5 pb-5 pl-10 pr-10 txt-light cp mn"  onclick="window.location = 'rs2-approve-docs.html'">
+          <i class="fas fa-chevron-right mr-10"></i>ใบรับรอง/รับทราบ
+        </div>
+        <div class="pt-5 pb-5 pl-10 pr-10 txt-light cp mn"  onclick="window.location = 'rs2-activity-log.html'">
+          <i class="fas fa-chevron-right mr-10"></i>Activity log
+        </div>
+        <div class="pt-5 pb-5 pl-10 pr-10 txt-light cp mn"  onclick="window.location = 'rs2-timeline.html'">
+          <i class="fas fa-chevron-right mr-10"></i>Timeline
+        </div>
+        <div class="pt-5 pb-5 pl-10 pr-10 txt-light cp mn"  onclick="window.location = 'rs2-messaging.html'">
+          <i class="fas fa-chevron-right mr-10"></i>Messaging
+        </div>
+      </div>
+
+    </div>
+
+    <div class="main-panal pt-20 mb-30">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12 text-right">
+
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="row">
+              <div class="col-sm-12">
+                <h4>ข้อมูลโครงการวิจัย</h4>
+              </div>
+              <div class="col-sm-12 fz08 pb-10">
+                <a href="index.html" class="txt-dark"><i class="fas fa-home mr-10"></i>หน้าหลัก</a> / <a href="#" class="txtCodes"></a> / ข้อมูลโครงการวิจัย
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-12">
+            <div class="card mt-5 bsd">
+              <div class="card-header text-white pl-10" style="background: rgb(93, 129, 127);">
+                ข้อมูลเบื้องต้นของโครงการวิจัย
+              </div>
+              <div class="card-body pd-0">
+                <table class="table table-hover display  pb-30 fz08" >
+                  <tbody id="">
+                    <tr>
+                      <td>
+                        <div class="row">
+                          <div class="col-sm-4">รหัสการลงทะเบียน</div>
+                          <div class="col-sm-8 text-danger" id="txtIdrs">-</div>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="row">
+                          <div class="col-sm-4">รหัสโครงการ</div>
+                          <div class="col-sm-8 text-danger" id="txtCode">-</div>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="row">
+                          <div class="col-sm-4">ประเภทการพิจารณา</div>
+                          <div class="col-sm-8 text-danger" id="txtRTypess">ยังไม่ระบุประเภทการพิจารณา</div>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="row">
+                          <div class="col-sm-4">หัวหน้าโครงการ<span style="float:right;" class="text-warning cp" onclick="showModal('PIinfo')"><i class="fas fa-pencil-alt"></i></span></div>
+                          <div class="col-sm-8 text-success-2" id="txtPi2">-</div>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="row">
+                          <div class="col-sm-4">ชื่อโครงการ (ภาษาไทย)<span style="float:right;" class="text-warning cp" onclick="showModal('ResearchTitle')"><i class="fas fa-pencil-alt"></i></span></div>
+                          <div class="col-sm-8 text-success-2" id="txtThtitle">-</div>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="row">
+                          <div class="col-sm-4">ชื่อโครงการ (English)<span style="float:right;" class="text-warning cp" onclick="showModal('ResearchTitle')"><i class="fas fa-pencil-alt"></i></span></div>
+                          <div class="col-sm-8 text-success-2" id="txtEntitle">-</div>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="row">
+                          <div class="col-sm-4">เลขาพิจารณาโครงการ</div>
+                          <div class="col-sm-8 text-success-2" id="txtEC_response">-</div>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="row">
+                          <div class="col-sm-4">เลขาการประชุม</div>
+                          <div class="col-sm-8 text-success-2" id="txtEC_board">-</div>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="row">
+                          <div class="col-sm-4">คำสำคัญ</div>
+                          <div class="col-sm-8 text-success-2" id="txtThkeyword">-</div>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="row">
+                          <div class="col-sm-4">Keywords</div>
+                          <div class="col-sm-8 text-success-2" id="txtEnkeyword">-</div>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="row">
+                          <div class="col-sm-4">ประเภทโครงการวิจัย</div>
+                          <div class="col-sm-8 text-success-2" id="txtRtype">-</div>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="row">
+                          <div class="col-sm-4">ระยะเวลาโครงการ</div>
+                          <div class="col-sm-8 text-success-2" id="txtRduration">-</div>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="row">
+                          <div class="col-sm-4">งบประมาณ<span style="float:right;" class="text-warning cp" onclick="showModal('budget1')"><i class="fas fa-pencil-alt"></i></span></div>
+                          <div class="col-sm-8 text-success-2" id="txtRBudget">-</div>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="row">
+                          <div class="col-sm-4">งบประมาณที่ได้รับจริง<span style="float:right;" class="text-warning cp" onclick="showModal('budget2')"><i class="fas fa-pencil-alt"></i></span></div>
+                          <div class="col-sm-8 text-success-2" id="txtRBudget2">-</div>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="row">
+                          <div class="col-sm-4">สัดส่วนของหัวหน้าโครงการ<span style="float:right;" class="text-warning cp" onclick="showModal('piratio')"><i class="fas fa-pencil-alt"></i></span></div>
+                          <div class="col-sm-8 text-success-2" id="txtPirate">-</div>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="row">
+                          <div class="col-sm-4">ทุนวิจัย</div>
+                          <div class="col-sm-8 text-success-2" id="txtFundingtype">-</div>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="row">
+                          <div class="col-sm-4">กลุ่มแหล่งทุน</div>
+                          <div class="col-sm-8 text-success-2" id="txtFundinggroup">-</div>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="row">
+                          <div class="col-sm-4">ชื่อแหล่งทุน</div>
+                          <div class="col-sm-8 text-success-2" id="txtFundingname">-</div>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="row">
+                          <div class="col-sm-4" id="btnSponserID_span">โครงการ Sponser</div>
+                          <div class="col-sm-8 text-success-2" id="btnSponserID">
+                            <button class="btn btn-sm btn-warning cp" onclick="showModal('MySponser')">ตั้งค่าให้เป็นโครงการ Sponser</button>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="row">
+                          <div class="col-sm-4">โครงการแพทยศาสตร์ศึกษา</div>
+                          <div class="col-sm-8 text-success-2" id="btnFacultyStatus">
+                            <button class="btn btn-sm btn-warning cp" onclick="setToMedfacProject(1)">ตั้งค่าให้เป็นโครงการ แพทยศาสตร์ศึกษา</button>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <!-- .card -->
+
+
+            <div class="card mt-20 bsd">
+              <div class="card-header text-white pl-10" style="background: rgb(93, 129, 127);">
+                ข้อมูลผู้ร่วมวิจัย
+                <span style="float: right;" class="cp" onclick="showModal('MyModal')"><i class="fas fa-plus fz08 mt-5"> เพิ่มผู้ร่วม</i></span>
+                <!-- <button data-toggle="modal" data-target="#myModal" >asd</button> -->
+              </div>
+              <div class="card-body pd-0">
+                <table class="table table-hover display  pb-30 fz08" >
+                  <thead>
+                    <tr>
+                      <th>
+                        <div class="row">
+                          <div class="col-sm-1">#</div>
+                          <div class="col-sm-4">ชื่อ - นามสกุล</div>
+                          <div class="col-sm-1">สัดส่วน</div>
+                          <div class="col-sm-3">หน้าที่</div>
+                          <div class="col-sm-3"></div>
+                        </div>
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody id="copi_table">
+                    <tr>
+                      <td class="text-danger text-center">ไม่พบข้อมูลผู้ร่วมวิจัย</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <!-- .card -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Update 20181008 -->
+    <div class="leftmenu-tool" style="position: fixed; top: 10px; left: -10px; ">
+      <button class="btn btn-sm btn-square_ btn-success ml-0 text-right cp" style="width: 50px; font-size:20px;" onclick="slideMenu('open')"><i class="fas fa-chevron-right"></i></button>
+      <br>
+      <button class="btn btn-sm btn-square_ btn-secondary ml-0 mt-0 text-right cp" onclick="window.location = 'index.html'" style="width: 50px; font-size: 18px;"><i class="fas fa-home" style="margin-left: -5px;"></i></button>
+      <br>
+      <button class="btn btn-sm btn-square_ btn-secondary ml-0 mt-0 text-right cp" onclick="window.location = 'profile.html'" style="width: 50px; font-size: 18px;"><i class="fas fa-user" style="margin-left: -3px;"></i></button>
+      <br>
+      <button class="btn btn-sm btn-square_ btn-secondary ml-0 mt-0 text-right cp" style="width: 50px; font-size: 20px;" onclick="window.history.back()"><i class="fas fa-chevron-left" style="margin-left: -1px;"></i></button>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="MyModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel" style="font-weight: 400;">เพิ่ม/แก้ไขข้อมูลผู้ร่วมวิจัย</h5>
+            <button type="button" class="close btnClosemodal" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form onsubmit="return false;">
+              <div class="form-group">
+                <label for="" class="fz08">Co-PI ID <span class="text-danger">**</span></label>
+                <input type="text" class="form-control" id="txtCopiId" placeholder="Enter name title ..." readonly value="Auto genetate ...">
+              </div>
+
+              <div class="row">
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <label for="" class="fz08">คำนำหน้าชื่อที่ต้องการให้ระบบแสดงในใบรับรอง (ไทย)</label>
+                    <input type="text" class="form-control" placeholder="กรอกคำนำหน้าชื่อ ..." id="txtPrefixTh">
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <label for="" class="fz08">Name title for certificate of approval (If any)</label>
+                    <input type="text" class="form-control" placeholder="Enter name title ..." id="txtPrefixEn">
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <label for="" class="fz08">ชื่อ (ภาษาไทย) <span class="text-danger">**</span></label>
+                    <input type="text" class="form-control" placeholder="กรอกชื่อ ..." id="txtFnameTh">
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <label for="" class="fz08">นามสกุล (ภาษาไทย) <span class="text-danger">**</span></label>
+                    <input type="text" class="form-control" placeholder="กรอกนามสกุล ..." id="txtLnameTh">
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <label for="" class="fz08">Name (English) <span class="text-danger">**</span></label>
+                    <input type="text" class="form-control" placeholder="Enter name ..." id="txtFnameEn">
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <label for="" class="fz08">Surname (English) <span class="text-danger">**</span></label>
+                    <input type="text" class="form-control" placeholder="Enter surname ..." id="txtLnameEn">
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="" class="fz08">ชื่อหน่วยงาน (ภาษาไทย) <span class="text-danger">**</span></label>
+                <input type="text" class="form-control" placeholder="Enter name ..." id="txtDeptTh">
+              </div>
+
+              <div class="form-group">
+                <label for="" class="fz08">Institution's name  (English) <span class="text-danger">**</span></label>
+                <input type="text" class="form-control" placeholder="Enter name ..." id="txtDeptEn">
+              </div>
+
+              <div class="form-group">
+                <label for="" class="fz08">E-mail address <span class="text-danger">**</span></label>
+                <input type="text" class="form-control" placeholder="Enter e-mail address ..." id="txtEmail">
+              </div>
+
+              <div class="row">
+                <div class="col-sm-4">
+                  <div class="form-group">
+                    <label for="" class="fz08">สัดส่วน (%) <span class="text-danger">**</span></label>
+                    <input type="number" class="form-control" placeholder="กรอกสัดส่วน % การมีส่วนร่วม ..." id="txtRatio" min="0" max="99">
+                  </div>
+                </div>
+                <div class="col-sm-8">
+                  <div class="form-group">
+                    <label for="" class="fz08">ความรับผิดชอบในโครงการ <span class="text-danger">**</span></label>
+                    <input type="text" class="form-control" placeholder="กรอกหน้าที่ควมรับผิดชอบในโครงการ ..." id="txtResponse">
+                  </div>
+                </div>
+              </div>
+
+              <div class="alert alert-success dn" role="alert">
+                สัดส่วนที่ท่านสามารถกรอกได้ คือ 1 - <span class="remainRatio">99</span> และรวมกันทั้ังโครงการไม่เกิน 100%
+              </div>
+
+
+
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary cp" data-dismiss="modal">ปิด</button>
+            <button type="button" class="btn btn-success cp" onclick="savenewCopi()">บันทึก</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="PIinfo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel" style="font-weight: 400;">เพิ่ม/แก้ไขข้อมูลหัวหน้าโครงการ</h5>
+            <button type="button" class="close btnClosemodal" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form onsubmit="return false;">
+
+              <div class="row">
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <label for="" class="fz08">คำนำหน้าชื่อที่ต้องการให้ระบบแสดงในใบรับรอง (ไทย)</label>
+                    <input type="text" class="form-control" placeholder="กรอกคำนำหน้าชื่อ ..." id="txtPiPrefixTh">
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <label for="" class="fz08">Name title for certificate of approval (If any)</label>
+                    <input type="text" class="form-control" placeholder="Enter name title ..." id="txtPiPrefixEn">
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <label for="" class="fz08">ชื่อ (ภาษาไทย) <span class="text-danger">**</span></label>
+                    <input type="text" class="form-control" placeholder="กรอกชื่อ ..." id="txtPiFnameTh">
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <label for="" class="fz08">นามสกุล (ภาษาไทย) <span class="text-danger">**</span></label>
+                    <input type="text" class="form-control" placeholder="กรอกนามสกุล ..." id="txtPiLnameTh">
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <label for="" class="fz08">Name (English) <span class="text-danger">**</span></label>
+                    <input type="text" class="form-control" placeholder="Enter name ..." id="txtPiFnameEn">
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <label for="" class="fz08">Surname (English) <span class="text-danger">**</span></label>
+                    <input type="text" class="form-control" placeholder="Enter surname ..." id="txtPiLnameEn">
+                  </div>
+                </div>
+              </div>
+
+              <div class="PiExternalDept dn">
+                <div class="form-group">
+                  <label for="" class="fz08">ชื่อหน่วยงาน (ภาษาไทย) <span class="text-danger">**</span></label>
+                  <input type="text" class="form-control" placeholder="Enter name ..." id="txtPiDeptTh">
+                </div>
+
+                <div class="form-group">
+                  <label for="" class="fz08">Institution's name  (English) <span class="text-danger">**</span></label>
+                  <input type="text" class="form-control" placeholder="Enter name ..." id="txtPiDeptEn">
+                </div>
+              </div>
+
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary cp" data-dismiss="modal">ปิด</button>
+            <button type="button" class="btn btn-success cp" onclick="updatePiInfo()">บันทึก</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="ResearchTitle" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel" style="font-weight: 400;">เพิ่ม/แก้ไขชื่อโครงการวิจัย</h5>
+            <button type="button" class="close btnClosemodal" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form onsubmit="return false;">
+
+              <div class="form-group">
+                <label for="" class="fz08">ชื่อโครงการ (ภาษาไทย) <span class="text-danger">**</span></label>
+                <textarea rows="3" class="form-control" placeholder="กรอกคำนำหน้าชื่อ ..." id="txtTitle_th"></textarea>
+              </div>
+
+              <div class="form-group">
+                <label for="" class="fz08">ชื่อโครงการ  (English) <span class="text-danger">**</span></label>
+                <textarea rows="3" type="text" class="form-control" placeholder="Enter research title ..." id="txtTitle_en"></textarea>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary cp" data-dismiss="modal">ปิด</button>
+            <button type="button" class="btn btn-success cp" onclick="updateTitle()">บันทึก</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="budget1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel" style="font-weight: 400;">แก้ไขงบประมาณ</h5>
+            <button type="button" class="close btnClosemodal" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form onsubmit="return false;">
+              <div class="form-group">
+                <label for="" class="fz08">งบประมาณตั้งต้นของโครงการ <span class="text-danger">**</span></label>
+                <input type="number" id="txtBudget1" class="form-control" placeholder="กรอกงบประมาณตั้งต้น (เฉพาะตัวเลข)">
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary cp" data-dismiss="modal">ปิด</button>
+            <button type="button" class="btn btn-success cp" onclick="updateBudget1()">บันทึก</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="budget2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel" style="font-weight: 400;">แก้ไขงบประมาณที่ได้รับจริง</h5>
+            <button type="button" class="close btnClosemodal" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form onsubmit="return false;">
+              <div class="form-group">
+                <label for="" class="fz08">งบประมาณที่ได้รับจริง <span class="text-danger">**</span></label>
+                <input type="number" id="txtBudget2" class="form-control" placeholder="กรอกงบประมาณที่ด้รับจริง (เฉพาะตัวเลข)">
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary cp" data-dismiss="modal">ปิด</button>
+            <button type="button" class="btn btn-success cp" onclick="updateBudget2()">บันทึก</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="piratio" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel" style="font-weight: 400;">แก้ไขสัดส่วนของหัวหน้าโครงการ</h5>
+            <button type="button" class="close btnClosemodal" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form onsubmit="return false;">
+              <div class="form-group">
+                <label for="" class="fz08">สัดส่วนของหัวหน้าโครงการ <span class="text-danger">**</span></label>
+                <input type="number" id="txtPiratio" class="form-control" placeholder="กรอกสัดส่วที่ต้องการ (เฉพาะตัวเลข)">
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary cp" data-dismiss="modal">ปิด</button>
+            <button type="button" class="btn btn-success cp" onclick="updatePiratio()">บันทึก</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- jQuery -->
+    <!-- <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script> -->
+    <script src="../v3/vendors/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script>
+  	<script src="../v3/dist/js/jquery.slimscroll.js"></script>
+  	<!-- Fancy Dropdown JS -->
+  	<!-- <script src="../v3/dist/js/dropdown-bootstrap-extended.js"></script> -->
+    <!-- Sweet-Alert  -->
+  	<script src="../v3/vendors/bower_components/sweetalert/dist/sweetalert.min.js"></script>
+    <!-- Data table JavaScript -->
+    <!-- <script type="text/javascript" src="../v3/vendors/bower_components/ckeditor/ckeditor.js"></script> -->
+
+  	<!-- Init JavaScript -->
+    <script src="../v4/config.js"></script>
+  	<script src="../v3/dist/js/init.js"></script>
+    <script src="../v3/main.js"></script>
+    <script src="../v4/staff.js"></script>
+
+    <script type="text/javascript" src="../v4/node_modules/preload.js/dist/js/preload.js"></script>
+
+    <script type="text/javascript">
+
+    var current_rs_id = window.localStorage.getItem('current_selected_project_id')
+    var current_rs = window.localStorage.getItem('current_selected_project_session')
+    var current_pi_ratio = 100
+    var posible_co_pi_ratio = 99
+    var advisor = false
+    var lang = 'th'
+    var personnal_status = 'internal'
+
+      $(document).ready(function(){
+
+        console.log(current_rs);
+        console.log(current_rs_id);
+
+        $w = $(document).width()
+        if($w <= 800){
+          $('.main-panal').css('padding-left', '40px')
+          $('.leftmenu').css('margin-left', '-250px')
+          $('.leftmenu-tool').show()
+          $('#divCloseLeft').removeClass('dn')
+        }
+
+        staff.load_rs_info_2();
+
+        setTimeout(function(){
+          checkRemainRatio()
+        }, 2000)
+
+      })
+
+      function showModal(id){
+        $("#" + id).modal();
+      }
+
+      function  loadList(){
+        var param = $.post(ws_url + 'controller/staff/check-board-status.php', function(){},'json')
+                     .always(function(snap){
+                       console.log(snap);
+                      if((snap!='') && (snap.length > 0)){
+                        $('#table_data_1').empty()
+                        snap.forEach(function(i){
+                          $row = '<tr>' +
+                                    '<td>' + i.code_apdu + '</td>' +
+                                    '<td>' + i.title_th +
+                                      '<div class="fz08 text-muted">' +
+                                        'หัวหน้าโครงการวิจัย : ' + i.fname + ' ' + i.lname + '<br>' +
+                                        'เลขา EC ผู้รับผิดชอบ : ' + i.fname + ' ' + i.lname + '<br>' +
+                                        'เลขาการประชุม : ' + i.fname + ' ' + i.lname + '<br>' +
+                                        'ลงทะเบียนเมื่อ : ' + main_app.convertThaidatetime(i.date_submit) +
+                                      '</div>' +
+                                      '<div class="fz08 text-muted">' +
+                                        '<button class="btn btn-success btn-sm btn-icon-anim btn-square ml-0" style="box-shadow: none;" data-toggle="tooltip" data-placement="top" title="ดูข้อมูลโครงการและดำเนินการต่อ" onclick="viewRsInfo_15(\'' + i.id_rs +'\')"><i class="fa fa-search"></i></button>' +
+                                        '<button class="btn btn-warning btn-sm btn-icon-anim btn-square ml-0" style="box-shadow: none;" data-toggle="tooltip" data-placement="top" title="เปลี่ยนเลขา EC ผู้รับผิดชอบ" onclick="set_reponse_ec(\'' + i.id_rs +'\')"><i class="fa fa-user"></i></button>' +
+                                        '<button class="btn btn-warning btn-sm btn-icon-anim btn-square ml-0" style="box-shadow: none;" data-toggle="tooltip" data-placement="top" title="เปลี่ยนเลขา EC ผู้รับผิดชอบ" onclick="set_reponse_ec(\'' + i.id_rs +'\')"><i class="fa fa-users"></i></button>' +
+                                        '<button class="btn btn-danger btn-sm btn-icon-anim btn-square ml-0" style="box-shadow: none;" data-toggle="tooltip" data-placement="top" title="เปลี่ยนเลขา EC ผู้รับผิดชอบ" onclick="set_reponse_ec(\'' + i.id_rs +'\')"><i class="fa fa-trash"></i></button>' +
+                                      '</div>' +
+                                    '</td>' +
+                                    '<td>' + i.ep + '</td>' +
+                                    '<td>' + i.status_name + '</td>' +
+                                 '</tr>'
+                          $('#table_data_1').append($row)
+
+                        })
+                        preload.hide()
+                        setTimeout(function(){ $('[data-toggle="tooltip"]').tooltip()}, 3000)
+                      }else{
+                        preload.hide()
+                      }
+                     })
+      }
+
+      function viewRsInfo_15(rid){
+        var param = {
+          id_rs: rid,
+          id: current_user
+        }
+        var jxhr = $.post(ws_url + '/controller/staff/check-rs-session.php', param, function(){}, 'json')
+              .always(function(snap){
+                if((snap != '') && (snap.length > 0)){
+                  snap.forEach(function(i){
+                    window.localStorage.setItem('current_selected_project_session', i.session_id)
+                    window.localStorage.setItem('current_selected_project_id', i.id_rs)
+                    window.location = 'reviewer_select_file.html'
+                  })
+                }else{
+                  swal("Error!", "error")
+                }
+              }, 'json')
+      }
+
+      function slideMenu(state){
+        if(state == 'open'){
+          $( ".leftmenu" ).animate({ "left": "+=250px" }, "slow" );
+          // $('.main-panal').animate({ "padding-left": "+=250px" }, "slow" );
+        }else{
+          $( ".leftmenu" ).animate({ "left": "-=250px" }, "slow" );
+          // $('.main-panal').animate({ "padding-left": "-=250px" }, "slow" );
+        }
+      }
+    </script>
+  </body>
+</html>

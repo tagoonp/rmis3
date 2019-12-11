@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8" />
+  	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  	<title>:: RMIS :: สำหรับเจ้าหน้าที่ ::</title>
+
+    <!-- Data table CSS -->
+  	<link href="../v4/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!--alerts CSS -->
+  	<link href="../v3/vendors/bower_components/sweetalert/dist/sweetalert.css" rel="stylesheet" type="text/css">
+
+    <!-- Fontawesom -->
+    <link href="../v4/bower_components/fontawesome/web-fonts-with-css/css/fontawesome-all.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <!-- <link href="../v3/dist/css/style.css" rel="stylesheet" type="text/css">
+    <link href="../v3/fonts.css" rel="stylesheet" type="text/css">
+    <link href="../v3/style_v2.css" rel="stylesheet" type="text/css"> -->
+    <!-- Preload -->
+    <link rel="stylesheet" href="../v4/node_modules/preload.js/dist/css/preload.css">
+
+    <!-- Material Design Bootstrap -->
+    <link href="../v4/node_modules/mdbootstrap/css/mdb.min.css" rel="stylesheet">
+    <link href="../v4/node_modules/mdbootstrap/css/style.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="../v4/assets/css/style.css">
+    <link rel="stylesheet" href="../v4/assets/css/fonts.css">
+
+  </head>
+
+  <style media="screen">
+    body{
+      background: rgb(238, 238, 238);
+    }
+  </style>
+
+  <body>
+
+    <div class="header fixed-top" style="background: rgb(0, 110, 255) !important;">
+      <div class="container">
+        <!--Navbar-->
+        <nav class="navbar navbar-expand-lg navbar-dark blue" style="background: rgb(0, 110, 255) !important; box-shadow: none;">
+
+          <!-- Navbar brand -->
+          <a class="navbar-brand th_font fw500" href="index.html" style="font-size: 1.9em; margin-top: -10px;">RMIS@Medicine</a>
+
+          <!-- Collapse button -->
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav" aria-controls="basicExampleNav"
+              aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <!-- Collapsible content -->
+          <div class="collapse navbar-collapse" id="basicExampleNav" style="margin-top: -4px;">
+
+              <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                <li class="nav-item active dn">
+                  <a href="index.html" class="nav-link active">หน้าแรก</a>
+                </li>
+              </ul>
+
+              <div class="form-inline my-2 my-lg-0">
+                <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                  <li class="nav-item ">
+                    <a href="#" class="nav-link">ยินดีต้อนรับ, คุณ<span class="userFullname text-white">NA</span> (STAFF)</a>
+                  </li>
+                  <li class="nav-item ">
+                    <a href="changepassword.html" class="nav-link">เปลี่ยนรหัสผ่าน</a>
+                  </li>
+                  <li class="nav-item ">
+                    <a href="#" class="nav-link" onclick="main.signout()">ออกจากระบบ</a>
+                  </li>
+                </ul>
+              </div>
+          </div>
+          <!-- Collapsible content -->
+
+        </nav>
+        <!--/.Navbar-->
+      </div>
+    </div>
+
+    <!-- sample modal content -->
+    <div class="modal fade bs-example-modal-project-info" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="display: none;">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="myLargeModalLabel">แก้ไขข้อมูลโครงการวิจัย</h5>
+            <button type="button" class="close btnCloseModal text-white" data-dismiss="modal" aria-hidden="true">×</button>
+          </div>
+          <div class="modal-body">
+            <div class="form-group">
+              <label for="" class="fb fz08">ชื่อโครงการ (ภาษาไทย) : <span class="text-danger">**</span></label>
+              <textarea class="form-control" rows="4" id="tbThtitle"></textarea>
+            </div>
+
+            <div class="form-group">
+              <label for="" class="fb fz08">Project title (English) : <span class="text-danger">**</span></label>
+              <textarea class="form-control" rows="4" id="tbEntitle"></textarea>
+            </div>
+
+            <div class="row">
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <label for="" class="fb fz08">คำสำคัญ (ภาษาไทย) : <span class="text-danger">**</span></label>
+                  <input type="text" class="form-control" id="tbThkey">
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <label for="" class="fb fz08">Keywords : <span class="text-danger">**</span></label>
+                  <input type="text" class="form-control" id="tbEnkey">
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="" class="fb fz08">ประเภทโครงการวิจัย : <span class="text-danger">**</span></label>
+              <select name="" id="tbRtype" class="form-control">
+                <option value="">-- เลือกประเภทโครงการวิจัย --</option>
+                <option value="01">วิทยาศาสตร์พื้นฐาน (Basic science)</option>
+                <option value="02">สังคมศาสตร์/พฤติกรรมศาสตร์ (Social/Behavioral science)</option>
+                <option value="03">การสร้างสรรค์นวัตกรรม (Innovation study)</option>
+                <option value="05">วิทยาศาสตร์ชีวการแพทย์ (Biomedical science)</option>
+                <option value="06">สัตวศาสตร์ (Animal study)</option>
+                <option value="07">บทความปริทัศน์ (Review Article)</option>
+              </select>
+            </div>
+
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-primary">บันทึก</button>
+            <button type="button" class="btn btn-secondary text-left" data-dismiss="modal">ยกเลิก</button>
+          </div>
+        </div>
+        <!-- /.modal-content -->
+      </div>
+      <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+
+    <div class="group-1 pb-50" style="padding-top: 70px;">
+      <div class="container">
+
+        <div class="row">
+          <div class="col-sm-12 col-md-12">
+            <h3 class="fw500 mb-0 mt-5">ข้อมูลโครงการวิจัย</h3>
+            <div class="row">
+              <div class="col-sm-12">
+                <nav aria-label="breadcrumb">
+                  <ol class="breadcrumb pl-0 mb-5">
+                    <li class="breadcrumb-item"><a href="index.html">หน้าแรก</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">ข้อมูลโครงการวิจัย</li>
+                  </ol>
+                </nav>
+              </div>
+            </div>
+            <div class="row mt-0">
+              <div class="col-sm-12 mb-20">
+                <span class="fb">รหัสการลงทะเบียน</span> : <span id="txtIdrs" class="txt-success">NA</span> |
+                <span class="fb">รหัสโครงการ</span> : <span class="text-danger" id="txtCode">ยังไม่กำหนด</span> <br>
+                <div class="pt-10">
+                  <span class="fb">ชื่อโครงการ (ภาษาไทย)</span>  <a href="#" class="text-muted fz09" data-toggle="modal" data-target=".bs-example-modal-project-info"><i class="fas fa-pencil-alt"></i> แก้ไข</a> : <br><span id="txtThtitle" class="txt-dark">NA</span><br>
+                </div>
+                <div class="pt-10">
+                  <span class="fb">ชื่อโครงการ (English)</span>  <a href="#" style="" class="text-muted fz09" data-toggle="modal" data-target=".bs-example-modal-project-info"><i class="fas fa-pencil-alt"></i> แก้ไข</a> : <br><span id="txtEntitle" class="txt-dark">NA</span><br>
+                </div>
+              </div>
+            </div>
+            <div class="row mt-5">
+              <div class="col-sm-3 mb-10">
+                <button class="btn btn-custom-1 btn-block btn-lable-wrap left-label text-left pl-10 mb-5" onclick="toggleCustomTab('tab_1')">
+                  <span class="btn-text"><i class="fas fa-info-circle mr-5 mt-5 text-primary"></i>ข้อมูลเบื้องต้นโครงการ</span>
+                </button>
+
+                <button class="btn btn-custom-1 btn-block btn-lable-wrap left-label text-left pl-10 mb-5" onclick="toggleCustomTab('tab_2')">
+                  <span class="btn-text"><i class="fas fa-file mr-10 mt-5 text-primary"></i>เอกสารแนบ</span>
+                </button>
+
+                <button class="btn btn-custom-1 btn-block btn-lable-wrap left-label text-left pl-10 pr-10 mb-5 dn" onclick="toggleCustomTab('tab_9')">
+                  <span class="btn-text"><i class="fas fa-comment-alt mr-5 mt-5 text-primary"></i> ข้อความจาก PI </span>
+                </button>
+
+                <button class="btn btn-custom-1 btn-block btn-lable-wrap left-label text-left pl-10 mb-5" onclick="toggleCustomTab('tab_3'); load_progress_tool();">
+                  <span class="btn-text"><i class="fas fa-wrench mr-5 text-primary"></i>ดำเนินการต่อ</span>
+                </button>
+
+                <button class="btn btn-custom-1 btn-block btn-lable-wrap left-label text-left pl-10 mb-5" disabled onclick="toggleCustomTab('tab_4')">
+                  <span class="btn-text"><i class="fas fa-paper-plane mr-5 text-primary"></i>ข้อมูลการส่งประเมิน</span>
+                </button>
+
+                <button class="btn btn-custom-1 btn-block btn-lable-wrap left-label text-left pl-10 mb-5" disabled onclick="toggleCustomTab('tab_5')">
+                  <span class="btn-text"><i class="fab fa-readme mr-5 text-primary"></i>ข้อเสนอแนะจากผู้เชี่ยวชาญ</span>
+                </button>
+
+                <button class="btn btn-custom-1 btn-block btn-lable-wrap left-label text-left pl-10 mb-5" disabled onclick="toggleCustomTab('tab_6')">
+                  <span class="btn-text"><i class="fas fa-shield-alt mr-5 text-primary"></i>ใบรับรอง/รับทราบ</span>
+                </button>
+
+                <button class="btn btn-custom-1 btn-block btn-lable-wrap left-label text-left pl-10 mb-5" onclick="toggleCustomTab('tab_7')" data-toggle="modal" data-target="#my_note_modal">
+                  <span class="btn-text"><i class="fas fa-pen-square mr-5 text-primary"></i>เพิ่มบันทึก</span>
+                </button>
+
+                <button class="btn btn-custom-1 btn-block btn-lable-wrap left-label text-left pl-10 mb-5" onclick="toggleCustomTab('tab_7')">
+                  <span class="btn-text"><i class="fas fa-bars mr-5 text-primary"></i>Activity log</span>
+                </button>
+
+                <button class="btn btn-custom-1 btn-block btn-lable-wrap left-label text-left pl-10 mb-5" onclick="toggleCustomTab('tab_8')">
+                  <span class="btn-text"><i class="fas fa-tachometer-alt mr-5 text-primary"></i>Timeline</span>
+                </button>
+
+              </div>
+              <div class="col-sm-9">
+                <div class="custom_tab tab_1">
+                  <div class="card">
+                    <div class="card-header text-white" style="background: rgb(8, 115, 240);">
+                      ข้อมูลผู้รับผิดชอบ
+                    </div>
+                    <div class="card-body pd-0">
+                      <table class="table customtable table-bordered mb-0" border="0" style="border:none !important; font-size: 1.0em;">
+                        <tbody>
+                          <tr>
+                            <td style="width: 200px;" class="f500 txt-dark">หัวหน้าโครงการ<br><small>(Project investigator)</small></td>
+                            <td>
+                              <span id="txtPi" class="txt-dark">NA</span> <button class="btn btn-primary btn-sm btn-square ml-0" disabled style="float: right;"><i class="fas fa-pencil-alt"></i></button>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td style="width: 200px;" class="f500 txt-dark">เลขาสำนักงาน<br><small>(ผู้รับผิดชอบ)</small></td>
+                            <td>
+                              ยังไม่มีบันทึก<button class="btn btn-blue  btn-sm btn-square ml-0" style="float: right;"><i class="fas fa-pencil-alt"></i></button>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td style="width: 200px;" class="f500 txt-dark">เลขาการประชุม</td>
+                            <td>
+                              ยังไม่มีบันทึก<button class="btn btn-blue  btn-sm btn-square ml-0" style="float: right;"><i class="fas fa-pencil-alt"></i></button>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td style="width: 200px;" class="f500 txt-dark">เจ้าหน้าที่</td>
+                            <td>
+                              ยังไม่มีบันทึก<button class="btn btn-blue  btn-sm btn-square ml-0" style="float: right;"><i class="fas fa-bars"></i></button>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+
+                  <div class="card mt-20">
+                    <div class="card-header text-white" style="background: rgb(8, 115, 240);">
+                      ข้อมูลเบื้องต้นโครงการ <a href="#" style="float: right;" class="text-white" data-toggle="modal" data-target=".bs-example-modal-project-info"><i class="fas fa-pencil-alt"></i> แก้ไข</a>
+                    </div>
+                    <div class="card-body pd-0">
+                      <table class="table customtable table-bordered mb-0" border="0" style="border:none !important; font-size: 1.0em;">
+                        <tbody>
+                          <tr>
+                            <td style="width: 200px;" class="f500 txt-dark">คำสำคัญ</td>
+                            <td>
+                              [ภาษาไทย] <span id="txtThkeyword">NA</span>
+                              <br>
+                              [English] <span id="txtEnkeyword">NA</span>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td style="width: 200px;" class="f500 txt-dark">ประเภทโครงการวิจัย</td>
+                            <td>
+                              <span id="txtRtype">NA</span>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td style="width: 200px;" class="f500 txt-dark">ระยะเวลาโครงการ</td>
+                            <td>
+                              <span id="txtRduration">NA</span>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td style="width: 200px;" class="f500 txt-dark">งบประมาณ</td>
+                            <td>
+                              <span id="txtRBudget">NA</span>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td style="width: 200px;" class="f500 txt-dark">ทุนวิจัย</td>
+                            <td>
+                              <span id="txtFundingtype">NA</span>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td style="width: 200px;" class="f500 txt-dark">กลุ่มแหล่งทุน</td>
+                            <td>
+                              <span  id="txtFundinggroup">NA</span>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td style="width: 200px;" class="f500 txt-dark">ชื่อแหล่งทุน</td>
+                            <td>
+                              <span id="txtFundingname">NA</span>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td style="width: 200px;" class="f500 txt-dark">ผู้ร่วมวิจัย </td>
+                            <td>
+                              <span id="txtCopi">NA</span>
+                              <div>
+                                <button class="btn btn-primary ml-0" style="box-shadow: none;"><i class="fas fa-pencil-alt"></i> แก้ไขผู้ร่วมวิจัย</button>
+                              </div>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+
+                  <div class="card mt-20">
+                    <div class="card-header text-white" style="background: rgb(8, 115, 240);">
+                      สรุปย่อโครงการวิจัย
+                    </div>
+                    <div class="card-body">
+                      <div class="synopsis">ไม่พบข้อมูล</div>
+                    </div>
+                  </div>
+
+                </div>
+                <!-- .tab_1 -->
+
+                <div class="custom_tab tab_2 dn">
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <button class="btn btn-blue ml-0"><i class="fas fa-upload mr-10"></i> อัพโหลดไฟล์</button>
+                    </div>
+                  </div>
+                  <div class="card">
+                    <div class="card-header text-white" style="background: rgb(8, 115, 240);">
+                      เอกสารแนบ
+                    </div>
+                    <div class="card-body pd-0">
+                      <table class="table customtable table-bordered mb-0" border="0" style="border:none !important; font-size: 1.0em;">
+                        <tbody>
+                          <tr>
+                            <td style="width: 200px;" class="f500 txt-dark">Submission form</td>
+                            <td>
+                              <div class="ft1 pt-0">
+                                <ul class="" id="ft_att_1">-</ul>
+                              </div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td style="width: 200px;" class="f500 txt-dark">Protocol</td>
+                            <td>
+                              <div class="ft2 pt-0">
+                                <ul class="" id="ft_att_2">-</ul>
+                              </div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td style="width: 200px;" class="f500 txt-dark">Information sheet and Consent Form </td>
+                            <td>
+                              <div class="ft3 pt-0">
+                                <ul class="" id="ft_att_3">-</ul>
+                              </div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td style="width: 200px;" class="f500 txt-dark">Case Record Form </td>
+                            <td>
+                              <div class="ft4 pt-0">
+                                <ul class="" id="ft_att_4">-</ul>
+                              </div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td style="width: 200px;" class="f500 txt-dark">Subject Material </td>
+                            <td>
+                              <div class="ft5 pt-0">
+                                <ul class="" id="ft_att_5">-</ul>
+                              </div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td style="width: 200px;" class="f500 txt-dark">Legal Document</td>
+                            <td>
+                              <div class="ft6 pt-0">
+                                <ul class="" id="ft_att_6">-</ul>
+                              </div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td style="width: 200px;" class="f500 txt-dark">เอกสารประกอบอื่น ๆ</td>
+                            <td>
+                              <div class="ft7 pt-0">
+                                <ul class="" id="ft_att_7">-</ul>
+                              </div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td style="width: 200px;" class="f500 txt-dark">Updated CV, หลักฐานการอบรมจริยธรรมวิจัย </td>
+                            <td>
+                              <div class="ft8 pt-0">
+                                <ul class="" id="ft_att_8">-</ul>
+                              </div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td style="width: 200px;" class="f500 txt-dark">ใบนำส่งเงินค่าธรรมเนียม </td>
+                            <td>
+                              <div class="ft10 pt-0">
+                                <ul class="" id="ft_att_9">-</ul>
+                              </div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td style="width: 200px;" class="f500 txt-dark">อื่น ๆ (เฉพาะโครงการที่ลงทะเบียนก่อนวันที่ 1 มกราคม พ.ศ.2561)</td>
+                            <td>
+                              <div class="ft10 pt-0">
+                                <ul class="" id="ft_att_10">-</ul>
+                              </div>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+                <!-- .tab_2 -->
+
+                <div class="custom_tab tab_3 dn">
+                  <div class="card">
+                    <div class="card-header text-white" style="background: rgb(8, 115, 240);">
+                      การดำเนินการต่อ
+                    </div>
+                    <div class="card-body">
+                      <div class="next_progress_tool"></div>
+                    </div>
+                  </div>
+                </div>
+                <!-- .tab_3 -->
+
+
+                <div class="custom_tab tab_4 dn">
+                  <div class="card">
+                    <div class="card-header text-white" style="background: rgb(8, 115, 240);">
+                      ข้อมูลการส่งประเมิน
+                    </div>
+                    <div class="card-body">
+                      <h5 class="card-title">Special title treatment</h5>
+                      <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                      <a href="#" class="btn btn-primary">Go somewhere</a>
+                    </div>
+                  </div>
+                </div>
+                <!-- .tab_4 -->
+
+                <div class="custom_tab tab_5 dn">
+                  <div class="card">
+                    <div class="card-header text-white" style="background: rgb(8, 115, 240);">
+                      ข้อเสนอแนะจากผู้เชี่ยวชาญอิสระ
+                    </div>
+                    <div class="card-body">
+                      <h5 class="card-title">Special title treatment</h5>
+                      <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                      <a href="profile.html" class="btn btn-primary">Go somewhere</a>
+                    </div>
+                  </div>
+                </div>
+                <!-- .tab_5 -->
+
+                <div class="custom_tab tab_6 dn">
+                  <div class="card">
+                    <div class="card-header text-white" style="background: rgb(8, 115, 240);">
+                      ใบรับรอง/รับทราบ
+                    </div>
+                    <div class="card-body">
+                      <h5 class="card-title">Special title treatment</h5>
+                      <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                      <a href="#" class="btn btn-primary">Go somewhere</a>
+                    </div>
+                  </div>
+                </div>
+                <!-- .tab_6 -->
+
+                <div class="custom_tab tab_7 dn">
+                  <div class="card">
+                    <div class="card-header">
+                      Activity log
+                    </div>
+                    <div class="card-body pd-0">
+                      <table class="table table-bordered mb-0">
+                        <thead>
+                          <tr style="background: rgb(21, 184, 130);" class="f500">
+                            <th class="txt-light" style="width: 200px;">วัน - เวลา</th>
+                            <th class="txt-light">ข้อความ</th>
+                            <th class="txt-light" style="width: 100px;">โดย</th>
+                          </tr>
+                        </thead>
+                        <tbody class="noteSpan">
+                          <tr>
+                            <td colspan="3">ไม่พบข้อมูลบันทึก </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+                <!-- .tab_7 -->
+
+                <div class="custom_tab tab_8 dn">
+                  <div class="card">
+                    <div class="card-header">
+                      Project timeline
+                    </div>
+                    <div class="card-body pd-0">
+                      <table class="table table-bordered mb-0">
+                        <thead>
+                          <tr style="background: rgb(21, 184, 130);" class="f500">
+                            <th class="txt-light" style="width: 200px;">บุคคลใน Timeline</th>
+                            <th class="txt-light">ระยะเวลา (วัน)</th>
+                            <th class="txt-light">จำนวนครั้งที่ถูกนับ</th>
+                          </tr>
+                        </thead>
+                        <tbody class="personSpan">
+                          <tr>
+                            <td>หัวหน้าโครงการวิจัย </td>
+                            <td id="pi_day">0</td>
+                            <td id="pi_round">0</td>
+                          </tr>
+                          <tr>
+                            <td>เจ้าหน้าที่ </td>
+                            <td id="st_day">0</td>
+                            <td id="st_round">0</td>
+                          </tr>
+                          <tr>
+                            <td>เลขา </td>
+                            <td id="ec_day">0</td>
+                            <td id="ec_round">0</td>
+                          </tr>
+                          <tr>
+                            <td>ผู้เชี่ยวชาญอิสระ </td>
+                            <td id="rw_day">0</td>
+                            <td id="rw_round">0</td>
+                          </tr>
+                          <tr>
+                            <td>ประธานฯ </td>
+                            <td id="cm_day">0</td>
+                            <td id="cm_round">0</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+                <!-- .tab_8 -->
+
+              </div>
+            </div>
+
+
+          </div>
+        </div>
+        <!-- .row -->
+      </div>
+    </div>
+
+    <div class="custom-footer pt-30">
+      <div class="container text-center">
+        2017 © RMIS. หน่วยส่งเสริมและพัฒนาทางวิชาการ คณะแพทยศาสตร์ มหาวิทยาลัยสงขลานครินทร์. .
+      </div>
+    </div>
+
+    <!-- jQuery -->
+    <script type="text/javascript" src="../v4/bower_components/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="../v4/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+  	<!-- Slimscroll JavaScript -->
+  	<script src="../v3/dist/js/jquery.slimscroll.js"></script>
+
+    <!-- Sweet-Alert  -->
+  	<script src="../v3/vendors/bower_components/sweetalert/dist/sweetalert.min.js"></script>
+    <script type="text/javascript" src="../v3/vendors/bower_components/ckeditor_lite/ckeditor.js"></script>
+
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="../v4/node_modules/mdbootstrap/js/mdb.min.js"></script>
+
+  	<!-- Init JavaScript -->
+    <script src="../v4/config.js"></script>
+    <script src="../v3/main.js"></script>
+    <script src="../v4/staff.js"></script>
+    <script src="../v4/assets/js/research_info.js"></script>
+    <script src="../v4/assets/js/custom.js"></script>
+    <script src="../v3/rs_note.js"></script>
+
+    <script type="text/javascript" src="../v4/node_modules/preload.js/dist/js/preload.js"></script>
+
+    <script type="text/javascript">
+
+      var current_user = window.localStorage.getItem('rmis_current_user')
+      var current_role = window.localStorage.getItem('rmis_current_role')
+      var current_rs = window.localStorage.getItem('current_selected_project_session')
+      var current_rs_id = window.localStorage.getItem('current_selected_project_id')
+      var editData = '';
+
+      $(document).ready(function(){
+
+        staff.init()
+
+        if(current_user == null){
+          window.location = '../'
+        }
+
+
+        if(current_rs == null){
+          swal({    title: "เกิดข้อผิดพลาด",
+                      text: "ไม่พบข้อมูลงานวิจัยที่ต้องการ กรุณาลองใหม่ หรือติดต่อเจ้าหน้าที่!",
+                      type: "error",
+                      showCancelButton: false,
+                      confirmButtonColor: "#DD6B55",
+                      confirmButtonText: "รับทราบ",
+                      closeOnConfirm: false },
+                      function(){
+                       window.location = './'
+                      });
+        }
+
+        setTimeout(function(){
+          research_init.get_register_info(current_rs_id);
+          note.load_note()
+          preload.hide()
+          checkFileAttached()
+        }, 1000)
+
+      })
+
+      $(function(){
+
+      })
+
+      function loadNewInit(){
+        var param = $.post(ws_url + 'controller/staff/check-new-init.php', function(){},'json')
+                     .always(function(snap){
+                       // var dt = $('#datable_1').dataTable().api();
+                       if((snap!='') && (snap.length > 0)){
+                         $('.table_response_1').empty()
+
+                         $c = 1;
+                         snap.forEach(function(i){
+
+                           $btn = '<button class="btn btn-blue btn-square ml-0" onclick=viewRsInfo("' + i.id_rs +'") ><i class="fas fa-pencil-alt"></i></button>'
+
+                           $data = '<tr>' +
+                                     '<td>' + $c + '</td>' +
+                                     '<td>' + i.id_rs + '</td>' +
+                                     '<td><span class="text-dark font-bold">' + i.title_th + '</span>' +
+                                       '<div class="pt-10 pb-10" style="font-size: 0.8em;">หัวหน้าโครงการ : ' + i.prefix_name + i.fname + ' ' + i.lname + '</div>' +
+                                       '<div>' + $btn + '</div></td>' +
+                                     '<td>' + i.ep + '</td>' +
+                                     '<td>' + i.status_name +'</td>' +
+                                   '</tr>'
+
+                           $('.table_response_1').append($data)
+
+                           // $bt1 = '';
+                           // $bt2 = '';
+                           // $bt3 = '';
+                           //
+                           // if((i.id_status_research != 1) && (i.id_status_research != 2) && (i.id_status_research != 9)) {
+                           //   $bt2 = 'disabled ';
+                           // }
+                           //
+                           // if((i.id_status_research == 10) || (i.id_status_research == 11) || (i.id_status_research == 12) || (i.id_status_research == 13) || (i.id_status_research == 14) || (i.id_status_research == 16)  || (i.id_status_research == 18)) {
+                           //   $bt3 = 'disabled ';
+                           // }
+                           //
+                           // var command_btn = '<div class="text-center" style="width: 140px !important; float: right;"><div class="btn-group btn-group-xs" role="group">' +
+                           //   '<button class="btn btn-primary btn-xs btn-icon-anim btn-square" onclick=viewRsInfo("' + i.id_rs +'") data-toggle="tooltip" data-placement="top" title="ดูข้อมูลโครงการวิจัย"><i class="fa fa-search"></i></button>' +
+                           //   // '<button class="btn btn-danger btn-xs btn-icon-anim btn-square" ' + $bt3 + ' onclick=widthdraw_research("' + i.id_rs +'") data-toggle="tooltip" data-placement="top" title="ลบรายงาน"><i class="fa fa-trash"></i></button>' +
+                           // '</div></div>';
+                           //
+                           // var code = i.code_apdu;
+                           //
+                           // if(code == ''){
+                           //   if(i.ord_id == ''){
+                           //     code = '<div style="font-size: 0.8em;" class="txt-danger">ยังไม่ได้ยืนยันการส่งข้อมูล</div>'
+                           //   }else{
+                           //     code = i.year_name + '-' + i.ord_id + '-' + i.id_dept + '-' + i.id_personnel + '<div style="font-size: 0.8em;" class="txt-danger">ยังไม่ได้การตรวจสอบจากเจ้าหน้าที่</div>'
+                           //   }
+                           // }
+                           //
+                           //
+                           // dt.row.add([
+                           //   $c,
+                           //   i.id_rs,
+                           //   '<a href="#" onclick=viewRsInfo("' + i.id_rs +'")>' + i.title_th + '</a>' +
+                           //   '<div style="font-size: 0.8em;">หัวหน้าโครงการ : ' + i.prefix_name + i.fname + ' ' + i.lname + '</div>' +
+                           //   '<div style="font-size: 0.8em;">ลงทะเบียนเมื่อ : ' + main_app.convertThaidatetime(i.date_submit) + '</div>' ,
+                           //   i.ep,
+                           //   '<span class="txt-danger">' + i.status_name +'</span>',
+                           //   command_btn
+                           // ]);
+                           // $c++;
+
+                         })
+                         preload.hide()
+
+                       }else{
+                         // dt.clear().draw();
+                       }
+                     }, 'json')
+      }
+
+
+
+    </script>
+
+  </body>
+</html>

@@ -1,0 +1,13 @@
+INSERT INTO log_note (log_activity, log_detail, log_datetime, log_id_rs, log_by_role, log_by_id)
+SELECT * FROM log_research WHERE (log_by LIKE 'Staff%' Or log_by LIKE 'EC%') ORDER BY log_datetime
+
+INSERT INTO log_note (log_activity, log_detail, log_datetime, log_id_rs, log_by_role, log_by_id)
+SELECT 'Add note', log_detail, `log_datetime`, `id_rs`, 'staff', SUBSTRING(`log_by`, 7) FROM log_research WHERE (log_by LIKE 'Staff%') ORDER BY log_datetime
+
+/--------- Run this for copy previous log to note -----------/
+INSERT INTO log_note (log_activity, log_detail, log_datetime, log_id_rs, log_by_role, log_by_id)
+SELECT 'Add note', log_detail, `log_datetime`, `id_rs`, 'ec', SUBSTRING(`log_by`, 6) FROM log_research WHERE (log_by LIKE 'EC%') ORDER BY log_datetime
+
+INSERT INTO log_note (log_activity, log_detail, log_datetime, log_id_rs, log_by_role, log_by_id)
+SELECT 'Add note', log_detail, `log_datetime`, `id_rs`, 'staff', SUBSTRING(`log_by`, 9) FROM log_research WHERE (log_by LIKE 'Staff%') ORDER BY log_datetime
+/-----------------------------------------------------------/

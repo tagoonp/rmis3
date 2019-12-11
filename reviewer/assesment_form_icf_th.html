@@ -1,0 +1,1237 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8" />
+  	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  	<title>:: RMIS :: สำหรับผู้เชี่ยวชาญอิสระ ::</title>
+
+    <!-- Data table CSS -->
+  	<link href="../v4/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!--alerts CSS -->
+  	<link href="../v3/vendors/bower_components/sweetalert/dist/sweetalert.css" rel="stylesheet" type="text/css">
+
+    <!-- Data table CSS -->
+    <link href="../v3/vendors/bower_components/datatables/media/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css"/>
+
+    <!-- Fontawesom -->
+    <link href="../v4/bower_components/fontawesome/web-fonts-with-css/css/fontawesome-all.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <!-- <link href="../v3/dist/css/style.css" rel="stylesheet" type="text/css">
+    <link href="../v3/fonts.css" rel="stylesheet" type="text/css">
+    <link href="../v3/style_v2.css" rel="stylesheet" type="text/css"> -->
+    <!-- Preload -->
+    <link rel="stylesheet" href="../v4/node_modules/preload.js/dist/css/preload.css">
+
+    <!-- Material Design Bootstrap -->
+    <link href="../v4/node_modules/mdbootstrap/css/mdb.min.css" rel="stylesheet">
+    <link href="../v4/node_modules/mdbootstrap/css/style.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="../v4/assets/css/style.css">
+    <link rel="stylesheet" href="../v4/assets/css/fonts.css">
+
+  </head>
+
+  <style media="screen">
+    body{
+      background: rgb(245, 245, 245);
+    }
+    .commentPane{
+      padding: 10px;
+      background: rgb(244, 244, 244);
+      margin-top: 5px;
+      color: rgb(60, 60, 60);
+      font-size: 0.8em;
+      border: dashed;
+      border-width: 1px;
+      border-color: rgb(3, 120, 116);
+    }
+  </style>
+
+  <body>
+
+    <div class="header fixed-top" style="background: rgb(31, 147, 12) !important; border: solid; border-width: 0px 0px 1px 0px; border-color: rgb(233, 233, 233);">
+      <div class="container">
+        <!--Navbar-->
+        <nav class="navbar navbar-expand-lg navbar-dark blue" style="background: rgb(31, 147, 12) !important; box-shadow: none;">
+
+          <!-- Navbar brand -->
+          <a class="navbar-brand th_font fw500  text-white" href="index.html" style="font-size: 1.9em; margin-top: -3px;">RMIS@Medicine</a>
+
+          <!-- Collapse button -->
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav" aria-controls="basicExampleNav"
+              aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <!-- Collapsible content -->
+          <div class="collapse navbar-collapse" id="basicExampleNav" style="margin-top: -4px;">
+              <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                <li class="nav-item active dn">
+                  <a href="index.html" class="nav-link active">หน้าแรก</a>
+                </li>
+              </ul>
+
+              <div class="form-inline my-2 my-lg-0">
+                <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                  <li class="nav-item ">
+                    <a href="profile.html" class="nav-link text-white">ยินดีต้อนรับ, คุณ<span class="userFullname text-white">NA</span> (REVIEWER)</a>
+                  </li>
+                  <li class="nav-item ">
+                    <a href="changepassword.html" class="nav-link text-white">เปลี่ยนรหัสผ่าน</a>
+                  </li>
+                  <li class="nav-item ">
+                    <a href="#" class="nav-link text-white" onclick="main.signout()">ออกจากระบบ</a>
+                  </li>
+                </ul>
+              </div>
+          </div>
+          <!-- Collapsible content -->
+
+        </nav>
+        <!--/.Navbar-->
+      </div>
+    </div>
+
+    <div class="group-1 pb-50" style="padding-top: 90px;">
+      <div class="container">
+
+        <div class="row">
+          <div class="col-sm-12">
+            <h3 class="fw500">แบบประเมินกระบวนการขอความยินยอมจากอาสาสมัคร<br><small>(สำหรับ ICF Reviewer)</small></h3>
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index.html">หน้าแรก</a></li>
+                <li class="breadcrumb-item"><a href="index.html">โครงการรอการพิจารณา</a></li>
+                <li class="breadcrumb-item active" aria-current="page"><a href="research_info.html" class="txt-CodeApdu">Loading ...</a></li>
+              </ol>
+            </nav>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="row mb-20">
+              <div class="col-sm-12">
+                <div style="padding: 20px; background: rgb(240, 237, 237); border: dashed; border-color: rgb(15, 179, 130); color: rgb(15, 122, 96); border-width: 1px;" class="">
+                  <bold class="f500">คำแนะนำ</bold> ท่านสามารถกดปุ่ม "บันทึกแบบร่าง" แล้วกลับมาทำต่อได้ภายหลัง
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-12 mb-10">
+            <div class="card mb-10">
+              <div class="card-body">
+
+                <div class="row">
+                  <div class="col-sm-12">
+                    <div class="pl-20 txt-dark">
+                      <div class="row">
+                        <div class="col-sm-3 f500">รหัสโครงการ</div>
+                        <div class="col-sm-9"><span id="txtCode" class="txt-danger">ยังไม่กำหนด</span></div>
+                      </div>
+                      <div class="row">
+                        <div class="col-sm-3 f500">ชื่อโครงการ (ภาษาไทย)</div>
+                        <div class="col-sm-9"><span id="txtThtitle">NA</span></div>
+                      </div>
+                      <div class="row">
+                        <div class="col-sm-3 f500">ชื่อโครงการ (ภาษาอังกฤษ)</div>
+                        <div class="col-sm-9"><span id="txtEntitle">NA</span></div>
+                      </div>
+                    </div>
+
+                    <div class="pl-20 pr-20 pt-20">
+                      <div class="row">
+                        <div class="col-sm-12">
+                          <div class="form-group">
+                            <label class="txt-dark f500"><span class="text-success-2">ส่วนที่ 1</span> :: กรุณาพิมพ์ความเห็นเกี่ยวกับกระบวนการขอความยินยอม
+                              <!-- ในภาพรวมเกี่ยวกับโครงการ (General comment) เช่น องค์ความรู้ใหม่ ประโยชน์ ความเหมาะสมของงบประมาณ ฯลฯ  -->
+                              <span class="text-danger">** </span></label>
+                            <input type="text" class="form-control" name="q_generalcomment_bio" id="q_generalcomment_bio">
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="table-responsive_">
+                        <div class="col-sm-12">
+                          <div class="form-group">
+                            <input type="text" class="form-control dn" name="q_assesment_id_bio" id="q_assesment_id_bio">
+                          </div>
+                        </div>
+                        <label class="txt-dark f500"><span class="text-success-2">ส่วนที่ 2</span> :: กรุณาคลิกเพื่อทำเครื่องหมายในแต่ละข้อคำถามให้ครบถ้วน <span class="text-danger">** </span></label>
+                        <table class="table table-bordered">
+                          <thead>
+                            <tr style="background: rgb(19, 161, 114);">
+                              <th class="txt-light">ข้อ</th>
+                              <th class="txt-light">หัวข้อการประเมินที่เกี่ยวกับโครงการวิจัย</th>
+                              <th class="txt-light">เหมาะสม</th>
+                              <th class="txt-light">ควรปรับปรุง</th>
+                              <th class="txt-light">ไม่เกี่ยวข้อง</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr style="background: rgb(128, 128, 128);">
+                              <td colspan="5" class="txt-light">กระบวนการเชิญชวนอาสาสมัคร (process)</td>
+                            </tr>
+                            <tr>
+                              <td>1</td>
+                              <td id="e1">ไม่ทำให้รู้สึกถูกบังคับหรือเข้าร่วมเพราะเกรงใจ</td>
+                              <td class="dn">
+                                <div class="radio radio-lg radio-success dn">
+                                  <input type="radio" class="radio_btn" id="checkbox01-99" name="radio01" value="na" checked/>
+                                  <label for="checkbox01-99"></label>
+                                </div>
+                              </td>
+                              <td class="text-center" style="width: 9%;">
+                                <div class="radio radio-lg radio-success">
+                                  <input type="radio" class="radio_btn" id="checkbox01-1" name="radio01" value="1" onclick="deleteComment(1)"  />
+                                  <label for="checkbox01-1" class="dn pl-0 pr-0"></label>
+                                </div>
+                              </td>
+                              <td class="text-center"  style="width: 7%;">
+                                <div class="radio radio-lg radio-success">
+                                  <input type="radio" class="radio_btn" id="checkbox01-0" name="radio01" value="0" onclick="clickNotfitBtn(4, 1)"/>
+                                  <label for="checkbox01-0" class="dn pl-0 pr-0"></label>
+                                </div>
+                              </td>
+                              <td class="text-center"  style="width: 7%;">
+                                <div class="radio radio-lg radio-success">
+                                  <input type="radio" class="radio_btn" id="checkbox01-2" name="radio01" value="99" onclick="deleteComment(1)"/>
+                                  <label for="checkbox01-2" class="dn pl-0 pr-0"></label>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>2</td>
+                              <td id="e2">การเชิญชวนไม่ละเมิดความเป็นส่วนตัว หรือก่อความรำคาญ </td>
+                              <td class="dn">
+                                <div class="radio radio-lg radio-success dn">
+                                  <input type="radio" class="radio_btn" id="checkbox02-99" name="radio02" value="na" checked/>
+                                  <label for="checkbox02-99"></label>
+                                </div>
+                              </td>
+                              <td class="text-center">
+                                <div class="radio radio-lg radio-success">
+                                  <input type="radio" class="radio_btn" id="checkbox02-1" name="radio02" value="1" onclick="deleteComment(2)"  />
+                                  <label for="checkbox02-1" class="dn"></label>
+                                </div>
+                              </td>
+                              <td class="text-center">
+                                <div class="radio radio-lg radio-success">
+                                  <input type="radio" class="radio_btn" id="checkbox02-0" name="radio02" value="0" onclick="clickNotfitBtn(4, 2)"/>
+                                  <label for="checkbox02-0" class="dn"></label>
+                                </div>
+                              </td>
+                              <td class="text-center">
+                                <div class="radio radio-lg radio-success">
+                                  <input type="radio" class="radio_btn" id="checkbox02-2" name="radio02" value="99" onclick="deleteComment(2)"  />
+                                  <label for="checkbox02-2" class="dn"></label>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>3</td>
+                              <td id="e3">ไม่โฆษณา/อ้างประโยชน์/ให้สิ่งจูงใจเกินควร</td>
+                              <td class="dn">
+                                <div class="radio radio-lg radio-success dn">
+                                  <input type="radio" class="radio_btn" id="checkbox03-99" name="radio03" value="na" checked/>
+                                  <label for="checkbox03-99"></label>
+                                </div>
+                              </td>
+                              <td class="text-center">
+                                <div class="radio radio-lg radio-success">
+                                  <input type="radio" class="radio_btn" id="checkbox03-1" name="radio03" value="1" onclick="deleteComment(3)"  />
+                                  <label for="checkbox03-1" class="dn"></label>
+                                </div>
+                              </td>
+                              <td class="text-center">
+                                <div class="radio radio-lg radio-success">
+                                  <input type="radio" class="radio_btn" id="checkbox03-0" name="radio03" value="0" onclick="clickNotfitBtn(4, 3)"/>
+                                  <label for="checkbox03-0" class="dn"></label>
+                                </div>
+                              </td>
+                              <td class="text-center">
+                                <div class="radio radio-lg radio-success">
+                                  <input type="radio" class="radio_btn" id="checkbox03-2" name="radio03" value="99" onclick="deleteComment(3)"  />
+                                  <label for="checkbox03-2" class="dn"></label>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>4</td>
+                              <td id="e4">กระทำในสถานที่และจังหวะที่เหมาะสม</td>
+                              <td class="dn">
+                                <div class="radio radio-lg radio-success dn">
+                                  <input type="radio" class="radio_btn" id="checkbox04-99" name="radio04" value="na" checked/>
+                                  <label for="checkbox04-99"></label>
+                                </div>
+                              </td>
+                              <td class="text-center">
+                                <div class="radio radio-lg radio-success">
+                                  <input type="radio" class="radio_btn" id="checkbox04-1" name="radio04" value="1" onclick="deleteComment(4)"  />
+                                  <label for="checkbox04-1" class="dn"></label>
+                                </div>
+                              </td>
+                              <td class="text-center">
+                                <div class="radio radio-lg radio-success">
+                                  <input type="radio" class="radio_btn" id="checkbox04-0" name="radio04" value="0" onclick="clickNotfitBtn(4, 4)"/>
+                                  <label for="checkbox04-0" class="dn"></label>
+                                </div>
+                              </td>
+                              <td class="text-center">
+                                <div class="radio radio-lg radio-success">
+                                  <input type="radio" class="radio_btn" id="checkbox04-2" name="radio04" value="99" onclick="deleteComment(4)"  />
+                                  <label for="checkbox04-2" class="dn"></label>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>5</td>
+                              <td id="e5">ให้เวลาเพียงพอในการตัดสินใจ</td>
+                              <td class="dn">
+                                <div class="radio radio-lg radio-success dn">
+                                  <input type="radio" class="radio_btn" id="checkbox05-99" name="radio05" value="na" checked/>
+                                  <label for="checkbox05-99"></label>
+                                </div>
+                              </td>
+                              <td class="text-center">
+                                <div class="radio radio-lg radio-success">
+                                  <input type="radio" class="radio_btn" id="checkbox05-1" name="radio05" value="1" onclick="deleteComment(5)"  />
+                                  <label for="checkbox05-1" class="dn"></label>
+                                </div>
+                              </td>
+                              <td class="text-center">
+                                <div class="radio radio-lg radio-success">
+                                  <input type="radio" class="radio_btn" id="checkbox05-0" name="radio05" value="0" onclick="clickNotfitBtn(4, 5)"/>
+                                  <label for="checkbox05-0" class="dn"></label>
+                                </div>
+                              </td>
+                              <td class="text-center">
+                                <div class="radio radio-lg radio-success">
+                                  <input type="radio" class="radio_btn" id="checkbox05-2" name="radio05" value="99" onclick="deleteComment(5)"  />
+                                  <label for="checkbox05-2" class="dn"></label>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>6</td>
+                              <td id="e6">การใช้ตัวแทนโดยชอบธรรมเหมาะสม (ถ้าเกี่ยวข้อง)</td>
+                              <td class="dn">
+                                <div class="radio radio-lg radio-success dn">
+                                  <input type="radio" class="radio_btn" id="checkbox06-99" name="radio06" value="na" checked/>
+                                  <label for="checkbox06-99"></label>
+                                </div>
+                              </td>
+                              <td class="text-center">
+                                <div class="radio radio-lg radio-success">
+                                  <input type="radio" class="radio_btn" id="checkbox06-1" name="radio06" value="1" onclick="deleteComment(6)"  />
+                                  <label for="checkbox06-1" class="dn"></label>
+                                </div>
+                              </td>
+                              <td class="text-center">
+                                <div class="radio radio-lg radio-success">
+                                  <input type="radio" class="radio_btn" id="checkbox06-0" name="radio06" value="0" onclick="clickNotfitBtn(4, 6)"/>
+                                  <label for="checkbox06-0" class="dn"></label>
+                                </div>
+                              </td>
+                              <td class="text-center">
+                                <div class="radio radio-lg radio-success">
+                                  <input type="radio" class="radio_btn" id="checkbox06-2" name="radio06" value="99" onclick="deleteComment(6)"  />
+                                  <label for="checkbox06-2" class="dn"></label>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr style="background: rgb(128, 128, 128);">
+                              <td colspan="5" class="txt-light">คุณภาพโดยรวมของเอกสาร </td>
+                            </tr>
+                            <tr>
+                              <td>7</td>
+                              <td id="e7">มีข้อมูลที่เพียงพอต่อการตัดสินใจ</td>
+                              <td class="dn">
+                                <div class="radio radio-lg radio-success dn">
+                                  <input type="radio" class="radio_btn" id="checkbox07-99" name="radio07" value="na" checked/>
+                                  <label for="checkbox07-99"></label>
+                                </div>
+                              </td>
+                              <td class="text-center">
+                                <div class="radio radio-lg radio-success">
+                                  <input type="radio" class="radio_btn" id="checkbox07-1" name="radio07" value="1" onclick="deleteComment(7)"  />
+                                  <label for="checkbox07-1" class="dn"></label>
+                                </div>
+                              </td>
+                              <td class="text-center">
+                                <div class="radio radio-lg radio-success">
+                                  <input type="radio" class="radio_btn" id="checkbox07-0" name="radio07" value="0" onclick="clickNotfitBtn(4, 7)"/>
+                                  <label for="checkbox07-0" class="dn"></label>
+                                </div>
+                              </td>
+                              <td class="text-center">
+                                <div class="radio radio-lg radio-success">
+                                  <input type="radio" class="radio_btn" id="checkbox07-2" name="radio07" value="99" onclick="deleteComment(7)"  />
+                                  <label for="checkbox07-2" class="dn"></label>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>8</td>
+                              <td id="e8">เข้าใจง่าย กระชับ ภาษาเหมาะระดับความเข้าใจ</td>
+                              <td class="dn">
+                                <div class="radio radio-lg radio-success dn">
+                                  <input type="radio" class="radio_btn" id="checkbox08-99" name="radio08" value="na" checked/>
+                                  <label for="checkbox08-99"></label>
+                                </div>
+                              </td>
+                              <td class="text-center">
+                                <div class="radio radio-lg radio-success">
+                                  <input type="radio" class="radio_btn" id="checkbox08-1" name="radio08" value="1" onclick="deleteComment(8)"  />
+                                  <label for="checkbox08-1" class="dn"></label>
+                                </div>
+                              </td>
+                              <td class="text-center">
+                                <div class="radio radio-lg radio-success">
+                                  <input type="radio" class="radio_btn" id="checkbox08-0" name="radio08" value="0" onclick="clickNotfitBtn(4, 8)"/>
+                                  <label for="checkbox08-0" class="dn"></label>
+                                </div>
+                              </td>
+                              <td class="text-center">
+                                <div class="radio radio-lg radio-success">
+                                  <input type="radio" class="radio_btn" id="checkbox08-2" name="radio08" value="99" onclick="deleteComment(8)"  />
+                                  <label for="checkbox08-2" class="dn"></label>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>9</td>
+                              <td id="e9">ไม่มีข้อความเชิงบังคับ อาสาสมัครตัดสินใจได้โดยอิสระ</td>
+                              <td class="dn">
+                                <div class="radio radio-lg radio-success dn">
+                                  <input type="radio" class="radio_btn" id="checkbox09-99" name="radio09" value="na" checked/>
+                                  <label for="checkbox09-99"></label>
+                                </div>
+                              </td>
+                              <td class="text-center">
+                                <div class="radio radio-lg radio-success">
+                                  <input type="radio" class="radio_btn" id="checkbox09-1" name="radio09" value="1" onclick="deleteComment(9)"  />
+                                  <label for="checkbox09-1" class="dn"></label>
+                                </div>
+                              </td>
+                              <td class="text-center">
+                                <div class="radio radio-lg radio-success">
+                                  <input type="radio" class="radio_btn" id="checkbox09-0" name="radio09" value="0" onclick="clickNotfitBtn(4, 9)"/>
+                                  <label for="checkbox09-0" class="dn"></label>
+                                </div>
+                              </td>
+                              <td class="text-center">
+                                <div class="radio radio-lg radio-success">
+                                  <input type="radio" class="radio_btn" id="checkbox09-2" name="radio09" value="99" onclick="deleteComment(9)"  />
+                                  <label for="checkbox09-2" class="dn"></label>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr style="background: rgb(128, 128, 128);">
+                              <td colspan="5" class="txt-light">องค์ประกอบในเอกสารชี้แจงและขอความยินยอม </td>
+                            </tr>
+                            <tr>
+                              <td>10</td>
+                              <td id="e10">แจ้งวัตถุประสงค์ของการวิจัย</td>
+                              <td class="dn">
+                                <div class="radio radio-lg radio-success dn">
+                                  <input type="radio" class="radio_btn" id="checkbox010-99" name="radio010" value="na" checked/>
+                                  <label for="checkbox010-99"></label>
+                                </div>
+                              </td>
+                              <td class="text-center">
+                                <div class="radio radio-lg radio-success">
+                                  <input type="radio" class="radio_btn" id="checkbox010-1" name="radio010" value="1" onclick="deleteComment(10)"  />
+                                  <label for="checkbox010-1" class="dn"></label>
+                                </div>
+                              </td>
+                              <td class="text-center">
+                                <div class="radio radio-lg radio-success">
+                                  <input type="radio" class="radio_btn" id="checkbox010-0" name="radio010" value="0" onclick="clickNotfitBtn(4, 10)"/>
+                                  <label for="checkbox010-0" class="dn"></label>
+                                </div>
+                              </td>
+                              <td class="text-center">
+                                <div class="radio radio-lg radio-success">
+                                  <input type="radio" class="radio_btn" id="checkbox010-2" name="radio010" value="99" onclick="deleteComment(10)"  />
+                                  <label for="checkbox010-2" class="dn"></label>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>11</td>
+                              <td id="e11">ระบุแหล่งทุนสนับสนุน</td>
+                              <td class="dn">
+                                <div class="radio radio-lg radio-success dn">
+                                  <input type="radio" class="radio_btn" id="checkbox011-99" name="radio011" value="na" checked/>
+                                  <label for="checkbox011-99"></label>
+                                </div>
+                              </td>
+                              <td class="text-center">
+                                <div class="radio radio-lg radio-success">
+                                  <input type="radio" class="radio_btn" id="checkbox011-1" name="radio011" value="1" onclick="deleteComment(11)"  />
+                                  <label for="checkbox011-1" class="dn"></label>
+                                </div>
+                              </td>
+                              <td class="text-center">
+                                <div class="radio radio-lg radio-success">
+                                  <input type="radio" class="radio_btn" id="checkbox011-0" name="radio011" value="0" onclick="clickNotfitBtn(4, 11)"/>
+                                  <label for="checkbox011-0" class="dn"></label>
+                                </div>
+                              </td>
+                              <td class="text-center">
+                                <div class="radio radio-lg radio-success">
+                                  <input type="radio" class="radio_btn" id="checkbox011-2" name="radio011" value="99" onclick="deleteComment(11)"  />
+                                  <label for="checkbox011-2" class="dn"></label>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>12</td>
+                              <td id="e12">ขั้นตอนการปฏิบัติตัวของอาสาสมัคร อ่านเข้าใจว่าต้องทำอะไร หรือห้ามทำอะไร ใช้เวลาแต่ละขั้นตอนนานเท่าใด ต้องมากี่ครั้ง เครื่องมือหรือหัตถการต่างๆ มีลักษณะอย่างไร ตรวจในท่าใด</td>
+                              <td class="dn">
+                                <div class="radio radio-lg radio-success dn">
+                                  <input type="radio" class="radio_btn" id="checkbox012-99" name="radio012" value="na" checked/>
+                                  <label for="checkbox012-99"></label>
+                                </div>
+                              </td>
+                              <td class="text-center">
+                                <div class="radio radio-lg radio-success">
+                                  <input type="radio" class="radio_btn" id="checkbox012-1" name="radio012" value="1" onclick="deleteComment(12)"  />
+                                  <label for="checkbox012-1" class="dn"></label>
+                                </div>
+                              </td>
+                              <td class="text-center">
+                                <div class="radio radio-lg radio-success">
+                                  <input type="radio" class="radio_btn" id="checkbox012-0" name="radio012" value="0" onclick="clickNotfitBtn(4, 12)"/>
+                                  <label for="checkbox012-0" class="dn"></label>
+                                </div>
+                              </td>
+                              <td class="text-center">
+                                <div class="radio radio-lg radio-success">
+                                  <input type="radio" class="radio_btn" id="checkbox012-2" name="radio012" value="99" onclick="deleteComment(12)"  />
+                                  <label for="checkbox012-2" class="dn"></label>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>13</td>
+                              <td id="e13">ระบุความเสี่ยง (ทั้งกาย/ใจ/สังคม/เศรษฐกิจ/ความไม่สุขสบาย/ผลแทรกซ้อน) โดยไม่ปิดบัง แม้โอกาสเสี่ยงน้อยแต่หากรุนแรงต้องแจ้งความเสี่ยงนี้ต่ออาสาสมัคร</td>
+                              <td class="dn">
+                                <div class="radio radio-lg radio-success dn">
+                                  <input type="radio" class="radio_btn" id="checkbox013-99" name="radio013" value="na" checked/>
+                                  <label for="checkbox013-99"></label>
+                                </div>
+                              </td>
+                              <td class="text-center">
+                                <div class="radio radio-lg radio-success">
+                                  <input type="radio" class="radio_btn" id="checkbox013-1" name="radio013" value="1" onclick="deleteComment(13)"  />
+                                  <label for="checkbox013-1" class="dn"></label>
+                                </div>
+                              </td>
+                              <td class="text-center">
+                                <div class="radio radio-lg radio-success">
+                                  <input type="radio" class="radio_btn" id="checkbox013-0" name="radio013" value="0" onclick="clickNotfitBtn(4, 13)"/>
+                                  <label for="checkbox013-0" class="dn"></label>
+                                </div>
+                              </td>
+                              <td class="text-center">
+                                <div class="radio radio-lg radio-success">
+                                  <input type="radio" class="radio_btn" id="checkbox013-2" name="radio013" value="99" onclick="deleteComment(13)"  />
+                                  <label for="checkbox013-2" class="dn"></label>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>14</td>
+                              <td id="e14">อธิบายประโยชน์ที่ได้รับ<u>โดยตรง</u>จากการเข้าร่วม ไม่อวดอ้าง</td>
+                              <td class="dn">
+                                <div class="radio radio-lg radio-success dn">
+                                  <input type="radio" class="radio_btn" id="checkbox014-99" name="radio014" value="na" checked/>
+                                  <label for="checkbox014-99"></label>
+                                </div>
+                              </td>
+                              <td class="text-center">
+                                <div class="radio radio-lg radio-success">
+                                  <input type="radio" class="radio_btn" id="checkbox014-1" name="radio014" value="1" onclick="deleteComment(14)"  />
+                                  <label for="checkbox014-1" class="dn"></label>
+                                </div>
+                              </td>
+                              <td class="text-center">
+                                <div class="radio radio-lg radio-success">
+                                  <input type="radio" class="radio_btn" id="checkbox014-0" name="radio014" value="0" onclick="clickNotfitBtn(4, 14)"/>
+                                  <label for="checkbox014-0" class="dn"></label>
+                                </div>
+                              </td>
+                              <td class="text-center">
+                                <div class="radio radio-lg radio-success">
+                                  <input type="radio" class="radio_btn" id="checkbox014-2" name="radio014" value="99" onclick="deleteComment(14)"  />
+                                  <label for="checkbox014-2" class="dn"></label>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>15</td>
+                              <td id="e15">อธิบายว่าการเข้าร่วมโครงการเป็นโดยสมัครใจ</td>
+                              <td class="dn">
+                                <div class="radio radio-lg radio-success dn">
+                                  <input type="radio" class="radio_btn" id="checkbox015-99" name="radio015" value="na" checked/>
+                                  <label for="checkbox015-99"></label>
+                                </div>
+                              </td>
+                              <td class="text-center">
+                                <div class="radio radio-lg radio-success">
+                                  <input type="radio" class="radio_btn" id="checkbox015-1" name="radio015" value="1" onclick="deleteComment(15)"  />
+                                  <label for="checkbox015-1" class="dn"></label>
+                                </div>
+                              </td>
+                              <td class="text-center">
+                                <div class="radio radio-lg radio-success">
+                                  <input type="radio" class="radio_btn" id="checkbox015-0" name="radio015" value="0" onclick="clickNotfitBtn(4, 15)"/>
+                                  <label for="checkbox015-0" class="dn"></label>
+                                </div>
+                              </td>
+                              <td class="text-center">
+                                <div class="radio radio-lg radio-success">
+                                  <input type="radio" class="radio_btn" id="checkbox015-2" name="radio015" value="99" onclick="deleteComment(15)"  />
+                                  <label for="checkbox015-2" class="dn"></label>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>16</td>
+                              <td id="e16">บอกทางเลือกอื่นๆ หากอาสาสมัครไม่ต้องการเข้าร่วมโครงการ</td>
+                              <td class="dn">
+                                <div class="radio radio-lg radio-success dn">
+                                  <input type="radio" class="radio_btn" id="checkbox016-99" name="radio016" value="na" checked/>
+                                  <label for="checkbox016-99"></label>
+                                </div>
+                              </td>
+                              <td class="text-center">
+                                <div class="radio radio-lg radio-success">
+                                  <input type="radio" class="radio_btn" id="checkbox016-1" name="radio016" value="1" onclick="deleteComment(16)"  />
+                                  <label for="checkbox016-1" class="dn"></label>
+                                </div>
+                              </td>
+                              <td class="text-center">
+                                <div class="radio radio-lg radio-success">
+                                  <input type="radio" class="radio_btn" id="checkbox016-0" name="radio016" value="0" onclick="clickNotfitBtn(4, 16)"/>
+                                  <label for="checkbox016-0" class="dn"></label>
+                                </div>
+                              </td>
+                              <td class="text-center">
+                                <div class="radio radio-lg radio-success">
+                                  <input type="radio" class="radio_btn" id="checkbox016-2" name="radio016" value="99" onclick="deleteComment(16)"  />
+                                  <label for="checkbox016-2" class="dn"></label>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>17</td>
+                              <td id="e17">มีสิทธิในการถอนตัวจากโครงการ และขั้นตอนถอนตัวที่สะดวก </td>
+                              <td class="dn">
+                                <div class="radio radio-lg radio-success dn">
+                                  <input type="radio" class="radio_btn" id="checkbox017-99" name="radio017" value="na" checked/>
+                                  <label for="checkbox017-99"></label>
+                                </div>
+                              </td>
+                              <td class="text-center">
+                                <div class="radio radio-lg radio-success">
+                                  <input type="radio" class="radio_btn" id="checkbox017-1" name="radio017" value="1" onclick="deleteComment(17)"  />
+                                  <label for="checkbox017-1" class="dn"></label>
+                                </div>
+                              </td>
+                              <td class="text-center">
+                                <div class="radio radio-lg radio-success">
+                                  <input type="radio" class="radio_btn" id="checkbox017-0" name="radio017" value="0" onclick="clickNotfitBtn(4, 17)"/>
+                                  <label for="checkbox017-0" class="dn"></label>
+                                </div>
+                              </td>
+                              <td class="text-center">
+                                <div class="radio radio-lg radio-success">
+                                  <input type="radio" class="radio_btn" id="checkbox017-2" name="radio017" value="99" onclick="deleteComment(17)"  />
+                                  <label for="checkbox017-2" class="dn"></label>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>18</td>
+                              <td id="e18">ค่าตอบแทน/ค่าเดินทาง/ค่าเสียเวลา (เหมาะกับความเสี่ยง/ความไม่สะดวก และไม่มากจนจูงใจ) ถ้านัดหลายครั้งควรจ่ายเป็นงวด</td>
+                              <td class="dn">
+                                <div class="radio radio-lg radio-success dn">
+                                  <input type="radio" class="radio_btn" id="checkbox018-99" name="radio018" value="na" checked/>
+                                  <label for="checkbox018-99"></label>
+                                </div>
+                              </td>
+                              <td class="text-center">
+                                <div class="radio radio-lg radio-success">
+                                  <input type="radio" class="radio_btn" id="checkbox018-1" name="radio018" value="1" onclick="deleteComment(18)"  />
+                                  <label for="checkbox018-1" class="dn"></label>
+                                </div>
+                              </td>
+                              <td class="text-center">
+                                <div class="radio radio-lg radio-success">
+                                  <input type="radio" class="radio_btn" id="checkbox018-0" name="radio018" value="0" onclick="clickNotfitBtn(4, 18)"/>
+                                  <label for="checkbox018-0" class="dn"></label>
+                                </div>
+                              </td>
+                              <td class="text-center">
+                                <div class="radio radio-lg radio-success">
+                                  <input type="radio" class="radio_btn" id="checkbox018-2" name="radio018" value="99" onclick="deleteComment(18)"  />
+                                  <label for="checkbox018-2" class="dn"></label>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>19</td>
+                              <td id="e19">ระบุว่าใครรับผิดชอบค่าใช้จ่ายในส่วนใดบ้าง</td>
+                              <td class="dn">
+                                <div class="radio radio-lg radio-success dn">
+                                  <input type="radio" class="radio_btn" id="checkbox019-99" name="radio019" value="na" checked/>
+                                  <label for="checkbox019-99"></label>
+                                </div>
+                              </td>
+                              <td class="text-center">
+                                <div class="radio radio-lg radio-success">
+                                  <input type="radio" class="radio_btn" id="checkbox019-1" name="radio019" value="1" onclick="deleteComment(19)"  />
+                                  <label for="checkbox019-1" class="dn"></label>
+                                </div>
+                              </td>
+                              <td class="text-center">
+                                <div class="radio radio-lg radio-success">
+                                  <input type="radio" class="radio_btn" id="checkbox019-0" name="radio019" value="0" onclick="clickNotfitBtn(4, 19)"/>
+                                  <label for="checkbox019-0" class="dn"></label>
+                                </div>
+                              </td>
+                              <td class="text-center">
+                                <div class="radio radio-lg radio-success">
+                                  <input type="radio" class="radio_btn" id="checkbox019-2" name="radio019" value="99" onclick="deleteComment(19)"  />
+                                  <label for="checkbox019-2" class="dn"></label>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>20</td>
+                              <td id="e20">การจ่ายค่าชดเชยการบาดเจ็บหรือค่าเสียหาย ใครจ่าย มีการทำประกันไว้หรือไม่ มีข้อแม้ในการจ่ายอย่างไร</td>
+                              <td class="dn">
+                                <div class="radio radio-lg radio-success dn">
+                                  <input type="radio" class="radio_btn" id="checkbox020-99" name="radio020" value="na" checked/>
+                                  <label for="checkbox020-99"></label>
+                                </div>
+                              </td>
+                              <td class="text-center">
+                                <div class="radio radio-lg radio-success">
+                                  <input type="radio" class="radio_btn" id="checkbox020-1" name="radio020" value="1" onclick="deleteComment(20)"  />
+                                  <label for="checkbox020-1" class="dn"></label>
+                                </div>
+                              </td>
+                              <td class="text-center">
+                                <div class="radio radio-lg radio-success">
+                                  <input type="radio" class="radio_btn" id="checkbox020-0" name="radio020" value="0" onclick="clickNotfitBtn(4, 20)"/>
+                                  <label for="checkbox020-0" class="dn"></label>
+                                </div>
+                              </td>
+                              <td class="text-center">
+                                <div class="radio radio-lg radio-success">
+                                  <input type="radio" class="radio_btn" id="checkbox020-2" name="radio020" value="99" onclick="deleteComment(20)"  />
+                                  <label for="checkbox020-2" class="dn"></label>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>21</td>
+                              <td id="e21">อธิบายวิธีการเก็บรักษาความลับของอาสาสมัคร</td>
+                              <td class="dn">
+                                <div class="radio radio-lg radio-success dn">
+                                  <input type="radio" class="radio_btn" id="checkbox021-99" name="radio021" value="na" checked/>
+                                  <label for="checkbox021-99"></label>
+                                </div>
+                              </td>
+                              <td class="text-center">
+                                <div class="radio radio-lg radio-success">
+                                  <input type="radio" class="radio_btn" id="checkbox021-1" name="radio021" value="1" onclick="deleteComment(21)"  />
+                                  <label for="checkbox021-1" class="dn"></label>
+                                </div>
+                              </td>
+                              <td class="text-center">
+                                <div class="radio radio-lg radio-success">
+                                  <input type="radio" class="radio_btn" id="checkbox021-0" name="radio021" value="0" onclick="clickNotfitBtn(4, 21)"/>
+                                  <label for="checkbox021-0" class="dn"></label>
+                                </div>
+                              </td>
+                              <td class="text-center">
+                                <div class="radio radio-lg radio-success">
+                                  <input type="radio" class="radio_btn" id="checkbox021-2" name="radio021" value="99" onclick="deleteComment(21)"  />
+                                  <label for="checkbox021-2" class="dn"></label>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>22</td>
+                              <td id="e22">ชื่อ ที่อยู่และเบอร์โทรศัพท์ที่ติดต่อได้ของผู้วิจัย</td>
+                              <td class="dn">
+                                <div class="radio radio-lg radio-success dn">
+                                  <input type="radio" class="radio_btn" id="checkbox022-99" name="radio022" value="na" checked/>
+                                  <label for="checkbox022-99"></label>
+                                </div>
+                              </td>
+                              <td class="text-center">
+                                <div class="radio radio-lg radio-success">
+                                  <input type="radio" class="radio_btn" id="checkbox022-1" name="radio022" value="1" onclick="deleteComment(22)"  />
+                                  <label for="checkbox022-1" class="dn"></label>
+                                </div>
+                              </td>
+                              <td class="text-center">
+                                <div class="radio radio-lg radio-success">
+                                  <input type="radio" class="radio_btn" id="checkbox022-0" name="radio022" value="0" onclick="clickNotfitBtn(4, 22)"/>
+                                  <label for="checkbox022-0" class="dn"></label>
+                                </div>
+                              </td>
+                              <td class="text-center">
+                                <div class="radio radio-lg radio-success">
+                                  <input type="radio" class="radio_btn" id="checkbox022-2" name="radio022" value="99" onclick="deleteComment(22)"  />
+                                  <label for="checkbox022-2" class="dn"></label>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>23</td>
+                              <td id="e23">ที่อยู่ เบอร์โทรและ e-mail (medpsu) ติดต่อสำนักงานจริยธรรมการวิจัยในมนุษย์ คณะแพทยศาสตร์ม.สงขลานครินทร์ </td>
+                              <td class="dn">
+                                <div class="radio radio-lg radio-success dn">
+                                  <input type="radio" class="radio_btn" id="checkbox023-99" name="radio023" value="na" checked/>
+                                  <label for="checkbox023-99"></label>
+                                </div>
+                              </td>
+                              <td class="text-center">
+                                <div class="radio radio-lg radio-success">
+                                  <input type="radio" class="radio_btn" id="checkbox023-1" name="radio023" value="1" onclick="deleteComment(23)"  />
+                                  <label for="checkbox023-1" class="dn"></label>
+                                </div>
+                              </td>
+                              <td class="text-center">
+                                <div class="radio radio-lg radio-success">
+                                  <input type="radio" class="radio_btn" id="checkbox023-0" name="radio023" value="0" onclick="clickNotfitBtn(4, 23)"/>
+                                  <label for="checkbox023-0" class="dn"></label>
+                                </div>
+                              </td>
+                              <td class="text-center">
+                                <div class="radio radio-lg radio-success">
+                                  <input type="radio" class="radio_btn" id="checkbox023-2" name="radio023" value="99" onclick="deleteComment(23)"  />
+                                  <label for="checkbox023-2" class="dn"></label>
+                                </div>
+                              </td>
+                            </tr>
+
+
+                          </tbody>
+                        </table>
+                      </div>
+
+                      <label class="txt-dark f500"><span class="text-success-2">ส่วนที่ 3</span> :: โดยสรุป ท่านเห็นชอบกับกระบวนการขอความยินยอมจากอาสาสมัครหรือไม่ <span class="text-danger">** </span></label>
+                      <table class="table table-bordered">
+                        <tbody>
+                          <tr class="dn">
+                            <td>
+                              <div class="radio radio-lg radio-success dn">
+                                <input type="radio"  id="checkbox042-99" name="radio042" value="na" checked/>
+                                <label for="checkbox042-99"></label>
+                              </div>
+                            </td>
+                            <td> </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <div class="radio radio-lg radio-success">
+                                <input type="radio" class="radio_btn_summ"  id="checkbox042-1" name="radio042" value="1"  />
+                                <label for="checkbox042-1"></label>
+                              </div>
+                            </td>
+                            <td>เห็นชอบ</td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <div class="radio radio-lg radio-success">
+                                <input type="radio" class="radio_btn_summ"  id="checkbox042-2" name="radio042" value="2" />
+                                <label for="checkbox042-2"></label>
+                              </div>
+                            </td>
+                            <td>เห็นชอบ หากแก้ไขตามข้อเสนอแนะ/หากมีคำชี้แจงที่สมเหตุสมผล</td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <div class="radio radio-lg radio-success">
+                                <input type="radio" class="radio_btn_summ" id="checkbox042-3" name="radio042" value="3" />
+                                <label for="checkbox042-3"></label>
+                              </div>
+                            </td>
+                            <td>ไม่เห็นชอบ โปรดระบุเหตุผลหลักที่ไม่เห็นชอบ
+                              <div class="pt-5 dn" id="notFitInfo">
+                                <input type="text" class="form-control" name="q_generalcomment_notfit2" id="q_generalcomment_notfit2">
+                              </div>
+                            </td>
+                          </tr>
+
+                        </tbody>
+                      </table>
+
+                      <label class="txt-dark f500"><span class="text-success-2">ส่วนที่ 4</span> :: ตรวจสอบความครบถ้วนของคำตอบ</label>
+                      <div class="row mb-20">
+                        <div class="col-sm-12">
+                          <div style="padding: 20px; background: rgb(255, 231, 243);" class="text-danger" id="notifyf">
+                            ยังไม่ครบถ้วน
+                          </div>
+
+                          <div style="padding: 20px; background: rgb(231, 255, 240);" class="text-success dn" id="notifys">
+                            ท่านตอบแบบประเมินครบถ้วนแล้ว
+                          </div>
+                        </div>
+                      </div>
+                      <div class="text-center">
+                        <button type="button" class="btn btn-success text-center btnAssesmentDraft" id="" >บันทึกแบบร่าง/ตรวจสอบความครบถ้วน</button>
+                        <button type="button" class="btn btn-danger text-center dn"  id="btnConfirmIcf">บันทึกแบบประเมิน</button>
+                      </div>
+
+                    </div>
+                    <!-- .assesment_panal -->
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+
+          </div>
+        </div>
+        <!-- .row -->
+
+
+
+
+      </div>
+    </div>
+
+    <div class="custom-footer pt-30 pb-30">
+      <div class="container text-center">
+        2017 © RMIS. หน่วยส่งเสริมและพัฒนาทางวิชาการ คณะแพทยศาสตร์ มหาวิทยาลัยสงขลานครินทร์. .
+      </div>
+    </div>
+
+    <!-- jQuery -->
+    <script src="../v3/vendors/bower_components/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <!-- <script src="../v3/vendors/bower_components/bootstrap/dist/js/bootstrap.min.js"></script> -->
+    <script src="../v4/bower_components/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  	<!-- Slimscroll JavaScript -->
+  	<script src="../v3/dist/js/jquery.slimscroll.js"></script>
+  	<!-- Fancy Dropdown JS -->
+  	<script src="../v3/dist/js/dropdown-bootstrap-extended.js"></script>
+    <!-- Sweet-Alert  -->
+  	<script src="../v3/vendors/bower_components/sweetalert/dist/sweetalert.min.js"></script>
+    <!-- Data table JavaScript -->
+    <script src="../v3/vendors/bower_components/datatables/media/js/jquery.dataTables.min.js"></script>
+    <script src="../v3/dist/js/dataTables-data.js"></script>
+    <!-- Data table JavaScript -->
+    <script type="text/javascript" src="../v3/vendors/bower_components/ckeditor4/ckeditor.js"></script>
+
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="../v4/node_modules/mdbootstrap/js/mdb.min.js"></script>
+
+  	<!-- Init JavaScript -->
+    <script src="../v4/config.js"></script>
+  	<script src="../v3/dist/js/init.js"></script>
+    <script src="../v3/main.js"></script>
+    <script src="../v4/reviewer.js"></script>
+
+    <script type="text/javascript" src="../v4/node_modules/preload.js/dist/js/preload.js"></script>
+    <script type="text/javascript" src="../v3/vendors/bower_components/ckeditor_lite/ckeditor.js"></script>
+
+    <script type="text/javascript">
+
+      var current_rs = window.localStorage.getItem('current_selected_project_session')
+      var current_rs_id = window.localStorage.getItem('current_selected_project_id')
+      var current_form = window.localStorage.getItem('rmis_current_assesment_form')
+      var comment_other_1 = '', comment_other_2 = ''
+      var editData = '';
+      var reply_status = '0';
+      var numreplyfile = 0;
+      var files;
+      var eformnum = 0
+      var eformnum_success = 0
+      var gc_bio = '';
+      var gc_icf = '';
+      var notfin_info  = '';
+
+      $(document).ready(function(){
+
+        if(current_rs == null){
+          swal({    title: "เกิดข้อผิดพลาด",
+                      text: "ไม่พบข้อมูลงานวิจัยที่ต้องการ กรุณาลองใหม่ หรือติดต่อเจ้าหน้าที่!",
+                      type: "error",
+                      showCancelButton: false,
+                      confirmButtonColor: "#DD6B55",
+                      confirmButtonText: "รับทราบ",
+                      closeOnConfirm: false },
+                      function(){
+                       window.location = './'
+                      });
+        }
+
+        if(current_form == null){
+          swal({    title: "เกิดข้อผิดพลาด",
+                      text: "ไม่พบข้อมูลฟอร์มแบบประเมิน่!",
+                      type: "error",
+                      showCancelButton: false,
+                      confirmButtonColor: "#DD6B55",
+                      confirmButtonText: "รับทราบ",
+                      closeOnConfirm: false },
+                      function(){
+                       window.history.back()
+                      });
+        }
+
+
+        reviewer.init()
+        reviewer.load_rs_info_2();
+
+        gc_bio = CKEDITOR.replace( 'q_generalcomment_bio', { height: '150px' });
+        notfin_info  = CKEDITOR.replace( 'q_generalcomment_notfit', { height: '150px' });
+        notfin_info2  = CKEDITOR.replace( 'q_generalcomment_notfit2', { height: '150px' });
+
+        loadIcfInfo()
+
+        setTimeout(function(){
+          preload.hide()
+        }, 1000)
+
+
+
+      })
+
+      $(function(){
+
+        gc_bio.on("instanceReady", function(){
+          this.document.on("keyup", function(){
+              checkIcfStatus()
+          });
+        });
+
+        notfin_info2.on("instanceReady", function(){
+          this.document.on("keyup", function(){
+              checkIcfStatus()
+          });
+        });
+
+        setInterval(function(){
+          saveCommentDraft_icf(2);
+        }, 60000);
+
+        $('.btnAssesmentDraft').click(function(){
+          checkIcfStatus()
+          saveCommentDraft_icf();
+        })
+
+        $('#btnConfirmIcf').click(function(){
+          saveCommentDraft_icf(1)
+        })
+
+        $('.radio_btn').click(function(){
+          checkIcfStatus()
+          saveCommentDraft_icf(2);
+        })
+
+        $('.radio_btn_summ').click(function(){
+
+          checkIcfStatus()
+          saveCommentDraft_icf(2);
+
+          if($('input[name=radio042]:checked').val() == '3'){
+            $('#notFitInfo').removeClass('dn')
+          }else{
+            $('#notFitInfo').addClass('dn')
+            notfin_info2.setData('')
+          }
+        })
+      })
+
+      function loadIcfInfo(){
+        var param = {
+          id_rs: current_rs_id,
+          user: current_user
+        }
+        var jxr = $.post(ws_url + 'controller/reviewer/loadCommentDraft_icf.php', param, function(){}, 'json')
+                   .always(function(snap){
+                     if((snap != '') && (snap.length > 0)){
+                       $c = 0
+                       snap.forEach(function(i){
+                         gc_bio.setData(i.efi_gc)
+                         $('input[name=radio01][value=' + i.efi_1 + ']').attr('checked', 'checked');
+                         $('input[name=radio02][value=' + i.efi_2 + ']').attr('checked', 'checked');
+                         $('input[name=radio03][value=' + i.efi_3 + ']').attr('checked', 'checked');
+                         $('input[name=radio04][value=' + i.efi_4 + ']').attr('checked', 'checked');
+                         $('input[name=radio05][value=' + i.efi_5 + ']').attr('checked', 'checked');
+                         $('input[name=radio06][value=' + i.efi_6 + ']').attr('checked', 'checked');
+                         $('input[name=radio07][value=' + i.efi_7 + ']').attr('checked', 'checked');
+                         $('input[name=radio08][value=' + i.efi_8 + ']').attr('checked', 'checked');
+                         $('input[name=radio09][value=' + i.efi_9 + ']').attr('checked', 'checked');
+                         $('input[name=radio010][value=' + i.efi_10 + ']').attr('checked', 'checked');
+                         $('input[name=radio011][value=' + i.efi_11 + ']').attr('checked', 'checked');
+                         $('input[name=radio012][value=' + i.efi_12 + ']').attr('checked', 'checked');
+                         $('input[name=radio013][value=' + i.efi_13 + ']').attr('checked', 'checked');
+                         $('input[name=radio014][value=' + i.efi_14 + ']').attr('checked', 'checked');
+                         $('input[name=radio015][value=' + i.efi_15 + ']').attr('checked', 'checked');
+                         $('input[name=radio016][value=' + i.efi_16 + ']').attr('checked', 'checked');
+                         $('input[name=radio017][value=' + i.efi_17 + ']').attr('checked', 'checked');
+                         $('input[name=radio018][value=' + i.efi_18 + ']').attr('checked', 'checked');
+                         $('input[name=radio019][value=' + i.efi_19 + ']').attr('checked', 'checked');
+                         $('input[name=radio020][value=' + i.efi_20 + ']').attr('checked', 'checked');
+                         $('input[name=radio021][value=' + i.efi_21 + ']').attr('checked', 'checked');
+                         $('input[name=radio022][value=' + i.efi_22 + ']').attr('checked', 'checked');
+                         $('input[name=radio023][value=' + i.efi_23 + ']').attr('checked', 'checked');
+                         $('input[name=radio042][value=' + i.efi_42 + ']').attr('checked', 'checked');
+                         if(i.efi_42 == 3){
+                           $('#notFitInfo').removeClass('dn')
+                           notfin_info2.setData(i.efi_42_comment)
+                         }
+                       })
+                     }
+                   })
+                   setTimeout(function(){
+                     checkIcfStatus()
+                     preload.hide()
+                   }, 3000)
+
+          for (var i = 1; i <= 42; i++) {
+            checkUncomment_icf_not_fit(i)
+          }
+      }
+
+      function deleteComment(ele_id){
+        selected_choice = ele_id
+        $prev_msg = $('#e' + ele_id).html()
+        $p = $prev_msg.split('<div class="commentPane"')
+        if($p.length > 0){
+          $('#e' + ele_id).html($p[0])
+        }
+        var param = {
+          q: ele_id,
+          id_rs: current_rs_id,
+          user: current_user,
+          form_id: '4'
+        }
+        var jxr = $.post(ws_url + 'controller/reviewer/unCommentDraft_icf_notfit.php', param, function(){})
+                   .always(function(resp){ })
+      }
+
+      function saveAssesmentComment(){
+
+        var comment_msg = notfin_info.getData()
+        var msg = comment_msg
+
+        if(msg == ''){
+          swal("ขออภัย", "กรุณาเพิ่มความเห็นและข้อเสนอแนะเพื่อปรับปรุงก่อน", "error")
+          return ;
+        }
+
+        var param = {
+          q: current_ele_id,
+          com_msg: comment_msg,
+          com_title: $('#question_topic').text(),
+          id_rs: current_rs_id,
+          user: current_user,
+          form_id: '4'
+        }
+
+        var jxr = $.post(ws_url + 'controller/reviewer/saveCommentDraft_icf_notfit.php', param, function(){})
+                   .always(function(resp){
+                     console.log(resp);
+                      // $btn = '<div class="pt-0"><button class="btn btn-sm btn-success btn-square" style="box-shadow: none;"><i class="fas fa-pencil-alt"></i></button></div>'
+                      $btn = '<div class="pt-0"><button class="btn btn-sm btn-success btn-square" style="box-shadow: none;" onclick="clickNotfitBtn(4, ' + current_ele_id + ')"><i class="fas fa-pencil-alt"></i></button></div>'
+                      if(resp == 'Y'){
+                        $( "#comment_div_id_" +  current_ele_id).remove();
+                        $('#e' + selected_choice).append('<div class="commentPane" id="comment_div_id_' + current_ele_id + '"><div id="comment_id_' + current_ele_id + '">' + comment_msg + '</div>' + $btn + '</div>')
+                        $('.btnCloseModal').trigger('click')
+                        notfin_info.setData('')
+                      }
+                   })
+      }
+
+      function closeCommentBox(){
+        var msg = notfin_info.getData();
+        if(msg == ''){
+          if((current_ele_id != '') && (current_ele_id != null)){
+            var $radios = $('input[name=radio0' + current_ele_id + ']');
+            // $radios.filter('[value=na]').attr('checked', 'checked');
+            $radios.filter('[value=na]').prop('checked', true);
+            $( "#comment_div_id_" +  current_ele_id).remove();
+          }
+        }else{
+          // var $radios = $('input[name=radio0' + current_ele_id + ']');
+          // $radios.filter('[value=na]').attr('checked', 'checked');
+          // $radios.filter('[value=na]').prop('checked', true);
+          // notfin_info.setData('');
+          // $( "#comment_div_id_" +  current_ele_id).remove();
+        }
+      }
+
+    </script>
+
+  </body>
+</html>
+
+
+
+<!-- sample modal content -->
+<div class="modal fade bs-example-modal-lg-do" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="display: none;">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header" style="background: rgb(13, 175, 102);">
+        <button type="button" class="close btnCloseModal dn" data-dismiss="modal" aria-hidden="true">×</button>
+        <h5 class="modal-title txt-light f500" id="myLargeModalLabel"><span id="ass_title">แบบประเมินกระบวนการขอความยินยอมจากอาสาสมัคร (สำหรับ ICF Reviewer)</span></h5>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+
+          <div class="col-sm-12">
+            <div class="form-group dn">
+              <label class="txt-dark f500">FORM ID <span class="text-danger">** </span></label>
+              <input type="text" class="form-control" name="q_qtype" id="q_qtype" readonly>
+            </div>
+
+            <div class="form-group dn">
+              <label class="txt-dark f500">รหัสชุดแบบสอบถาม (ระบบออกให้) <span class="text-danger">** </span></label>
+              <input type="text" class="form-control" name="q_qprev_id" id="q_qprev_id" readonly>
+            </div>
+
+            <div class="form-group">
+              <label class="txt-dark"><div class="f500">หัวข้อที่ประเมิน <span class="text-danger">** </span></div></label>
+              <div id="question_topic" style="font-size: 1.2em;">NA.......</div>
+            </div>
+
+            <div class="form-group">
+              <label class="txt-dark"><div class="f500">กรุณาพิมพ์ความเห็นและข้อเสนอแนะเพื่อปรับปรุง <span class="text-danger">** </span></div>
+                หากเป็นไปได้ กรุณาระบุว่าควรแก้ไขเอกสารฉบับ/หัวข้อ/หน้าใด และอย่างไร หรือควรจัดทำเอกสารเพิ่มเติมอย่างไร<br>
+                หรือท่านอาจใช้ Adobe Acrobat (pdf) หรือ Track change (Microsoft word) เพื่อเสนอแนะและอัพโหลดไฟล์กลับในระบบเพื่อความสะดวกมากขึ้น
+              </label>
+              <input type="text" class="form-control" name="q_generalcomment_notfit" id="q_generalcomment_notfit">
+            </div>
+
+            <div class="text-right">
+              <button type="button" class="btn btn-danger text-center" onclick="saveAssesmentComment()">บันทึกข้อเสนอแนะ</button>
+              <button type="button" class="btn btn-danger text-center" data-dismiss="modal" onclick="closeCommentBox()">ปิด</button>
+            </div>
+          </div>
+
+        </div>
+
+
+
+      </div>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->

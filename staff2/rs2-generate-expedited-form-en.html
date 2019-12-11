@@ -1,0 +1,620 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>:: RMIS :: สำหรับเจ้าหน้าที่ ::</title>
+
+    <!-- Data table CSS -->
+    <!-- <link href="../v4/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"> -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" rel="stylesheet">
+
+    <!--alerts CSS -->
+    <link href="../v3/vendors/bower_components/sweetalert/dist/sweetalert.css" rel="stylesheet" type="text/css">
+
+    <link rel="stylesheet" href="../v3/vendors/bower_components/bootstrap-datepicker/bootstrap-datepicker3.min.css" />
+
+    <!-- Data table CSS -->
+    <link href="../v3/vendors/bower_components/datatables/media/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css"/>
+
+    <!-- Fontawesom -->
+    <link href="../v4/bower_components/fontawesome/web-fonts-with-css/css/fontawesome-all.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="../v4/node_modules/preload.js/dist/css/preload.css">
+
+    <link rel="stylesheet" href="../v4/assets/css/style.css">
+
+  </head>
+
+  <style media="screen">
+    body{
+      background: rgb(245, 245, 245);
+    }
+  </style>
+
+  <body>
+
+    <div class="leftmenu" style="background: rgb(60, 68, 74);">
+      <div></div>
+      <div class="pd-10 fz09">
+        <div class="pd-10 txt-light">
+          <div class="row">
+            <div class="col-10">
+              <img src="../images/rmis2-logo.png" alt="" class="" style="width: 100%;">
+            </div>
+            <div class="col-2 text-right dn" id="divCloseLeft">
+              <i class="fas fa-times fa-1x cp mt-5" onclick="slideMenu('close')"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="pd-10 fz09">
+        <div class="pt-5 pb-5 pl-10 pr-10 txt-light cp mn" onclick="gotoInfoPage()">
+          <div class="fz09">สวัสดี</div>
+          <a href="profile.html" class="text-white">คุณ<span class="userFullname text-white">NA</span> (STAFF)</a>
+        </div>
+        <div class="pt-5 pb-5 pl-10 pr-10 txt-light cp mn mt-10" onclick="window.location = 'profile.html'">
+          <i class="fas fa-chevron-right mr-10"></i>ข้อมูลส่วนตัว
+        </div>
+        <div class="pt-5 pb-5 pl-10 pr-10 txt-light cp mn" onclick="window.location = 'changepassword.html'">
+          <i class="fas fa-chevron-right mr-10"></i>เปลี่ยนรหัสผ่าน
+        </div>
+        <div class="pt-5 pb-5 pl-10 pr-10 txt-light cp mn" onclick="main.signout()">
+          <i class="fas fa-chevron-right mr-10"></i>ออกจากระบบ
+        </div>
+      </div>
+      <div class="pd-10 fz09">
+        <div class="pd-10 txt-light fz08">
+          ข้อมูลโครงการวิจัย
+        </div>
+        <div class="pt-5 pb-5 pl-10 pr-10 txt-light cp mn" onclick="window.location = 'index.html'">
+          <i class="fas fa-chevron-right mr-10"></i>หน้าแรก
+        </div>
+        <div class="pt-5 pb-5 pl-10 pr-10 txt-light cp mn" onclick="gotoInfoPage()">
+          <i class="fas fa-chevron-right mr-10"></i>ข้อมูลโครงการวิจัย
+        </div>
+        <div class="pt-5 pb-5 pl-10 pr-10 txt-light cp mn" onclick="window.location = 'rs2-synopsys.html'">
+          <i class="fas fa-chevron-right mr-10"></i>Synopsis
+        </div>
+        <div class="pt-5 pb-5 pl-10 pr-10 txt-light cp mn" onclick="window.location = 'rs2-file-attached.html'">
+          <i class="fas fa-chevron-right mr-10"></i>เอกสารแนบ
+        </div>
+        <div class="pt-5 pb-5 pl-10 pr-10 txt-light cp mn" onclick="window.location = 'rs2-interview-info.html'">
+          <i class="fas fa-chevron-right mr-10"></i>ข้อมูลการประเมิน/ส่งประเมิน
+        </div>
+        <div class="pt-5 pb-5 pl-10 pr-10 txt-light cp mn" onclick="window.location = 'rs2-question.html'">
+          <i class="fas fa-chevron-right mr-10"></i>ข้อคำถาม/ข้อเสนอแนะ
+        </div>
+        <div class="pt-5 pb-5 pl-10 pr-10 txt-light cp mn"  onclick="window.location = 'rs2-board-agender.html'">
+          <i class="fas fa-chevron-right mr-10"></i>วาระการเข้าที่ประชุม
+        </div>
+        <div class="pt-5 pb-5 pl-10 pr-10 txt-light cp mn mn-active"  onclick="window.location = 'rs2-approve-docs.html'">
+          <i class="fas fa-chevron-right mr-10"></i>ใบรับรอง/รับทราบ
+        </div>
+        <div class="pt-5 pb-5 pl-10 pr-10 txt-light cp mn"  onclick="window.location = 'rs2-activity-log.html'">
+          <i class="fas fa-chevron-right mr-10"></i>Activity log
+        </div>
+        <div class="pt-5 pb-5 pl-10 pr-10 txt-light cp mn"  onclick="window.location = 'rs2-timeline.html'">
+          <i class="fas fa-chevron-right mr-10"></i>Timeline
+        </div>
+      </div>
+
+    </div>
+
+    <div class="main-panal pt-20 mb-30">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="row">
+              <div class="col-sm-12">
+                <h4>ข้อมูลโครงการวิจัย</h4>
+              </div>
+              <div class="col-sm-12 fz08 pb-10">
+                <a href="index.html" class="txt-dark"><i class="fas fa-home mr-10"></i>หน้าหลัก</a> / <a href="#" class="txtCodes"></a>/ <a href="rs2-approve-docs.html" class="">ใบรับรอง-รับทราบ</a> / สร้าง
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-12">
+            <div class="card mt-5 bsd">
+              <div class="card-header text-white pl-10" style="background: rgb(93, 129, 127);">
+                สร้างใบรับรอง/รับทราบ
+              </div>
+              <div class="card-body pd-20">
+                <div class="row">
+                  <div class="col-sm-12">
+                    <div class="contentdiv dn">
+                      <div class="row txt-dark" id="printArea">
+                        <div class="col-md-12 pl-40 pr-40 pt-20">
+                          <div style="padding-left: 20px; padding-right: 20px;">
+                            <div style="position: relative; font-size: 14px; color: rgb(233, 233, 233); margin-top: -20px" class="text-right">
+                              <div class="row">
+                                <div class="col-sm-12 text-right">
+                                  AL-011_EN
+                                </div>
+                              </div>
+                            </div>
+                            <div class="row pb-10">
+                              <div class="col-sm-12">
+                                <div class="text-center f500">
+                                  <img src="../images/psu-bw-logo.jpg" alt="" width="55"><br>
+                                  <div class="pt-10">
+                                    <span style="font-size: 14px;">Human Research Ethics Committee<br>Faculty of Medicine, Prince of Songkla University</span>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="row pb-20" style="font-size: 14px;">
+                              <div class="col-sm-12">
+                                <hr style="color: #000; border-color: #000; margin-bottom: 20px;">
+                                <div class="text-center">
+                                  <span style="font-size: 14px;" id="doc_date_p" class="f500">This document is a record of review and approval/acceptance of clinical study protocol.</span>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div class="row pb-10">
+                              <div class="col-3 f500" style="font-size: 14px;">REC. :</div>
+                              <div class="col-9 txt-danger" style="font-size: 14px;"><span id="txtCode">ยังไม่กำหนด</span></div>
+                            </div>
+
+                            <div class="row pb-10">
+                              <div class="col-3 f500" style="font-size: 14px;">Protocol Title : </div>
+                              <div class="col-9" style="font-size: 14px;"><span id="txtEntitle" class="f500"></span></div>
+                            </div>
+
+                            <div class="row pb-10" style="font-size: 14px;">
+                              <div class="col-3 f500">Principal Investigator : </div>
+                              <div class="col-4"><span id="txtPi2" class="txt-danger"></span></div>
+                              <div class="col-5"><span class="f500">Affiliation :</span> <span id="txtPiDept" class="txt-danger"></span></div>
+                            </div>
+
+                            <div class="subPiDiv" style="font-size: 14px;"></div>
+
+                            <div class="row pb-10">
+                              <div class="col-12">
+                                <div class="text-left">
+
+                                    <p style="padding-top: 10px; text-justify: inter-character !important;" >
+                                      <span class="f500" style="font-size: 14px;">Approved documents : <span class="text-muted cp fz08" onclick="showModal('documentList'); loadMeetinginfo();"><i class="fas fa-pencil-alt"></i> แก้ไขรายชื่อเอกสารที่รับรอง</span></span><br>
+                                      <div class="app_doc_list"  style="font-size: 14px;">
+                                        <ol style="padding-left: 20px; font-size: 14px;">
+                                          <li>Submission form version ........ date ...........</li>
+                                          <li>Study protocol version ........ date ........</li>
+                                          <li>Information sheet and consent form ........ date ........</li>
+                                          <li>Clinical record form version ........ date ........</li>
+                                          <li>Curriculum Vitae</li>
+                                        </ol>
+                                      </div>
+                                    </p>
+
+
+                                    <p style="padding-top: 10px;">
+                                      <span style="font-size: 14px;">have/has been reviewed and approved by Human Research Ethics Committee, Faculty of Medicine Prince of Songkla University in full compliance with International Guidelines for human research subject protection such as Declaration of Helsinki, Belmont Report, CIOMS Guideline and the International Conference on Harmonization in Good Clinical Practice (ICH-GCP)<br>
+                                      <span class="f500" style="font-size: 14px;">This review is documented in the meeting minutes of the meeting <span id="docround">........./..........</span> agenda 3.4 </span>
+                                    </p>
+
+                                    <p style="padding-top: 10px;" id="ifreport">
+                                      <span style="font-size: 14px; font-weight: 500;" id="">Please submit the Progress Report <span id="docreportround">every ......... months</span> (Renewal must be submitted at least 30 days prior to expired date.)
+                                    </p>
+
+                                  <div class="row pb-20 pt-20">
+                                    <div class="col-12">
+                                      <div class="text-center" style="font-size: 14px;">
+                                        <div class="sign_panal">
+                                          <div class="row">
+                                            <div class="col-5 text-right" ></div>
+                                            <div class="col-4 text-left" style="margin-left: -10px;">
+                                              <span class="signature txt-danger">    < แสดงหลังประธานลงนาม >    </span>
+                                            </div>
+                                          </div>
+                                        </div>
+
+                                        <div style="text-align:center">(Associate Professor Boonsin Tangtrakulwanich, M.D. PhD.)</div>
+                                        <div style="text-align:center">Chairman of Human Research Ethics Committee</div>
+                                        <div style="text-align:center">Faculty of Medicine, Prince of Songkla University</div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+
+
+
+                            <div class="row pb-20">
+                              <div class="col-12" style="font-size: 14px;">
+                                <div style="padding: 10px; border:none; border-width: 1px; border-color: rgb(82, 82, 82); font-size: 14px;">
+                                  <span class="f500">Date of Approval : </span><span class="txt-danger" id="appDate1"> < แสดงหลังประธานลงนาม > </span><br>
+                                  <span class="f500">Date of Expiration : </span><span class="txt-danger" id="expDate1"> < แสดงหลังประธานลงนาม > </span>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div class="row pb-20  fz08">
+                              <div class="col-sm-12">
+                                <hr style="color: #000; border-color: #000; margin-bottom: 20px;">
+                              </div>
+                              <div class="col-6 text-left fs08">
+                                Human Research Ethics Committee<br>
+                                Faculty of Medicine, Prince of Songkla University<br>
+                                15 Karnchanavanich Road, Hat Yai, Songkhla 90110, Thailand <br>
+                                Tel. 66 7445-1149, 66 7445-1157 Fax: 66 7421-2900
+                              </div>
+                              <div class="col-6 text-right fs08">
+                                Ref no. <span id="refNo">NA</span><br>
+                                <span>มอ 351.7.2/ec.<span id="noDoc">< แสดงหลังประธานลงนาม ><span></span>
+                              </div>
+                            </div>
+
+              					</div>
+                      </div>
+                    </div>
+                    </div>
+                    <!-- .contentdiv -->
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- .card -->
+
+            <div class="row">
+              <div class="col-sm-12 pt-10">
+                <button class="btn btn-block btn-danger btn-lg pt-10 pb-10 cp" onclick="sendEcForCheck()"><i class="fas fa-paper-plane mr-10"></i>ส่งเลขาเพื่อตรวจสอบใบรับรอง</button>
+              </div>
+            </div>
+
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Update 20181008 -->
+    <div class="leftmenu-tool" style="position: fixed; top: 10px; left: -10px; ">
+      <button class="btn btn-sm btn-square_ btn-success ml-0 text-right cp" style="width: 50px; font-size:20px;" onclick="slideMenu('open')"><i class="fas fa-chevron-right"></i></button>
+      <br>
+      <button class="btn btn-sm btn-square_ btn-secondary ml-0 mt-0 text-right cp" onclick="window.location = 'index.html'" style="width: 50px; font-size: 18px;"><i class="fas fa-home" style="margin-left: -5px;"></i></button>
+      <br>
+      <button class="btn btn-sm btn-square_ btn-secondary ml-0 mt-0 text-right cp" onclick="window.location = 'profile.html'" style="width: 50px; font-size: 18px;"><i class="fas fa-user" style="margin-left: -3px;"></i></button>
+      <br>
+      <button class="btn btn-sm btn-square_ btn-secondary ml-0 mt-0 text-right cp" style="width: 50px; font-size: 20px;" onclick="window.history.back()"><i class="fas fa-chevron-left" style="margin-left: -1px;"></i></button>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="documentList" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel" style="font-weight: 400;">แก้ไขรายการเอกสารที่รับรอง</h5>
+            <button type="button" class="close btnClosemodal" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form onsubmit="return false;">
+              <div class="row">
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <label for="" class="fz08">ครั้งที่การประชุม <span class="text-danger">**</span></label>
+                    <input type="text" class="form-control" placeholder="กรอกครั้งที่การประชุม ..." id="txtTimeMeeting">
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <label for="" class="fz08">วันที่ประชุม <span class="text-danger">**</span></label>
+                    <input class="form-control js-datepicker"  type="text" id="txtDatemeeting" name="txtDatemeeting" data-provide="datepicker" data-date-language="th-th" value="" data-date-format="yyyy-mm-dd" placeholder="yyyy-mm-dd" style="margin-bottom: 0px;" readonly />
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <label for="" class="fz08">ชุดการประชุม <span class="text-danger">**</span></label>
+                    <select class="form-control" name="txtSet" id="txtSet">
+                      <option value="" selected>-- เลือกชุดการประชุม --</option>
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <label for="" class="fz08">ระยะเวลาการรายงาน <span class="text-danger">**</span></label>
+                    <select class="form-control" name="txtReportRange" id="txtReportRange">
+                      <option value="12">1 ปี</option>
+                      <option value="6">6 เดือน</option>
+                      <option value="3">3 เดือน</option>
+                      <option value="0">ไม่รายงาน</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="" class="fz08">รายการเอกสารที่รับรอง <span class="text-danger">**</span></label>
+                <div class="pd-10 mb-10" style="background: rgb(245, 245, 245); font-size: 0.8em;">
+                  <form onsubmit="return false;">
+                    <div class="row">
+                      <div class="col-sm-12">
+                        <div class="form-group">
+                          <label for="">Document id : <span class="text-danger">**</span></label>
+                          <input type="text" class="form-control" id="txtDocid" readonly placeholder="Auto generate">
+                        </div>
+                      </div>
+                      <div class="col-8">
+                        <div class="form-group">
+                          <label for="">ชื่อเอกสารที่รับรอง <span class="text-danger">**</span></label>
+                          <!-- <input type="text" name="txtDocname" value="" class="form-control" id="txtDocname" placeholder="กรอกชื่อเอกสารที่นี่ ...."> -->
+                          <textarea name="name" rows="3" cols="80" class="form-control" id="txtDocname" placeholder="กรอกชื่อเอกสารที่นี่ ...."></textarea>
+                        </div>
+                      </div>
+                      <div class="col-3 pl-0">
+                        <div class="form-group">
+                          <label for="">Bullet level <span class="text-danger">**</span></label>
+                          <select class="form-control" name="" id="docLevel">
+                            <option value="1" selected>Lv. 1</option>
+                            <option value="2">Lv. 2</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="col-1 pl-0">
+                        <button class="btn btn-success btn-square cp mt-20" onclick="addApproveDoc()"><i class="fas fa-plus"></i></button>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="" class="fz08">รายชื่อเอกสารที่รับรอง</label>
+                <div class="pd-10 mb-10" style="background: ; ">
+                  <!-- <div class="docList"><span class="text-danger">ยังไม่มีรายชื่อเอกสารที่รับรอง</span></div> -->
+                  <div id="docTable">
+                    <table style="width: 100%;" class="table table-bordered">
+                      <thead>
+                        <tr>
+                          <th>ชื่อไฟล์</th>
+                          <th style="width: 100px;"></th>
+                        </tr>
+                      </thead>
+                      <tbody id="docList_content" style="font-size: 12px;">
+                        <tr>
+                          <td colspan="2"><span class="text-danger">ยังไม่มีรายชื่อเอกสารที่รับรอง</span></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+
+                </div>
+              </div>
+
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary cp" data-dismiss="modal">ปิด</button>
+            <button type="button" class="btn btn-success cp" onclick="createNewDocContent()">บันทึก</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- jQuery -->
+    <script src="../v3/vendors/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script>
+  	<script src="../v3/dist/js/jquery.slimscroll.js"></script>
+    <!-- Sweet-Alert  -->
+  	<script src="../v3/vendors/bower_components/sweetalert/dist/sweetalert.min.js"></script>
+    <!-- Data table JavaScript -->
+    <script type="text/javascript" src="../v3/vendors/bower_components/ckeditor/ckeditor.js"></script>
+
+    <script src="../v3/vendors/bower_components/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
+    <script src="../v3/vendors/bower_components/bootstrap-datepicker-thai-thai/js/bootstrap-datepicker-thai.js"></script>
+    <script src="../v3/vendors/bower_components/bootstrap-datepicker-thai-thai/js/locales/bootstrap-datepicker.th.js"></script>
+
+  	<!-- Init JavaScript -->
+    <script src="../v4/config.js"></script>
+  	<script src="../v3/dist/js/init.js"></script>
+    <script src="../v3/main.js"></script>
+    <script src="../v4/staff.js"></script>
+
+    <script type="text/javascript" src="../v4/node_modules/preload.js/dist/js/preload.js"></script>
+
+    <script type="text/javascript">
+
+    var current_rs_id = window.localStorage.getItem('current_selected_project_id')
+    var current_rs = window.localStorage.getItem('current_selected_project_session')
+    var document_list = ''
+    var advisor = false
+    var lang = 'en'
+    var session_id = main_app.randomString(30);
+    var selected_doc_session = window.localStorage.getItem('current_selected_doc_session')
+
+
+      $(document).ready(function(){
+
+        if(selected_doc_session != null){
+          session_id = selected_doc_session
+        }else{
+          window.localStorage.setItem('current_selected_doc_session', session_id)
+        }
+
+        console.log(session_id);
+
+        $w = $(document).width()
+        if($w <= 800){
+          $('.main-panal').css('padding-left', '40px')
+          $('.leftmenu').css('margin-left', '-250px')
+          $('.leftmenu-tool').show()
+          $('#divCloseLeft').removeClass('dn')
+        }
+
+        staff.load_rs_info_2();
+
+        // setdocContent()
+
+        loadApproveDoc()
+        loadApproveDoc_in()
+        loadMeetinginfo()
+
+        // setTimeout(function(){ setFirstDoclist() }, 1000)
+
+        // document_list = CKEDITOR.replace( 'txtDocform', {
+        //   wordcount : {
+  			// 		showCharCount : false,
+  			// 		showWordCount : true
+  			// 	},
+        //   height: '250px'
+        // });
+
+      })
+
+      function showModal(id){
+        $("#" + id).modal();
+      }
+
+      function setdocContent(){
+
+        // loadApproveDoc()
+
+        var param = {
+          id_rs: current_rs_id
+        }
+
+        var jxr = $.post(ws_url + 'controller/list_approv_doc.php', param, function(){}, 'json')
+                   .always(function(snap){
+                     if((snap != '') && (snap.length > 0)){
+                       $('#docList_content').empty()
+                       snap.forEach(function(i){
+                         $data = '<tr>' +
+                                  '<td>' + i.init_doc_name + '</td>' +
+                                  '<td style="width: 200px;" class="text-right">' +
+                                    '<span class="cp mr-10"><i class="fas fa-pencil-alt"></i></span>' +
+                                    '<span class="cp mr-10"><i class="fas fa-chevron-left"></i></span>' +
+                                    '<span class="cp mr-10"><i class="fas fa-chevron-right"></i></span>' +
+                                    '<span class="cp mr-10"><i class="fas fa-chevron-up"></i></span>' +
+                                    '<span class="cp mr-10"><i class="fas fa-chevron-down"></i></span>' +
+                                    '<span class="cp mr-10" onclick="deleteAppdoc(\'' + i.init_doc_id + '\')"><i class="fas fa-times"></i></span>' +
+                                  '</td>' +
+                                 '</tr>'
+                         $('#docList_content').append($data)
+                       })
+
+                       setFirstDoclist()
+
+                       preload.hide()
+                     }else{
+                       console.log('d');
+                       $('#docList_content').empty()
+                       $('#docList_content').append('<tr><td><span class="text-danger">ยังไม่มีรายชื่อเอกสารที่รับรอง</span></td></tr>')
+                       preload.hide()
+                     }
+                   })
+      }
+
+
+
+      function viewRsInfo_15(rid){
+        var param = {
+          id_rs: rid,
+          id: current_user
+        }
+        var jxhr = $.post(ws_url + '/controller/staff/check-rs-session.php', param, function(){}, 'json')
+              .always(function(snap){
+                if((snap != '') && (snap.length > 0)){
+                  snap.forEach(function(i){
+                    window.localStorage.setItem('current_selected_project_session', i.session_id)
+                    window.localStorage.setItem('current_selected_project_id', i.id_rs)
+                    window.location = 'reviewer_select_file.html'
+                  })
+                }else{
+                  swal("Error!", "error")
+                }
+              }, 'json')
+      }
+
+      function slideMenu(state){
+        if(state == 'open'){
+          $( ".leftmenu" ).animate({ "left": "+=250px" }, "slow" );
+        }else{
+          $( ".leftmenu" ).animate({ "left": "-=250px" }, "slow" );
+        }
+      }
+
+      function createNewDocContent(){
+        var check = 0
+        $('.form-control').removeClass('is-invalid')
+
+        if($('#txtTimeMeeting').val() == ''){
+          check++
+          $('#txtTimeMeeting').addClass('is-invalid')
+        }
+
+        if($('#txtDatemeeting').val() == ''){
+          check++
+          $('#txtDatemeeting').addClass('is-invalid')
+        }
+
+        if($('#txtSet').val() == ''){
+          check++
+          $('#txtSet').addClass('is-invalid')
+        }
+
+        if($('#txtReportRange').val() == ''){
+          check++
+          $('#txtReportRange').addClass('is-invalid')
+        }
+
+        // if(document_list.getData() == ''){
+        if($('#docList_content').html() == '<tr><td><span class="text-danger">ยังไม่มีรายชื่อเอกสารที่รับรอง</span></td></tr>'){
+          check++
+        }
+
+        if(check != 0){
+          swal("คำเตือน!", "กรุณากรอกข้อมูลให้ครบถ้วน", "warning")
+          return ;
+        }
+
+        preload.show()
+
+        loadApproveDoc()
+
+        $meeting = $('#txtTimeMeeting').val()
+        $report_period = $('#txtReportRange').val()
+
+        var param = {
+          id_rs: current_rs_id,
+          id: current_user,
+          tmeeting: $('#txtTimeMeeting').val(),
+          panal: '3.4',
+          mset: $('#txtSet').val(),
+          datemeeting: $('#txtDatemeeting').val()
+        }
+
+        var jsr = $.post(ws_url + 'controller/set_board_info.php', param, function(){})
+                   .always(function(resp){ console.log(resp); })
+
+        $('#docround').html($meeting)
+
+        $('.btnClosemodal').trigger('click')
+
+        if($report_period == '12'){
+          $('#docreportround').text('every 12 months')
+        }else if($report_period == '6'){
+          $('#docreportround').text('every 6 months')
+        }else if($report_period == '3'){
+          $('#docreportround').text('every 3 months')
+        }else if($report_period == '0'){
+          $('#ifreport').empty()
+        }
+
+        preload.hide()
+
+
+
+      }
+    </script>
+  </body>
+</html>

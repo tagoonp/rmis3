@@ -1,0 +1,356 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>:: RMIS :: สำหรับเจ้าหน้าที่ ::</title>
+
+    <!-- Data table CSS -->
+    <link href="../v4/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!--alerts CSS -->
+    <link href="../v3/vendors/bower_components/sweetalert/dist/sweetalert.css" rel="stylesheet" type="text/css">
+
+    <!-- Data table CSS -->
+    <link href="../v3/vendors/bower_components/datatables/media/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css"/>
+
+    <!-- Fontawesom -->
+    <link href="../v4/bower_components/fontawesome/web-fonts-with-css/css/fontawesome-all.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <!-- <link href="../v3/dist/css/style.css" rel="stylesheet" type="text/css">
+    <link href="../v3/fonts.css" rel="stylesheet" type="text/css">
+    <link href="../v3/style_v2.css" rel="stylesheet" type="text/css"> -->
+    <!-- Preload -->
+    <link rel="stylesheet" href="../v4/node_modules/preload.js/dist/css/preload.css">
+
+    <!-- Material Design Bootstrap -->
+    <link href="../v4/node_modules/mdbootstrap/css/mdb.min.css" rel="stylesheet">
+    <link href="../v4/node_modules/mdbootstrap/css/style.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="../v4/assets/css/style.css">
+    <!-- <link rel="stylesheet" href="../v4/assets/css/fonts.css"> -->
+    <!-- <link href="https://fonts.googleapis.com/css?family=Niramit:300,400,500" rel="stylesheet"> -->
+
+  </head>
+
+  <style media="screen">
+    body{
+      background: rgb(245, 245, 245);
+    }
+  </style>
+
+  <body>
+
+    <div class="leftmenu" style="background: rgb(60, 68, 74);">
+      <div></div>
+      <div class="pd-10 fz09">
+        <div class="pd-10 txt-light">
+          <div class="row">
+            <div class="col-10">
+              <img src="../images/rmis2-logo.png" alt="" class="" style="width: 100%;">
+            </div>
+            <div class="col-2 text-right dn" id="divCloseLeft">
+              <i class="fas fa-times fa-1x cp mt-5" onclick="slideMenu('close')"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="fz09" style="padding: 10px 20px 0px 20px;">
+        <a href="index.html" class="text-light"><i class="fas fa-home mr-10"></i>หน้าแรก</a>
+      </div>
+      <div class="pd-10 fz09">
+        <div class="pd-10 txt-light fz08">
+          โครงการวิจัยใหม่เพื่อการพิจารณา
+        </div>
+        <div class="pt-5 pb-5 pl-10 pr-10 txt-light cp mn mn-active" onclick="window.location = 'rs-init-new.html'">
+          <i class="fas fa-bars mr-10"></i>ตรวจสอบความถูกต้องเอกสาร
+        </div>
+        <div class="pt-5 pb-5 pl-10 pr-10 txt-light cp mn" onclick="window.location = 'rs-list-wait-process.html'">
+          <i class="fas fa-bars mr-10"></i>โครงการวิจัยรอดำเนินการ
+        </div>
+        <div class="pt-5 pb-5 pl-10 pr-10 txt-light cp mn" onclick="window.location = 'rs-list-wait-process-review.html'">
+          <i class="fas fa-bars mr-10"></i>โครงการรอสรุปข้อเสนอแนะ
+        </div>
+        <div class="pt-5 pb-5 pl-10 pr-10 txt-light cp mn" onclick="window.location = 'rs-list-status-22.html'">
+          <i class="fas fa-bars mr-10"></i>โครงการรอออกใบรับรอง
+        </div>
+        <div class="pt-5 pb-5 pl-10 pr-10 txt-light cm mn" onclick="window.location = 'rs-list-status-15.html'">
+          <i class="fas fa-bars mr-10"></i>โครงการรอสรุปจากบอร์ด
+        </div>
+        <div class="pt-5 pb-5 pl-10 pr-10 txt-light cp mn" onclick="window.location = 'report/report-1.html'">
+          <i class="fas fa-bars mr-10"></i>รายงานเพื่อนำเข้าการประชุม
+        </div>
+        <div class="pt-5 pb-5 pl-10 pr-10 txt-light cp mn"  onclick="window.location = 'rs-list.html'">
+          <i class="fas fa-bars mr-10"></i>โครงการวิจัยทั้งหมด
+        </div>
+      </div>
+
+      <div class="pd-10 fz09">
+        <div class="pd-10 txt-light fz08">
+          รายงาน
+        </div>
+        <div class="pt-5 pb-5 pl-10 pr-10 txt-light cp mn" onclick="window.location = 'report/report-table-1.html'">
+          <i class="fas fa-table mr-10"></i>รายงานรูปแบบตาราง
+        </div>
+        <div class="pt-5 pb-5 pl-10 pr-10 txt-light cp mn" onclick="window.location = 'report/report-2.html'">
+          <i class="fas fa-chart-pie mr-10"></i>สัดส่วนการประเมิน (1)
+        </div>
+        <div class="pt-5 pb-5 pl-10 pr-10 txt-light cp mn" onclick="window.location = 'report/report-3.html'">
+          <i class="fas fa-chart-pie mr-10"></i>สัดส่วนการประเมิน (2)
+        </div>
+        <div class="pt-5 pb-5 pl-10 pr-10 txt-light cp mn">
+          <i class="fas fa-download mr-10"></i>ส่งออกข้อมูล
+        </div>
+      </div>
+
+    </div>
+
+    <div class="main-panal pt-20">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-8">
+            <h4>โครงการวิจัยรอตรวจสอบความถูกต้องเอกสาร</h4>
+          </div>
+          <div class="col-sm-2 text-right pt-10 pr-5">
+            เลือกปี พ.ศ.
+          </div>
+          <div class="col-sm-2">
+            <select class="form-control" name="" id="txtYear">
+            </select>
+          </div>
+          <div class="col-sm-12 mt-10">
+            <div class="row">
+              <div class="col-9">
+                <input type="text" id="txtSearchkey" class="form-control mt-10" placeholder="กรอกรหัสลงทะเบียน / รหัสโครงการ / ชื่อโครงการ / ชื่อหัวหน้าโครงการเพื่อค้นหา ...">
+              </div>
+              <div class="col-3 text-right pr-10">
+                <button class="btn btn-success btn-square btnPrev"><i class="fas fa-chevron-left"></i></button>
+                <button class="btn btn-success btn-square btnNext"><i class="fas fa-chevron-right"></i></button>
+              </div>
+            </div>
+            <div class="card mt-5 bsd">
+              <div class="card-header text-white pl-10" style="background: rgb(93, 129, 127);">
+                รายการโครงการวิจัยทั้งหมด
+              </div>
+              <div class="card-body pd-0">
+                <table class="table table-hover display  pb-30 fz08" >
+                  <thead>
+                    <tr>
+                      <th style="width: 100px;">รหัสลงทะเบียน</th>
+                      <th>โครงการวิจัย</th>
+                      <th style="width: 100px;">ฉบับที่</th>
+                      <th style="width: 100px;">สถานะ</th>
+                    </tr>
+                  </thead>
+                  <tbody id="table_data_1">
+                    <tr>
+                      <td colspan="4" class="text-center text-danger">ไม่พบข้อมูลโครงการรอสรุปจากบอร์ด</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-12 pt-5 text-right pr-10">
+                <button class="btn btn-success btn-square btnPrev"><i class="fas fa-chevron-left"></i></button>
+                <button class="btn btn-success btn-square btnNext"><i class="fas fa-chevron-right"></i></button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Update 20181008 -->
+    <div class="leftmenu-tool" style="position: fixed; top: 10px; left: -10px; ">
+      <button class="btn btn-sm btn-square_ btn-success ml-0 text-right cp" style="width: 50px; font-size:20px;" onclick="slideMenu('open')"><i class="fas fa-chevron-right"></i></button>
+      <br>
+      <button class="btn btn-sm btn-square_ btn-secondary ml-0 mt-0 text-right cp" onclick="window.location = 'index.html'" style="width: 50px; font-size: 18px;"><i class="fas fa-home" style="margin-left: -5px;"></i></button>
+      <br>
+      <button class="btn btn-sm btn-square_ btn-secondary ml-0 mt-0 text-right cp" onclick="window.location = 'profile.html'" style="width: 50px; font-size: 18px;"><i class="fas fa-user" style="margin-left: -3px;"></i></button>
+      <br>
+      <button class="btn btn-sm btn-square_ btn-secondary ml-0 mt-0 text-right cp" style="width: 50px; font-size: 20px;" onclick="window.history.back()"><i class="fas fa-chevron-left" style="margin-left: -1px;"></i></button>
+    </div>
+
+    <!-- jQuery -->
+    <script src="../v3/vendors/bower_components/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="../v3/vendors/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+  	<!-- Slimscroll JavaScript -->
+  	<script src="../v3/dist/js/jquery.slimscroll.js"></script>
+  	<!-- Fancy Dropdown JS -->
+  	<script src="../v3/dist/js/dropdown-bootstrap-extended.js"></script>
+    <!-- Sweet-Alert  -->
+  	<script src="../v3/vendors/bower_components/sweetalert/dist/sweetalert.min.js"></script>
+    <!-- Data table JavaScript -->
+    <script src="../v3/vendors/bower_components/datatables/media/js/jquery.dataTables.min.js"></script>
+    <script src="../v3/dist/js/dataTables-data.js"></script>
+    <!-- Data table JavaScript -->
+    <!-- <script type="text/javascript" src="../v3/vendors/bower_components/ckeditor/ckeditor.js"></script> -->
+
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="../v4/node_modules/mdbootstrap/js/mdb.min.js"></script>
+
+  	<!-- Init JavaScript -->
+    <script src="../v4/config.js"></script>
+  	<script src="../v3/dist/js/init.js"></script>
+    <script src="../v3/main.js"></script>
+    <script src="../v4/ec-20190106.js"></script>
+
+    <script type="text/javascript" src="../v4/node_modules/preload.js/dist/js/preload.js"></script>
+
+    <script type="text/javascript">
+
+      var first_record = 0
+      var nrow_number = 10
+
+      $(document).ready(function(){
+        ec.init()
+
+        main.load_year();
+        
+        var dt = new Date();
+        var cyear = parseInt(dt.getFullYear()) - 1999;
+        $('#txtYear').val(cyear);
+
+        $w = $(document).width()
+        if($w <= 800){
+          $('.main-panal').css('padding-left', '0px')
+          $('.leftmenu').css('margin-left', '-250px')
+          $('.leftmenu-tool').show()
+        }
+
+        if(first_record == 0){
+          $('.btnPrev').attr('disabled', 'disable')
+        }
+
+        setTimeout(function(){
+          loadList();
+        }, 2000)
+      })
+
+      $(function(){
+        $('#txtYear').change(function(){
+          preload.show()
+          loadList();
+        })
+
+        $('#txtSearchkey').keyup(function(){
+          $('.btnPrev').attr('disabled', true)
+          first_record = 0
+          loadList();
+        })
+
+        $('.btnNext').click(function(){
+          first_record += nrow_number
+          loadList();
+          if(first_record == 0){
+            $('.btnPrev').attr('disabled', true)
+          }else{
+            $('.btnPrev').attr('disabled', false)
+          }
+        })
+
+        $('.btnPrev').click(function(){
+          first_record -= nrow_number
+          loadList();
+          if(first_record == 0){
+            $('.btnPrev').attr('disabled', true)
+          }else{
+            $('.btnPrev').attr('disabled', false)
+          }
+        })
+
+      })
+
+      function  loadList(){
+        var param = {
+          id_year: $('#txtYear').val(),
+          searchkey: $('#txtSearchkey').val(),
+          frow: first_record,
+          nrow: nrow_number
+        }
+
+
+
+        var param = $.post(ws_url + 'controller/staff/check-new-init.php', param, function(){},'json')
+                     .always(function(snap){
+                      if((snap!='') && (snap.length > 0)){
+
+                        $('#table_data_1').empty()
+
+                        if(snap.length < nrow_number){
+                          $('.btnNext').attr('disabled', true)
+                        }else{
+                          $('.btnNext').attr('disabled', false)
+                        }
+
+                        snap.forEach(function(i){
+                          $title = i.title_th
+                          if(i.title_th == '-'){
+                            $title = i.title_en
+                          }
+                          $row = '<tr>' +
+                                    '<td>' + i.id_rs + '</td>' +
+                                    '<td>' + $title +
+                                      '<div class="fz08 text-muted">' +
+                                        'หัวหน้าโครงการวิจัย : ' + i.fname + ' ' + i.lname + '<br>' +
+                                        'เลขา EC ผู้รับผิดชอบ : ' + i.fname + ' ' + i.lname + '<br>' +
+                                        'เลขาการประชุม : ' + i.fname + ' ' + i.lname + '<br>' +
+                                        'ลงทะเบียนเมื่อ : ' + main_app.convertThaidatetime(i.date_submit) +
+                                      '</div>' +
+                                      '<div class="fz08 text-muted">' +
+                                        '<button class="btn btn-success btn-sm btn-icon-anim btn-square ml-0" style="box-shadow: none;" data-toggle="tooltip" data-placement="top" title="ดูข้อมูลโครงการและดำเนินการต่อ" onclick="viewRsInfo_15(\'' + i.id_rs +'\', \'' + i.id_status_research + '\')"><i class="fa fa-search"></i></button>' +
+                                        '<button class="btn btn-danger btn-sm btn-icon-anim btn-square ml-0" style="box-shadow: none;" data-toggle="tooltip" data-placement="top" title="เปลี่ยนเลขา EC ผู้รับผิดชอบ" onclick="set_reponse_ec(\'' + i.id_rs +'\')"><i class="fa fa-trash"></i></button>' +
+                                      '</div>' +
+                                    '</td>' +
+                                    '<td>' + i.ep + '</td>' +
+                                    '<td>' + i.status_name + '</td>' +
+                                 '</tr>'
+                          $('#table_data_1').append($row)
+
+                        })
+                        preload.hide()
+                        setTimeout(function(){ $('[data-toggle="tooltip"]').tooltip()}, 3000)
+                      }else{
+                        $('#table_data_1').empty()
+                        $('#table_data_1').append('<tr><td colspan="4">ไม่พบรายการ</td></tr>')
+                        preload.hide()
+                      }
+                     })
+      }
+
+      function viewRsInfo_15(rid, id_status){
+        var param = {
+          id_rs: rid,
+          id: current_user
+        }
+        var jxhr = $.post(ws_url + '/controller/staff/check-rs-session.php', param, function(){}, 'json')
+              .always(function(snap){
+                if((snap != '') && (snap.length > 0)){
+                  snap.forEach(function(i){
+                    window.localStorage.setItem('current_selected_project_session', i.session_id)
+                    window.localStorage.setItem('current_selected_project_id', i.id_rs)
+                    window.localStorage.setItem('current_selected_info_page', 'rs-status-' + id_status + '.html')
+                    window.location = 'rs-status-' + id_status + '.html'
+                  })
+                }else{
+                  swal("Error!", "error")
+                }
+              }, 'json')
+      }
+
+      function slideMenu(state){
+        if(state == 'open'){
+          $( ".leftmenu" ).animate({ "left": "+=250px" }, "slow" );
+          $('.main-panal').animate({ "padding-left": "+=250px" }, "slow" );
+        }else{
+          $( ".leftmenu" ).animate({ "left": "-=250px" }, "slow" );
+          $('.main-panal').animate({ "padding-left": "-=250px" }, "slow" );
+        }
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,12 @@
+.dn{
+  display: none;
+}
+
+.tb-style-1{
+  vertical-align: top !important;
+  padding-top: 5px !important;
+  padding-bottom: 5px !important;
+}
+
+.bsdn{ box-shadow: none !important; }
+.fs09{ font-size: 0.9em;}

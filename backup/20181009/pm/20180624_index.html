@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8" />
+  	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  	<title></title>
+
+    <!-- Custom CSS -->
+    <link href="../v3/dist/css/style.css" rel="stylesheet" type="text/css">
+    <link href="../v3/fonts.css" rel="stylesheet" type="text/css">
+    <link href="../v3/style_v2.css" rel="stylesheet" type="text/css">
+
+    <!--alerts CSS -->
+    <link href="../v3/vendors/bower_components/sweetalert/dist/sweetalert.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+
+    <div class="header bsd pd-15 pt-20 pb-20" style="background: rgb(77, 90, 96); border: solid; border-width: 0px 0px 0px 0px; border-color: rgb(1, 179, 93);">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-xs-3 pt-0">
+              <a href="./"><h1 class="md-0 pd-0 txt-light f500" style="line-height: 22px; font-size: 45px;">RMIS</h1></a>
+          </div>
+          <div class="col-xs-9 text-right txt-light" style="padding-top: 0px;">
+            สวัสดี, คุณ<span class="userFullname">ฐากูร ปราบปรี</span> <i class="fa fa-bars fs08 ml-10"></i>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="header pd-10 pl-5 pr-5 pt-20 fs08" style="background: ; border: solid; border-width: 0px 0px 0px 0px; border-color: rgb(1, 179, 93);">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-xs-6 text-left txt-gray">
+            <i class="fa fa-home"></i> หน้าแรก
+          </div>
+          <div class="col-xs-6 text-right text-muted">
+            <a href="" class=" text-muted mr-10 ml-10"><i class="zmdi zmdi-info"></i> คำแนะนำ </a>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-12">
+            <hr class="mb-10">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- sample modal content -->
+    <div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header" style="background: #469408;">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h5 class="modal-title txt-light f500" id="myModalLabel">ข้อตกลงและเงื่อนไข</h5>
+          </div>
+          <div class="modal-body" style="font-size: 0.9em;">
+
+            <div class="row">
+              <div class="col-sm-12 text-center pt-10 pb-20">
+                <i class="fa fa-warning fa-4x" style="color: rgb(252, 212, 0)"></i>
+              </div>
+              <div class="col-sm-12">
+                <ol class="pl-20">
+                  <li>การลงทะเบียนส่วนนี้ หมายถึง <span class="txt-danger f500" style="font-size: 1.2em;">การลงทะเบียนงานวิจัยที่ยังไม่ผ่านการรับรอง</span></li>
+                  <li>หากลงทะเบียนโครงการค้างอยู่ ให้ปิดกล่องข้อความนี้และเลือกปุ่ม "แบบเสนอโครงการฉบับร่าง"</li>
+                  <li>ผู้ลงข้อมูล <span class="txt-danger f500" style="font-size: 1.2em;">ต้องเป็นหัวหน้าโครงการเท่านั้น</span> (ถ้ามีผู้ลงข้อมูลแทน ต้องใช้ username และ password ของหัวหน้าโครงการเท่านั้น)</li>
+                </ol>
+              </div>
+            </div>
+
+            <div class="text-left pt-10">
+              ตอบ "ตกลง" เพื่อยอมรับเงื่อนไขและทำการลงทะเบียนงานวิจัยใหม่ หรือ "ยกเลิก" เพื่อปิดหน้าต่างนี้
+            </div>
+
+          </div>
+          <div class="modal-footer" style="background: rgb(237, 237, 237);">
+            <button type="button" class="btn btn-success btn-block_" onclick="window.location = 'research_register.html'">ตกลง</button>
+            <button type="button" class="btn btn-default btn-block_" class="close" data-dismiss="modal">ยกเลิก</button>
+          </div>
+        </div>
+        <!-- /.modal-content -->
+      </div>
+      <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+
+    <div class="group-1 pb-50">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-sm-3 pt-10">
+            <button class="btn btn-success btn-block mb-10" data-toggle="modal" data-target="#myModal"><i class="fa fa-pencil"></i> ลงทะเบียนโครงการใหม่</button>
+            <ul class="list-group fz09 " style="background: transparent !important; border-radius: 0px;">
+              <li class="list-group-item txt-gray font-bold d-flex pl-10 pb-5 justify-content-between text-left"  style="  border: none !important; cursor: pointer; background: transparent;">
+                <span class="fs08 f500" style="line-height: 0.5em;"><i class="fas fa-toolbox mr-10"></i> โครงการวิจัยทั้งหมดของท่าน</span>
+                <span class="badge badge-mute badge-pill pt-5 numMSC">0</span>
+              </li>
+              <li class="list-group-item txt-gray font-bold d-flex pl-10 pb-5 justify-content-between text-left"  style="  border: none !important; cursor: pointer; background: transparent;">
+                <span class="fs08 f500" style="line-height: 0.5em;"><i class="fas fa-chalkboard-teacher mr-5"></i> โครงการที่กำลังดำเนินการวิจัย</span>
+                <span class="badge badge-mute badge-pill pt-5 numPHD">0</span>
+              </li>
+              <li class="list-group-item txt-gray font-bold d-flex pl-10 justify-content-between text-left"  style="  border: none !important; cursor: pointer; background: transparent;">
+                <span class="fs08 f500" style="line-height: 0.5em;"><i class="fas fa-chalkboard-teacher mr-5"></i> โครงการวิจัยเสร็จสิ้นแล้ว</span>
+                <span class="badge badge-mute badge-pill pt-5 numSC">0</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- .col-sm-3 -->
+          <div class="col-sm-9">
+            <h6 class="f500 mb-5">เสนอโครงการวิจัย (Initial Review)</h6>
+            <div class="pd-20" style="background: #fff; border: solid; border-width: 0px 0px 5px 0px; border-color: rgb(1, 179, 93);">
+              <div class="row">
+                <div class="col-sm-6">
+                  <button class="btn btn-default btn-block btn-lable-wrap left-label text-left mb-5" data-toggle="modal" data-target="#myModal">
+                    <span class="btn-label"><i class="fa fa-plus"></i> </span>
+                    <span class="btn-text"><div style="width: 100%; position: absoluted; margin: -27px 0px -25px 25px; padding: 0px; line-height: 22px;">ลงทะเบียนโครงการวิจัยใหม่</div></span>
+                  </button>
+                </div>
+                <div class="col-sm-6">
+                  <button class="btn btn-default btn-block btn-lable-wrap left-label text-left mb-5" onclick="window.location = 'research_draft_list.html'">
+                    <span class="btn-label"><i class="zmdi zmdi-format-list-numbered"></i> </span>
+                    <span class="btn-text"><div style="width: 100%; position: absoluted; margin: -27px 0px -25px 25px; padding: 0px; line-height: 22px;">แบบเสนอโครงการฉบับร่าง/ยังไม่ยืนยันส่ง <span class="noDraftNew"></span></div></span>
+                  </button>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-6">
+                  <button class="btn btn-default btn-block btn-lable-wrap left-label pt-5 pb-5 mb-5 text-left" id="btnN4" onclick="window.location = 'research_edit_list.html'">
+                    <span class="btn-label" style="height: 63px !important;"><i class="zmdi zmdi-format-list-numbered"></i> </span>
+                    <span class="btn-text"><div style="width: 100%; position: absoluted; margin: -27px 0px -25px 25px; padding: 0px; line-height: 22px;">แบบเสนอโครงการที่รอนักวิจัยแก้ไข<br>ในขั้นตอนการตรวจสอบความถูกต้องเอกสาร <span class="noEditNew"></span></div></span>
+                  </button>
+                </div>
+                <div class="col-sm-6">
+                  <button class="btn btn-default btn-block btn-lable-wrap left-label pt-5 pb-0 mb-5 text-left" id="btnN5" onclick="window.location = 'research_edit2_list.html'">
+                    <span class="btn-label" style="height: 63px !important;"><i class="zmdi zmdi-format-list-numbered"></i> </span>
+                    <span class="btn-text"><div style="width: 100%; position: absoluted; margin: -27px 0px -20px 25px; padding: 0px; line-height: 22px;">แบบเสนอโครงการที่รอนักวิจัยแก้ไข<br>ในขั้นตอนพิจารณาโครงการ <span class="noEditNew2"></span></div></span>
+                  </button>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-6">
+                  <button class="btn btn-default btn-block btn-lable-wrap left-label text-left" onclick="window.location = 'rs_list.html'">
+                    <span class="btn-label"><i class="zmdi zmdi-format-list-numbered"></i> </span>
+                    <span class="btn-text"><div style="width: 100%; position: absoluted; margin: -27px 0px -25px 25px; padding: 0px; line-height: 22px;">รายการโครงการวิจัยทั้งหมดของท่าน <span class="noAllNew"></span></div></span>
+                  </button>
+                </div>
+                <div class="col-sm-6">
+
+                </div>
+              </div>
+            </div>
+            <!-- .g1 -->
+
+            <h6 class="f500 mb-5 mt-20">โครงการวิจัยที่กำลังดำเนินการ (Continuing Review)</h6>
+            <div class="pd-20" style="background: #fff; border: solid; border-width: 0px 0px 5px 0px; border-color: rgb(1, 179, 93);">
+              <div class="row">
+                <div class="col-sm-6">
+                  <button class="btn btn-default btn-block btn-lable-wrap left-label text-left mb-5" data-toggle="modal" data-target="#myModal">
+                    <span class="btn-label"><i class="fa fa-edit"></i> </span>
+                    <span class="btn-text"><div style="width: 100%; position: absoluted; margin: -27px 0px -25px 25px; padding: 0px; line-height: 22px;">รายงานความก้าวหน้า/ต่ออายุใบรับรอง</div></span>
+                  </button>
+                </div>
+                <div class="col-sm-6">
+                  <button class="btn btn-default btn-block btn-lable-wrap left-label text-left mb-5" onclick="window.location = 'research_draft_list.html'">
+                    <span class="btn-label"><i class="fa fa-edit"></i> </span>
+                    <span class="btn-text"><div style="width: 100%; position: absoluted; margin: -27px 0px -25px 25px; padding: 0px; line-height: 22px;">รายงานความก้าวหน้าต่อกองทุนวิจัยคณะ</div></span>
+                  </button>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-6">
+                  <button class="btn btn-default btn-block btn-lable-wrap left-label text-left mb-5" onclick="window.location = 'research_draft_list.html'">
+                    <span class="btn-label"><i class="fa fa-edit"></i> </span>
+                    <span class="btn-text"><div style="width: 100%; position: absoluted; margin: -27px 0px -25px 25px; padding: 0px; line-height: 22px;">ขอปรับปรุงโครงการวิจัย</div></span>
+                  </button>
+                </div>
+                <div class="col-sm-6">
+                  <button class="btn btn-default btn-block btn-lable-wrap left-label text-left mb-5" onclick="window.location = 'research_draft_list.html'">
+                    <span class="btn-label"><i class="fa fa-edit"></i> </span>
+                    <span class="btn-text"><div style="width: 100%; position: absoluted; margin: -27px 0px -25px 25px; padding: 0px; line-height: 22px;">รายงานเหตุการณ์ไม่พึงประสงค์</div></span>
+                  </button>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-6">
+                  <button class="btn btn-default btn-block btn-lable-wrap left-label text-left mb-5" onclick="window.location = 'research_draft_list.html'">
+                    <span class="btn-label"><i class="fa fa-edit"></i> </span>
+                    <span class="btn-text"><div style="width: 100%; position: absoluted; margin: -27px 0px -25px 25px; padding: 0px; line-height: 22px;">รายงานการดำเนินการที่เบี่ยงเบน</div></span>
+                  </button>
+                </div>
+                <div class="col-sm-6">
+                  <button class="btn btn-default btn-block btn-lable-wrap left-label text-left mb-5" onclick="window.location = 'research_draft_list.html'">
+                    <span class="btn-label"><i class="fa fa-edit"></i> </span>
+                    <span class="btn-text"><div style="width: 100%; position: absoluted; margin: -27px 0px -25px 25px; padding: 0px; line-height: 22px;">รายงานยุติ/สิ้นสุดโครงการ</div></span>
+                  </button>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-6">
+                  <button class="btn btn-default btn-block btn-lable-wrap left-label text-left mb-5" onclick="window.location = 'research_draft_list.html'">
+                    <span class="btn-label"><i class="zmdi zmdi-format-list-numbered"></i> </span>
+                    <span class="btn-text"><div style="width: 100%; position: absoluted; margin: -27px 0px -25px 25px; padding: 0px; line-height: 22px;">รายงานที่ต้องแก้ไข/รายงานเพิ่มเติม</div></span>
+                  </button>
+                </div>
+                <div class="col-sm-6">
+                  <button class="btn btn-default btn-block btn-lable-wrap left-label text-left mb-5" onclick="window.location = 'research_draft_list.html'">
+                    <span class="btn-label"><i class="zmdi zmdi-format-list-numbered"></i> </span>
+                    <span class="btn-text"><div style="width: 100%; position: absoluted; margin: -27px 0px -25px 25px; padding: 0px; line-height: 22px;">รายงานทั้งหมด</div></span>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <!-- .g2 -->
+
+            <h6 class="f500 mb-5 mt-20">ลงทะเบียนโครงการวิจัยย้อนหลัง</h6>
+            <div class="pd-20" style="background: #fff; border: solid; border-width: 0px 0px 5px 0px; border-color: rgb(1, 179, 93);">
+              <div class="row">
+                <div class="col-sm-6">
+                  <button class="btn btn-default btn-block btn-lable-wrap left-label text-left mb-5" data-toggle="modal" data-target="#myModal">
+                    <span class="btn-label"><i class="fa fa-plus"></i> </span>
+                    <span class="btn-text"><div style="width: 100%; position: absoluted; margin: -27px 0px -25px 25px; padding: 0px; line-height: 22px;">ลงทะเบียนโครงการวิจัยย้อนหลัง</div></span>
+                  </button>
+                </div>
+                <div class="col-sm-6">
+                  <button class="btn btn-default btn-block btn-lable-wrap left-label text-left mb-5" onclick="window.location = 'research_draft_list.html'">
+                    <span class="btn-label"><i class="zmdi zmdi-format-list-numbered"></i> </span>
+                    <span class="btn-text"><div style="width: 100%; position: absoluted; margin: -27px 0px -25px 25px; padding: 0px; line-height: 22px;">โครงการย้อนหลังฉบับร่าง/ยังไม่ยืนยันส่ง</div></span>
+                  </button>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-6">
+                  <button class="btn btn-default btn-block btn-lable-wrap left-label text-left" onclick="window.location = 'rs_list.html'">
+                    <span class="btn-label"><i class="zmdi zmdi-format-list-numbered"></i> </span>
+                    <span class="btn-text"><div style="width: 100%; position: absoluted; margin: -27px 0px -25px 25px; padding: 0px; line-height: 22px;">รายการโครงการวิจัยย้อนหลังทั้งหมด <span class="noAllNew"></span></div></span>
+                  </button>
+                </div>
+                <div class="col-sm-6">
+
+                </div>
+              </div>
+            </div>
+            <!-- .g3 -->
+
+            <h6 class="f500 mb-5 mt-20">ประวัติหัวหน้าโครงการวิจัย (Project investigator information)</h6>
+            <div class="pd-20" style="background: #fff; border: solid; border-width: 0px 0px 5px 0px; border-color: rgb(1, 179, 93);">
+              <div class="row">
+                <div class="col-sm-6">
+                  <button class="btn btn-default btn-block btn-lable-wrap left-label text-left mb-5" data-toggle="modal" data-target="#myModal">
+                    <span class="btn-label"><i class="fa fa-user"></i> </span>
+                    <span class="btn-text"><div style="width: 100%; position: absoluted; margin: -27px 0px -25px 25px; padding: 0px; line-height: 22px;">ข้อมูลส่วนตัว</div></span>
+                  </button>
+                </div>
+                <div class="col-sm-6">
+                  <button class="btn btn-default btn-block btn-lable-wrap left-label text-left mb-5" onclick="window.location = 'research_draft_list.html'">
+                    <span class="btn-label"><i class="zmdi zmdi-format-list-numbered"></i> </span>
+                    <span class="btn-text"><div style="width: 100%; position: absoluted; margin: -27px 0px -25px 25px; padding: 0px; line-height: 22px;">Academic preformance & GCP</div></span>
+                  </button>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-6">
+                  <button class="btn btn-default btn-block btn-lable-wrap left-label text-left" onclick="window.location = 'rs_list.html'">
+                    <span class="btn-label"><i class="zmdi zmdi-format-list-numbered"></i> </span>
+                    <span class="btn-text"><div style="width: 100%; position: absoluted; margin: -27px 0px -25px 25px; padding: 0px; line-height: 22px;">Publications</div></span>
+                  </button>
+                </div>
+                <div class="col-sm-6">
+
+                </div>
+              </div>
+            </div>
+            <!-- .g4 -->
+
+            <h6 class="f500 mb-5 mt-20">อื่น ๆ (Other)</h6>
+            <div class="pd-20" style="background: #fff; border: solid; border-width: 0px 0px 5px 0px; border-color: rgb(1, 179, 93);">
+              <div class="row">
+                <div class="col-sm-6">
+                  <button class="btn btn-default btn-block btn-lable-wrap left-label text-left mb-5" data-toggle="modal" data-target="#myModal">
+                    <span class="btn-label"><i class="fa fa-book"></i> </span>
+                    <span class="btn-text"><div style="width: 100%; position: absoluted; margin: -27px 0px -25px 25px; padding: 0px; line-height: 22px;">คู่มือการใช้งาน</div></span>
+                  </button>
+                </div>
+                <div class="col-sm-6">
+                </div>
+              </div>
+            </div>
+            <!-- .g4 -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- jQuery -->
+    <script src="../v3/vendors/bower_components/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="../v3/vendors/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- Slimscroll JavaScript -->
+  	<script src="../v3/dist/js/jquery.slimscroll.js"></script>
+    <!-- Data table JavaScript -->
+  	<script src="../v3/vendors/bower_components/datatables/media/js/jquery.dataTables.min.js"></script>
+  	<script src="../v3/dist/js/dataTables-data.js"></script>
+    <!-- Fancy Dropdown JS -->
+  	<script src="../v3/dist/js/dropdown-bootstrap-extended.js"></script>
+    <!-- Sweet-Alert  -->
+  	<script src="../v3/vendors/bower_components/sweetalert/dist/sweetalert.min.js"></script>
+  	<!-- Init JavaScript -->
+  	<script src="../v3/dist/js/init.js"></script>
+    <script src="../v3/main.js"></script>
+    <script src="../v3/pi.js"></script>
+
+    <script type="text/javascript">
+
+      var current_user = window.localStorage.getItem('rmis_current_user')
+      var current_role = window.localStorage.getItem('rmis_current_role')
+
+      $(document).ready(function(){
+
+        pi.init()
+
+        console.log(current_user);
+        console.log(current_role);
+
+        window.localStorage.removeItem('rmis_current_rs_session_id')
+        window.localStorage.removeItem('current_selected_project_session');
+
+        console.log(current_user);
+
+        swal({ title: "สำคัญ",
+               text: "สำนักงานจะสื่อสารทางอีเมล์ที่ท่านให้ไว้ บางครั้งอาจอยู่ใน Junk box ขอให้ตรวจสอบ Junk box ของท่าน หรือเข้าไปในระบบ RMIS เป็นระยะเพื่อตรวจสอบสถานะ",
+               type: "warning",
+               showCancelButton: false,
+               confirmButtonColor: "#DD6B55",
+               confirmButtonText: "รับทราบ",
+               closeOnConfirm: true },
+               function(){});
+
+        setTimeout(function(){
+          main.load_notify_pm();
+          pi.checkNotConfNew();
+          pi.checkDraftNew();
+          pi.checkEditNet();
+          pi.checkEditNet2();
+          pi.load_all_progress_list_edit()
+        }, 10)
+      })
+    </script>
+
+  </body>
+</html>

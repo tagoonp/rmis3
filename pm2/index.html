@@ -1,0 +1,461 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>:: RMIS :: สำหรับเจ้าหน้าที่ ::</title>
+
+    <!-- Data table CSS -->
+    <!-- <link href="../v4/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"> -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" rel="stylesheet">
+
+    <!--alerts CSS -->
+    <link href="../v3/vendors/bower_components/sweetalert/dist/sweetalert.css" rel="stylesheet" type="text/css">
+
+    <!-- Data table CSS -->
+    <link href="../v3/vendors/bower_components/datatables/media/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css"/>
+
+    <!-- Fontawesom -->
+    <link href="../v4/bower_components/fontawesome/web-fonts-with-css/css/fontawesome-all.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="../v4/node_modules/preload.js/dist/css/preload.css">
+
+    <link rel="stylesheet" href="../v4/assets/css/style.css">
+
+  </head>
+
+  <style media="screen">
+    body{
+      background: rgb(245, 245, 245);
+    }
+  </style>
+
+  <body>
+
+    <!-- <div class="leftmenu" style="background: rgb(60, 68, 74);">
+      <div></div>
+      <div class="pd-10 fz09">
+        <div class="pd-10 txt-light">
+          <div class="row">
+            <div class="col-10">
+              <img src="../images/rmis2-logo.png" alt="" class="" style="width: 100%;">
+            </div>
+            <div class="col-2 text-right dn" id="divCloseLeft">
+              <i class="fas fa-times fa-1x cp mt-5" onclick="slideMenu('close')"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="pd-10 fz09">
+        <div class="pt-5 pb-5 pl-10 pr-10 txt-light cp mn" onclick="gotoInfoPage()">
+          <div class="fz09">สวัสดี</div>
+          <a href="profile.html" class="text-white">คุณ<span class="userFullname text-white">NA</span> (PI)</a>
+        </div>
+        <div class="pt-5 pb-5 pl-10 pr-10 txt-light cp mn mt-10" onclick="window.location = 'profile.html'">
+          <i class="fas fa-chevron-right mr-10"></i>ข้อมูลส่วนตัว
+        </div>
+        <div class="pt-5 pb-5 pl-10 pr-10 txt-light cp mn" onclick="window.location = 'changepassword.html'">
+          <i class="fas fa-chevron-right mr-10"></i>เปลี่ยนรหัสผ่าน
+        </div>
+        <div class="pt-5 pb-5 pl-10 pr-10 txt-light cp mn" onclick="main.signout()">
+          <i class="fas fa-chevron-right mr-10"></i>ออกจากระบบ
+        </div>
+      </div>
+      <div class="pd-10 fz09">
+        <div class="pd-10 txt-light fz08">
+          การดำเนินการ
+        </div>
+        <div class="pt-5 pb-5 pl-10 pr-10 txt-light cp mn" onclick="window.location = 'index.html'">
+          <i class="fas fa-chevron-right mr-10"></i>หน้าแรก
+        </div>
+        <div class="pd-10 txt-light fz08">
+          ข้อมูลโครงการวิจัย
+        </div>
+        <div class="pt-5 pb-5 pl-10 pr-10 txt-light cp mn  mn-active" onclick="gotoInfoPage()">
+          <i class="fas fa-chevron-right mr-10"></i>ข้อมูลโครงการวิจัย
+        </div>
+        <div class="pt-5 pb-5 pl-10 pr-10 txt-light cp mn" onclick="window.location = 'rs2-synopsys.html'">
+          <i class="fas fa-chevron-right mr-10"></i>Synopsis
+        </div>
+        <div class="pt-5 pb-5 pl-10 pr-10 txt-light cp mn" onclick="window.location = 'rs2-file-attached.html'">
+          <i class="fas fa-chevron-right mr-10"></i>เอกสารแนบ
+        </div>
+        <div class="pt-5 pb-5 pl-10 pr-10 txt-light cp mn bg-danger" onclick="window.location = 'rs2-operation.html'" >
+          <i class="fas fa-wrench mr-10"></i>ดำเนินการ
+        </div>
+        <div class="pt-5 pb-5 pl-10 pr-10 txt-light cp mn" onclick="window.location = 'rs2-interview-info.html'">
+          <i class="fas fa-chevron-right mr-10"></i>ข้อมูลการประเมิน/ส่งประเมิน
+        </div>
+        <div class="pt-5 pb-5 pl-10 pr-10 txt-light cp mn" onclick="window.location = 'rs2-question.html'">
+          <i class="fas fa-chevron-right mr-10"></i>ข้อคำถาม/ข้อเสนอแนะ
+        </div>
+        <div class="pt-5 pb-5 pl-10 pr-10 txt-light cp mn"  onclick="window.location = 'rs2-board-agender.html'">
+          <i class="fas fa-chevron-right mr-10"></i>วาระการเข้าที่ประชุม
+        </div>
+        <div class="pt-5 pb-5 pl-10 pr-10 txt-light cp mn"  onclick="window.location = 'rs2-approve-docs.html'">
+          <i class="fas fa-chevron-right mr-10"></i>ใบรับรอง/รับทราบ
+        </div>
+        <div class="pt-5 pb-5 pl-10 pr-10 txt-light cp mn"  onclick="window.location = 'rs2-activity-log.html'">
+          <i class="fas fa-chevron-right mr-10"></i>Activity log
+        </div>
+        <div class="pt-5 pb-5 pl-10 pr-10 txt-light cp mn"  onclick="window.location = 'rs2-timeline.html'">
+          <i class="fas fa-chevron-right mr-10"></i>Timeline
+        </div>
+        <div class="pt-5 pb-5 pl-10 pr-10 txt-light cp mn"  onclick="window.location = 'rs2-messaging.html'">
+          <i class="fas fa-chevron-right mr-10"></i>Messaging
+        </div>
+      </div>
+
+    </div> -->
+
+    <div style="background: rgb(97, 97, 97);" class="pd-10">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-2 col-3">
+            <img src="../images/rmis2-logo.png" alt="" class="" style="width: 100%;">
+          </div>
+          <div class="col-md-10 col-9 text-right pt-5 ">
+            <div class="text-white">สวัสดี, <a href="profile.html" class="text-white">คุณ<span class="userFullname text-white">NA</span> (PI)</a></div>
+            <div class="pt-10 fz08 text-white">
+              <span class="text-white mr-5 cp">ข้อมูลส่วนตัว</span> |
+              <span class="text-white ml-5 mr-5 cp">เปลี่ยนรหัสผ่าน</span> |
+              <span class="text-white ml-5 cp">ออกจากระบบ</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="main-panal_ pt-20 mb-30">
+
+      <div class="container">
+
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="row">
+              <div class="col-sm-12">
+                <h4>หน้าแรก</h4>
+              </div>
+              <div class="col-sm-12">
+                <div class="alert alert-info alert-dismissable txt-dark" style="background: rgba(40, 170, 80, 0.20) !important;">
+                  <button type="button" class="close txt-dark" data-dismiss="alert" aria-hidden="true">&times;</button>
+                  <i class="fa fa-info pr-15 pull-left txt-dark" style="color: rgb(11, 117, 53) !important;"></i><span class="pull-left" style="color: rgb(11, 117, 53);">ท่านสามารถตรวสอบสถานะโครงการวิจัยของท่านได้ที่ปุ่ม "ตรวจสอบสถานะโครงการวิจัยทั้งหมดของท่าน" หรือ <a href="rs_list.html" style="font-weight: bold;" class="text-danger">คลิกที่นี่</a></span>
+                  <div class="clearfix"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="pb-10">
+              เสนอโครงการวิจัย<br><small>(Initial Review)</small>
+            </div>
+            <div>
+              <button class="btn btn-block btn-primary text-left cp pt-10 pb-15" onclick="showModal('projectRegister')">
+                <div class="row">
+                  <div class="col-1"><i class="fas fa-plus pr-10" style="margin-top: 6px;"></i></div>
+                  <div class="col-11 pl-5" style="padding-top: 3px;">ลงทะเบียนโครงการวิจัยใหม่</div>
+                </div>
+              </button>
+              <button class="btn btn-block btn-primary text-left cp pt-10 pb-15">
+                <div class="row">
+                  <div class="col-1"><i class="fas fa-bars pr-10" style="margin-top: 6px;"></i></div>
+                  <div class="col-11 pl-5" style="padding-top: 3px;">แบบเสนอโครงการฉบับร่าง/ยังไม่ยืนยันส่ง</div>
+                </div>
+              </button>
+              <button class="btn btn-block btn-primary text-left cp pt-10 pb-15">
+                <div class="row">
+                  <div class="col-1"><i class="fas fa-wrench pr-10" style="margin-top: 6px;"></i></div>
+                  <div class="col-11 pl-5" style="padding-top: 3px;">แบบเสนอที่รอนักวิจัยแก้ไข<br>ในขั้นตอนการตรวจสอบความถูกต้องเอกสาร</div>
+                </div>
+              </button>
+              <button class="btn btn-block btn-primary text-left cp pt-10 pb-15" id="btnN5" onclick="window.location = 'research_edit2_list.html'">
+                <div class="row">
+                  <div class="col-1"><i class="fas fa-wrench pr-10" style="margin-top: 6px;"></i></div>
+                  <div class="col-11 pl-5" style="padding-top: 3px;">แบบเสนอที่รอนักวิจัยแก้ไข<br>ในขั้นตอนการพิจารณาโครงการ <span class="noEditNew2"></span></div>
+                </div>
+              </button>
+              <button class="btn btn-block btn-primary text-left cp pt-10 pb-15">
+                <div class="row">
+                  <div class="col-1"><i class="fas fa-bars pr-10" style="margin-top: 6px;"></i></div>
+                  <div class="col-11 pl-5" style="padding-top: 3px;">ตรวจสอบสถานะโครงการวิจัยทั้งหมดของท่าน</div>
+                </div>
+              </button>
+            </div>
+          </div>
+
+          <div class="col-sm-6">
+            <div class="pb-10">
+              โครงการวิจัยที่กำลังดำเนินการ<br><small>(Continuing Review)</small>
+            </div>
+            <div>
+              <button class="btn btn-block btn-primary text-left cp pt-10 pb-15">
+                <div class="row">
+                  <div class="col-1"><i class="fas fa-wrench pr-10" style="margin-top: 6px;"></i></div>
+                  <div class="col-11 pl-5" style="padding-top: 3px;">รายงานความก้าวหน้า/ต่ออายุใบรับรอง</div>
+                </div>
+              </button>
+              <button class="btn btn-block btn-primary text-left cp pt-10 pb-15">
+                <div class="row">
+                  <div class="col-1"><i class="fas fa-wrench pr-10" style="margin-top: 6px;"></i></div>
+                  <div class="col-11 pl-5" style="padding-top: 3px;">รายงานความก้าวหน้าต่อกองทุนวิจัยคณะแพทย์ ฯ</div>
+                </div>
+              </button>
+              <button class="btn btn-block btn-primary text-left cp pt-10 pb-15">
+                <div class="row">
+                  <div class="col-1"><i class="fas fa-wrench pr-10" style="margin-top: 6px;"></i></div>
+                  <div class="col-11 pl-5" style="padding-top: 3px;">ขอปรับปรุงโครงการวิจัย</div>
+                </div>
+              </button>
+              <button class="btn btn-block btn-primary text-left cp pt-10 pb-15">
+                <div class="row">
+                  <div class="col-1"><i class="fas fa-wrench pr-10" style="margin-top: 6px;"></i></div>
+                  <div class="col-11 pl-5" style="padding-top: 3px;">รายงานเหตุการณ์ไม่พึงประสงค์</div>
+                </div>
+              </button>
+              <button class="btn btn-block btn-primary text-left cp pt-10 pb-15">
+                <div class="row">
+                  <div class="col-1"><i class="fas fa-wrench pr-10" style="margin-top: 6px;"></i></div>
+                  <div class="col-11 pl-5" style="padding-top: 3px;">รายงานการดำเนินการที่เบี่ยงเบน</div>
+                </div>
+              </button>
+              <button class="btn btn-block btn-primary text-left cp pt-10 pb-15">
+                <div class="row">
+                  <div class="col-1"><i class="fas fa-wrench pr-10" style="margin-top: 6px;"></i></div>
+                  <div class="col-11 pl-5" style="padding-top: 3px;">รายงานสิ้นสุด/ยุติโครงการ</div>
+                </div>
+              </button>
+              <button class="btn btn-block btn-primary text-left cp pt-10 pb-15">
+                <div class="row">
+                  <div class="col-1"><i class="fas fa-bars pr-10" style="margin-top: 6px;"></i></div>
+                  <div class="col-11 pl-5" style="padding-top: 3px;">ตรวจสอบสถานะโครงการวิจัยทั้งหมดของท่าน</div>
+                </div>
+              </button>
+            </div>
+          </div>
+          <!-- .col-sm-6 -->
+        </div>
+      </div>
+    </div>
+
+    <!-- jQuery -->
+    <!-- <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script> -->
+    <script src="../v3/vendors/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script>
+  	<script src="../v3/dist/js/jquery.slimscroll.js"></script>
+    <!-- Sweet-Alert  -->
+  	<script src="../v3/vendors/bower_components/sweetalert/dist/sweetalert.min.js"></script>
+    <!-- Data table JavaScript -->
+
+  	<!-- Init JavaScript -->
+    <script src="../v4/config.js"></script>
+  	<script src="../v3/dist/js/init.js"></script>
+    <script src="../v3/main.js"></script>
+    <script src="../v4/pi.js"></script>
+
+    <script type="text/javascript" src="../v4/node_modules/preload.js/dist/js/preload.js"></script>
+
+    <script type="text/javascript">
+
+    var current_rs_id = window.localStorage.getItem('current_selected_project_id')
+    var current_rs = window.localStorage.getItem('current_selected_project_session')
+    var current_pi_ratio = 100
+    var posible_co_pi_ratio = 99
+    var advisor = false
+    var lang = 'th'
+    var personnal_status = 'internal'
+
+      $(document).ready(function(){
+
+        window.localStorage.removeItem('rmis_current_project_session_id')
+
+        $w = $(document).width()
+        if($w <= 800){
+          $('.main-panal').css('padding-left', '40px')
+          $('.leftmenu').css('margin-left', '-250px')
+          $('.leftmenu-tool').show()
+          $('#divCloseLeft').removeClass('dn')
+        }
+
+        pi.checkNotConfNew();
+        pi.checkDraftNew();
+        pi.checkEditNet();
+        pi.checkEditNet2();
+
+        setTimeout(function(){
+          showModal('modalNotifyAlert1')
+          preload.hide()
+        }, 1000)
+
+      })
+
+      function  loadList(){
+        var param = $.post(ws_url + 'controller/staff/check-board-status.php', function(){},'json')
+                     .always(function(snap){
+                       console.log(snap);
+                      if((snap!='') && (snap.length > 0)){
+                        $('#table_data_1').empty()
+                        snap.forEach(function(i){
+                          $row = '<tr>' +
+                                    '<td>' + i.code_apdu + '</td>' +
+                                    '<td>' + i.title_th +
+                                      '<div class="fz08 text-muted">' +
+                                        'หัวหน้าโครงการวิจัย : ' + i.fname + ' ' + i.lname + '<br>' +
+                                        'เลขา EC ผู้รับผิดชอบ : ' + i.fname + ' ' + i.lname + '<br>' +
+                                        'เลขาการประชุม : ' + i.fname + ' ' + i.lname + '<br>' +
+                                        'ลงทะเบียนเมื่อ : ' + main_app.convertThaidatetime(i.date_submit) +
+                                      '</div>' +
+                                      '<div class="fz08 text-muted">' +
+                                        '<button class="btn btn-success btn-sm btn-icon-anim btn-square ml-0" style="box-shadow: none;" data-toggle="tooltip" data-placement="top" title="ดูข้อมูลโครงการและดำเนินการต่อ" onclick="viewRsInfo_15(\'' + i.id_rs +'\')"><i class="fa fa-search"></i></button>' +
+                                        '<button class="btn btn-warning btn-sm btn-icon-anim btn-square ml-0" style="box-shadow: none;" data-toggle="tooltip" data-placement="top" title="เปลี่ยนเลขา EC ผู้รับผิดชอบ" onclick="set_reponse_ec(\'' + i.id_rs +'\')"><i class="fa fa-user"></i></button>' +
+                                        '<button class="btn btn-warning btn-sm btn-icon-anim btn-square ml-0" style="box-shadow: none;" data-toggle="tooltip" data-placement="top" title="เปลี่ยนเลขา EC ผู้รับผิดชอบ" onclick="set_reponse_ec(\'' + i.id_rs +'\')"><i class="fa fa-users"></i></button>' +
+                                        '<button class="btn btn-danger btn-sm btn-icon-anim btn-square ml-0" style="box-shadow: none;" data-toggle="tooltip" data-placement="top" title="เปลี่ยนเลขา EC ผู้รับผิดชอบ" onclick="set_reponse_ec(\'' + i.id_rs +'\')"><i class="fa fa-trash"></i></button>' +
+                                      '</div>' +
+                                    '</td>' +
+                                    '<td>' + i.ep + '</td>' +
+                                    '<td>' + i.status_name + '</td>' +
+                                 '</tr>'
+                          $('#table_data_1').append($row)
+
+                        })
+                        preload.hide()
+                        setTimeout(function(){ $('[data-toggle="tooltip"]').tooltip()}, 3000)
+                      }else{
+                        preload.hide()
+                      }
+                     })
+      }
+
+      function viewRsInfo_15(rid){
+        var param = {
+          id_rs: rid,
+          id: current_user
+        }
+        var jxhr = $.post(ws_url + '/controller/staff/check-rs-session.php', param, function(){}, 'json')
+              .always(function(snap){
+                if((snap != '') && (snap.length > 0)){
+                  snap.forEach(function(i){
+                    window.localStorage.setItem('current_selected_project_session', i.session_id)
+                    window.localStorage.setItem('current_selected_project_id', i.id_rs)
+                    window.location = 'reviewer_select_file.html'
+                  })
+                }else{
+                  swal("Error!", "error")
+                }
+              }, 'json')
+      }
+
+      function slideMenu(state){
+        if(state == 'open'){
+          $( ".leftmenu" ).animate({ "left": "+=250px" }, "slow" );
+          // $('.main-panal').animate({ "padding-left": "+=250px" }, "slow" );
+        }else{
+          $( ".leftmenu" ).animate({ "left": "-=250px" }, "slow" );
+          // $('.main-panal').animate({ "padding-left": "-=250px" }, "slow" );
+        }
+      }
+    </script>
+  </body>
+</html>
+
+<!-- Modal -->
+<div class="modal fade" id="modalNotifyAlert1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header" style="background: rgb(19, 179, 164);">
+        <h5 class="modal-title" id="exampleModalLabel" style="font-weight: 400;">คำแนะนำในการใช้งานระบบ</h5>
+        <button type="button" class="close btnClosemodal" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-sm-12 text-center pt-10">
+            <i class="fas fa-exclamation-circle text-danger" style="font-size: 5em;"></i>
+          </div>
+          <div class="col-sm-12 pd-20">
+            <p class="text-center">
+              กรุณาเข้าสู่ระบบเพื่อตรวจสอบความเหลื่อนไหวของโครงการวิจัยของท่านอย่างสม่ำเสมอ
+            </p>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-12">
+            <button type="button" class="btn btn-success btn-lg btn-block pt-10 pb-10 cp" data-dismiss="modal">ปิดหน้าต่างนี้</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="modalNotify1-4" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header" style="background: rgb(238, 64, 64);">
+        <h5 class="modal-title" id="exampleModalLabel" style="font-weight: 400;">คำเตือน</h5>
+        <button type="button" class="close btnClosemodal" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-sm-12 text-center pt-10">
+            <i class="fas fa-exclamation-circle text-danger" style="font-size: 5em;"></i>
+          </div>
+          <div class="col-sm-12 pd-20">
+            <p class="text-center">
+              เอกสาร/ไฟล์โครงการวิจัยที่ท่านเสนอยังไม่สมบูรณ์ กรุณาตรวจสอบรายละเอียดและดำเนินการแก้ไข
+            </p>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-12">
+
+            <button type="button" class="btn btn-danger btn-lg btn-block pt-10 pb-10 cp" onclick="window.location='research_edit2_list.html'">ไปยังหน้ารายการที่ต้องแก้ไข</button>
+            <button type="button" class="btn btn-secondary btn-lg btn-block pt-10 pb-10 cp" data-dismiss="modal">ปิดหน้าต่างนี้</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="projectRegister" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel" style="font-weight: 400;">ข้อตกลงและเงื่อนไข</h5>
+        <button type="button" class="close btnClosemodal" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-3 col-sm-12 text-center pt-30">
+            <i class="fas fa-exclamation-triangle text-danger mt-30" style="font-size: 5em;"></i>
+          </div>
+          <div class="col-md-9 col-sm-12">
+            <p>
+              <ol class="pl-20">
+                <li>การลงทะเบียนส่วนนี้ หมายถึง <span class="txt-danger" style="font-size: 1.2em;">การลงทะเบียนงานวิจัยที่ยังไม่ผ่านการรับรอง</span></li>
+                <li>หากลงทะเบียนโครงการค้างอยู่ ให้ปิดกล่องข้อความนี้และเลือกปุ่ม "แบบเสนอโครงการฉบับร่าง"</li>
+                <li>ผู้ลงข้อมูล<span class="txt-danger" style="font-size: 1.2em;">ต้องเป็นหัวหน้าโครงการเท่านั้น</span> (ถ้ามีผู้ลงข้อมูลแทน ต้องใช้ username และ password ของหัวหน้าโครงการเท่านั้น)</li>
+              </ol>
+            </p>
+            <p>
+              ตอบ "ตกลง" เพื่อยอมรับเงื่อนไขและทำการลงทะเบียนงานวิจัยใหม่
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary btn-lg cp" data-dismiss="modal">ปิด</button>
+        <button type="button" class="btn btn-success btn-lg cp" onclick="window.location = 'research_register.html'">ตกลง</button>
+      </div>
+    </div>
+  </div>
+</div>

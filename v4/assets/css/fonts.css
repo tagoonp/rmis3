@@ -1,0 +1,26 @@
+@font-face {
+  /* font-family: 'thaisanslite';
+  src: url('../../fonts/ThaiSansNeue-Regular.ttf') format('truetype'); */
+  /* font-family: 'thsarabun';
+  src: url('../../../fonts/THSarabun.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal; */
+}
+
+@font-face {
+  /* font-family: 'thaisanslite-400';
+  src: url('../../fonts/ThaiSansNeue-SemiBold.ttf') format('truetype'); */
+  /* font-family: 'thsarabun-500';
+  src: url('../../../fonts/THSarabun Bold.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal; */
+}
+
+.th_font{
+  /* font-family: 'thsarabun';
+  font-size: 1.4em; */
+}
+
+.fw500{
+  /* font-family: 'thsarabun-500'; */
+}

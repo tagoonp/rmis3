@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<title>:: RMIS :: สำหรับผู้ดูแลระบบ ::</title>
+
+	<!-- Data table CSS -->
+	<link href="../v3/vendors/bower_components/datatables/media/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css"/>
+
+  <!--alerts CSS -->
+	<link href="../v3/vendors/bower_components/sweetalert/dist/sweetalert.css" rel="stylesheet" type="text/css">
+
+	<!-- Custom CSS -->
+	<link href="../v3/dist/css/style.css" rel="stylesheet" type="text/css">
+  <link href="../v3/fonts.css" rel="stylesheet" type="text/css">
+  <link href="../v3/style.css" rel="stylesheet" type="text/css">
+
+</head>
+
+<body>
+	<!--Preloader-->
+	<div class="preloader-it">
+		<div class="la-anim-1"></div>
+	</div>
+	<!--/Preloader-->
+    <div class="wrapper theme-1-active pimary-color-red">
+
+        <!-- Top Menu Items -->
+		<nav class="navbar navbar-inverse navbar-fixed-top">
+			<div class="mobile-only-brand pull-left">
+				<div class="nav-header pull-left">
+					<div class="logo-wrap">
+						<a href="index.html">
+							<img class="brand-img" src="../v3/dist/img/logo.png" alt="brand"/>
+							<span class="brand-text">RMIS</span>
+						</a>
+					</div>
+				</div>
+				<a id="toggle_nav_btn" class="toggle-left-nav-btn inline-block ml-20 pull-left" href="javascript:void(0);"><i class="zmdi zmdi-menu"></i></a>
+				<a id="toggle_mobile_nav" class="mobile-only-view" href="javascript:void(0);"><i class="zmdi zmdi-more"></i></a>
+			</div>
+			<div id="mobile_only_nav" class="mobile-only-nav pull-right">
+				<ul class="nav navbar-right top-nav pull-right">
+          <li>
+            <a href="profile.html">ยินดีต้อนรับ <span class="userFullname text-info">NA</span> (Administrator)</a>
+          </li>
+					<li class="dropdown alert-drp">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="zmdi zmdi-notifications top-nav-icon"></i><span class="notification_number"></span></a>
+						<ul  class="dropdown-menu alert-dropdown" data-dropdown-in="bounceIn" data-dropdown-out="bounceOut">
+							<li>
+								<div class="notification-box-head-wrap">
+									<span class="notification-box-head pull-left inline-block">การแจ้งเตือน</span>
+									<a class="txt-danger pull-right clear-notifications inline-block" href="javascript:main.clear_notify()"> ล้างทั้งหมด </a>
+									<div class="clearfix"></div>
+									<hr class="light-grey-hr ma-0"/>
+								</div>
+							</li>
+              <li>
+                <div class="streamline message-nicescroll-bar notification_panal">
+                </div>
+              </li>
+							<li>
+								<div class="notification-box-bottom-wrap">
+									<hr class="light-grey-hr ma-0"/>
+									<a class="block text-center read-all" href="view_activity_log.html"> อ่านทั้งหมด </a>
+									<div class="clearfix"></div>
+								</div>
+							</li>
+						</ul>
+					</li>
+					<li class="dropdown auth-drp">
+						<a href="#" class="dropdown-toggle pr-0" data-toggle="dropdown"><span id="profileImg"></span><span class="user-online-status"></span></a>
+						<ul class="dropdown-menu user-auth-dropdown" data-dropdown-in="flipInX" data-dropdown-out="flipOutX">
+							<li>
+								<a href="profile.html"><i class="zmdi zmdi-account"></i><span>ข้อมูลส่วนตัว</span></a>
+							</li>
+							<li>
+								<a href="#" onclick="main.mailbox()"><i class="zmdi zmdi-email"></i><span>Inbox</span></a>
+							</li>
+							<li>
+								<a href="changepassword.html"><i class="zmdi zmdi-settings"></i><span>เปลี่ยนรหัสผ่าน</span></a>
+							</li>
+							<li class="divider"></li>
+							<li>
+								<a href="#" onclick="main.signout()"><i class="zmdi zmdi-power"></i><span>ออกจากระบบ</span></a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</nav>
+		<!-- /Top Menu Items -->
+
+		<!-- Left Sidebar Menu -->
+		<div class="fixed-sidebar-left">
+			<ul class="nav navbar-nav side-nav nicescroll-bar">
+				<li class="navigation-header">
+					<span>Main</span>
+					<i class="zmdi zmdi-more"></i>
+				</li>
+
+        <li>
+					<a href="./"><div class="pull-left"><i class="zmdi zmdi-home mr-20"></i><span class="right-nav-text">หน้าแรก</span></div><div class="clearfix"></div></a>
+				</li>
+        <li>
+						<a href="javascript:void(0);" data-toggle="collapse" data-target="#dashboard_dr"><div class="pull-left"><i class="zmdi zmdi-landscape mr-20"></i><span class="right-nav-text">กระดานภาพรวม</span></div><div class="pull-right"><i class="zmdi zmdi-caret-down"></i></div><div class="clearfix"></div></a>
+						<ul id="dashboard_dr" class="collapse collapse-level-1">
+							<li>
+								<a href="dashboard_1.html">ภาพรวมระบบ</a>
+							</li>
+						</ul>
+				</li>
+        <li><hr class="light-grey-hr mb-10"/></li>
+        <li class="navigation-header">
+					<span>จัดการข้อมูล</span>
+					<i class="zmdi zmdi-more"></i>
+				</li>
+        <li>
+						<a  class="active" href="javascript:void(0);" data-toggle="collapse" data-target="#dashboard_manageuser"><div class="pull-left"><i class="zmdi zmdi-account mr-20"></i><span class="right-nav-text">จัดการข้อมูลผู้ใช้งาน</span></div><div class="pull-right"><i class="zmdi zmdi-caret-down"></i></div><div class="clearfix"></div></a>
+						<ul id="dashboard_manageuser" class="collapse collapse-level-1">
+							<li>
+								<a class="active-page" href="staff.html">เจ้าหน้าที่ EC</a>
+							</li>
+              <li>
+								<a href="ec.html">เลขา EC</a>
+							</li>
+              <li>
+								<a href="pi.html">หัวหน้าโครงการวิจัย EC</a>
+							</li>
+              <li>
+								<a href="reviewer.html">ผู้เชี่ยวชาญอิสระ EC</a>
+							</li>
+						</ul>
+				</li>
+
+
+				<li><hr class="light-grey-hr mb-10"/></li>
+				<li class="navigation-header">
+					<span>อื่น ๆ</span>
+					<i class="zmdi zmdi-more"></i>
+				</li>
+
+        <li>
+					<a href="documentation.html"><div class="pull-left"><i class="zmdi zmdi-book mr-20"></i><span class="right-nav-text">คู่มือการใช้งาน (STAFF)</span></div><div class="clearfix"></div></a>
+				</li>
+
+			</ul>
+		</div>
+		<!-- /Left Sidebar Menu -->
+
+
+		<!-- Main Content -->
+		<div class="page-wrapper" style="padding-left: 15px; padding-right: 15px;">
+      <div class="container-fluid">
+
+				<!-- Title -->
+				<div class="row heading-bg">
+					<div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+						<h5 class="txt-dark">จัดการข้อมูลเจ้าหน้าที่<br><small class="pl-0">(Staff management)</small></h5>
+					</div>
+					<!-- Breadcrumb -->
+					<div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+						<ol class="breadcrumb">
+							<li><a href="./">หน้าแรก</a></li>
+							<li class="active"><span>จัดการข้อมูลเจ้าหน้าที่</span></li>
+						</ol>
+					</div>
+					<!-- /Breadcrumb -->
+				</div>
+				<!-- /Title -->
+
+        <!-- Row -->
+        <div class="row">
+
+          <div class="col-sm-4">
+            <div class="panel panel-default card-view">
+              <div class="panel-heading">
+								<div class="pull-left">
+									<h6 class="panel-title txt-dark"><i class="fa fa-plus"></i> เพิ่มข้อมูลใหม่ </h6>
+								</div>
+								<div class="clearfix"></div>
+							</div>
+
+              <div class="panel-wrapper collapse in">
+								<div class="panel-body">
+
+                  <div class="row">
+                    <div class="col-md-12 col-xs-12">
+
+                      <form onsubmit="return false;" class="addnewstaffForm">
+                        <div class="form-group">
+                          <label for="" class="txt-dark f500 fs08">คำนำหน้าชื่อ <span class="txt-danger">**</span></label>
+                          <select class="form-control" name="txtPrefix" id="txtPrefix" required>
+                            <option value="">-- เลือกคำนำหน้าชื่อ --</option>
+                          </select>
+                        </div>
+
+                        <div class="form-group">
+                          <label for="" class="txt-dark f500 fs08">ชื่อ <span class="txt-danger">**</span></label>
+                          <input type="text" class="form-control" placeholder="กรอกชื่อ ..." required id="txtFname">
+                        </div>
+
+                        <div class="form-group">
+                          <label for="" class="txt-dark f500 fs08">นามสกุล <span class="txt-danger">**</span></label>
+                          <input type="text" class="form-control" placeholder="กรอกนามสกุล ..." required id="txtLname">
+                        </div>
+
+                        <div class="form-group">
+                          <label for="" class="txt-dark f500 fs08">E-mail address <span class="txt-danger">**</span></label>
+                          <input type="email" class="form-control" placeholder="กรอก E-mail address..." required id="txtEmail">
+                        </div>
+
+                        <div class="form-group">
+                          <label for="" class="txt-dark f500 fs08">ตั้งรหัสผ่าน <span class="txt-danger">**</span></label>
+                          <input type="password" class="form-control" placeholder="กรอกรหัสผ่านที่ต้องการ ..." required id="txtPassword">
+                        </div>
+
+                        <div class="form-group">
+                          <label for="" class="txt-dark f500 fs08">รหัสบุคลากรคณะ <span class="text-muted">(ถ้ามี)</span></label>
+                          <input type="text" class="form-control" placeholder="กรอกรหัสบุคลากร ..." id="txtID" >
+                        </div>
+
+                        <div class="form-group">
+                          <label for="" class="txt-dark f500 fs08">หมายเลขโทรศัพท์ <span class="text-muted">(ถ้ามี)</span></label>
+                          <input type="number" class="form-control" placeholder="กรอกหมายเลขโทรศัพท์ ..." min="0" id="txtPhone">
+                        </div>
+
+                        <div class="form-group">
+                          <button class="btn btn-success btn-block" type="submit">บันทึก</button>
+                        </div>
+
+                      </form>
+
+          					</div>
+
+
+                  </div>
+
+                </div>
+                <!-- .panel-body -->
+              </div>
+              <!-- .panel-wrapper -->
+            </div>
+            <!-- .panel -->
+
+
+
+          </div>
+          <!-- .col-sm-4 -->
+
+
+          <div class="col-sm-8">
+
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="panel panel-default card-view">
+                  <div class="panel-heading">
+    								<div class="pull-left">
+                      <h6 class="panel-title txt-dark"><i class="zmdi zmdi-account"></i> รายชื่อเจ้าหน้าที่ทั้งหมด <small class="txt-dark pl-0">(All staff list)</small></h6>
+    								</div>
+    								<div class="clearfix"></div>
+    							</div>
+
+                  <div class="panel-wrapper collapse in">
+    								<div class="panel-body">
+
+                      <div class="table-wrap">
+    										<div class="table-responsive">
+    											<table id="datable_1" class="table table-hover display  pb-30" >
+    												<thead>
+    													<tr>
+    														<th style="width: 50px;">#</th>
+    														<th>ชื่อ - นามสกุล</th>
+    														<th>สถานะ</th>
+    														<th></th>
+    													</tr>
+    												</thead>
+    												<tbody></tbody>
+    											</table>
+    										</div>
+    									</div>
+
+                    </div>
+                    <!-- .panel-body -->
+                  </div>
+                  <!-- .panel-wrapper -->
+                </div>
+                <!-- .panel -->
+              </div>
+
+            </div>
+
+          </div>
+          <!-- .col-sm-8 -->
+
+
+
+        </div>
+        <!-- .Row -->
+
+
+
+				<!-- Footer -->
+				<footer class="footer container-fluid pl-30 pr-30">
+					<div class="row">
+						<div class="col-sm-12">
+							<p>2017 &copy; <a href="http://rmis.medicine.psu.ac.th/project/" target="_blank">RMIS</a>. หน่วยส่งเสริมและพัฒนาทางวิชาการ คณะแพทยศาสตร์ มหาวิทยาลัยสงขลานครินทร์. Develop by <a href="https://wisniorproject.com" target="_blank">Wisnior Corp.</a></p>
+						</div>
+					</div>
+				</footer>
+				<!-- /Footer -->
+			</div>
+		</div>
+        <!-- /Main Content -->
+
+    </div>
+    <!-- /#wrapper -->
+
+	<!-- JavaScript -->
+
+  <!-- jQuery -->
+  <script src="../v3/vendors/bower_components/jquery/dist/jquery.min.js"></script>
+
+  <!-- Bootstrap Core JavaScript -->
+  <script src="../v3/vendors/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+	<!-- Data table JavaScript -->
+	<script src="../v3/vendors/bower_components/datatables/media/js/jquery.dataTables.min.js"></script>
+	<script src="../v3/dist/js/dataTables-data.js"></script>
+
+	<!-- Slimscroll JavaScript -->
+	<script src="../v3/dist/js/jquery.slimscroll.js"></script>
+
+	<!-- Owl JavaScript -->
+	<script src="../v3/vendors/bower_components/owl.carousel/dist/owl.carousel.min.js"></script>
+
+	<!-- Switchery JavaScript -->
+	<script src="../v3/vendors/bower_components/switchery/dist/switchery.min.js"></script>
+
+	<!-- Fancy Dropdown JS -->
+	<script src="../v3/dist/js/dropdown-bootstrap-extended.js"></script>
+
+  <!-- Sweet-Alert  -->
+	<script src="../v3/vendors/bower_components/sweetalert/dist/sweetalert.min.js"></script>
+
+	<!-- Init JavaScript -->
+	<script src="../v3/dist/js/init.js"></script>
+  <script src="../v3/main.js"></script>
+  <script src="../v3/admin.js"></script>
+
+  <script type="text/javascript">
+
+    var current_user = window.localStorage.getItem('rmis_current_user')
+    var current_role = window.localStorage.getItem('rmis_current_role')
+
+    $(document).ready(function(){
+      admin.init()
+      main.load_prefix();
+      admin.load_all_staff();
+    })
+
+    $(function(){
+      $('.addnewstaffForm').submit(function(){
+        var param = {
+          id_prefix: $("#txtPrefix").val(),
+          fname: $('#txtFname').val(),
+          lname: $('#txtLname').val(),
+          email: $('#txtEmail').val(),
+          id_pm: $('#txtID').val(),
+          phone: $('#txtPhone').val(),
+          password: $('#txtPassword').val()
+        }
+
+        console.log(param);
+
+        var jxhr = $.post(ws_url + 'controller/administrator/add_staff.php', param, function(){})
+
+                    .always(function(resp){
+
+                      if(resp == 'Y'){
+                        var dataContent = '<h3>ข้อมูลใช้งานสำหรับเจ้าหน้าที่ </h3>' +
+                                          '<p>เรียน คุณ' + $('#txtFname').val() + ' ' + $('#txtLname').val() + '</p>' +
+                                          '<p>เนื่องจากผู้ดูแลระบบสารสนเทศเพื่อการจัดการงานวิจัย (RMIS) ได้ทำการเพิ่มข้อมูลของท่านเป็นเจ้าหน้าที่เพื่อดูแลและทำงานในระบบงานดังกล่าว ทั้งนี้ ท่านสามารถเข้าสู่ระบบและใช้งานด้วยข้อมูลได้ที่ <a href="http://rmis.medicine.psu.ac.th" target="_blank">http://rmis.medicine.psu.ac.th</a> โดยใช้ข้อมูลดังต่อไปนี้' +
+                                          '</p>' +
+                                          '<p>ชื่อบัญชีผู้ใช้ : ' + $('#txtEmail').val() + '<br>รหัสผ่าน <span style="color:red;">: ' + $('#txtPassword').val() + '<span></p>' +
+                                          '<p>จึงเรียนมาเพื่อทราบ <br>ระบบสารสนเทศเพื่อการจัดการงานวิจัย (RMIS)</p>'
+
+                        var emailParam = {
+                          email: emailConfig.user,
+                          api_key: emailConfig.key,
+                          title: "{ No-reply } ข้อมูลบัญชีผู้ใช้งานระบบสารสนเทศเพื่อการจัดการงานวิจัย (RMIS) สำหรับเจ้าหน้าที่",
+                          to_email: $('#txtEmail').val(),
+                          content: dataContent
+                        }
+                        var jxhr = $.post(emailProvider, emailParam, function(){})
+                                    .always(function(res){
+                                      // if(res!='Y'){
+                                      //   main_app.emailErr('Change password', window.localStorage.getItem('rmis_current_user_email'))
+                                      // }
+                                    })
+
+                        swal({
+                          title: "ดำเนินการสำเร็จ",
+                          text: "ท่านได้ทำการเพิ่มข้อมูลเจ้าหน้าที่เรียบร้อยแล้ว",
+                          type: "success",
+                          showCancelButton: false,
+                          confirmButtonColor: "#126cd5",
+                          confirmButtonText: "ตกลง",
+                          closeOnConfirm: false
+                        },
+                        function(){
+                          window.location.reload();
+                        });
+
+                      }else if(resp == 'D'){
+                        swal("เกิดข้อผิดพลาด!", "อีเมล์นี้ถูกใช้แล้ว กรุณาใช้ข้อมูลอื่น", "error")
+                        lp.hl();
+                      }else{
+                        console.log(resp);
+                        swal("เกิดข้อผิดพลาด!", "ไม่สามารถเพิ่มข้อมูลได้ กรุณาติดต่อเจ้าหน้าที่", "error")
+                        lp.hl();
+                      }
+
+                    })
+                    .fail(function(){
+                      swal("เกิดข้อผิดพลาด!", "ไม่สามารถเชื่มอต่อฐานข้อมูลได้ กรุณาลองใหม่ภายหลัง", "error")
+                      lp.hl();
+                    })
+      })
+    })
+
+    function goto_report(progress_id){
+      window.localStorage.setItem('rmis_current_progress_id', progress_id)
+      window.location = 'create_report.html'
+    }
+  </script>
+</body>
+
+</html>

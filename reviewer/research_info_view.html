@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8" />
+  	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  	<title>:: RMIS :: สำหรับผู้เชี่ยวชาญอิสระ ::</title>
+
+    <!-- Data table CSS -->
+  	<link href="../v4/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!--alerts CSS -->
+  	<link href="../v3/vendors/bower_components/sweetalert/dist/sweetalert.css" rel="stylesheet" type="text/css">
+
+    <!-- Data table CSS -->
+    <link href="../v3/vendors/bower_components/datatables/media/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css"/>
+
+    <!-- Fontawesom -->
+    <link href="../v4/bower_components/fontawesome/web-fonts-with-css/css/fontawesome-all.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <!-- <link href="../v3/dist/css/style.css" rel="stylesheet" type="text/css">
+    <link href="../v3/fonts.css" rel="stylesheet" type="text/css">
+    <link href="../v3/style_v2.css" rel="stylesheet" type="text/css"> -->
+    <!-- Preload -->
+    <link rel="stylesheet" href="../v4/node_modules/preload.js/dist/css/preload.css">
+
+    <!-- Material Design Bootstrap -->
+    <link href="../v4/node_modules/mdbootstrap/css/mdb.min.css" rel="stylesheet">
+    <link href="../v4/node_modules/mdbootstrap/css/style.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="../v4/assets/css/style.css">
+    <link rel="stylesheet" href="../v4/assets/css/fonts.css">
+
+  </head>
+
+  <style media="screen">
+    body{
+      background: rgb(245, 245, 245);
+    }
+  </style>
+
+  <body>
+
+    <div class="header fixed-top" style="background: rgb(31, 147, 12) !important; border: solid; border-width: 0px 0px 1px 0px; border-color: rgb(233, 233, 233);">
+      <div class="container">
+        <!--Navbar-->
+        <nav class="navbar navbar-expand-lg navbar-dark blue" style="background: rgb(31, 147, 12) !important; box-shadow: none;">
+
+          <!-- Navbar brand -->
+          <a class="navbar-brand th_font fw500  text-white" href="index.html" style="font-size: 1.9em; margin-top: -3px;">RMIS@Medicine</a>
+
+          <!-- Collapse button -->
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav" aria-controls="basicExampleNav"
+              aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <!-- Collapsible content -->
+          <div class="collapse navbar-collapse" id="basicExampleNav" style="margin-top: -4px;">
+              <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                <li class="nav-item active dn">
+                  <a href="index.html" class="nav-link active">หน้าแรก</a>
+                </li>
+              </ul>
+
+              <div class="form-inline my-2 my-lg-0">
+                <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                  <li class="nav-item ">
+                    <a href="profile.html" class="nav-link text-white">ยินดีต้อนรับ, คุณ<span class="userFullname text-white">NA</span> (REVIEWER)</a>
+                  </li>
+                  <li class="nav-item ">
+                    <a href="changepassword.html" class="nav-link text-white">เปลี่ยนรหัสผ่าน</a>
+                  </li>
+                  <li class="nav-item ">
+                    <a href="#" class="nav-link text-white" onclick="main.signout()">ออกจากระบบ</a>
+                  </li>
+                </ul>
+              </div>
+          </div>
+          <!-- Collapsible content -->
+
+        </nav>
+        <!--/.Navbar-->
+      </div>
+    </div>
+
+    <div class="group-1 pb-50" style="padding-top: 90px;">
+      <div class="container">
+
+        <div class="row">
+          <div class="col-sm-12">
+            <h3 class="fw500">ข้อมูลโครงการวิจัย</h3>
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index.html">หน้าแรก</a></li>
+                <!-- <li class="breadcrumb-item"><a href="rs-wait-consider.html">โครงการรอการพิจารณา</a></li> -->
+                <li class="breadcrumb-item active" aria-current="page"><a href="research_info.html" class="txt-CodeApdu">Loading ...</a></li>
+              </ol>
+            </nav>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-12 mb-10">
+            <div class="card mb-10">
+              <div class="card-header" style="background: rgb(31, 147, 12); color: #fff;">
+                ข้อมูลเบื้องต้นของโครงการวิจัย
+              </div>
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-sm-12">
+                    <div class="pl-20 txt-dark">
+                      <div class="row">
+                        <div class="col-sm-3 f500">รหัสโครงการ</div>
+                        <div class="col-sm-9"><span id="txtCode" class="txt-danger">ยังไม่กำหนด</span></div>
+                      </div>
+                      <div class="row">
+                        <div class="col-sm-3 f500">หัวหน้าโครงการ</div>
+                        <div class="col-sm-9"><span id="txtPi" class="txt-dark">NA</span></div>
+                      </div>
+                      <div class="row">
+                        <div class="col-sm-3 f500">ชื่อโครงการ (ภาษาไทย)</div>
+                        <div class="col-sm-9"><span id="txtThtitle">NA</span></div>
+                      </div>
+                      <div class="row">
+                        <div class="col-sm-3 f500">ชื่อโครงการ (ภาษาอังกฤษ)</div>
+                        <div class="col-sm-9"><span id="txtEntitle">NA</span></div>
+                      </div>
+                      <div class="row">
+                        <div class="col-sm-3 f500">คำสำคัญ</div>
+                        <div class="col-sm-9">
+                          [ภาษาไทย] <span id="txtThkeyword">NA</span>
+                          <br>
+                          [English] <span id="txtEnkeyword">NA</span>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-sm-3 f500">ประเภทโครงการวิจัย</div>
+                        <div class="col-sm-9"><span id="txtRtype">NA</span></div>
+                      </div>
+                      <div class="row">
+                        <div class="col-sm-3 f500">ระยะเวลาดำเนินการ</div>
+                        <div class="col-sm-9"><span id="txtRduration">NA</span></div>
+                      </div>
+                      <div class="row">
+                        <div class="col-sm-3 f500">ทุนวิจัย</div>
+                        <div class="col-sm-9"><span id="txtFundingtype">NA</span></div>
+                      </div>
+                      <div class="row">
+                        <div class="col-sm-3 f500">ชื่อแหล่งทุน</div>
+                        <div class="col-sm-9"><span  id="txtFundinggroup">NA</span></div>
+                      </div>
+                      <div class="row">
+                        <div class="col-sm-3 f500">งบประมาณ</div>
+                        <div class="col-sm-9"><span id="txtRBudget">NA</span></div>
+                      </div>
+                      <div class="row">
+                        <div class="col-sm-3 f500">ผู้ร่วมวิจัย</div>
+                        <div class="col-sm-9"><span id="txtCopi">NA</span></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="card mb-10">
+              <div class="card-header" style="background: rgb(31, 147, 12); color: #fff;">
+                หน้าหลักการประเมินโครงการ
+              </div>
+              <div class="card-body">
+                <!-- <h5 class="card-title">ขั้นตอนการประเมิน</h5> -->
+                <!-- <p class="card-text">
+                  <button class="btn btn-success">ขั้นตอนการประเมิน<br>Assesment Instructions</button>
+                  <button class="btn btn-secondary" onclick="window.location='research_info_file_attached.html'">เอกสารแนบ<br>Documents</button>
+                  <button class="btn btn-secondary dn" onclick="window.location='research_info_guildline1.html'" id="btnGuildline_1">คำแนะนำสำหรับกรรมการ<br>Guildline for Primary Reviewer</button>
+                </p> -->
+
+                <div class="pb-20">
+                  <div class="row">
+                    <div class="col-sm-12 pb-20 dn">
+                      ขั้นตอนการทบทวนโครงการในฐานะที่ท่านเป็น <span class="txt-reviewertype">Unknown</span>
+                    </div>
+                    <!-- <div class="col-sm-1 text-right"><h4><button class="btn btn-danger btn-lg btn-circle" disabled style="font-size: 1em; padding-top: 0px; width: 50px; height: 50px; ">1</button></h4></div> -->
+                    <div class="col-sm-12">
+                      <h4 class="text-danger">ส่วนที่ 1 <small>(Part 1)</small></h4>
+                      <h5 class="text-dark">เอกสารโครงการ (Open and read files)</h5>
+                      <div class="txt-dark">
+                        <!-- REviewer 1 /  -->
+                        เลือกปุ่ม <a href="research_info_file_attached.html"  id="" class="txt-success">"เอกสารแนบ"</a> อ่านเอกสารที่แนบมาในกล่องไฟล์ <br>
+
+
+                        <!-- ICF  -->
+
+                        - สำหรับ ICF reviewer ให้ตรวจสอบไฟล์ "Information sheet and Consent Form" และ "Subject Material (ถ้ามี)"<br>
+                        Click <a href="research_info_file_attached.html"  id="" class="txt-success">"Document"</a> and review documents in the file box"
+                      </div>
+                    </div>
+                  </div>
+
+
+                  <div class="row mt-30">
+                    <!-- <div class="col-sm-1 text-right"><h4><button class="btn btn-danger btn-lg btn-circle" disabled style="font-size: 1em; padding-top: 0px; width: 50px; height: 50px; ">2</button></h4></div> -->
+                    <div class="col-sm-12">
+                      <h4 class="text-danger">ส่วนที่ 2 <small>(Part 2)</small></h4>
+                      <h5 class="text-dark">ข้อมูลการทำแบบประเมิน (Do an assesment information)</h5>
+                      <div class="txt-dark">
+                        <table class="table table-bordered">
+                          <thead>
+                            <tr style="background: rgb(13, 153, 61);">
+                              <th class="txt-light" style=" font-size: 1em;">
+                                แบบประเมิน
+                              </th>
+                            </tr>
+                          </thead>
+                          <tbody id="assesmentList">
+                            <tr>
+                              <td colspan="3">ไม่มีรายการแบบประเมิน</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row mt-30">
+                    <!-- <div class="col-sm-1 text-right"><h4><button class="btn btn-danger btn-lg btn-circle" disabled style="font-size: 1em; padding-top: 0px; width: 50px; height: 50px; ">3</button></h4></div> -->
+                    <div class="col-sm-12">
+                      <h4 class="text-danger">ส่วนที่ 3 <small>(Step 3)</small></h4>
+                      <h5 class="text-dark">ไฟล์แนบอื่น ๆ</h5>
+                      <div class="txt-dark">
+                        <table class="table table-bordered">
+                          <thead style="background: rgb(224, 224, 224);">
+                            <tr>
+                              <th class="txt-dark f500 text-center" style="width: 70px;">#</th>
+                              <th class="txt-dark f500">File name</th>
+                              <!-- <th style="width: 100px;"></th> -->
+                            </tr>
+                          </thead>
+                          <tbody id="ft_assesment_reply_table">
+                            <tr>
+                              <td colspan="3">ยังไม่มีไฟล์ที่ท่านอัพโหลด</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row mt-30">
+                    <!-- <div class="col-sm-1 text-right"><h4><button class="btn btn-danger btn-lg btn-circle" disabled style="font-size: 1em; padding-top: 0px; width: 50px; height: 50px; ">4</button></h4></div> -->
+                    <div class="col-sm-12">
+                      <h4 class="text-danger">ส่วนที่ 4 <small>(Step 4)</small></h4>
+                      <h5 class="text-dark">ความคิดเห็นเพื่อพัฒนาระบบการประเมินออนไลน์ </h5>
+                      <div class="txt-dark">
+                        <div class="row">
+                          <div class="col-sm-12 pt-20 pb-10 txt-dark">
+                            1. ท่านได้เรียนรู้จากการทบทวนโครงการวิจัยครั้งนี้ในระดับใด
+                            <table class="table table-bordered txt-dark">
+                              <tbody>
+                                <tr>
+                                  <td class="text-center" style="width: 20% !important;"></td>
+                                  <td class="text-center">1</td>
+                                  <td class="text-center">2</td>
+                                  <td class="text-center">3</td>
+                                  <td class="text-center">4</td>
+                                  <td class="text-center">5</td>
+                                  <td class="text-center" style="width: 20% !important;"></td>
+                                </tr>
+                                <tr>
+                                  <td class="text-center">น้อยที่สุด</td>
+                                  <td class="text-center">
+                                    <span class="checkbox_s01-1"></span>
+                                  </td>
+                                  <td class="text-center">
+                                    <span class="checkbox_s01-2"></span>
+                                  </td>
+                                  <td class="text-center">
+                                    <span class="checkbox_s01-3"></span>
+                                  </td>
+                                  <td class="text-center">
+                                    <span class="checkbox_s01-4"></span>
+                                  </td>
+                                  <td class="text-center">
+                                    <span class="checkbox_s01-5"></span>
+                                  </td>
+                                  <td class="text-center">มากที่สุด</td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </div>
+
+                          <div class="col-sm-12 txt-dark">
+                            2. ท่านมีความมั่นใจในการทบทวนระดับใด
+                            <table class="table table-bordered txt-dark">
+                              <tbody>
+                                <tr>
+                                  <td class="text-center" style="width: 20% !important;"></td>
+                                  <td class="text-center">1</td>
+                                  <td class="text-center">2</td>
+                                  <td class="text-center">3</td>
+                                  <td class="text-center">4</td>
+                                  <td class="text-center">5</td>
+                                  <td class="text-center" style="width: 20% !important;"></td>
+                                </tr>
+                                <tr>
+                                  <td class="text-center">มีความมั่นใจน้อยมาก</td>
+                                  <td class="text-center">
+                                    <span class="checkbox_s02-1"></span>
+                                  </td>
+                                  <td class="text-center">
+                                    <span class="checkbox_s02-2"></span>
+                                  </td>
+                                  <td class="text-center">
+                                    <span class="checkbox_s02-3"></span>
+                                  </td>
+                                  <td class="text-center">
+                                    <span class="checkbox_s02-4"></span>
+                                  </td>
+                                  <td class="text-center">
+                                    <span class="checkbox_s02-5"></span>
+                                  </td>
+                                  <td class="text-center">มีความมั่นใจมาก</td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </div>
+
+                          <div class="col-sm-12 txt-dark">
+                            3. ท่านอยากให้คณะจัดกิจกรรมหรืออบรมอะไรบ้าง เพื่อเพิ่มความมั่นใจในการทบทวนโครงการวิจัย
+                            <div class="q_generalcomment_other_1" style="margin-top: 10px; margin-bottom: 10px; padding: 20px; border: dashed; border-color: rgb(130, 130, 130); color: #000; border-width: 1px;">-</div>
+                          </div>
+
+                          <div class="col-sm-12 txt-dark">
+                            4. ท่านมีข้อเสนอแนะเพื่อการพัฒนาระบบสารสนเทศเพื่อการจัดการงานวิจัย (Research Management Information System : RMIS) อย่างไร
+                            <div class="q_generalcomment_other_2" style="margin-top: 10px; margin-bottom: 10px; padding: 20px; border: dashed; border-color: rgb(130, 130, 130); color: #000; border-width: 1px;">-</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Step 4 -->
+
+                  <div class="row mt-10">
+                    <!-- <div class="col-sm-1 text-right"><h4><button class="btn btn-danger btn-lg btn-circle" disabled style="font-size: 1em; padding-top: 0px; width: 50px; height: 50px; ">5</button></h4></div> -->
+                    <div class="col-sm-12">
+                      <div class="row">
+                        <div class="col-sm-12 pb-20">
+                          <button class="btn btn-success btn-lg btn-block" id=""  type="button" onclick="window.location = 'index.html'"><i class="fas fa-home mr-5"></i>กลับสู่หน้าหลักเพื่อดูประวัติการพิจารณาโครงการอื่น</button>
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+                  <!-- Step 5 -->
+
+
+                </div>
+
+
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <!-- .row -->
+
+
+
+
+      </div>
+    </div>
+
+    <div class="custom-footer pt-30 pb-30">
+      <div class="container text-center">
+        2017 © RMIS. หน่วยส่งเสริมและพัฒนาทางวิชาการ คณะแพทยศาสตร์ มหาวิทยาลัยสงขลานครินทร์. .
+      </div>
+    </div>
+
+    <!-- jQuery -->
+    <!-- <script src="../v3/vendors/bower_components/jquery/dist/jquery.min.js"></script> -->
+    <script src="../v3/vendors/bower_components/jquery/dist/jquery.js"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="../v3/vendors/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+  	<!-- Slimscroll JavaScript -->
+  	<script src="../v3/dist/js/jquery.slimscroll.js"></script>
+  	<!-- Fancy Dropdown JS -->
+  	<script src="../v3/dist/js/dropdown-bootstrap-extended.js"></script>
+    <!-- Sweet-Alert  -->
+  	<script src="../v3/vendors/bower_components/sweetalert/dist/sweetalert.min.js"></script>
+    <!-- Data table JavaScript -->
+    <script src="../v3/vendors/bower_components/datatables/media/js/jquery.dataTables.min.js"></script>
+    <script src="../v3/dist/js/dataTables-data.js"></script>
+    <!-- Data table JavaScript -->
+    <script type="text/javascript" src="../v3/vendors/bower_components/ckeditor/ckeditor.js"></script>
+
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="../v4/node_modules/mdbootstrap/js/mdb.min.js"></script>
+
+  	<!-- Init JavaScript -->
+    <script src="../v4/config.js"></script>
+  	<script src="../v3/dist/js/init.js"></script>
+    <script src="../v3/main.js"></script>
+    <script src="../v4/reviewer.js"></script>
+
+    <script type="text/javascript" src="../v4/node_modules/preload.js/dist/js/preload.js"></script>
+    <script type="text/javascript" src="../v3/vendors/bower_components/ckeditor_lite/ckeditor.js"></script>
+
+    <script type="text/javascript">
+
+      var current_rs = window.localStorage.getItem('current_selected_project_session')
+      var current_rs_id = window.localStorage.getItem('current_selected_project_id')
+      var comment_other_1 = '', comment_other_2 = ''
+      var editData = '';
+      var reply_status = '0';
+      var numreplyfile = 0;
+      var files;
+      var eformnum = 0
+      var eformnum_success = 0
+
+      $(document).ready(function(){
+
+        reviewer.init()
+        reviewer.initReviewInfo()
+
+        reviewer.load_rs_info_2();
+        checkFileAssesment('finished')
+        checkDataReplyFile(1)
+        checkSurveyInfo()
+
+        $('#txtIdReviewer').val(current_user)
+        $('#txtIdRS').val(current_rs_id)
+
+        setTimeout(function(){
+          preload.hide()
+        }, 1000)
+
+      })
+
+      $(function(){
+        $('.file_upload').on('change', prepareUpload);
+        $('#uploadForm').on('submit', uploadFiles);
+      })
+
+
+
+      // Grab the files and set them to our variable
+      function prepareUpload(event){
+
+        files = event.target.files;
+
+        console.log(files[0].type);
+
+        if((files[0].type != 'application/pdf') && (files[0].type != 'application/vnd.openxmlformats-officedocument.wordprocessingml.document') && (files[0].type != 'application/msword')){ //application/msword
+          swal("ขออภัย", "กรุณาเลือกไฟล์ .doc, .docx หรือ .pdf เท่านั้น", "error")
+          files = '';
+          $('#media').val('')
+          return ;
+        }
+      }
+
+      function checkSurveyInfo(){
+          var param = {
+            id: current_user,
+            id_rs: current_rs_id
+          }
+
+          var jxr = $.post(ws_url + 'controller/get_review_survey_info.php', param, function(){}, 'json')
+                     .always(function(snap){
+                       if((snap != '') && (snap.length > 0)){
+                         snap.forEach(function(i){
+                           $('.checkbox_s01-' + i.asq_1).html('<i class="far fa-check-circle text-danger"></i>')
+                           $('.checkbox_s02-' + i.asq_2).html('<i class="far fa-check-circle text-danger"></i>')
+                           $('.q_generalcomment_other_1').html(i.asq_3)
+                           $('.q_generalcomment_other_2').html(i.asq_4)
+                         })
+                       }
+                     })
+      }
+
+      function uploadFiles(event){
+
+        if ( document.getElementById('media').value.length == 0 ){
+          swal("ขออภัย", "กรุณาเลือกไฟล์ก่อนทำการอัพโหลด", "error")
+          return ;
+        }
+
+        // event.stopPropagation()
+        event.preventDefault();
+
+
+
+        // START A LOADING SPINNER HERE
+        $('#progressbar').removeClass('dn')
+
+        var formData = new FormData($('form')[0]);
+
+        // var formData = new FormData();
+        $.each(files, function(key, value)
+        {
+            $.each(value, function(key, value){
+              formData.append(key, value);
+            })
+        });
+
+        $.ajax({
+          xhr: function(){
+            var xhr = new window.XMLHttpRequest();
+            xhr.upload.addEventListener('progress', function(e){
+
+              if(e.lengthComputable){
+                console.log('Byte loaded : ' + e.loaded);
+                console.log('Total size : ' + e.total);
+                console.log('Percentage : ' + (e.loaded / e.total));
+
+                var percentage = Math.round((e.loaded / e.total) * 100);
+
+                $('#progressUploadBar').attr('aria-valuenow', percentage).css('width', percentage + '%')
+              }
+            })
+            return xhr;
+          },
+          url: '../controller/upload_file_assesment_back_2.php?files',
+          type: 'POST',
+          data: formData,
+          processData: false, // Don't process the files
+          contentType: false, // Set content type to false as jQuery will tell the server its a query string request
+          success: function(data, textStatus, jqXHR)
+          {
+                console.log(data);
+                console.log(textStatus);
+                console.log(jqXHR);
+                setTimeout(function(){
+                  $('#progressbar').addClass('dn')
+                  swal({    title: "อัพโหลดไฟล์สำเร็จ",
+                    text: "กด 'รับทราบ' เพื่อดำเนินการต่อ",
+                    type: "success",
+                    showCancelButton: false,
+                    confirmButtonColor: "#55a0dd",
+                    confirmButtonText: "รับทราบ",
+                    closeOnConfirm: true },
+                  function(){
+
+                  });
+                }, 1000)
+
+                $('#media').val('')
+                checkDataReplyFile()
+                return ;
+          },
+          error: function(jqXHR, textStatus, errorThrown)
+          {
+                swal({    title: "ไม่สามารถอัพโหลดไฟล์ได้",
+                  text: "กรุณาลองใหม่ หรือส่งไฟล์ให้เจ้าหน้าที่ผ่านทางอีเมล์!",
+                  type: "error",
+                  showCancelButton: false,
+                  confirmButtonColor: "#DD6B55",
+                  confirmButtonText: "รับทราบ",
+                  closeOnConfirm: true },
+                function(){
+
+                });
+
+                // Handle errors here
+                console.log('ERRORS: ' + textStatus);
+                console.log(jqXHR);
+                console.log(textStatus);
+                console.log(errorThrown);
+                setTimeout(function(){
+                  $('#progressbar').addClass('dn')
+                }, 1000)
+                $('#progressbar').addClass('dn')
+          }
+        })
+
+
+
+        return ;
+      }
+
+
+    </script>
+
+  </body>
+</html>

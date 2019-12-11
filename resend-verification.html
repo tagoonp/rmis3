@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>RMIS:ระบบสารสนเทศเพื่อการจัดการงานวิจัย คณะแพทยศาสตร์ มอ.</title>
+        <!-- Meta Tags -->
+        <meta charset="UTF-8" />
+    		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+        <!-- CSS -->
+        <link rel="shortcut icon" href="./favicon.ico">
+
+        <!-- Custom CSS -->
+    		<link href="v3/dist/css/style.css" rel="stylesheet" type="text/css">
+        <link href="v3/fonts.css" rel="stylesheet" type="text/css">
+        <link href="v3/style.css" rel="stylesheet" type="text/css">
+
+        <!--alerts CSS -->
+      	<link href="v3/vendors/bower_components/sweetalert/dist/sweetalert.css" rel="stylesheet" type="text/css">
+
+    </head>
+
+    <style>
+      .header{
+          background: rgb(39, 143, 5);
+      }
+    </style>
+    <div class="header bsd">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-xs-2">
+              <a href="./"><h1 style="color: #fff; font-size: 25px;">RMIS@2017</h1></a>
+          </div>
+          <div class="col-xs-10 text-right pt-10">
+              <button class="btn btn-default btn-rounded_ btn-outline txt-light" style="color: #fff !important;">สมัครใช้งานระบบสำหรับบุคคลภายนอก</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <body style="background: rgb(255, 255, 255);">
+
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-6 col-sm-offset-3 " style="margin-top: 70px;">
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="text-center">
+                  <h2>ส่ง Verification email ซ้ำ</h2>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-sm-12" style="padding-top: 40px;">
+                <div class="alert alert-success alert-dismissable alert-style-1">
+                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                  <i class="zmdi zmdi-info-outline"></i> กรุณากรอก E-mail address ที่ท่านได้ทำการลงทะเบียนไว้
+                </div>
+
+                <form class="loginForm" autocomplete="off" onsubmit="return false;">
+                  <div class="form-group">
+                    <label class="control-label f500" for="val-username"> E-mail address <span class="txt-danger">**</span></label>
+                    <input class="form-control" type="text" id="txtEmail" name="txtEmail" placeholder="กรอก E-mail address ..." autofocus />
+                  </div>
+
+                  <div class="form-group">
+                    <div class="">
+                      <input name="login" type="submit" value="ส่งข้อมูล" class="btn btn-success btn-custom btn-block ">
+                    </div>
+                  </div>
+
+
+                </form>
+              </div>
+            </div>
+
+            <div class="row" style="margin-top: 10px;">
+              <div class="col-sm-12 text-center" style="color:rgb(115, 115, 115);">
+                <a href="./" class="txt-success">เข้าสู่ระบบ</a> | <a href="documents.html" class="txt-success">คู่มือการใช้งาน</a> | <a href="resend-verification.html" class="txt-success">ส่ง Verification email ซ้ำ</a>
+              </div>
+            </div>
+
+
+            <div class="row" style="margin-top: 10px;">
+              <div class="col-sm-12 text-center" style="color:rgb(115, 115, 115);">
+                Copyright &copy; 2013 หน่วยส่งเสริมและพัฒนาทางวิชาการ<br>คณะแพทยศาสตร์ มหาวิทยาลัยสงขลานครินทร์
+              </div>
+            </div>
+
+
+
+          </div>
+        </div>
+      </div>
+
+
+
+
+
+    <!-- jQuery -->
+		<script src="v3/vendors/bower_components/jquery/dist/jquery.min.js"></script>
+
+		<!-- Bootstrap Core JavaScript -->
+		<script src="v3/vendors/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+		<!-- Slimscroll JavaScript -->
+		<script src="v3/dist/js/jquery.slimscroll.js"></script>
+
+		<!-- Fancy Dropdown JS -->
+		<script src="v3/dist/js/dropdown-bootstrap-extended.js"></script>
+
+    <!-- Sweet-Alert  -->
+  	<script src="v3/vendors/bower_components/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="v3/main.js"></script>
+
+    <script type="text/javascript">
+
+      $(document).ready(function(){
+
+        main.init('', '', 'index.html')
+
+      })
+
+      $(function(){
+
+        $('.loginForm').submit(function(){
+            $check = 0;
+            if($('#txtEmail').val()==''){
+              $check++;
+            }
+
+            if($check!=0){
+              swal("ขออภัย!", "กรุณากรอก E-mail address ที่ท่านได้ใช้ลงทะเบียนไว้!", "error")
+              return ;
+            }
+
+            var param = {
+              username: $('#username').val(),
+              password: $('#password').val(),
+              role: $('#role').val()
+            }
+
+            var jxhr = $.post(ws_domain + 'check_login.php', param, function(){}, 'json')
+                        .always(function(snap){
+                          console.log(snap);
+                          if(snap!=''){
+
+                            window.localStorage.setItem('rmis_current_user', snap.user)
+
+                            if(snap.login_status == 'Y'){
+                              window.location = './' + snap.next_page
+                            }else if(snap.login_status == 'N'){
+                              swal("ขออภัย!", "ไม่พบข้อมูลบัญชีผู้ใช้งานระบบ!", "error")
+                            }else{
+                              if(snap.next_page == 'account-not-activate/'){
+                                swal("ขออภัย", "บัญชีผู้ใช้ของท่านยังไม่ได้ทำการยืนยันการเข้าใช้งาน กรุณาตรวจสอบอีเมล์ที่ท่านสมัครไว้กับทางระบบ หรือ กดปุ่ม 'ส่งอีเมล์ยืนยันการสมัครอีกครั้ง' เพื่อให้ระบบส่งข้อมูลการสมัครไปยังอีเมลของท่าน", "error")
+                              }else{
+                                window.location = './' + snap.next_page
+                              }
+                            }
+                          }else{
+                            swal("ขออภัย!", "ไม่พบข้อมูลบัญชีผู้ใช้งานระบบ!", "error")
+                          }
+                        }, 'json')
+
+        })
+
+      })
+    </script>
+</body>
+</html>

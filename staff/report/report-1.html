@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta http-equiv='cache-control' content='no-cache'>
+  <meta http-equiv='expires' content='0'>
+  <meta http-equiv='pragma' content='no-cache'>
+	<title>:: RMIS :: สำหรับเจ้าหน้าที่ ::</title>
+
+	<!-- Data table CSS -->
+	<link href="../../v3/vendors/bower_components/datatables/media/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css"/>
+
+  <!--alerts CSS -->
+	<link href="../../v3/vendors/bower_components/sweetalert/dist/sweetalert.css" rel="stylesheet" type="text/css">
+
+	<!-- Custom CSS -->
+	<link href="../../v3/dist/css/style.css" rel="stylesheet" type="text/css">
+  <link href="../../v3/fonts.css" rel="stylesheet" type="text/css">
+  <link href="../../v3/style.css" rel="stylesheet" type="text/css">
+
+</head>
+
+<body>
+	<!--Preloader-->
+	<div class="preloader-it">
+		<div class="la-anim-1"></div>
+	</div>
+	<!--/Preloader-->
+    <div class="wrapper theme-1-active pimary-color-red">
+
+        <!-- Top Menu Items -->
+		<nav class="navbar navbar-inverse navbar-fixed-top">
+			<div class="mobile-only-brand pull-left">
+				<div class="nav-header pull-left">
+					<div class="logo-wrap">
+						<a href="../index.html">
+							<img class="brand-img" src="../../v3/dist/img/logo.png" alt="brand"/>
+							<span class="brand-text">RMIS</span>
+						</a>
+					</div>
+				</div>
+				<a id="toggle_nav_btn" class="toggle-left-nav-btn inline-block ml-20 pull-left" href="javascript:void(0);"><i class="zmdi zmdi-menu"></i></a>
+				<a id="toggle_mobile_nav" class="mobile-only-view" href="javascript:void(0);"><i class="zmdi zmdi-more"></i></a>
+			</div>
+			<div id="mobile_only_nav" class="mobile-only-nav pull-right">
+				<ul class="nav navbar-right top-nav pull-right">
+          <li>
+            <a href="profile.html">ยินดีต้อนรับ <span class="userFullname text-info">NA</span> (STAFF)</a>
+          </li>
+					<li class="dropdown alert-drp">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="zmdi zmdi-notifications top-nav-icon"></i><span class="notification_number"></span></a>
+						<ul  class="dropdown-menu alert-dropdown" data-dropdown-in="bounceIn" data-dropdown-out="bounceOut">
+							<li>
+								<div class="notification-box-head-wrap">
+									<span class="notification-box-head pull-left inline-block">การแจ้งเตือน</span>
+									<a class="txt-danger pull-right clear-notifications inline-block" href="javascript:main.clear_notify()"> ล้างทั้งหมด </a>
+									<div class="clearfix"></div>
+									<hr class="light-grey-hr ma-0"/>
+								</div>
+							</li>
+              <li>
+                <div class="streamline message-nicescroll-bar notification_panal">
+                </div>
+              </li>
+							<li>
+								<div class="notification-box-bottom-wrap">
+									<hr class="light-grey-hr ma-0"/>
+									<a class="block text-center read-all" href="view_activity_log.html"> อ่านทั้งหมด </a>
+									<div class="clearfix"></div>
+								</div>
+							</li>
+						</ul>
+					</li>
+          <li class="dropdown auth-drp">
+						<a href="#" class="dropdown-toggle pr-0" data-toggle="dropdown"><span id="profileImg"></span><span class="user-online-status"></span></a>
+						<ul class="dropdown-menu user-auth-dropdown" data-dropdown-in="flipInX" data-dropdown-out="flipOutX">
+							<li>
+								<a href="profile.html"><i class="zmdi zmdi-account"></i><span>ข้อมูลส่วนตัว</span></a>
+							</li>
+							<li>
+								<a href="#" onclick="main.inbox()"><i class="zmdi zmdi-email"></i><span>Inbox</span></a>
+							</li>
+							<li>
+								<a href="changepassword.html"><i class="zmdi zmdi-settings"></i><span>เปลี่ยนรหัสผ่าน</span></a>
+							</li>
+							<li class="divider"></li>
+							<li>
+								<a href="#" onclick="main.signout()"><i class="zmdi zmdi-power"></i><span>ออกจากระบบ</span></a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</nav>
+		<!-- /Top Menu Items -->
+
+		<!-- Left Sidebar Menu -->
+    <div class="fixed-sidebar-left">
+			<ul class="nav navbar-nav side-nav nicescroll-bar">
+				<li class="navigation-header">
+					<span>Main</span>
+					<i class="zmdi zmdi-more"></i>
+				</li>
+
+        <li>
+					<a class="active" href="./"><div class="pull-left"><i class="zmdi zmdi-home mr-20"></i><span class="right-nav-text">หน้าแรก</span></div><div class="clearfix"></div></a>
+				</li>
+        <li>
+						<a href="javascript:void(0);" data-toggle="collapse" data-target="#dashboard_dr"><div class="pull-left"><i class="zmdi zmdi-landscape mr-20"></i><span class="right-nav-text">กระดานภาพรวม</span></div><div class="pull-right"><i class="zmdi zmdi-caret-down"></i></div><div class="clearfix"></div></a>
+						<ul id="dashboard_dr" class="collapse collapse-level-1">
+							<li>
+								<a href="dashboard_1.html">ภาพรวมโครงการวิจัย</a>
+							</li>
+						</ul>
+					</li>
+
+				<li><hr class="light-grey-hr mb-10"/></li>
+				<li class="navigation-header">
+					<span>อื่น ๆ</span>
+					<i class="zmdi zmdi-more"></i>
+				</li>
+
+        <li>
+					<a href="documentation.html"><div class="pull-left"><i class="zmdi zmdi-book mr-20"></i><span class="right-nav-text">คู่มือการใช้งาน (STAFF)</span></div><div class="clearfix"></div></a>
+				</li>
+
+			</ul>
+		</div>
+		<!-- /Left Sidebar Menu -->
+
+
+		<!-- Main Content -->
+		<div class="page-wrapper" style="padding-left: 15px; padding-right: 15px;">
+      <div class="container-fluid">
+
+				<!-- Title -->
+				<div class="row heading-bg mb-0">
+					<div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+						<h5 class="txt-dark">รายงานเพื่อนำเข้าการประชุม <small class="pl-0">(Report - 1)</small></h5>
+					</div>
+					<!-- Breadcrumb -->
+					<div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+						<ol class="breadcrumb">
+							<li><a href="../">หน้าแรก</a></li>
+							<li class="active"><span>รายงานเพื่อนำเข้าการประชุม</span></li>
+						</ol>
+					</div>
+					<!-- /Breadcrumb -->
+				</div>
+				<!-- /Title -->
+
+        <!-- Row -->
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="panel panel-default card-view">
+              <div class="panel-heading">
+								<div class="pull-left">
+									<h6 class="panel-title txt-dark">กำหนดการค้นหา</h6>
+								</div>
+								<div class="clearfix"></div>
+							</div>
+
+              <div class="panel-wrapper collapse in">
+								<div class="panel-body">
+
+                  <div class="contentdiv">
+                    <div class="row">
+                      <div class="col-md-6 col-md-offset-3 col-xs-12">
+                        <form class="cpwdform" onsubmit="return false;">
+                          <div class="form-group">
+                            <label for="">การประชุมครั้งที่ <span class="txt-danger">**</span></label>
+                            <input type="text" name="txtTimemeeting" id="txtTimemeeting" class="form-control" placeholder="กรอกครั้งที่การประชุม เช่น 2/2561 ..." autofocus>
+                          </div>
+                          <div class="form-group">
+                            <label for="">วาระ <span class="txt-danger">**</span></label>
+                            <select class="form-control" name="txtVara" id="txtVara">
+                              <option value="">-- เลือกวาระ --</option>
+                              <option value="3.3">Exempt (3.3)</option>
+                              <option value="3.4">Expedited (3.4)</option>
+                            </select>
+                          </div>
+                          <div class="clearfix"></div>
+                          <div class="form-group">
+                            <button class="btn btn-success btn-block" type="submit">แสดงผล</button>
+                          </div>
+                        </form>
+            					</div>
+                    </div>
+                  </div>
+                  <!-- .contentdiv -->
+
+                </div>
+                <!-- .panel-body -->
+
+              </div>
+              <!-- .panel-wrapper -->
+            </div>
+            <!-- .panel -->
+
+
+
+          </div>
+          <!-- .col-sm-4 -->
+
+          <div class="col-sm-12">
+            <div class="panel panel-default card-view">
+              <div class="panel-heading">
+								<div class="pull-left">
+									<h6 class="panel-title txt-dark">ผลการค้นหา</h6>
+								</div>
+								<div class="clearfix"></div>
+							</div>
+
+              <div class="panel-wrapper collapse in">
+								<div class="panel-body">
+
+                  <div class="row dn" id="exportBtn">
+                    <div class="col-sm-12 text-right pb-20">
+                      <button class="btn btn-success" onclick="exportReport()"><i class="zmdi zmdi-download"></i> Download</button>
+                    </div>
+                  </div>
+
+                  <div class="loaddiv dn" style="padding: 100px 0px;">
+                    <div class="row">
+                      <div class="col-sm-2 col-sm-offset-5">
+                        <img src="../../images/Rolling.gif" alt="" width="100%">
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="contentdiv txt-dark" id="resultSpan">
+                    <div class="row">
+                      <div class="col-sm-12">
+                        <div class="text-center" style="padding: 50px 0px;">
+                          ไม่พบข้อมูล
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- .contentdiv -->
+
+                </div>
+                <!-- .panel-body -->
+
+              </div>
+              <!-- .panel-wrapper -->
+            </div>
+            <!-- .panel -->
+
+
+
+          </div>
+          <!-- .col-sm-4 -->
+
+        </div>
+        <!-- .Row -->
+
+        <!-- sample modal content -->
+        <div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h5 class="modal-title" id="myModalLabel">ข้อตกลงและเงื่อนไข</h5>
+              </div>
+              <div class="modal-body">
+                <p>
+                  <ol class="pl-20">
+                    <li>การลงทะเบียนงานวิจัยในส่วนนี้ หมายถึง <span class="txt-danger">การลงทะเบียนงานวิจัยทีไม่่เคยส่งขอพิจารณาจริยธรรมการวิจัยในมนุษย์มาก่อน</span></li>
+                    <li>ในแต่ละโครงการวิจัยที่จำต้องทำการขอพิจารณาจริยธรรมการวิจัยในมนุษย์ <span class="txt-danger">ต้องเป็นหัวหน้าโครงการเท่านั้น</span></li>
+                  </ol>
+                </p>
+                <p>
+                  ตอบ "ตกลง" เพื่อยอมรับเงื่อนไขและทำการลงทะเบียนงานวิจัยใหม่
+                </p>
+
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-info" onclick="window.location = 'research_register.html'">ตกลง</button>
+              </div>
+            </div>
+            <!-- /.modal-content -->
+          </div>
+          <!-- /.modal-dialog -->
+        </div>
+        <!-- /.modal -->
+
+
+
+
+
+				<!-- Footer -->
+				<footer class="footer container-fluid pl-30 pr-30">
+					<div class="row">
+						<div class="col-sm-12">
+							<p>2017 &copy; <a href="http://rmis.medicine.psu.ac.th/project/" target="_blank">RMIS</a>. หน่วยส่งเสริมและพัฒนาทางวิชาการ คณะแพทยศาสตร์ มหาวิทยาลัยสงขลานครินทร์. Develop by <a href="https://wisniorproject.com" target="_blank">Wisnior Corp.</a></p>
+						</div>
+					</div>
+				</footer>
+				<!-- /Footer -->
+			</div>
+		</div>
+        <!-- /Main Content -->
+
+    </div>
+    <!-- /#wrapper -->
+
+	<!-- JavaScript -->
+
+  <!-- jQuery -->
+  <script src="../../v3/vendors/bower_components/jquery/dist/jquery.min.js"></script>
+
+  <!-- Bootstrap Core JavaScript -->
+  <script src="../../v3/vendors/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+	<!-- Data table JavaScript -->
+	<script src="../../v3/vendors/bower_components/datatables/media/js/jquery.dataTables.min.js"></script>
+	<script src="../../v3/dist/js/dataTables-data.js"></script>
+
+	<!-- Slimscroll JavaScript -->
+	<script src="../../v3/dist/js/jquery.slimscroll.js"></script>
+
+	<!-- Owl JavaScript -->
+	<script src="../../v3/vendors/bower_components/owl.carousel/dist/owl.carousel.min.js"></script>
+
+	<!-- Switchery JavaScript -->
+	<script src="../../v3/vendors/bower_components/switchery/dist/switchery.min.js"></script>
+
+	<!-- Fancy Dropdown JS -->
+	<script src="../../v3/dist/js/dropdown-bootstrap-extended.js"></script>
+
+  <!-- Sweet-Alert  -->
+	<script src="../../v3/vendors/bower_components/sweetalert/dist/sweetalert.min.js"></script>
+
+	<!-- Init JavaScript -->
+	<script src="../../v3/dist/js/init.js"></script>
+  <script src="../../v3/main.js"></script>
+  <script src="../../v3/staff.js"></script>
+
+  <script type="text/javascript">
+
+    var dt = $('#tableView').dataTable().api();
+    var current_user = window.localStorage.getItem('rmis_current_user')
+    var current_role = window.localStorage.getItem('rmis_current_role')
+    var current_page = 'changepassword.html';
+
+    $(document).ready(function(){
+
+      // main.init('pm', current_user, 'pm/changepassword.html')
+      // main.init_pm();
+      staff.init()
+
+      setTimeout(function(){
+        // main.load_notify_pm();
+      }, 10)
+    })
+
+    $(function(){
+      $('.cpwdform').submit(function(){
+
+        $('.form-group').removeClass('has-error')
+
+          if(($('#txtTimemeeting').val()=='') || ($('#txtVara').val()=='')){
+
+
+            if($('#txtTimemeeting').val()==''){
+              $('#txtTimemeeting').parent().addClass('has-error')
+            }
+
+            if($('#txtVara').val()==''){
+              $('#txtVara').parent().addClass('has-error')
+            }
+
+            console.log($('#txtTimemeeting').val());
+            console.log($('#txtVara').val());
+
+            swal("ขออภัย", "กรุณากรอกข้อมูลให้ครบถ้วน", "error")
+            return ;
+          }
+
+
+          var param = {
+            tm: $('#txtTimemeeting').val(),
+            vara: $('#txtVara').val()
+          }
+
+          var jxr = $.post(ws_url + 'controller/report/get-report-1.php', param, function(){}, 'json')
+                     .always(function(snap){
+
+                       $('#exportBtn').addClass('dn')
+
+                       if((snap!='') && (snap.length>0)){
+
+                         $('#exportBtn').removeClass('dn')
+
+                         $('#resultSpan').empty()
+
+                          if($('#txtVara').val() == '3.3'){
+                            $defaultHtml = '<div class="row">' +
+                                            '<div class="col-sm-12 text-center">' +
+                                              '<h3>ข้อมูลรายงานที่ต้องการเพื่อบรรจุวาระในการประชุม board</h3>' +
+                                            '</div>' +
+                                            '<div class="col-sm-12 pb-20">' +
+                                              '<h4 class="text-center">วาระ 3.3 โครงการวิจัยใหม่ที่เข้าข่ายไม่ต้องขอรับพิจารณาจริยธรรมการวิจัย (Exempt Review)<br><small>วันที่ประชุม : <span id="rafa_date"></span></small></h4>' +
+                                            '</div>' +
+                                          '</div>'
+                            $('#resultSpan').append($defaultHtml)
+
+                            snap.forEach(function(i){
+
+                              $fstring = 'ไม่ขอทุน'
+
+                              if((i.source_funds == '') || (i.source_funds == null)){
+
+                              }else{
+                                  $fstring = i.source_funds
+                              }
+
+                                $eachHtml = '<div style="padding: 20px; border: solid; border-width: 1px 0px 0px 0px; border-color: rgb(88, 88, 88);"><div class="row">' +
+                                  '<div class="col-sm-4">REC</div>' +
+                                  '<div class="col-sm-8">' + i.code_apdu + '</div>' +
+                                '</div>' +
+                                '<div class="row">' +
+                                  '<div class="col-sm-4">ชื่อโครงการภาษาไทย</div>' +
+                                  '<div class="col-sm-8">' + i.title_th + '</div>' +
+                                '</div>' +
+                                '<div class="row">' +
+                                  '<div class="col-sm-4">ชื่อโครงการภาษาอังกฤษ</div>' +
+                                  '<div class="col-sm-8">' + i.title_en + '</div>' +
+                                '</div>' +
+                                '<div class="row">' +
+                                  '<div class="col-sm-4">ชื่อหัวหน้าโครงการ</div>' +
+                                  '<div class="col-sm-8">' + i.fname + ' ' + i.lname + '</div>' +
+                                '</div>' +
+                                '<div class="row">' +
+                                  '<div class="col-sm-4">แหล่งทุน</div>' +
+                                  '<div class="col-sm-8">' + $fstring + '</div>' +
+                                '</div><div>'
+
+                                $('#resultSpan').append($eachHtml)
+
+                                if(i.rafa_date != null){
+                                  $('#rafa_date').text(main_app.convertThaidate2(i.rafa_date))
+                                }
+
+                            })
+                          }else if($('#txtVara').val() == '3.4'){
+                            $defaultHtml = '<div class="row">' +
+                                            '<div class="col-sm-12 text-center">' +
+                                              '<h3>ข้อมูลรายงานที่ต้องการเพื่อบรรจุวาระในการประชุม board</h3>' +
+                                            '</div>' +
+                                            '<div class="col-sm-12 pb-20">' +
+                                              '<h4 class="text-center">วาระ 3.4 โครงการวิจัยใหม่ที่เข้าข่ายการพิจารณาแบบเร็ว (Expedited Review)<br><small>วันที่ประชุม : <span id="rafa_date"></span></small></h4>' +
+                                            '</div>' +
+                                          '</div>'
+                            $('#resultSpan').append($defaultHtml)
+
+                            snap.forEach(function(i){
+
+                              $fstring = 'ไม่ขอทุน'
+
+                              if((i.source_funds == '') || (i.source_funds == null)){
+
+                              }else{
+                                  $fstring = i.source_funds
+                              }
+
+                                $eachHtml = '<div style="padding: 20px; border: solid; border-width: 1px 0px 0px 0px; border-color: rgb(88, 88, 88);"><div class="row">' +
+                                  '<div class="col-sm-4">REC</div>' +
+                                  '<div class="col-sm-8">' + i.code_apdu + '</div>' +
+                                '</div>' +
+                                '<div class="row">' +
+                                  '<div class="col-sm-4">ชื่อโครงการภาษาไทย</div>' +
+                                  '<div class="col-sm-8">' + i.title_th + '</div>' +
+                                '</div>' +
+                                '<div class="row">' +
+                                  '<div class="col-sm-4">ชื่อโครงการภาษาอังกฤษ</div>' +
+                                  '<div class="col-sm-8">' + i.title_en + '</div>' +
+                                '</div>' +
+                                '<div class="row">' +
+                                  '<div class="col-sm-4">ชื่อหัวหน้าโครงการ</div>' +
+                                  '<div class="col-sm-8">' + i.fname + ' ' + i.lname + '</div>' +
+                                '</div>' +
+                                '<div class="row">' +
+                                  '<div class="col-sm-4">แหล่งทุน</div>' +
+                                  '<div class="col-sm-8">' + $fstring + '</div>' +
+                                '</div><div>'
+
+                                $('#resultSpan').append($eachHtml)
+
+                                if(i.rafa_date != null){
+                                  $('#rafa_date').text(main_app.convertThaidate2(i.rafa_date))
+                                }
+
+                            })
+                          }
+
+
+                       }else{
+                         $df = '<div class="row">' +
+                           '<div class="col-sm-12">' +
+                             '<div class="text-center" style="padding: 50px 0px;">' +
+                               'ไม่พบข้อมูล' +
+                             '</div>' +
+                           '</div>' +
+                         '</div>'
+                         $('#resultSpan').html($df)
+                       }
+                     })
+
+                     .fail(function(){
+                       $('#exportBtn').addClass('dn')
+                     })
+      })
+    })
+
+    function exportReport(){
+      if($('#txtVara').val()=='3.3')
+        window.open('../../controller/report/export-report-1.php?vara=' + $('#txtVara').val() + '&tm=' + $('#txtTimemeeting').val())
+      else if($('#txtVara').val() == '3.4')
+        window.open('../../controller/report/export-report-1-2.php?vara=' + $('#txtVara').val() + '&tm=' + $('#txtTimemeeting').val())
+    }
+
+
+    function goto_report(progress_id){
+      window.localStorage.setItem('rmis_current_progress_id', progress_id)
+      window.location = 'create_report.html'
+    }
+  </script>
+</body>
+
+</html>

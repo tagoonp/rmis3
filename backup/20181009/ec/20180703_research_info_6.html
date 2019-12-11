@@ -1,0 +1,2252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta http-equiv='cache-control' content='no-cache'>
+  <meta http-equiv='expires' content='0'>
+  <meta http-equiv='pragma' content='no-cache'>
+	<title>:: RMIS :: สำหรับเลขา EC ::</title>
+
+	<!-- Data table CSS -->
+	<link href="../v3/vendors/bower_components/datatables/media/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css"/>
+
+  <!--alerts CSS -->
+	<link href="../v3/vendors/bower_components/sweetalert/dist/sweetalert.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="../v3/vendors/bower_components/dropzonejs/dropzone.min.css" />
+  <!-- Data table CSS -->
+  <link href="../v3/vendors/bower_components/datatables/media/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css"/>
+
+	<!-- Custom CSS -->
+	<link href="../v3/dist/css/style.css" rel="stylesheet" type="text/css">
+  <link href="../v3/fonts.css" rel="stylesheet" type="text/css">
+  <link href="../v3/style.css" rel="stylesheet" type="text/css">
+  <style media="screen">
+    .qp ol{
+      padding-left: 30px;
+    }
+
+    .qp ul{
+      padding-left: 30px;
+    }
+  </style>
+
+</head>
+
+<body>
+	<!--Preloader-->
+	<div class="preloader-it">
+		<div class="la-anim-1"></div>
+	</div>
+	<!--/Preloader-->
+    <div class="wrapper theme-1-active pimary-color-red">
+
+        <!-- Top Menu Items -->
+		<nav class="navbar navbar-inverse navbar-fixed-top">
+			<div class="mobile-only-brand pull-left">
+				<div class="nav-header pull-left">
+					<div class="logo-wrap">
+						<a href="index.html">
+							<img class="brand-img" src="../v3/dist/img/logo.png" alt="brand"/>
+							<span class="brand-text">RMIS</span>
+						</a>
+					</div>
+				</div>
+				<a id="toggle_nav_btn" class="toggle-left-nav-btn inline-block ml-20 pull-left" href="javascript:void(0);"><i class="zmdi zmdi-menu"></i></a>
+				<a id="toggle_mobile_nav" class="mobile-only-view" href="javascript:void(0);"><i class="zmdi zmdi-more"></i></a>
+			</div>
+			<div id="mobile_only_nav" class="mobile-only-nav pull-right">
+				<ul class="nav navbar-right top-nav pull-right">
+          <li>
+            <a href="profile.html">ยินดีต้อนรับ <span class="userFullname text-info">NA</span> (เลขา EC)</a>
+          </li>
+					<li class="dropdown alert-drp">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="zmdi zmdi-notifications top-nav-icon"></i><span class="notification_number"></span></a>
+						<ul  class="dropdown-menu alert-dropdown" data-dropdown-in="bounceIn" data-dropdown-out="bounceOut">
+							<li>
+								<div class="notification-box-head-wrap">
+									<span class="notification-box-head pull-left inline-block">การแจ้งเตือน</span>
+									<a class="txt-danger pull-right clear-notifications inline-block" href="javascript:main.clear_notify()"> ล้างทั้งหมด </a>
+									<div class="clearfix"></div>
+									<hr class="light-grey-hr ma-0"/>
+								</div>
+							</li>
+              <li>
+                <div class="streamline message-nicescroll-bar notification_panal">
+                </div>
+              </li>
+							<li>
+								<div class="notification-box-bottom-wrap">
+									<hr class="light-grey-hr ma-0"/>
+									<a class="block text-center read-all" href="view_activity_log.html"> อ่านทั้งหมด </a>
+									<div class="clearfix"></div>
+								</div>
+							</li>
+						</ul>
+					</li>
+					<li class="dropdown auth-drp">
+						<a href="#" class="dropdown-toggle pr-0" data-toggle="dropdown"><span id="profileImg"></span><span class="user-online-status"></span></a>
+						<ul class="dropdown-menu user-auth-dropdown" data-dropdown-in="flipInX" data-dropdown-out="flipOutX">
+							<li>
+								<a href="profile.html"><i class="zmdi zmdi-account"></i><span>ข้อมูลส่วนตัว</span></a>
+							</li>
+							<li>
+								<a href="#" onclick="main.mailbox()"><i class="zmdi zmdi-email"></i><span>Inbox</span></a>
+							</li>
+							<li>
+								<a href="changepassword.html"><i class="zmdi zmdi-settings"></i><span>เปลี่ยนรหัสผ่าน</span></a>
+							</li>
+							<li class="divider"></li>
+							<li>
+								<a href="#" onclick="main.signout()"><i class="zmdi zmdi-power"></i><span>ออกจากระบบ</span></a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</nav>
+		<!-- /Top Menu Items -->
+
+		<!-- Left Sidebar Menu -->
+    <div class="fixed-sidebar-left">
+      <ul class="nav navbar-nav side-nav nicescroll-bar extramenu">
+        <li class="navigation-header">
+					<span>เมนูดำเนินการพิเศษ</span>
+					<i class="zmdi zmdi-more"></i>
+				</li>
+      </ul>
+		</div>
+		<!-- /Left Sidebar Menu -->
+
+
+		<!-- Main Content -->
+		<div class="page-wrapper" style="padding-left: 15px; padding-right: 15px;">
+      <div class="container-fluid">
+
+				<!-- Title -->
+        <div class="row heading-bg mb-0">
+					<div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+						<h5 class="txt-dark">ข้อมูลโครงการวิจัย</h5>
+					</div>
+					<!-- Breadcrumb -->
+					<div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+						<ol class="breadcrumb">
+							<li><a href="./">หน้าแรก</a></li>
+							<li class="active"><span>ข้อมูลโครงการวิจัย</span></li>
+						</ol>
+					</div>
+					<!-- /Breadcrumb -->
+				</div>
+				<!-- /Title -->
+
+        <!-- Row -->
+        <div class="row">
+
+          <div class="col-sm-12">
+
+            <div class="row">
+              <div class="col-sm-6 pl-10 pr-10 pb-10 pt-0 hidden-xs">
+                <button class="btn btn-default btn-icon-anim btn-square" onclick="window.history.back()"><i class="zmdi zmdi-chevron-left"></i></button>
+              </div>
+              <div class="col-sm-6 col-xs-12 pl-10 pr-10 pb-10 pt-0 text-right">
+                <button class="btn btn-success btn-icon-anim btn-square" id="btnEdit" onclick="window.location = 'research_register.html'"><i class="zmdi zmdi-wrench"></i></button>
+                <button class="btn btn-success btn-icon-anim btn-square disabled" onclick="printForm('printArea')" id="btnPrint"><i class="zmdi zmdi-print"></i></button>
+                <button class="btn btn-info" onclick="sendData()" id="btnSending"><i class="zmdi zmdi-mail-send"></i> ส่งข้อมูล</button>
+              </div>
+            </div>
+
+            <div class="panel panel-default card-view">
+
+              <div class="panel-wrapper collapse in">
+								<div class="panel-body">
+
+                  <div class="loaddiv" style="padding: 100px 0px;">
+                    <div class="row">
+                      <div class="col-sm-2 col-sm-offset-5">
+                        <img src="../images/Rolling.gif" alt="" width="100%">
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="contentdiv dn">
+                    <div class="row" id="printArea">
+                      <div class="col-md-12 pl-20 pr-20 pt-20">
+                        <div style="padding-left: 20px; padding-right: 20px;">
+                          <div class="row pb-20">
+                            <div class="col-sm-12">
+                              รหัสการลงทะเบียน : <span id="txtIdrs" class="txt-success">NA</span> <br> รหัสโครงการ : <span id="txtCode" class="txt-danger">ยังไม่กำหนด</span>
+                            </div>
+                            <div class="col-sm-12">
+                              <div id="txtThtitle" class="txt-dark f500"  style="font-size: 18px;">NA</div>
+                              <div id="txtEntitle" class="txt-dark f500" style="font-size: 16px;">NA</div>
+                            </div>
+                            <div class="col-sm-12">
+                              หัวหน้าโครงการ : <span id="txtPi" class="txt-dark">NA</span>
+                            </div>
+                            <div class="col-sm-12">
+                              ประเภทการพิจารณา : <span id="txtRTypess" class="txt-danger">NA</span>
+                            </div>
+                          </div>
+
+                          <div  class="tab-struct custom-tab-1 mt-10">
+        										<ul role="tablist" class="nav nav-tabs" id="myTabs_7">
+        											<li class="active" role="presentation"><a aria-expanded="true"  data-toggle="tab" role="tab" id="home_tab_7" href="#home_7">ข้อมูลโครงการ</a></li>
+        											<li role="presentation" class=""><a  data-toggle="tab" id="profile_tab_7" role="tab" href="#profile_7" aria-expanded="false">เอกสารแนบ</a></li>
+                              <li role="presentation" class=""><a  data-toggle="tab" id="profile_tab_7" role="tab" href="#profile_5" aria-expanded="false">ข้อมูลจากผู้เชี่ยวชาญอิสระ</a></li>
+                              <li role="presentation" class=""><a  data-toggle="tab" id="profile_tab_7" role="tab" href="#profile_6" aria-expanded="false">สรุปข้อเสนอแนะจากเจ้าหน้าที่</a></li>
+                              <li role="presentation" class=""><a  data-toggle="tab" id="profile_tab_7" role="tab" href="#profile_8" aria-expanded="false">การดำเนินการต่อ</a></li>
+                              <li role="presentation" class=""><a  data-toggle="tab" id="profile_tab_9" role="tab" href="#profile_9" aria-expanded="false">Activity log</a></li>
+        										</ul>
+        										<div class="tab-content" id="myTabContent_7">
+        											<div  id="home_7" class="tab-pane fade active in" role="tabpanel">
+                                <table class="table customtable table-bordered" border="0" style="border:none !important; font-size: 1.0em;">
+                                  <tbody>
+                                    <tr>
+                                      <td style="width: 200px;" class="f500 txt-dark">คำสำคัญ</td>
+                                      <td>
+                                        [ภาษาไทย] <span id="txtThkeyword">NA</span>
+                                        <br>
+                                        [English] <span id="txtEnkeyword">NA</span>
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                      <td style="width: 200px;" class="f500 txt-dark">ประเภทโครงการวิจัย</td>
+                                      <td>
+                                        <span id="txtRtype">NA</span>
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                      <td style="width: 200px;" class="f500 txt-dark">ระยะเวลาโครงการ</td>
+                                      <td>
+                                        <span id="txtRduration">NA</span>
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                      <td style="width: 200px;" class="f500 txt-dark">งบประมาณ</td>
+                                      <td>
+                                        <span id="txtRBudget">NA</span>
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                      <td style="width: 200px;" class="f500 txt-dark">ทุนวิจัย</td>
+                                      <td>
+                                        <span id="txtFundingtype">NA</span>
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                      <td style="width: 200px;" class="f500 txt-dark">กลุ่มแหล่งทุน</td>
+                                      <td>
+                                        <span  id="txtFundinggroup">NA</span>
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                      <td style="width: 200px;" class="f500 txt-dark">ชื่อแหล่งทุน</td>
+                                      <td>
+                                        <span id="txtFundingname">NA</span>
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                      <td style="width: 200px;" class="f500 txt-dark">ผู้ร่วมวิจัย</td>
+                                      <td>
+                                        <span id="txtCopi">NA</span>
+                                      </td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+        											</div>
+        											<div  id="profile_7" class="tab-pane fade" role="tabpanel">
+                                <table class="table customtable table-bordered" border="0" style="border:none !important; font-size: 1.0em;">
+                                  <tbody>
+                                    <tr>
+                                      <td style="width: 200px;" class="f500 txt-dark">Submission form</td>
+                                      <td>
+                                        <div class="ft1 pt-0">
+                                          <ul class="" id="ft_att_1">-</ul>
+                                        </div>
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                      <td style="width: 200px;" class="f500 txt-dark">Protocol</td>
+                                      <td>
+                                        <div class="ft2 pt-0">
+                                          <ul class="" id="ft_att_2">-</ul>
+                                        </div>
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                      <td style="width: 200px;" class="f500 txt-dark">Information sheet and Consent Form </td>
+                                      <td>
+                                        <div class="ft3 pt-0">
+                                          <ul class="" id="ft_att_3">-</ul>
+                                        </div>
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                      <td style="width: 200px;" class="f500 txt-dark">Case Record Form </td>
+                                      <td>
+                                        <div class="ft4 pt-0">
+                                          <ul class="" id="ft_att_4">-</ul>
+                                        </div>
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                      <td style="width: 200px;" class="f500 txt-dark">Subject Material </td>
+                                      <td>
+                                        <div class="ft5 pt-0">
+                                          <ul class="" id="ft_att_5">-</ul>
+                                        </div>
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                      <td style="width: 200px;" class="f500 txt-dark">Legal Document</td>
+                                      <td>
+                                        <div class="ft6 pt-0">
+                                          <ul class="" id="ft_att_6">-</ul>
+                                        </div>
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                      <td style="width: 200px;" class="f500 txt-dark">เอกสารประกอบอื่น ๆ</td>
+                                      <td>
+                                        <div class="ft7 pt-0">
+                                          <ul class="" id="ft_att_7">-</ul>
+                                        </div>
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                      <td style="width: 200px;" class="f500 txt-dark">Updated CV, หลักฐานการอบรมจริยธรรมวิจัย </td>
+                                      <td>
+                                        <div class="ft8 pt-0">
+                                          <ul class="" id="ft_att_8">-</ul>
+                                        </div>
+                                      </td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+        											</div>
+
+                              <div id="profile_5" class="tab-pane fade " role="tabpanel">
+        												<div class="ld dn">
+                                  <div class="row">
+                                    <div class="col-sm-12 text-center" style="padding: 50px 0px;">
+                                      <img src="../images/Rolling.gif" alt="" width="100px;">
+                                    </div>
+                                  </div>
+        												</div>
+
+                                <div class="cd">
+                                  <div class="row">
+
+
+
+                                    <div class="col-sm-12">
+                                      <div class="panel panel-success card-view">
+                        								<div class="panel-heading">
+                        									<div class="pull-left">
+                        										<h6 class="panel-title txt-light">ข้อมูลจากผู้เชี่ยวชาญอิสระ</h6>
+                        									</div>
+                        									<div class="clearfix"></div>
+                        								</div>
+                        								<div  class="panel-wrapper collapse in">
+                        									<div  class="panel-body">
+                                            <table class="table customtable table-bordered" border="0" style="border:none !important; font-size: 1.0em;">
+                                              <tbody id="rw_table">
+                                              </tbody>
+                                            </table>
+                        									</div>
+                        								</div>
+                        							</div>
+                                    </div>
+                                  </div>
+
+                                </div>
+        											</div>
+
+                              <div id="profile_9" class="tab-pane fade " role="tabpanel">
+        												<div class="ld dn">
+                                  <div class="row">
+                                    <div class="col-sm-12 text-center" style="padding: 50px 0px;">
+                                      <img src="../images/Rolling.gif" alt="" width="100px;">
+                                    </div>
+                                  </div>
+        												</div>
+
+                                <div class="cd">
+                                  <div class="row">
+                                    <div class="col-sm-12">
+
+                                      <table class="table table-bordered">
+                                        <thead>
+                                          <tr style="background: rgb(21, 184, 130);" class="f500">
+                                            <th class="txt-light" style="width: 200px;">วัน - เวลา</th>
+                                            <th class="txt-light">ข้อความ</th>
+                                            <th class="txt-light" style="width: 100px;">โดย</th>
+                                          </tr>
+                                        </thead>
+                                        <tbody class="noteSpan">
+                                          <tr>
+                                            <td colspan="3">ไม่พบข้อมูลบันทึก </td>
+                                          </tr>
+                                        </tbody>
+                                      </table>
+
+                                    </div>
+                                  </div>
+                                </div>
+        											</div>
+                              <!-- .9 -->
+
+                              <div id="profile_6" class="tab-pane fade " role="tabpanel">
+        												<div class="ld dn">
+                                  <div class="row">
+                                    <div class="col-sm-12 text-center" style="padding: 50px 0px;">
+                                      <img src="../images/Rolling.gif" alt="" width="100px;">
+                                    </div>
+                                  </div>
+        												</div>
+
+                                <div class="cd">
+                                  <div class="row">
+
+
+
+                                    <div class="col-sm-12">
+                                      <div class="panel panel-success card-view">
+                        								<div class="panel-heading">
+                        									<div class="pull-left">
+                        										<h6 class="panel-title txt-light">สรุปข้อเสนอแนะของผู้เชี่ยวชาญจากเจ้าหน้าที่</h6>
+                        									</div>
+                        									<div class="clearfix"></div>
+                        								</div>
+                        								<div  class="panel-wrapper collapse in">
+                        									<div  class="panel-body">
+                                            <!-- <table class="table table-bordered">
+                                              <tr>
+                                                <td class="col-sm-3 txt-dark f500">
+                                                  ผลการสรุปข้อเสนอแนะ
+                                                </td>
+                                                <td class="col-sm-9" id="sr1">
+                                                  ไม่พบข้อมูล
+                                                </td>
+                                              </tr>
+
+                                              <tr>
+                                                <td class="col-sm-3 txt-dark f500">
+                                                  Note จากเจ้าหน้าที่
+                                                </td>
+                                                <td class="col-sm-9" id="sr2">
+                                                  ไม่พบข้อมูล
+                                                </td>
+                                              </tr>
+
+                                              <tr>
+                                                <td class="col-sm-3 txt-dark f500">
+                                                  ไฟล์แนบจากเจ้าหน้าที่
+                                                </td>
+                                                <td class="col-sm-9" id="sr3">
+                                                  ไม่พบข้อมูล
+                                                </td>
+                                              </tr>
+
+                                            </table> -->
+
+                                            <div class="modal fade bs-example-modal-lg-1" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="display: none;">
+                        											<div class="modal-dialog modal-lg">
+                        												<div class="modal-content">
+                        													<div class="modal-header" style="background: #5cb85c;">
+                        														<button type="button" class="close btnCloseModal" data-dismiss="modal" aria-hidden="true">×</button>
+                        														<h5 class="modal-title txt-light f500" id="myLargeModalLabel">เพิ่ม General comment</h5>
+                        													</div>
+                        													<div class="modal-body">
+                        														<div class="form" onsubmit="return false;">
+                                                      <div class="form-group">
+                                                        <label for="" class="f500 txt-dark">ข้อความถึงผู้เชี่ยวชาญอิสระ <span class="txt-danger">**</span></label>
+                                                        <textarea name="brief_reports" id="brief_reports" rows="8" cols="80" class="form-control" placeholder="กรอกชื่อแหล่งทุนวิจัย หรือ ใส่เครื่องหมายลบ (-) ..."></textarea>
+                                                      </div>
+                                                      <div class="form-group">
+                                                        <button type="button" class="btn btn-success btn-block" onclick="addComment(1)">เพิ่ม</button>
+                                                      </div>
+                                                    </div>
+                        													</div>
+                        												</div>
+                        												<!-- /.modal-content -->
+                        											</div>
+                        											<!-- /.modal-dialog -->
+                        										</div>
+                        										<!-- /.modal -->
+
+                                            <!-- sample modal content -->
+                        										<div class="modal fade bs-example-modal-lg-1-2" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="display: none;">
+                        											<div class="modal-dialog modal-lg">
+                        												<div class="modal-content">
+                        													<div class="modal-header" style="background: #5cb85c;">
+                        														<button type="button" class="close btnCloseModal" data-dismiss="modal" aria-hidden="true">×</button>
+                        														<h5 class="modal-title txt-light f500" id="myLargeModalLabel">แก้ไข General comment</h5>
+                        													</div>
+                        													<div class="modal-body">
+                        														<div class="form" onsubmit="return false;">
+                                                      <div class="form-group">
+                                                        <label for="" class="f500 txt-dark">ข้อความถึงผู้เชี่ยวชาญอิสระ <span class="txt-danger">**</span></label>
+                                                        <textarea name="brief_reports2" id="brief_reports2" rows="8" cols="80" class="form-control" placeholder="กรอกชื่อแหล่งทุนวิจัย หรือ ใส่เครื่องหมายลบ (-) ..."></textarea>
+                                                      </div>
+                                                      <div class="form-group">
+                                                        <button type="button" class="btn btn-success btn-block" onclick="addComment2(1)">ปรับปรุงข้อมูล</button>
+                                                      </div>
+                                                    </div>
+                        													</div>
+                        												</div>
+                        												<!-- /.modal-content -->
+                        											</div>
+                        											<!-- /.modal-dialog -->
+                        										</div>
+                        										<!-- /.modal -->
+
+                                            <table class="table customtable table-bordered" border="0" style="border:none !important; font-size: 1.0em;">
+                                              <tbody id="">
+                                                <tr>
+                                                  <td colspan="2" class="f500 txt-dark" style="background: #e6e6e6; font-size: 18px; padding-top: 25px;"><div>General comment</div> <button class="btn btn-success btn-square btn-xs" style="float: right; margin-top: -35px;" data-toggle="modal" data-target=".bs-example-modal-lg-1" ><i class="zmdi zmdi-plus"></i></button></td>
+                                                </tr>
+                                                <tr>
+                                                  <td colspan="2"><div id="p1" class="qp">ยังไม่มีข้อคำถาม/ข้อแสนอแนะ</div></td>
+                                                </tr>
+                                              </tbody>
+                                            </table>
+
+                                            <!-- sample modal content -->
+                        										<div class="modal fade bs-example-modal-lg-2" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="display: none;">
+                        											<div class="modal-dialog modal-lg">
+                        												<div class="modal-content">
+                        													<div class="modal-header" style="background: #5cb85c;">
+                        														<button type="button" class="close btnCloseModal" data-dismiss="modal" aria-hidden="true">×</button>
+                        														<h5 class="modal-title txt-light f500" id="myLargeModalLabel">เพิ่มข้อคำถามระเบียบวิธีวิจัย</h5>
+                        													</div>
+                        													<div class="modal-body">
+                        														<div class="form" onsubmit="return false;">
+                                                      <div class="form-group">
+                                                        <label for="" class="f500 txt-dark">คำถามหรือข้อเสนอแนะ <span class="txt-danger">**</span></label>
+                                                        <textarea name="qp1" id="qp1" rows="8" cols="80" class="form-control" placeholder="กรอกข้อคำถาม/ข้อเสนอแนะ ..."></textarea>
+                                                      </div>
+                                                      <div class="form-group">
+                                                        <button type="button" class="btn btn-success btn-block" onclick="addComment(2)">เพิ่ม</button>
+                                                      </div>
+                                                    </div>
+                        													</div>
+                        												</div>
+                        												<!-- /.modal-content -->
+                        											</div>
+                        											<!-- /.modal-dialog -->
+                        										</div>
+                        										<!-- /.modal -->
+                                            <!-- sample modal content -->
+                        										<div class="modal fade bs-example-modal-lg-2-2" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="display: none;">
+                        											<div class="modal-dialog modal-lg">
+                        												<div class="modal-content">
+                        													<div class="modal-header" style="background: #5cb85c;">
+                        														<button type="button" class="close btnCloseModal" data-dismiss="modal" aria-hidden="true">×</button>
+                        														<h5 class="modal-title txt-light f500" id="myLargeModalLabel">เพิ่มข้อคำถามระเบียบวิธีวิจัย</h5>
+                        													</div>
+                        													<div class="modal-body">
+                        														<div class="form" onsubmit="return false;">
+                                                      <div class="form-group">
+                                                        <label for="" class="f500 txt-dark">คำถามหรือข้อเสนอแนะ <span class="txt-danger">**</span></label>
+                                                        <textarea name="qp1" id="qp1-2" rows="8" cols="80" class="form-control" placeholder="กรอกข้อคำถาม/ข้อเสนอแนะ ..."></textarea>
+                                                      </div>
+                                                      <div class="form-group">
+                                                        <button type="button" class="btn btn-success btn-block" onclick="addComment2(2)">ปรับปรุงข้อมูล</button>
+                                                      </div>
+                                                    </div>
+                        													</div>
+                        												</div>
+                        												<!-- /.modal-content -->
+                        											</div>
+                        											<!-- /.modal-dialog -->
+                        										</div>
+                        										<!-- /.modal -->
+
+                                            <table class="table customtable table-bordered" border="0" style="border:none !important; font-size: 1.0em;">
+                                              <tbody id="">
+                                                <tr>
+                                                  <td colspan="2" class="f500 txt-dark" style="background: #e6e6e6; font-size: 18px; padding-top: 25px;"><div>ระเบียบวิธีวิจัย</div> <button class="btn btn-success btn-square btn-xs" style="float: right; margin-top: -35px;"  data-toggle="modal" data-target=".bs-example-modal-lg-2" ><i class="zmdi zmdi-plus"></i></button></td>
+                                                </tr>
+                                              </tbody>
+                                              <tbody id="p2">
+                                                <tr>
+                                                    <td colspan="2">ไม่มีข้อมูล</td>
+                                                </tr>
+                                              </tbody>
+
+
+                                            </table>
+
+                                            <!-- sample modal content -->
+                        										<div class="modal fade bs-example-modal-lg-3" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="display: none;">
+                        											<div class="modal-dialog modal-lg">
+                        												<div class="modal-content">
+                        													<div class="modal-header" style="background: #5cb85c;">
+                        														<button type="button" class="close btnCloseModal" data-dismiss="modal" aria-hidden="true">×</button>
+                        														<h5 class="modal-title txt-light f500" id="myLargeModalLabel">เพิ่มข้อคำถามกระบวนการขอความยินยอม</h5>
+                        													</div>
+                        													<div class="modal-body">
+                        														<div class="form" onsubmit="return false;">
+                                                      <div class="form-group">
+                                                        <label for="" class="f500 txt-dark">คำถามหรือข้อเสนอแนะ <span class="txt-danger">**</span></label>
+                                                        <textarea name="qp2" id="qp2" rows="8" cols="80" class="form-control" placeholder="กรอกข้อคำถาม/ข้อเสนอแนะ ..."></textarea>
+                                                      </div>
+                                                      <div class="form-group">
+                                                        <button type="button" class="btn btn-success btn-block" onclick="addComment(3)">เพิ่ม</button>
+                                                      </div>
+                                                    </div>
+                        													</div>
+                        												</div>
+                        												<!-- /.modal-content -->
+                        											</div>
+                        											<!-- /.modal-dialog -->
+                        										</div>
+                        										<!-- /.modal -->
+
+                                            <!-- sample modal content -->
+                        										<div class="modal fade bs-example-modal-lg-3-2" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="display: none;">
+                        											<div class="modal-dialog modal-lg">
+                        												<div class="modal-content">
+                        													<div class="modal-header" style="background: #5cb85c;">
+                        														<button type="button" class="close btnCloseModal" data-dismiss="modal" aria-hidden="true">×</button>
+                        														<h5 class="modal-title txt-light f500" id="myLargeModalLabel">เพิ่มข้อคำถามกระบวนการขอความยินยอม</h5>
+                        													</div>
+                        													<div class="modal-body">
+                        														<div class="form" onsubmit="return false;">
+                                                      <div class="form-group">
+                                                        <label for="" class="f500 txt-dark">คำถามหรือข้อเสนอแนะ <span class="txt-danger">**</span></label>
+                                                        <textarea name="qp2" id="qp2-2" rows="8" cols="80" class="form-control" placeholder="กรอกข้อคำถาม/ข้อเสนอแนะ ..."></textarea>
+                                                      </div>
+                                                      <div class="form-group">
+                                                        <button type="button" class="btn btn-success btn-block" onclick="addComment2(3)">ปรับปรุงข้อมูล</button>
+                                                      </div>
+                                                    </div>
+                        													</div>
+                        												</div>
+                        												<!-- /.modal-content -->
+                        											</div>
+                        											<!-- /.modal-dialog -->
+                        										</div>
+                        										<!-- /.modal -->
+
+                                            <table class="table customtable table-bordered" border="0" style="border:none !important; font-size: 1.0em;">
+                                              <tbody id="">
+                                                <tr>
+                                                  <td colspan="2" class="f500 txt-dark" style="background: #e6e6e6; font-size: 18px; padding-top: 25px;"><div>กระบวนการขอความยินยอม</div> <button class="btn btn-success btn-square btn-xs" style="float: right; margin-top: -35px;"  data-toggle="modal" data-target=".bs-example-modal-lg-3"><i class="zmdi zmdi-plus"></i></button></td>
+                                                </tr>
+                                              </tbody>
+                                              <tbody id="p3">
+                                                <tr>
+                                                    <td colspan="2">ไม่มีข้อมูล</td>
+                                                </tr>
+                                              </tbody>
+                                            </table>
+
+                                            <!-- sample modal content -->
+                        										<div class="modal fade bs-example-modal-lg-4" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="display: none;">
+                        											<div class="modal-dialog modal-lg">
+                        												<div class="modal-content">
+                        													<div class="modal-header" style="background: #5cb85c;">
+                        														<button type="button" class="close btnCloseModal" data-dismiss="modal" aria-hidden="true">×</button>
+                        														<h5 class="modal-title txt-light f500" id="myLargeModalLabel">เพิ่มข้อคำถามอื่น ๆ</h5>
+                        													</div>
+                        													<div class="modal-body">
+                        														<div class="form" onsubmit="return false;">
+                                                      <div class="form-group">
+                                                        <label for="" class="f500 txt-dark">คำถามหรือข้อเสนอแนะ <span class="txt-danger">**</span></label>
+                                                        <textarea name="qp3" id="qp3" rows="8" cols="80" class="form-control" placeholder="กรอกข้อคำถาม/ข้อเสนอแนะ ..."></textarea>
+                                                      </div>
+                                                      <div class="form-group">
+                                                        <button type="button" class="btn btn-success btn-block" onclick="addComment(4)">เพิ่ม</button>
+                                                      </div>
+                                                    </div>
+                        													</div>
+                        												</div>
+                        												<!-- /.modal-content -->
+                        											</div>
+                        											<!-- /.modal-dialog -->
+                        										</div>
+                        										<!-- /.modal -->
+
+                                            <div class="modal fade bs-example-modal-lg-4-2" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="display: none;">
+                        											<div class="modal-dialog modal-lg">
+                        												<div class="modal-content">
+                        													<div class="modal-header" style="background: #5cb85c;">
+                        														<button type="button" class="close btnCloseModal" data-dismiss="modal" aria-hidden="true">×</button>
+                        														<h5 class="modal-title txt-light f500" id="myLargeModalLabel">เพิ่มข้อคำถามอื่น ๆ</h5>
+                        													</div>
+                        													<div class="modal-body">
+                        														<div class="form" onsubmit="return false;">
+                                                      <div class="form-group">
+                                                        <label for="" class="f500 txt-dark">คำถามหรือข้อเสนอแนะ <span class="txt-danger">**</span></label>
+                                                        <textarea name="qp3" id="qp3-2" rows="8" cols="80" class="form-control" placeholder="กรอกข้อคำถาม/ข้อเสนอแนะ ..."></textarea>
+                                                      </div>
+                                                      <div class="form-group">
+                                                        <button type="button" class="btn btn-success btn-block" onclick="addComment2(4)">ปรับปรุงข้อมูล</button>
+                                                      </div>
+                                                    </div>
+                        													</div>
+                        												</div>
+                        												<!-- /.modal-content -->
+                        											</div>
+                        											<!-- /.modal-dialog -->
+                        										</div>
+                        										<!-- /.modal -->
+
+                                            <table class="table customtable table-bordered" border="0" style="border:none !important; font-size: 1.0em;">
+                                              <tbody id="">
+                                                <tr>
+                                                  <td colspan="2" class="f500 txt-dark" style="background: #e6e6e6; font-size: 18px; padding-top: 25px;"><div>อื่น ๆ</div> <button class="btn btn-success btn-square btn-xs" style="float: right; margin-top: -35px;"  data-toggle="modal" data-target=".bs-example-modal-lg-4"><i class="zmdi zmdi-plus"></i></button></td>
+                                                </tr>
+                                              </tbody>
+                                              <tbody id="p4">
+                                                <tr>
+                                                    <td colspan="2">ไม่มีข้อมูล</td>
+                                                </tr>
+                                              </tbody>
+                                            </table>
+
+                                            <!-- sample modal content -->
+                        										<div class="modal fade bs-example-modal-lg-5" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="display: none;">
+                        											<div class="modal-dialog modal-lg">
+                        												<div class="modal-content">
+                        													<div class="modal-header" style="background: #5cb85c;">
+                        														<button type="button" class="close btnCloseModal" data-dismiss="modal" aria-hidden="true">×</button>
+                        														<h5 class="modal-title txt-light f500" id="myLargeModalLabel">เพิ่ม Note </h5>
+                        													</div>
+                        													<div class="modal-body">
+                        														<div class="form" onsubmit="return false;">
+                                                      <div class="form-group">
+                                                        <label for="" class="txt-dark f500">หัวข้อ <span class="txt-danger">**</span></label>
+                                                        <input type="text" name="txtNotetitle" id="txtNotetitle" value="" class="form-control" placeholder="กรอกหัวข้อเรื่อง ...">
+                                                      </div>
+                                                      <div class="form-group">
+                                                        <label for="" class="f500 txt-dark">คำถามหรือข้อเสนอแนะ <span class="txt-danger">**</span></label>
+                                                        <textarea name="qp4" id="qp4" rows="8" cols="80" class="form-control" placeholder="กรอกข้อมูล ..."></textarea>
+                                                      </div>
+                                                      <div class="form-group">
+                                                        <button type="button" class="btn btn-success btn-block" onclick="addComment(5)">เพิ่ม</button>
+                                                      </div>
+                                                    </div>
+                        													</div>
+                        												</div>
+                        												<!-- /.modal-content -->
+                        											</div>
+                        											<!-- /.modal-dialog -->
+                        										</div>
+                        										<!-- /.modal -->
+
+                                            <!-- sample modal content -->
+                        										<div class="modal fade bs-example-modal-lg-5-2" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="display: none;">
+                        											<div class="modal-dialog modal-lg">
+                        												<div class="modal-content">
+                        													<div class="modal-header" style="background: #5cb85c;">
+                        														<button type="button" class="close btnCloseModal" data-dismiss="modal" aria-hidden="true">×</button>
+                        														<h5 class="modal-title txt-light f500" id="myLargeModalLabel">เพิ่ม Note </h5>
+                        													</div>
+                        													<div class="modal-body">
+                        														<div class="form" onsubmit="return false;">
+                                                      <div class="form-group">
+                                                        <label for="" class="txt-dark f500">หัวข้อ <span class="txt-danger">**</span></label>
+                                                        <input type="text" name="txtNotetitle2" id="txtNotetitle2" value="" class="form-control" placeholder="กรอกหัวข้อเรื่อง ...">
+                                                      </div>
+                                                      <div class="form-group">
+                                                        <label for="" class="f500 txt-dark">คำถามหรือข้อเสนอแนะ <span class="txt-danger">**</span></label>
+                                                        <textarea name="qp4-2" id="qp4-2" rows="8" cols="80" class="form-control" placeholder="กรอกข้อมูล ..."></textarea>
+                                                      </div>
+                                                      <div class="form-group">
+                                                        <button type="button" class="btn btn-success btn-block" onclick="addComment2(5)">ปรับปรุงข้อมูล</button>
+                                                      </div>
+                                                    </div>
+                        													</div>
+                        												</div>
+                        												<!-- /.modal-content -->
+                        											</div>
+                        											<!-- /.modal-dialog -->
+                        										</div>
+                        										<!-- /.modal -->
+
+                                            <table class="table customtable table-bordered" border="0" style="border:none !important; font-size: 1.0em;">
+                                              <tbody id="">
+                                                <tr>
+                                                  <td colspan="2" class="f500 txt-dark" style="background: #e6e6e6; font-size: 18px; padding-top: 25px;"><div>Note สำหรับเจ้าหน้าที่</div> <button class="btn btn-success btn-square btn-xs" style="float: right; margin-top: -35px;" data-toggle="modal" data-target=".bs-example-modal-lg-5"><i class="zmdi zmdi-plus"></i></button></td>
+                                                </tr>
+                                              </tbody>
+                                              <tbody id="p5" class="qp">
+                                                <tr>
+                                                  <td colspan="2">ไม่มีข้อมูล</td>
+                                                </tr>
+                                              </tbody>
+                                            </table>
+                        									</div>
+                        								</div>
+                        							</div>
+                                    </div>
+                                  </div>
+
+                                </div>
+        											</div>
+
+        											<div id="profile_8" class="tab-pane fade " role="tabpanel">
+        												<div class="ld dn">
+                                  <div class="row">
+                                    <div class="col-sm-12 text-center" style="padding: 50px 0px;">
+                                      <img src="../images/Rolling.gif" alt="" width="100px;">
+                                    </div>
+                                  </div>
+        												</div>
+
+                                <div class="cd">
+                                  <div class="row">
+
+
+
+                                    <div class="col-sm-12">
+                                      <div class="panel panel-success card-view">
+                        								<div class="panel-heading">
+                        									<div class="pull-left">
+                        										<h6 class="panel-title txt-light">ส่งต่อข้อมูล</h6>
+                        									</div>
+                        									<div class="clearfix"></div>
+                        								</div>
+                        								<div  class="panel-wrapper collapse in">
+                        									<div  class="panel-body">
+
+                                            <div class="fbInfo dn">
+                                              <label for="" class="f500 txt-dark">ผลจากการประชุมกรรมการเต็มชุด</label>
+                                              <table class="table table-bordered">
+                                                <tr>
+                                                  <td class="col-md-4 txt-dark f500">มติ</td>
+                                                  <td class="txt-danger" id="Fbresult">NA</td>
+                                                </tr>
+                                                <tr>
+                                                  <td class="col-md-4 txt-dark f500">การประชุม</td>
+                                                  <td class="txt-danger" id="Fbminfo">NA</td>
+                                                </tr>
+                                              </table>
+                                            </div>
+
+                                            <form onsubmit="return false;" class="myForm">
+                    												  <div class="form-group">
+                    												    <label for="" class="f500 txt-dark">ผลการพิจารณา <span class="txt-danger">**</span></label>
+                                                <select class="form-control" name="txtResult" id="txtResult">
+                                                  <option value="">-- กรุณาเลือกผลการพิจารณา --</option>
+                                                  <option value="1">ส่ง PI เพื่อแก้ไข/ตอบข้อเสนอแนะ</option>
+                                                  <option value="2">นำเข้าที่ประชุม</option>
+                                                  <option value="3">ออก COA</option>
+                                                  <option value="4">ส่งเจ้าหน้าที่แจ้งผลไม่รับรอง</option>
+                                                  <option value="5">ส่งกลับเจ้าหน้าเพื่อแก้ไขเพิ่มเติม</option>
+                                                </select>
+                    												  </div>
+
+
+
+                                              <div class="form-group">
+                                                <label for="exampleInputuname_3" class="control-label"><span class="f500">ข้อความถึง PI หรือ เจ้าหน้าที่ <span class="txt-danger">**</span> </label>
+                                                <textarea name="brief_report_picomment" id="brief_report_picomment" rows="8" cols="80" class="form-control" placeholder=""></textarea>
+                                              </div>
+
+                    												</form>
+
+
+                                            <div class="form-group text-right">
+                                              <div class="row">
+                                                <div class="col-sm-12 btn-block pt-20">
+                                                  <button class="btn btn-success btn-block" type="button" id="btnSaveAll">บันทึกและส่ง</button>
+                                                </div>
+                                              </div>
+                                            </div>
+
+
+                        									</div>
+                        								</div>
+                        							</div>
+                                    </div>
+
+
+
+
+
+                                  </div>
+
+                                </div>
+        											</div>
+
+        										</div>
+        									</div>
+
+
+                        </div>
+                        <div class="row">
+                          <div class="col-sm-12 text-right pr-50 pt-0" style="font-size: 0.8em;">
+                            หมายเลขอ้างอิง : <span class="txtSessid">NA</span>
+                          </div>
+                        </div>
+            					</div>
+                    </div>
+                  </div>
+                  <!-- .contentdiv -->
+
+
+
+                </div>
+                <!-- .panel-body -->
+              </div>
+              <!-- .panel-wrapper -->
+            </div>
+            <!-- .panel -->
+          </div>
+
+
+
+
+
+        </div>
+        <!-- .Row -->
+
+
+
+				<!-- Footer -->
+				<footer class="footer container-fluid pl-30 pr-30">
+					<div class="row">
+						<div class="col-sm-12">
+							<p>2017 &copy; <a href="http://rmis.medicine.psu.ac.th/project/" target="_blank">RMIS</a>. หน่วยส่งเสริมและพัฒนาทางวิชาการ คณะแพทยศาสตร์ มหาวิทยาลัยสงขลานครินทร์. Develop by <a href="https://wisniorproject.com" target="_blank">Wisnior Corp.</a></p>
+						</div>
+					</div>
+				</footer>
+				<!-- /Footer -->
+			</div>
+		</div>
+        <!-- /Main Content -->
+
+    </div>
+    <!-- /#wrapper -->
+
+	<!-- JavaScript -->
+
+  <!-- jQuery -->
+  <script src="../v3/vendors/bower_components/jquery/dist/jquery.min.js"></script>
+
+  <!-- Bootstrap Core JavaScript -->
+  <script src="../v3/vendors/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+	<!-- Data table JavaScript -->
+	<script src="../v3/vendors/bower_components/datatables/media/js/jquery.dataTables.min.js"></script>
+	<script src="../v3/dist/js/dataTables-data.js"></script>
+
+	<!-- Slimscroll JavaScript -->
+	<script src="../v3/dist/js/jquery.slimscroll.js"></script>
+  <script src="../v3/vendors/bower_components/dropzonejs/dropzone.min.js"></script>
+
+	<!-- Owl JavaScript -->
+	<script src="../v3/vendors/bower_components/owl.carousel/dist/owl.carousel.min.js"></script>
+
+	<!-- Switchery JavaScript -->
+	<script src="../v3/vendors/bower_components/switchery/dist/switchery.min.js"></script>
+
+	<!-- Fancy Dropdown JS -->
+	<script src="../v3/dist/js/dropdown-bootstrap-extended.js"></script>
+
+  <!-- Sweet-Alert  -->
+	<script src="../v3/vendors/bower_components/sweetalert/dist/sweetalert.min.js"></script>
+
+  <!-- Data table JavaScript -->
+  <script src="../v3/vendors/bower_components/datatables/media/js/jquery.dataTables.min.js"></script>
+  <script src="../v3/dist/js/dataTables-data.js"></script>
+
+  <script type="text/javascript" src="../v3/vendors/bower_components/ckeditor_lite/ckeditor.js"></script>
+
+	<!-- Init JavaScript -->
+	<script src="../v3/dist/js/init.js"></script>
+  <script src="../v3/rs_note.js"></script>
+  <script src="../v3/main.js"></script>
+  <script src="../v3/ec.js"></script>
+  <script src="../v3/reviewer_comment.js"></script>
+
+  <script type="text/javascript">
+
+    var current_user = window.localStorage.getItem('rmis_current_user')
+    var current_role = window.localStorage.getItem('rmis_current_role')
+    var current_rs = window.localStorage.getItem('current_selected_project_session')
+    var current_rs_id = window.localStorage.getItem('current_selected_project_id')
+    var editData0 = '';
+    var editData = '';
+    var editData1 = '';
+    var editData2 = '';
+    var editData22 = '';
+    var reviewer = 0;
+    var c_session = main_app.randomString(20);
+    var cuurent_rs_type = '';
+    var current_rv = '';
+    var numreplyfile = 0;
+    var checkrtype = '';
+    var ccrid = null;
+    var number_of_comment = 0;
+
+    note.add_note_btn()
+    note.add_param()
+
+    $(document).ready(function(){
+
+      if(current_rs == null){
+        swal({    title: "เกิดข้อผิดพลาด",
+                    text: "ไม่พบข้อมูลงานวิจัยที่ต้องการ กรุณาลองใหม่ หรือติดต่อเจ้าหน้าที่!",
+                    type: "error",
+                    showCancelButton: false,
+                    confirmButtonColor: "#DD6B55",
+                    confirmButtonText: "รับทราบ",
+                    closeOnConfirm: false },
+                    function(){
+                     window.location = './'
+                    });
+      }
+
+      main.load_year();
+      main.load_reviewer();
+
+      ec.init()
+
+      setTimeout(function(){
+        ec.load_rs_info_2();
+        loadStaffLog()
+        setTimeout(function(){
+          loadComment()
+        }, 1000)
+        note.load_note()
+
+
+      }, 1000)
+
+      checkFileAttached()
+      checkReviewer();
+      // checkReviewer_summary();
+
+      console.log(localStorage.getItem('rmis_current_user_email'));
+
+
+
+      // editData0 = CKEDITOR.replace( 'brief_report_picomment', {
+      //   wordcount : {
+			// 		showCharCount : false,
+			// 		showWordCount : true
+			// 	},
+      //   height: '150px'
+      // });
+
+      editData = CKEDITOR.replace( 'brief_reports', {
+        wordcount : {
+					showCharCount : false,
+					showWordCount : true
+				},
+        height: '150px'
+      });
+
+      editData1 = CKEDITOR.replace( 'brief_reports2', {
+        wordcount : {
+					showCharCount : false,
+					showWordCount : true
+				},
+        height: '150px'
+      });
+
+      editData2 = CKEDITOR.replace( 'qp4', {
+        wordcount : {
+					showCharCount : false,
+					showWordCount : true
+				},
+        height: '150px'
+      });
+
+      editData22 = CKEDITOR.replace( 'qp4-2', {
+        wordcount : {
+          showCharCount : false,
+          showWordCount : true
+        },
+        height: '150px'
+      });
+
+      editData_qp1 = CKEDITOR.replace( 'qp1', {
+        wordcount : {
+          showCharCount : false,
+          showWordCount : true
+        },
+        height: '150px'
+      });
+
+      editData_qp1_2 = CKEDITOR.replace( 'qp1-2', {
+        wordcount : {
+          showCharCount : false,
+          showWordCount : true
+        },
+        height: '150px'
+      });
+
+      editData_qp2 = CKEDITOR.replace( 'qp2', {
+        wordcount : {
+          showCharCount : false,
+          showWordCount : true
+        },
+        height: '150px'
+      });
+
+      editData_qp2_2 = CKEDITOR.replace( 'qp2-2', {
+        wordcount : {
+          showCharCount : false,
+          showWordCount : true
+        },
+        height: '150px'
+      });
+
+      editData_qp3 = CKEDITOR.replace( 'qp3', {
+        wordcount : {
+          showCharCount : false,
+          showWordCount : true
+        },
+        height: '150px'
+      });
+
+      editData_qp3_2 = CKEDITOR.replace( 'qp3-2', {
+        wordcount : {
+          showCharCount : false,
+          showWordCount : true
+        },
+        height: '150px'
+      });
+
+      editDataBack = CKEDITOR.replace( 'brief_report_picomment', {
+        wordcount : {
+          showCharCount : false,
+          showWordCount : true
+        },
+        height: '150px'
+      });
+
+      Dropzone.options.myFile5 = {
+        acceptedFiles: '.docx, .doc',
+        maxFilesize: 100,
+        init: function(){
+
+          this.on("complete", function(file) {
+            this.removeFile(file);
+            checkDataReplyToPiFile()
+          });
+        }
+      };
+    })
+
+    function loadStaffLog(){
+
+      var param = {
+        id_rs: current_rs_id
+      }
+      var jxhr = $.post(ws_url + 'controller/readStaffLog.php', param, function(){}, 'json')
+                  .always(function(r){
+                    if((r!='') && (r.length > 0)){
+                      a5 = '';
+                      r.forEach(function(i){
+
+                        $dinfo = i.log_detail
+
+                        if((i.log_detail == '') || (i.log_detail == null)){
+                          $dinfo = '-'
+                        }
+
+                        a5 += '<tr>' +
+                                '<td colspan="2"><div class="f500 txt-dark">' + i.log_by + ' <small>(' + main_app.convertThaidatetime(i.log_datetime) + ')</small></div>' + $dinfo +
+                                '</td>' +
+                              '</tr>';
+                      })
+                      if(a5 != ''){
+                        $('#p5').html(a5)
+                      }
+                    }
+                  })
+    }
+
+    function add_reviewer(){
+      if($('#txtRw').val() == ''){
+        swal("คำเตือน", "กรุณาเลือกผู้เชี่ยวชาญอิสระก่อน", "error")
+        return ;
+      }
+
+      if($('#txtRwType').val() == ''){
+        swal("คำเตือน", "กรุณาเลือกประเภท Reviewer", "error")
+        return ;
+      }
+
+      var param = {
+        reviewer_id: $('#txtRw').val(),
+        rtype: $('#txtRwType').val(),
+        ssid: c_session,
+        id_rs: current_rs_id
+      }
+
+      var jxhr = $.post(ws_url + 'controller/add_reviewed_reviewer.php', param, function(){}, 'json')
+                  .always(function(snap){
+
+                    if((snap != '') && (snap.length > 0)){
+                      reviewer = snap.length;
+                      $('#rev_list').empty();
+                      snap.forEach(function(childSnap){
+                        var data = '<li class="mb-5"><a href="Javascript:void(0)" onclick="delete_file_research(' + childSnap.rir_id +')"><i class="fa fa-close text-info mr-5"></i></a> ' + childSnap.prefix_name + childSnap.fname + ' ' + childSnap.lname + '(' + childSnap.rir_status + ')</li>';
+                        $('#rev_list').append(data);
+                      })
+
+                    }else{
+                      reviewer = 0;
+                    }
+
+
+
+                  }, 'json')
+
+    }
+
+    function resetRtype(){
+      cuurent_rs_type = '';
+      $('.btnt').removeClass('btn-success')
+      $('.btnt').addClass('btn-default')
+      $('#rtypetxt').text('ยังไม่มีผลการพิจารณา')
+      $('#txtResult').val('')
+    }
+
+    function setRsType(rt){
+      cuurent_rs_type = rt;
+      $('.btnt').removeClass('btn-success')
+      $('.btnt').addClass('btn-default')
+
+      if(rt == 'Exempt'){
+        $('#btnT1').removeClass('btn-default')
+        $('#btnT1').addClass('btn-success')
+        $('#txtResult').val(3)
+      }else if(rt == 'Expedited'){
+        $('#btnT2').removeClass('btn-default')
+        $('#btnT2').addClass('btn-success')
+        $('#txtResult').val('')
+      }else if(rt == 'Fullboard (Bio)'){
+        $('#btnT3').removeClass('btn-default')
+        $('#btnT3').addClass('btn-success')
+        $('#txtResult').val('')
+      }else if(rt == 'Fullboard (Social)'){
+        $('#btnT4').removeClass('btn-default')
+        $('#btnT4').addClass('btn-success')
+        $('#txtResult').val('')
+      }
+
+      $('#rtypetxt').text(cuurent_rs_type)
+    }
+
+    $(function(){
+      $('#txtResult').change(function(){
+        if($('#txtResult').val()=='2'){
+          $('.passPanal').addClass('dn')
+        }else if($('#txtResult').val()=='3'){
+          $('.passPanal').removeClass('dn')
+          $('#btnT1').trigger('click')
+        }else{
+          $('.passPanal').addClass('dn')
+        }
+      })
+
+      $('#btnSaveAll').click(function(){
+
+        $('.form-group').removeClass('has-error')
+        var senddingType = $('#txtResult').val()
+
+        if(senddingType == ''){
+          $('#txtResult').parent().addClass('has-error')
+          swal("คำเตือน", "กรุณาเลือกลผลการพิจารณา", "error")
+          return ;
+        }
+
+        var msg = editDataBack.getData();
+
+        if(senddingType == 1){ //ส่งแก้ไข
+
+          // console.log(number_of_comment);
+          // return ;
+
+          if(number_of_comment == 0){
+            swal("คำเตือน", "ไม่พบข้อคำถามให้ PI แก้ไข กรุณาตรวจสอบข้อมูลอีกครั้ง", "error")
+            return ;
+          }
+
+          swal({
+            title: "ยืนยันการดำเนินการ",
+              text: "คุณยืนยันการส่งข้อเสนอแนะดังกล่าวไปยังผู้วิจัยหรือไม่",
+              type: "warning",
+              showCancelButton: true,
+              confirmButtonColor: "#b92e13",
+              confirmButtonText: "ยืนยัน",
+              cancelButtonText: "ยกเลิก",
+              closeOnConfirm: true
+          },
+          function(){
+
+            lp.sl()
+
+            var param = {
+              id: current_user,
+              id_rs: current_rs_id,
+              msga: msg
+            }
+
+            console.log(param);
+            // return ;
+
+            var jxhr = $.post(ws_url + 'controller/ec/fb_to_pi_update.php', param, function(){})
+                        .always(function(resp){
+
+                          console.log(resp);
+
+                          if(resp=='Y'){
+
+                            if($('#txtRTypess').text() == 'Expedited'){
+                              var dataContent = '<h3>เรื่อง ผลการประเมินด้านจริยธรรมการวิจัยในมนุษย์ ประเภทพิจารณาแบบเร็ว</h3>' +
+                                                '<p><strong>ชื่อโครงการ (ไทย)</strong> ' + $('#txtThtitle').text() + '<br><strong>ชื่อโครงการ</strong> ' + $('#txtEntitle').text() +'</p>' +
+                                                '<p><strong>เรียน</strong> ' + $('#txtPi').text() + '</p>' +
+                                                '<p>ตามที่ท่านเสนอโครงร่างการวิจัยเพื่อขอรับพิจารณาจริยธรรมการวิจัยในมนุษย์ หมายเลขโครงการ REC. ' + $('#txtCode').text() + ' โครงการวิจัยดังกล่าว ' +
+                                                'ได้รับการพิจารณาโดยผู้เชี่ยวชาญอิสระและกรรมการจริยธรรม มีมติ คือ <span style="color:red;">ปรับปรุงแก้ไขเพื่อรับรอง (Minor modification)</span></p>' +
+                                                "<p>จึงเรียนมาเพื่อทราบและดำเนินการแก้ไข (response to reviewer's comments) ได้ที่ <a href=" + root_domain + " target=_blank>" + root_domain + "</a>" +
+                                                'ให้แล้วเสร็จภายใน 60 วันหลังจากได้รับอีเมล์ฉบับนี้ หากพ้นกำหนดดังกล่าว โดยที่ท่านยังมีความประสงค์ที่จะขอรับการพิจารณาจริยธรรม ท่านต้องดำเนินการยื่นเอกสารโครงการวิจัยเสมือนขอรับพิจารณาจริยธรรมใหม่ทั้งหมด</p>' +
+                                                // "<p>สำนักงานจริยธรรมการวิจัย ขอขอบพระคุณท่านเป็นอย่างสูงสำหรับความอนุเคราะห์ในครั้งนี้ </p>" +
+                                                "<p>หากผู้วิจัยมีข้อสงสัยในข้อคำถามของคณะกรรมการสามารถสอบถามเลขานุการ โดยผู้วิจัยโทรศัพท์นัดหมายกับเจ้าหน้าที่สำนักงาน ที่หมายเลข 074-451157 หรือ 074-451149</p>" +
+                                                "<p>หากลิงค์ไม่ทำงาน กรุณา copy ลิงค์เพื่อเปิดกับเว็บเบราว์เซอร์ <br>" +
+                                                "สอบถามเพิ่มเติม ติดต่อ คุณณัฎฐา ศิริรักษ์ สำนักงานจริยธรรมการวิจัยในมนุษย์<br>" +
+                                                "E-mail: sinuttha@medicine.psu.ac.th หรือ โทร. 1149 และ1157</p>" +
+                                                // "<p>** หมายเหตุ : ระบบ RMIS อยู่ในระหว่างการทดสอบ (เริ่มทดลองใช้เต็มรูปแบบ มกราคม 2561) ความเห็นที่ได้จากท่านจะถูกนำไปพัฒนาระบบให้ดียิ่งขึ้น</p>" +
+                                                "<p>หมายเหตุ : <br>** ระบบ RMIS อยู่ในระหว่างการทดสอบ (เริ่มทดลองใช้เต็มรูปแบบ มกราคม 2561) ความเห็นที่ได้จากท่านจะถูกนำไปพัฒนาระบบให้ดียิ่งขึ้น<br>*** กรุณาอย่าตอบกลับอีเมล์ฉบับนี้ (Do not reply)</p>" +
+                                                "<hr>" +
+                                                "<p>สำนักงานจริยธรรมการวิจัยในมนุษย์ หน่วยส่งเสริมและพัฒนาทางวิชาการ คณะแพทยศาสตร์ มหาวิทยาลัยสงขลานครินทร์" +
+                                                "<br>(Human Research Ethic Committee, Faculty of Medicine, Prince of Songkla University) </p>";;
+
+                                                var param = {
+                                                  title: "ผลการประเมินโครงการวิจัย REC." + $('#txtCode').text() + " เพื่อขอพิจารณาจริยธรรมการวิจัยในมนุษย์",
+                                                  content: dataContent,
+                                                  user: 'tagoon.p@gmail.com',
+                                                  key: 'idj&skeoXf2**r123X',
+                                                  toemail: window.localStorage.getItem('current_rs_email'),
+                                                  toname: $('#txtPi').text()
+                                                }
+
+                                                main.send_email(param, 'index.html', 'กดตกลงเพื่อกลับสู่หน้าหลัก', 'ระบบได้ดำเนินการตามกระบวนที่ท่านได้ดำเนินการแล้ว แต่เกิดข้อผิดพลาดในส่วนของการส่งอีเมล์ กรุณาแจ้งเจ้าหน้าที่เพื่อตรวจสอบและดำเนินการแก้ไข')
+                                                return ;
+
+                            }else if(($('#txtRTypess').text() == 'Fullboard (Bio)') || ($('#txtRTypess').text() == 'Fullboard (Social)')){
+
+                              $res = 'ปรับปรุงแก้ไขเพื่อรับรอง (Minor modification : หมายถึง ไม่ต้องเข้าพิจารณาในกรรมการเต็มชุดรอบ 2 หากเลขานุการเห็นชอบการแก้ไข)'
+                              $resfile = ''
+                              $mn1 = 'โดยไม่ต้องทำเอกสารมายังสำนักงาน ยกเว้นเจ้าหน้าที่มีการร้องขอ'
+                              if($('#Fbresult').text() == 'Major'){
+                                $res = 'ปรับปรุงแก้ไขและนำเข้าพิจารณาใหม่ (Major modification : หมายถึง ปรับปรุงแก้ไขและต้องบรรจุเข้ากรรมการเต็มชุดรอบที่ 2)'
+                                $resfile = '<li>จัดทำเอกสารทั้งหมด 14 ชุด ส่งมายังสำนักงานจริยธรรมเพื่อเนำเข้าพิจารณาใน Board ครั้งต่อไปใน panal เดียวกัน </li>'
+                                $mn1 = ''
+                              }
+
+                              var dataContent = '<h3>เรื่อง มติการพิจารณาด้านจริยธรรมการวิจัยในมนุษย์ ภายหลัง ' + $('#Fbminfo').text() + '</h3>' +
+                                                '<p><strong>ชื่อโครงการ (ไทย)</strong> ' + $('#txtThtitle').text() + '<br><strong>ชื่อโครงการ</strong> ' + $('#txtEntitle').text() +'</p>' +
+                                                '<p><strong>เรียน</strong> ' + $('#txtPi').text() + '</p>' +
+                                                '<p>ตามที่ท่านเสนอโครงร่างการวิจัยเพื่อขอรับพิจารณาจริยธรรมการวิจัยในมนุษย์ หมายเลขโครงการ REC. ' + $('#txtCode').text() + ' โครงร่างการวิจัยดังกล่าว ได้รับการพิจารณาในที่ประชุมคณะกรรมใน' + $('#Fbminfo').text() + '</p>' +
+                                                '<p><strong>มีมติ คือ <span style="color:red;">' + $res + '</span></strong></p>' +
+                                                "<p>จึงเรียนมาเพื่อทราบและดำเนินการแก้ไข ดังต่อไปนี้ " +
+                                                    '<ol>' +
+                                                        "<li>ชี้แจงต่อข้อคำถามของกรรมการ (response to reviewer's comments) ได้ที่ <a href=" + root_domain + " target=_blank>" + root_domain + "</a></li>" +
+                                                        "<li>โครงร่างการวิจัยที่ทำการแก้ไข พร้อม High-light ส่วนที่แก้ไข และปรับเวอร์ชั่น</li>" +
+                                                        "<li>อัพโหลดไฟล์ฉบับแก้ไขในระบบ RMIS " + $mn1 + "</li>" +
+                                                        $resfile +
+                                                    '</ol>' +
+                                                // 'ภายหลัง Re-submit โครงการผ่านระบบออนไลน์แล้ว ขอให้ดำเนินการ<span style="color:red;">ให้แล้วเสร็จภายใน 60 วันหลังจากได้รับอีเมล์ฉบับนี้</span> หากพ้นกำหนดดังกล่าว ท่านยังมีความประสงค์ที่จะขอรับการพิจารณาจริยธรรม ท่านต้องดำเนินการยื่นเอกสารโครงร่างการวิจัยเสมือนขอรับการพิจารณาจริยธรรมใหม่ทั้งหมด</p>' +
+                                                'ขอให้ดำเนินการ<span style="color:red;">ให้แล้วเสร็จภายใน 60 วันหลังจากได้รับอีเมล์ฉบับนี้</span> หากพ้นกำหนดดังกล่าว ท่านยังมีความประสงค์ที่จะขอรับการพิจารณาจริยธรรม ท่านต้องดำเนินการยื่นเอกสารโครงร่างการวิจัยเสมือนขอรับการพิจารณาจริยธรรมใหม่ทั้งหมด</p>' +
+                                                "<p>หากผู้วิจัยมีข้อสงสัยในข้อคำถามของคณะกรรมการสามารถสอบถามเลขานุการ โดยผู้วิจัยโทรศัพท์นัดหมายกับเจ้าหน้าที่สำนักงาน ที่หมายเลข 074-451157 หรือ 074-451149</p>" +
+                                                "<p>หากลิงค์ไม่ทำงาน กรุณา copy ลิงค์เพื่อเปิดกับเว็บเบราว์เซอร์ <br>" +
+                                                "สอบถามเพิ่มเติม ติดต่อ คุณณัฎฐา ศิริรักษ์ สำนักงานจริยธรรมการวิจัยในมนุษย์<br>" +
+                                                "E-mail: sinuttha@medicine.psu.ac.th หรือ โทร. 1149 และ1157</p>" +
+                                                // "<p>** หมายเหตุ : ระบบ RMIS อยู่ในระหว่างการทดสอบ (เริ่มทดลองใช้เต็มรูปแบบ มกราคม 2561) ความเห็นที่ได้จากท่านจะถูกนำไปพัฒนาระบบให้ดียิ่งขึ้น</p>" +
+                                                "<p>หมายเหตุ : <br>** ระบบ RMIS อยู่ในระหว่างการทดสอบ (เริ่มทดลองใช้เต็มรูปแบบ มกราคม 2561) ความเห็นที่ได้จากท่านจะถูกนำไปพัฒนาระบบให้ดียิ่งขึ้น<br>*** กรุณาอย่าตอบกลับอีเมล์ฉบับนี้ (Do not reply)</p>" +
+                                                "<hr>" +
+                                                "<p>สำนักงานจริยธรรมการวิจัยในมนุษย์ หน่วยส่งเสริมและพัฒนาทางวิชาการ คณะแพทยศาสตร์ มหาวิทยาลัยสงขลานครินทร์" +
+                                                "<br>(Human Research Ethic Committee, Faculty of Medicine, Prince of Songkla University) </p>";;
+
+                                                var param = {
+                                                  title: "มติการพิจารณาด้านจริยธรรมการวิจัยในมนุษย์ โครงการวิจัย REC." + $('#txtCode').text() + " ภายหลังการประชุม",
+                                                  content: dataContent,
+                                                  user: 'tagoon.p@gmail.com',
+                                                  key: 'idj&skeoXf2**r123X',
+                                                  toemail: window.localStorage.getItem('current_rs_email'),
+                                                  toname: $('#txtPi').text()
+                                                }
+
+                                                main.send_email(param, 'index.html', 'กดตกลงเพื่อกลับสู่หน้าหลัก', 'ระบบได้ดำเนินการตามกระบวนที่ท่านได้ดำเนินการแล้ว แต่เกิดข้อผิดพลาดในส่วนของการส่งอีเมล์ กรุณาแจ้งเจ้าหน้าที่เพื่อตรวจสอบและดำเนินการแก้ไข')
+                                                return ;
+
+                            }
+
+
+
+
+                            var emailParam = {
+                              email: emailConfig.user,
+                              api_key: emailConfig.key,
+                              title: "ผลการประเมินโครงการวิจัย REC." + $('#txtCode').text() + " เพื่อขอพิจารณาจริยธรรมการวิจัยในมนุษย์",
+                              to_email: window.localStorage.getItem('current_rs_email'),
+                              content: dataContent
+                            }
+
+                            var jxhr = $.post(emailProvider, emailParam, function(){})
+                                        .always(function(res){
+                                          if(res!='Y'){
+                                            alert('ไม่สามารถส่งอีเมล์ได้')
+                                          }else{
+                                            swal({    title: "ดำเนินการสำเร็จ",
+                                            text: "กด 'ตกลง' เพื่อกลับสู่หน้ารายการโครงการวิจัยใหม่",
+                                            type: "success",
+                                            showCancelButton: false,
+                                            confirmButtonColor: "#0daf66",
+                                            confirmButtonText: "ตกลง",
+                                            closeOnConfirm: false },
+                                            function(){
+                                              window.location = 'rs-init-new.html'
+                                            });
+                                          }
+                                        })
+
+
+                          }else{
+                            alert(resp)
+                          }
+                        })
+          });
+
+        }
+        else if(senddingType == 2){ // นำเข้าที่ประชุม
+          swal({    title: "ยืนยันการดำเนินการ",
+              text: "คุณยืนยันการดำเนินการนี้หรือไม่",
+              type: "warning",
+              showCancelButton: true,
+              confirmButtonColor: "#b92e13",
+              confirmButtonText: "ยืนยัน",
+              cancelButtonText: "ยกเลิก",
+              closeOnConfirm: false
+          },
+          function(){
+            var param = {
+              id: current_user,
+              id_rs: current_rs_id,
+              msg: editData.getData()
+            }
+
+            var jxhr = $.post(ws_url + 'controller/ec/update_status_15.php', param, function(){})
+                        .always(function(resp){
+                          if(resp=='Y'){
+                            swal({    title: "ดำเนินการสำเร็จ",
+                            text: "กด 'ตกลง' เพื่อกลับสู่หน้ารายการโครงการวิจัยใหม่",
+                            type: "warning",
+                            showCancelButton: false,
+                            confirmButtonColor: "#0daf66",
+                            confirmButtonText: "ตกลง",
+                            closeOnConfirm: false },
+                            function(){
+                              window.location = 'index.html'
+                            });
+                          }else{
+                            alert(resp)
+                          }
+                        })
+          });
+        }
+        else if(senddingType == 3){  // รอออกใบรับรอง
+
+          swal({    title: "ยืนยันการดำเนินการ",
+              text: "คุณยืนยันการดำเนินการนี้หรือไม่",
+              type: "warning",
+              showCancelButton: true,
+              confirmButtonColor: "#b92e13",
+              confirmButtonText: "ยืนยัน",
+              cancelButtonText: "ยกเลิก",
+              closeOnConfirm: false
+          },
+          function(){
+
+            var param = {
+              id: current_user,
+              id_rs: current_rs_id,
+              msg: editDataBack.getData()
+            }
+
+            var jxhr = $.post(ws_url + 'controller/ec/update_status_22.php', param, function(){})
+                        .always(function(resp){
+                          if(resp=='Y'){
+                            swal({    title: "ดำเนินการสำเร็จ",
+                            text: "กด 'ตกลง' เพื่อกลับสู่หน้ารายการโครงการวิจัยใหม่",
+                            type: "warning",
+                            showCancelButton: false,
+                            confirmButtonColor: "#0daf66",
+                            confirmButtonText: "ตกลง",
+                            closeOnConfirm: false },
+                            function(){
+                              window.location = 'index.html'
+                            });
+                          }else{
+                            alert(resp)
+                          }
+                        })
+          });
+        }else if(senddingType == 4){ //Send to dis-approve
+
+          if(editDataBack.getData() == ''){
+            swal("คำเตือน", "กรุณาระบุข้อความก่อนส่ง", "error")
+            return ;
+          }
+
+          swal({    title: "ยืนยันการดำเนินการ",
+              text: "คุณยืนยันการดำเนินการนี้ เพื่อส่งกลับไปยังเจ้าหน้าที่หรือไม่",
+              type: "warning",
+              showCancelButton: true,
+              confirmButtonColor: "#b92e13",
+              confirmButtonText: "ยืนยัน",
+              cancelButtonText: "ยกเลิก",
+              closeOnConfirm: false
+          },
+          function(){
+
+            var param = {
+              id: current_user,
+              id_rs: current_rs_id,
+              id_status: '29',
+              msg: editDataBack.getData()
+            }
+
+            var jxhr = $.post(ws_url + 'controller/ec/reply_back_to_staff_3.php', param, function(){})
+                        .always(function(resp){
+                          if(resp=='Y'){
+                            swal({    title: "ดำเนินการสำเร็จ",
+                            text: "กด 'ตกลง' เพื่อกลับสู่หน้าหลัก",
+                            type: "warning",
+                            showCancelButton: false,
+                            confirmButtonColor: "#0daf66",
+                            confirmButtonText: "ตกลง",
+                            closeOnConfirm: false },
+                            function(){
+                              window.location = 'index.html'
+                            });
+                          }else{
+                            alert(resp)
+                          }
+                        })
+          });
+
+        }else if(senddingType == 5){ //Send to staff
+
+          if(editDataBack.getData() == ''){
+            swal("คำเตือน", "กรุณาระบุข้อความก่อนส่ง", "error")
+            return ;
+          }
+
+          swal({    title: "ยืนยันการดำเนินการ",
+              text: "คุณยืนยันการดำเนินการนี้ เพื่อส่งกลับไปยังเจ้าหน้าที่หรือไม่",
+              type: "warning",
+              showCancelButton: true,
+              confirmButtonColor: "#b92e13",
+              confirmButtonText: "ยืนยัน",
+              cancelButtonText: "ยกเลิก",
+              closeOnConfirm: false
+          },
+          function(){
+
+            var param = {
+              id: current_user,
+              id_rs: current_rs_id,
+              id_status: '5',
+              msg: editDataBack.getData()
+            }
+
+            // console.log(param);
+            // return ;
+
+            var jxhr = $.post(ws_url + 'controller/ec/reply_back_to_staff_2.php', param, function(){})
+                        .always(function(resp){
+                          if(resp=='Y'){
+                            swal({    title: "ดำเนินการสำเร็จ",
+                            text: "กด 'ตกลง' เพื่อกลับสู่หน้าหลัก",
+                            type: "warning",
+                            showCancelButton: false,
+                            confirmButtonColor: "#0daf66",
+                            confirmButtonText: "ตกลง",
+                            closeOnConfirm: false },
+                            function(){
+                              window.location = 'index.html'
+                            });
+                          }else{
+                            alert(resp)
+                          }
+                        })
+          });
+
+        }
+
+
+      })
+    })
+
+    function loadComment(){
+      ccrid = null
+      $('.btnCloseModal').trigger('click')
+
+      for(var j = 1; j <= 5; j++){
+        rw_comment.loadComment(j)
+      }
+    }
+
+    function loadComment__(){
+      for(var i = 1; i <= 5; i++){
+        var param = {
+          part_id: i,
+          id_rs: current_rs_id
+        }
+
+        var jxhr = $.post(ws_url + 'controller/readCommentQuestion.php', param, function(){}, 'json')
+                    .always(function(snap){
+                      if((snap != '') && (snap.length > 0)){
+
+                        var a1 = '';
+                        var a2 = '';
+                        var a3 = '';
+                        var a4 = '';
+                        var a5 = '';
+
+                        snap.forEach(function(i){
+                          if(i.riwc_part == 1){
+                            a1 += i.riwc_q + '<div class="pt-10"><button class="btn btn-success btn-xs  pl-10 pr-10" data-toggle="modal" data-target=".bs-example-modal-lg-1-2" onclick="setEContent(1, \'' + i.riwc_id  + '\')"><i class="zmdi zmdi-edit"></i> แก้ไข</button> <button class="btn btn-info btn-xs  pl-10 pr-10"  onclick="deleteQ(\'' + i.riwc_id + '\')"><i class="zmdi zmdi-delete"></i> ลบ</button></div>';
+                          }
+
+                          if(i.riwc_part == 2){
+                            number_of_comment++;
+                            a2 += '<tr>' +
+                                    '<td class="f500 col-sm-3">คำถามหรือข้อเสนอแนะ :</td>' +
+                                    '<td>' + i.riwc_q + '<div class="pt-10"><button class="btn btn-success btn-xs  pl-10 pr-10"   data-toggle="modal" data-target=".bs-example-modal-lg-2-2"  onclick="setEContent(2, \'' + i.riwc_id  + '\')"><i class="zmdi zmdi-edit"></i> แก้ไข</button> <button class="btn btn-info btn-xs  pl-10 pr-10"  onclick="deleteQ(\'' + i.riwc_id + '\')"><i class="zmdi zmdi-delete"></i> ลบ</0</div>' +
+                                    '</td>' +
+                                  '</tr>';
+                          }
+
+                          if(i.riwc_part == 3){
+                            number_of_comment++;
+                            a3 += '<tr>' +
+                                    '<td class="f500 col-sm-3">คำถามหรือข้อเสนอแนะ :</td>' +
+                                    '<td>' + i.riwc_q + '<div class="pt-10"><button class="btn btn-success btn-xs  pl-10 pr-10"   data-toggle="modal" data-target=".bs-example-modal-lg-3-2"  onclick="setEContent(3, \'' + i.riwc_id  + '\')"><i class="zmdi zmdi-edit"></i> แก้ไข</button> <button class="btn btn-info btn-xs pl-10 pr-10"  onclick="deleteQ(\'' + i.riwc_id + '\')"><i class="zmdi zmdi-delete"></i> ลบ</0</div>' +
+                                    '</td>' +
+                                  '</tr>';
+                          }
+
+                          if(i.riwc_part == 4){
+                            number_of_comment++;
+                            a4 += '<tr>' +
+                                    '<td class="f500 col-sm-3">คำถามหรือข้อเสนอแนะ :</td>' +
+                                    '<td>' + i.riwc_q + '<div class="pt-10"><button class="btn btn-success btn-xs  pl-10 pr-10"  data-toggle="modal" data-target=".bs-example-modal-lg-4-2"  onclick="setEContent(4, \'' + i.riwc_id  + '\')"><i class="zmdi zmdi-edit"></i> แก้ไข</button> <button class="btn btn-info btn-xs  pl-10 pr-10" onclick="deleteQ(\'' + i.riwc_id + '\')"><i class="zmdi zmdi-delete"></i> ลบ</0</div>' +
+                                    '</td>' +
+                                  '</tr>';
+                          }
+
+                          if(i.riwc_part == 5){
+                            a5 += '<tr>' +
+                                    '<td colspan="2"><div class="f500 txt-dark">' + i.rirc_key + '<small>(' + main_app.convertThaidatetime(i.riwc_staff_add_date) + ')</small></div>' + i.riwc_q +
+                                    '</td>' +
+                                  '</tr>';
+                          }
+                        })
+
+                        if(a1 != ''){
+                          $('#p1').empty()
+                          $('#p1').html(a1)
+                        }
+
+                        if(a2 != ''){
+                          $('#p2').empty()
+                          $('#p2').html(a2)
+                        }
+
+                        if(a3 != ''){
+                          $('#p3').html(a3)
+                        }
+
+                        if(a4 != ''){
+                          $('#p4').html(a4)
+                        }
+
+                        if(a5 != ''){
+                          $('#p5').html(a5)
+                        }
+
+                      }else{
+
+                      }
+                    }, 'json')
+      }
+    }
+
+    // function addComment2(pid){
+    //
+    //   if(ccrid == null){
+    //     swal("ขออภัย", "เกิดข้อผิดพลาด", "error")
+    //     return ;
+    //   }
+    //
+    //   if(pid == 1){
+    //     var datas = editData1.getData()
+    //     if(datas == ''){
+    //       swal("ขออภัย", "กรุณากรอกข้อมูลให้ครบถ้วน", "error")
+    //       return ;
+    //     }
+    //
+    //     var param = {
+    //       part_id: pid,
+    //       user: current_user,
+    //       id_rs: current_rs_id,
+    //       data: datas,
+    //       rid: ccrid
+    //     }
+    //
+    //     lp.sl()
+    //
+    //     var jxhr = $.post(ws_url + 'controller/addCommentQuestion.php', param, function(){})
+    //                 .always(function(r){
+    //                   if(r == 'Y'){
+    //                     window.location.reload()
+    //                   }else{
+    //                     console.log(r);
+    //                     swal("ขออภัย", "กรุณากรอกข้อมูลให้ครบถ้วน", "error")
+    //                     lp.hl()
+    //                     return ;
+    //                   }
+    //                 })
+    //                 .fail(function(){
+    //                   onFail()
+    //                 })
+    //   }else if((pid == 2) || (pid == 3) || (pid == 4)){
+    //     var datas = ''
+    //
+    //     if(pid == 2){
+    //       datas = $('#qp1-2').val()
+    //     }
+    //
+    //     if(pid == 3){
+    //       datas = $('#qp2-2').val()
+    //     }
+    //
+    //     if(pid == 4){
+    //       datas = $('#qp3-2').val()
+    //     }
+    //
+    //
+    //     if(datas == ''){
+    //       swal("ขออภัย", "กรุณากรอกข้อมูลให้ครบถ้วน", "error")
+    //       return ;
+    //     }
+    //
+    //     var param = {
+    //       part_id: pid,
+    //       user: current_user,
+    //       id_rs: current_rs_id,
+    //       data: datas,
+    //       rid: ccrid
+    //     }
+    //
+    //     lp.sl()
+    //
+    //     var jxhr = $.post(ws_url + 'controller/addCommentQuestion.php', param, function(){})
+    //                 .always(function(r){
+    //                   if(r == 'Y'){
+    //                     window.location.reload()
+    //                   }else{
+    //                     console.log(r);
+    //                     swal("ขออภัย", "กรุณากรอกข้อมูลให้ครบถ้วน", "error")
+    //                     lp.hl()
+    //                     return ;
+    //                   }
+    //                 })
+    //                 .fail(function(){
+    //                   onFail()
+    //                 })
+    //   }else{
+    //     var notetitle = $('#txtNotetitle2').val()
+    //     var datas = editData22.getData()
+    //     if((datas == '') || (notetitle == '')){
+    //       swal("ขออภัย", "กรุณากรอกข้อมูลให้ครบถ้วน", "error")
+    //       return ;
+    //     }
+    //
+    //     var param = {
+    //       part_id: pid,
+    //       user: current_user,
+    //       id_rs: current_rs_id,
+    //       tt: notetitle,
+    //       data: datas,
+    //       rid: ccrid
+    //     }
+    //
+    //     lp.sl()
+    //
+    //     var jxhr = $.post(ws_url + 'controller/addCommentQuestion.php', param, function(){})
+    //                 .always(function(r){
+    //                   if(r == 'Y'){
+    //                     window.location.reload()
+    //                   }else{
+    //                     console.log(r);
+    //                     swal("ขออภัย", "กรุณากรอกข้อมูลให้ครบถ้วน", "error")
+    //                     lp.hl()
+    //                     return ;
+    //                   }
+    //                 })
+    //                 .fail(function(){
+    //                   onFail()
+    //                 })
+    //
+    //
+    //   }
+    // }
+
+    function addComment2(pid){
+
+      if(ccrid == null){
+        swal("ขออภัย", "เกิดข้อผิดพลาด", "error")
+        return ;
+      }
+
+      if(pid == 1){
+        var datas = editData1.getData()
+        editData1.setData('')
+        if(datas == ''){
+          swal("ขออภัย", "กรุณากรอกข้อมูลให้ครบถ้วน", "error")
+          return ;
+        }
+
+        var param = {
+          part_id: pid,
+          user: current_user,
+          id_rs: current_rs_id,
+          data: datas,
+          rid: ccrid
+        }
+
+        lp.sl()
+
+        var jxhr = $.post(ws_url + 'controller/addCommentQuestion.php', param, function(){})
+                    .always(function(r){
+                      if(r == 'Y'){
+                        // window.location.reload()
+                        loadComment()
+                      }else{
+                        console.log(r);
+                        swal("ขออภัย", "กรุณากรอกข้อมูลให้ครบถ้วน", "error")
+                        lp.hl()
+                        return ;
+                      }
+                    })
+                    .fail(function(){
+                      onFail()
+                    })
+      }else if((pid == 2) || (pid == 3) || (pid == 4)){
+        var datas = ''
+
+        if(pid == 2){
+          datas = editData_qp1_2.getData()
+          editData_qp1_2.setData('')
+        }
+
+        if(pid == 3){
+          datas = editData_qp2_2.getData()
+          editData_qp2_2.setData('')
+        }
+
+        if(pid == 4){
+          datas = editData_qp3_2.getData()
+          editData_qp3_2.setData('')
+        }
+
+
+        if(datas == ''){
+          swal("ขออภัย", "กรุณากรอกข้อมูลให้ครบถ้วน", "error")
+          return ;
+        }
+
+        var param = {
+          part_id: pid,
+          user: current_user,
+          id_rs: current_rs_id,
+          data: datas,
+          rid: ccrid
+        }
+
+        lp.sl()
+
+        var jxhr = $.post(ws_url + 'controller/addCommentQuestion.php', param, function(){})
+                    .always(function(r){
+                      if(r == 'Y'){
+                        // window.location.reload()
+                        loadComment()
+                      }else{
+                        console.log(r);
+                        swal("ขออภัย", "กรุณากรอกข้อมูลให้ครบถ้วน", "error")
+                        lp.hl()
+                        return ;
+                      }
+                    })
+                    .fail(function(){
+                      onFail()
+                    })
+      }else{
+        var notetitle = $('#txtNotetitle2').val()
+        var datas = editData22.getData()
+            editData22.setData('')
+        if((datas == '') || (notetitle == '')){
+          swal("ขออภัย", "กรุณากรอกข้อมูลให้ครบถ้วน", "error")
+          return ;
+        }
+
+        var param = {
+          part_id: pid,
+          user: current_user,
+          id_rs: current_rs_id,
+          tt: notetitle,
+          data: datas,
+          rid: ccrid
+        }
+
+        lp.sl()
+
+        var jxhr = $.post(ws_url + 'controller/addCommentQuestion.php', param, function(){})
+                    .always(function(r){
+                      if(r == 'Y'){
+                        // window.location.reload()
+                        loadComment()
+                      }else{
+                        console.log(r);
+                        swal("ขออภัย", "กรุณากรอกข้อมูลให้ครบถ้วน", "error")
+                        lp.hl()
+                        return ;
+                      }
+                    })
+                    .fail(function(){
+                      onFail()
+                    })
+
+
+      }
+    }
+
+    function addComment(pid){
+
+      if(pid == 1){
+        var datas = editData.getData()
+        editData.setData('')
+        if(datas == ''){
+          swal("ขออภัย", "กรุณากรอกข้อมูลให้ครบถ้วน", "error")
+          return ;
+        }
+
+        var param = {
+          part_id: pid,
+          user: current_user,
+          id_rs: current_rs_id,
+          data: datas
+        }
+
+        lp.sl()
+
+        var jxhr = $.post(ws_url + 'controller/addCommentQuestion.php', param, function(){})
+                    .always(function(r){
+                      if(r == 'Y'){
+                        // window.location.reload()
+                        loadComment()
+                      }else{
+                        console.log(r);
+                        swal("ขออภัย", "กรุณากรอกข้อมูลให้ครบถ้วน", "error")
+                        lp.hl()
+                        return ;
+                      }
+                    })
+                    .fail(function(){
+                      onFail()
+                    })
+      }else if((pid == 2) || (pid == 3) || (pid == 4)){
+        var datas = ''
+
+        if(pid == 2){
+          // datas = $('#qp1').val()
+          datas = editData_qp1.getData()
+          editData_qp1.setData('')
+        }
+
+        if(pid == 3){
+          datas = editData_qp2.getData()
+          editData_qp2.setData('')
+        }
+
+        if(pid == 4){
+          datas = editData_qp3.getData()
+          editData_qp3.setData('')
+        }
+
+
+        if(datas == ''){
+          swal("ขออภัย", "กรุณากรอกข้อมูลให้ครบถ้วน", "error")
+          return ;
+        }
+
+        var param = {
+          part_id: pid,
+          user: current_user,
+          id_rs: current_rs_id,
+          data: datas
+        }
+
+        lp.sl()
+
+        var jxhr = $.post(ws_url + 'controller/addCommentQuestion.php', param, function(){})
+                    .always(function(r){
+                      if(r == 'Y'){
+                        // window.location.reload()
+                        loadComment()
+                      }else{
+                        console.log(r);
+                        swal("ขออภัย", "กรุณากรอกข้อมูลให้ครบถ้วน", "error")
+                        lp.hl()
+                        return ;
+                      }
+                    })
+                    .fail(function(){
+                      onFail()
+                    })
+      }else{
+        var notetitle = $('#txtNotetitle').val()
+        var datas = editData2.getData()
+        editData2.setData('')
+        if((datas == '') || (notetitle == '')){
+          swal("ขออภัย", "กรุณากรอกข้อมูลให้ครบถ้วน", "error")
+          return ;
+        }
+
+        var param = {
+          part_id: pid,
+          user: current_user,
+          id_rs: current_rs_id,
+          tt: notetitle,
+          data: datas
+        }
+
+        lp.sl()
+
+        var jxhr = $.post(ws_url + 'controller/addCommentQuestion.php', param, function(){})
+                    .always(function(r){
+                      if(r == 'Y'){
+                        // window.location.reload()
+                        loadComment()
+                      }else{
+                        console.log(r);
+                        swal("ขออภัย", "กรุณากรอกข้อมูลให้ครบถ้วน", "error")
+                        lp.hl()
+                        return ;
+                      }
+                    })
+                    .fail(function(){
+                      onFail()
+                    })
+
+
+      }
+    }
+
+
+    function deleteQ(id){
+      swal({    title: "คำเตือน",
+              text: "คุณยืนยันการลบข้อคำถามนี้หรือไม่",
+              type: "warning",
+              showCancelButton: true,
+              confirmButtonColor: "#DD6B55",
+              confirmButtonText: "ลบ",
+              cancelButtonText: "ยกเลิก",
+              closeOnConfirm: true },
+              function(){
+
+                lp.sl()
+
+                var param = {
+                  rwid: id
+                }
+
+                var jxhr = $.post(ws_url + 'controller/deleteCommentQuestion.php', param, function(){})
+                            .always(function(r){
+                              if(r == 'Y'){
+                                // window.location.reload()
+                                loadComment()
+                              }else{
+                                swal("ขออภัย", "ไม่สามารถลบข้อมูลได้", "error")
+                                lp.hl()
+                                return ;
+                              }
+                            })
+                            .fail(function(){
+                              onFail()
+                            })
+              });
+    }
+
+    // function setEContent(lid, rid){
+    //
+    //   ccrid = rid
+    //
+    //   if(lid == 1){
+    //     var param = {
+    //       r_id: rid
+    //     }
+    //
+    //     var jxhr = $.post(ws_url + 'controller/readCommentQuestion2.php', param, function(){}, 'json')
+    //                 .always(function(r){
+    //                   r.forEach(function(i){
+    //                     editData1.setData(i.riwc_q)
+    //                   })
+    //                 }, 'json')
+    //
+    //   }else if(lid == 2){
+    //     var param = {
+    //       part_id: 2,
+    //       r_id: rid,
+    //       id_rs: current_rs_id
+    //     }
+    //
+    //     var jxhr = $.post(ws_url + 'controller/readCommentQuestion2.php', param, function(){}, 'json')
+    //                 .always(function(r){
+    //                   r.forEach(function(i){
+    //                     $('#qp1-2').val(i.riwc_q)
+    //                   })
+    //                 })
+    //
+    //   }else if(lid == 3){
+    //     var param = {
+    //       part_id: 3,
+    //       r_id: rid,
+    //       id_rs: current_rs_id
+    //     }
+    //
+    //     var jxhr = $.post(ws_url + 'controller/readCommentQuestion2.php', param, function(){}, 'json')
+    //                 .always(function(r){
+    //                   r.forEach(function(i){
+    //                     $('#qp2-2').val(i.riwc_q)
+    //                   })
+    //                 })
+    //
+    //   }else if(lid == 4){
+    //     var param = {
+    //       part_id: 4,
+    //       r_id: rid,
+    //       id_rs: current_rs_id
+    //     }
+    //
+    //     var jxhr = $.post(ws_url + 'controller/readCommentQuestion2.php', param, function(){}, 'json')
+    //                 .always(function(r){
+    //                   r.forEach(function(i){
+    //                     $('#qp3-2').val(i.riwc_q)
+    //                   })
+    //                 })
+    //
+    //   }else if(lid == 5){
+    //     var param = {
+    //       r_id: rid
+    //     }
+    //
+    //     var jxhr = $.post(ws_url + 'controller/readCommentQuestion2.php', param, function(){}, 'json')
+    //                 .always(function(r){
+    //                   r.forEach(function(i){
+    //                     editData22.setData(i.riwc_q)
+    //                     $('#txtNotetitle2').val(i.rirc_key)
+    //                   })
+    //                 }, 'json')
+    //
+    //   }
+    // }
+
+    function setEContent(lid, rid){
+
+      ccrid = rid
+
+      // console.log(lid);
+      // console.log(rid);
+      // return ;
+
+      if(lid == 1){
+        var param = {
+          r_id: rid
+        }
+
+        var jxhr = $.post(ws_url + 'controller/readCommentQuestion2.php', param, function(){}, 'json')
+                    .always(function(r){
+                      r.forEach(function(i){
+                        editData1.setData(i.riwc_q)
+                      })
+                    }, 'json')
+
+      }else if(lid == 2){
+        var param = {
+          part_id: 2,
+          r_id: rid,
+          id_rs: current_rs_id
+        }
+
+        var jxhr = $.post(ws_url + 'controller/readCommentQuestion2.php', param, function(){}, 'json')
+                    .always(function(r){
+                      r.forEach(function(i){
+                        // $('#qp1-2').val(i.riwc_q)
+                        editData_qp1_2.setData(i.riwc_q)
+                      })
+                    })
+
+      }else if(lid == 3){
+        var param = {
+          part_id: 3,
+          r_id: rid,
+          id_rs: current_rs_id
+        }
+
+        var jxhr = $.post(ws_url + 'controller/readCommentQuestion2.php', param, function(){}, 'json')
+                    .always(function(r){
+                      r.forEach(function(i){
+                        // $('#qp2-2').val(i.riwc_q)
+                        editData_qp2_2.setData(i.riwc_q)
+                      })
+                    })
+
+      }else if(lid == 4){
+        var param = {
+          part_id: 4,
+          r_id: rid,
+          id_rs: current_rs_id
+        }
+
+        var jxhr = $.post(ws_url + 'controller/readCommentQuestion2.php', param, function(){}, 'json')
+                    .always(function(r){
+                      console.log(r);
+                      r.forEach(function(i){
+                        // $('#qp3-2').val(i.riwc_q)
+                        editData_qp3_2.setData(i.riwc_q)
+                      })
+                    })
+
+      }else if(lid == 5){
+        var param = {
+          r_id: rid
+        }
+
+        var jxhr = $.post(ws_url + 'controller/readCommentQuestion2.php', param, function(){}, 'json')
+                    .always(function(r){
+                      r.forEach(function(i){
+                        editData22.setData(i.riwc_q)
+                        $('#txtNotetitle2').val(i.rirc_key)
+                      })
+                    }, 'json')
+
+      }
+    }
+  </script>
+</body>
+
+</html>

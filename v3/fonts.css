@@ -1,0 +1,20 @@
+@import url('https://fonts.googleapis.com/css?family=Niramit:300,400,500');
+html, body{
+  font-family: 'Niramit', sans-serif;
+  font-weight: 300 !important;
+}
+
+.dropzone {
+    min-height: 200px;
+    background-color: #f9f9f9;
+    border: 2px dashed #bbb;
+    border-radius: 3px;
+    -webkit-transition: all 0.2s ease-out;
+    transition: all 0.2s ease-out;
+}
+
+.f500{
+  /* font-family: sukhumvit-500; */
+  /* font-family: 'thsarabun-500'; */
+  font-family: 'Niramit', sans-serif;
+}

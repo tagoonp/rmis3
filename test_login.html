@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title></title>
+
+    <link href="v3/fonts.css" rel="stylesheet" type="text/css">
+
+    <link href="v3/dist/css/style.css" rel="stylesheet" type="text/css">
+    <link href="v3/style.css" rel="stylesheet" type="text/css">
+
+    <!--alerts CSS -->
+    <link href="v3/vendors/bower_components/sweetalert/dist/sweetalert.css" rel="stylesheet" type="text/css">
+  </head>
+
+  <style media="screen">
+  /*@import url(https://fonts.googleapis.com/css?family=Roboto:300);*/
+
+    .login-page {
+    width: 360px;
+    padding: 8% 0 0;
+    margin: auto;
+    }
+    .form {
+    position: relative;
+    z-index: 1;
+    background: #FFFFFF;
+    max-width: 360px;
+    margin: 0 auto 60px;
+    padding: 45px;
+    text-align: center;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+    }
+    .form input {
+    /*font-family: "Roboto", sans-serif;*/
+    outline: 0;
+    background: #f2f2f2;
+    width: 100%;
+    border: 0;
+    margin: 0 0 15px;
+    padding: 15px;
+    box-sizing: border-box;
+    font-size: 14px;
+    }
+    .form button {
+    /*font-family: "Roboto", sans-serif;*/
+    text-transform: uppercase;
+    outline: 0;
+    background: #4CAF50;
+    width: 100%;
+    border: 0;
+    padding: 15px;
+    color: #FFFFFF;
+    font-size: 14px;
+    -webkit-transition: all 0.3 ease;
+    transition: all 0.3 ease;
+    cursor: pointer;
+    }
+    .form button:hover,.form button:active,.form button:focus {
+    background: #43A047;
+    }
+    .form .message {
+    margin: 15px 0 0;
+    color: #b3b3b3;
+    font-size: 12px;
+    }
+    .form .message a {
+    color: #4CAF50;
+    text-decoration: none;
+    }
+    .form .register-form {
+    display: none;
+    }
+    .container {
+    position: relative;
+    z-index: 1;
+    max-width: 300px;
+    margin: 0 auto;
+    }
+    .container:before, .container:after {
+    content: "";
+    display: block;
+    clear: both;
+    }
+    .container .info {
+    margin: 50px auto;
+    text-align: center;
+    }
+    .container .info h1 {
+    margin: 0 0 15px;
+    padding: 0;
+    font-size: 36px;
+    font-weight: 300;
+    color: #1a1a1a;
+    }
+    .container .info span {
+    color: #4d4d4d;
+    font-size: 12px;
+    }
+    .container .info span a {
+    color: #000000;
+    text-decoration: none;
+    }
+    .container .info span .fa {
+    color: #EF3B3A;
+    }
+    body {
+    background: #76b852; /* fallback for old browsers */
+    background: -webkit-linear-gradient(right, #76b852, #8DC26F);
+    background: -moz-linear-gradient(right, #76b852, #8DC26F);
+    background: -o-linear-gradient(right, #76b852, #8DC26F);
+    background: linear-gradient(to left, #76b852, #8DC26F);
+    font-family: "Roboto", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    }
+  </style>
+  <body>
+    <div class="header bsd_" style="background: rgb(97, 97, 97); padding: 10px 0px;">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-sm-8">
+              <a href="./"><h1 style="color: #ffffff; font-size: 35px;" class="f500">RMIS@2018</h1></a>
+          </div>
+          <div class="col-sm-4 text-right pt-5">
+              <button class="btn btn-success btn-block btn-lg btn-rounded_ btn-outline_ txt-light" style="color: #fff !important;" onclick="window.location = 'register.html'">สมัครใช้งานระบบสำหรับบุคคลภายนอก</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="login-page" >
+
+      <div class="form">
+
+        <div class="text-center" style="padding-bottom: 30px;">
+          <a href="index.html"title="Research Management Information System (RMIS)">
+            <img src="images/logo_header.png" alt="logo_header.png" style="width: 100%;">
+          </a>
+        </div>
+
+        <div class="ld dn">
+          <div class="row">
+            <div class="col-sm-12 text-center" style="padding: 50px 0px;">
+              <img src="./images/Rolling.gif" alt="" width="100px;">
+            </div>
+          </div>
+        </div>
+
+        <div class="cd">
+          <form class="register-form">
+            <input type="email" placeholder="E-mail address ของท่าน ... "/>
+            <button class="f500">ส่ง Reset password link</button>
+            <p class="message"><a href="#">กลับสู่หน้าเข้าสู่ระบบ</a></p>
+          </form>
+          <form class="login-form" onsubmit="return false;">
+            <input type="email" placeholder="E-mail address ... " autofocus id="username" />
+            <input type="password" placeholder="รหัสผ่าน ..." id="password" />
+            <button class="f500">เข้าสู่ระบบ</button>
+            <p class="message"><a href="#">ลืมรหัสผ่าน</a> | <a href="">คู่มือการใช้งาน</a> | <a href="">ส่ง Verification email ซ้ำ</a></p>
+          </form>
+        </div>
+
+
+
+
+      </div>
+
+      <div class="row" style="margin-top: 10px;">
+        <div class="col-sm-12 text-center" style="color:rgb(115, 115, 115);">
+          <a href="forgetpassword.html" class="txt-light">ลืมรหัสผ่าน</a> | <a href="documents.html" class="txt-light">คู่มือการใช้งาน</a> | <a href="resend-verification.html" class="txt-light">ส่ง Verification email ซ้ำ</a>
+        </div>
+      </div>
+
+      <div class="row" style="margin-top: 10px;">
+        <div class="col-sm-12 text-center" style="color: #fff;;">
+          Copyright &copy; 2013 หน่วยส่งเสริมและพัฒนาทางวิชาการ<br>คณะแพทยศาสตร์ มหาวิทยาลัยสงขลานครินทร์
+        </div>
+      </div>
+
+
+    </div>
+
+    <!-- jQuery -->
+		<script src="v3/vendors/bower_components/jquery/dist/jquery.min.js"></script>
+
+		<!-- Bootstrap Core JavaScript -->
+		<script src="v3/vendors/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+		<!-- Slimscroll JavaScript -->
+		<script src="v3/dist/js/jquery.slimscroll.js"></script>
+
+		<!-- Fancy Dropdown JS -->
+		<script src="v3/dist/js/dropdown-bootstrap-extended.js"></script>
+
+    <!-- Sweet-Alert  -->
+  	<script src="v3/vendors/bower_components/sweetalert/dist/sweetalert.min.js"></script>
+
+    <script src="v3/main.js"></script>
+    
+    <script type="text/javascript">
+      $(document).ready(function(){
+        localStorage.clear();
+      })
+
+      $(function(){
+        $('.message a').click(function(){
+         $('form').animate({height: "toggle", opacity: "toggle"}, "slow");
+        });
+
+        $('.login-form').submit(function(){
+          $check = 0;
+          if($('#username').val()==''){
+            $check++;
+          }
+
+          if($('#password').val()==''){
+            $check++;
+          }
+
+          if($check!=0){
+            swal("ขออภัย!", "กรุณากรอกข้อมูลให้ครบถ้วน!", "error")
+            return ;
+          }
+
+          lp.sl()
+
+          var param = {
+            username: $('#username').val(),
+            password: $('#password').val()
+          }
+
+          var jxhr = $.post(ws_url + 'controller/authen.php', param, function(){}, 'json')
+                      .always(function(snap){
+                        if(snap!=''){
+                          snap.forEach(function(i){
+                            window.localStorage.setItem('rmis_current_user', i.id)
+                            window.localStorage.setItem('rmis_current_role', i.usertype)
+
+                            setTimeout(function(){
+                              window.location = ws_url + i.usertype + '/';
+                            }, 2000)
+                          })
+
+                        }else{
+                          lp.hl()
+                          swal("ขออภัย!", "ไม่พบข้อมูลบัญชีผู้ใช้งานระบบ!", "error")
+                          return ;
+                        }
+                      }, 'json')
+                      .fail(function(){
+                        lp.hl()
+                        swal("ขออภัย!", "ไม่สามารถเชื่อมต่อฐานข้อมูลได้!", "error")
+                        return ;
+                      })
+
+        })
+      })
+    </script>
+  </body>
+</html>

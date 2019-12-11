@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>RMIS:ระบบสารสนเทศเพื่อการจัดการงานวิจัย คณะแพทยศาสตร์ มอ.</title>
+    <!-- Meta Tags -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+    <!-- Data table CSS -->
+    <link href="../v4/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!--alerts CSS -->
+    <link href="../v3/vendors/bower_components/sweetalert/dist/sweetalert.css" rel="stylesheet" type="text/css">
+    <!-- Fontawesom -->
+    <link href="../v4/bower_components/fontawesome/web-fonts-with-css/css/fontawesome-all.css" rel="stylesheet">
+    <!-- Preload -->
+    <link rel="stylesheet" href="../v4/node_modules/preload.js/dist/css/preload.css">
+
+    <link rel="stylesheet" href="../v4/assets/css/style.0.1.1.css">
+
+    <style media="screen">
+      body{
+        background: rgb(242, 242, 242);
+      }
+    </style>
+  </head>
+  <body>
+
+    <nav class="navbar bs navbar-expand-lg navbar-light" style="background: #fff;">
+      <div class="navbar-brand">
+        <div class="d-block d-sm-none">
+          <a href="" class="btn btn-success mr-10">
+            <i class="fas fa-bars"></i>
+          </a>
+          <a href="index.html">
+            <img src="../images/logo-20190225-2.png" alt="" class="img-fluid" style="width: 150px;">
+          </a>
+        </div>
+
+        <div class="d-none d-sm-block">
+          <a href="index.html">
+            <img src="../images/logo-20190225-2.png" alt="" class="img-fluid" style="width: 150px;">
+          </a>
+        </div>
+
+
+      </div>
+
+      <div class="d-none d-sm-block">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </div>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">หน้าแรก <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="documents.html">คู่มือการใช้งาน</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="chat.html">ข้อความสนทนา</a>
+          </li>
+        </ul>
+
+        <div class="">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                สวัสดี, <span class="userFullname" style="color: #02946c; ">NA</span>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="profile.html">ข้อมูลส่วนตัว</a>
+                <a class="dropdown-item" href="changepassword.html">เปลี่ยนรหัสผ่าน</a>
+                <a class="dropdown-item" href="activity.html">บันทึกกิจกรรม</a>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <form class="form-inline my-2 my-lg-0">
+          <button class="btn btn-success my-2 my-sm-0" type="button" onclick="core.signout()">ออกจากระบบ</button>
+        </form>
+      </div>
+    </nav>
+
+    <div class="main-content mt-20 mb-30">
+      <div class="container">
+        <h5>ข้อมูลส่วนตัว <small class="text-muted">(User profile)</small></h5>
+        <div class="row">
+          <div class="col-sm-12">
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index.html">หน้าแรก</a></li>
+                <li class="breadcrumb-item active" aria-current="page">ข้อมูลส่วนตัว</li>
+              </ol>
+            </nav>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="alert alert-success alert-dismissible fade show mt-0" role="alert">
+              หากต้องการปรับปรุงข้อมูลส่วนตัว กรุณากรอกข้อมูลในช่องที่ีเครื่องหมาย ** ให้ครบถ้วยก่อนทำการบันทึก
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+          </div>
+        </div>
+        <!-- .row -->
+
+        <div class="row mb-10">
+          <div class="col-sm-12">
+            <h6><span class="text-success">ส่วนที่ 1 : </span>ข้อมูลส่วนตัว</h5>
+            <div class="card">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-sm-4">
+                    <div class="form-group">
+                      <label for="" class="txt-dark f500 fs08">คำนำหน้าชื่อ<u>ที่ต้องการในใบรับรอง</u> <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="top" title="เช่น ผู้ช่วยศาสตราจารย์"></i> <span class="text-muted">(ถ้ามี)</span></label>
+                      <input type="text" class="form-control" placeholder="กรอกคำนำหน้าชื่อ (ภาษาไทย) ..." id="txtPrefixTh" >
+                      <small id="passwordHelpBlock" class="form-text text-muted pl-5">
+                        Enter your name title in english if can not type in Thai.
+                      </small>
+                    </div>
+                  </div>
+                  <div class="col-sm-4">
+                    <div class="form-group">
+                      <label for="" class="txt-dark f500 fs08">ชื่อ <span class="txt-danger">**</span></label>
+                      <input type="text" class="form-control" placeholder="กรอกชื่อจริง (ภาษาไทย) ..." id="txtFnameTh">
+                      <small id="passwordHelpBlock" class="form-text text-muted pl-5">
+                        Enter your name in english if can not type in Thai.
+                      </small>
+                    </div>
+                  </div>
+                  <div class="col-sm-4">
+                    <div class="form-group">
+                      <label for="" class="txt-dark f500 fs08">นามสกุล <span class="txt-danger">**</span></label>
+                      <input type="text" class="form-control" placeholder="กรอกนามสกุล (ภาษาไทย) ..." id="txtLnameTh">
+                      <small id="passwordHelpBlock" class="form-text text-muted pl-5">
+                        Enter your surname in english if can not type in Thai.
+                      </small>
+                    </div>
+                  </div>
+                </div>
+                <!-- .row -->
+
+                <div class="row">
+                  <div class="col-sm-4">
+                    <div class="form-group">
+                      <label for="" class="txt-dark f500 fs08">Name title for certificate of approval <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="top" title="Eg. Professor"></i> <span class="text-muted">(If any)</span></label>
+                      <input type="text" class="form-control" placeholder="Enter the name title ..." id="txtPrefixEn" >
+                    </div>
+                  </div>
+                  <div class="col-sm-4">
+                    <div class="form-group">
+                      <label for="" class="txt-dark f500 fs08">Name <span class="txt-danger">**</span></label>
+                      <input type="text" class="form-control" placeholder="Enter firstname ..." id="txtFnameEn">
+                    </div>
+                  </div>
+                  <div class="col-sm-4">
+                    <div class="form-group">
+                      <label for="" class="txt-dark f500 fs08">Surname <span class="txt-danger">**</span></label>
+                      <input type="text" class="form-control" placeholder="Enter suraname ..." id="txtLnameEn">
+                    </div>
+                  </div>
+                </div>
+                <!-- .row -->
+
+                <div class="form-group">
+                  <label for="" class="txt-dark f500 fs08">ประเภทบุคลากร (Personnel type) <span class="txt-danger">**</span></label>
+                  <select class="form-control" name="txtPosition" id="txtPosition">
+                    <option value="">--- เลือกประเภทบุคลากร ---</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label for="" class="txt-dark f500 fs08">สาขาเชี่ยวชาญ (Expertise)</label>
+                  <textarea name="txtExp" id="txtExp" rows="2" cols="80" class="form-control" placeholder="กรอกสาขาเชี่ยวชาญ โดยแต่ละสาขาให้คั่นด้วยเครื่องหมายคอมม่า (,)"></textarea>
+                </div>
+
+                <div class="form-group">
+                  <label for="" class="txt-dark f500 fs08">สาขางานวิจัยที่สนใจ (Research interests)</label>
+                  <textarea name="txtRI" id="txtRI" rows="2" cols="80" class="form-control" placeholder="กรอกสาขางานวิจัยที่สนใจ โดยแต่ละเรื่องให้คั่นด้วยเครื่องหมายคอมม่า (,)"></textarea>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+          <div class="col-sm-12 pt-20">
+            <h6><span class="text-success">ส่วนที่ 2 : </span>ข้อมูลการติดต่อ</h6>
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="card mb-10">
+                  <div class="card-body">
+                    <div class="form-group">
+                      <label for="" class="txt-dark f500 fs08">ที่อยู่ที่ติดต่อได้ (Address) <span class="txt-danger">**</span></label>
+                      <textarea name="txtAddress" id="txtAddress" rows="2" cols="80" class="form-control" placeholder="กรอกที่อยู่ที่สามารถติดต่อได้ ..."></textarea>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-sm-6">
+                        <div class="form-group">
+                          <label for="" class="txt-dark f500 fs08">โทรศัพท์มือถือ (Mobile) <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="top" title="Example : 6674451165"></i> <span class="txt-danger">**</span></label>
+                          <input type="number" min="0" class="form-control" placeholder="กรอกหมายเลขโทรศัพท์มือถือ (เฉพาะตัวเลข) ..." id="txtMobile">
+                        </div>
+                      </div>
+                      <div class="col-sm-6">
+                        <div class="form-group">
+                          <label for="" class="txt-dark f500 fs08">โทรศัพท์ที่ทำงาน (Office)  <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="top" title="Example : 074451165"></i> <span class="txt-danger">**</span></label>
+                          <input type="number" min="0" class="form-control" placeholder="กรอกหมายเลขโทรศัพท์ที่ทำงาน (เฉพาะตัวเลข) ..." id="txtOffice">
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- .part 3 -->
+
+          <div class="col-sm-12 pt-20" id="profile_p3">
+            <h6><span class="text-success">ส่วนที่ 3 : </span>หน่วยงานที่สังกัด</h6>
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="card mb-10">
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col-sm-12">
+                        <div class="form-group">
+                          <label for="" class="txt-dark f500 fs08">กลุ่มของหน่วยงานต้นสังกัด (Group of your institution) <span class="txt-danger">**</span></label>
+                          <select class="form-control" name="txtInstitutionType" id="txtInstitutionType">
+                            <option value="">--- เลือกหน่วยงานต้นสังกัด ---</option>
+                            <option value="1">มหาวิทยาลัย (University)</option>
+                            <option value="2">โรงพยาบาล (Hospital)</option>
+                            <option value="99">อื่น ๆ (Other)</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="col-sm-12">
+                        <div class="form-group">
+                          <label for="" class="txt-dark f500 fs08">ระบุชื่อหน่วยงานซึ่งจะระบุในใบรับรอง (ภาษาไทย) <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="top" title="เช่น ภาควิชาวิทยาการคอมพิวเตอร์ คณะวิทยาศาสตร์ มหาวิทยาลัยสงขลานครินทร์"></i> <span class="txt-danger">**</span></label>
+                          <input type="text" class="form-control" placeholder="กรอกชื่อหน่วยงานของท่าน ..." id="txtDeptTh" >
+                          <small id="passwordHelpBlock" class="form-text text-muted pl-5">
+                            Enter '-' if can not type institution's name in Thai.
+                          </small>
+                        </div>
+                      </div>
+                      <div class="col-sm-12">
+                        <div class="form-group">
+                          <label for="" class="txt-dark f500 fs08">Institution / Workplace in English for certificate of approval (English) <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="top" title="Example : Epidemiology Unit, Faulty of Medicine, Prince of Songkla University"></i> <span class="txt-danger">**</span></label>
+                          <input type="text" class="form-control" placeholder="Enter the name of institution or workplace in English for certificate of approval ..." id="txtDeptEn" >
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- . part 2 -->
+
+        </div>
+
+        <div class="row">
+          <div class="col-sm-12 text-center">
+            <button class="btn btn-success btn-lg" onclick="pi.update_profile()">บันทึก</button>
+          </div>
+        </div>
+
+      </div>
+      <!-- .container -->
+    </div>
+    <!-- .main-content -->
+
+
+    <!-- jQuery -->
+    <script src="../v3/vendors/bower_components/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="../v4/bower_components/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Slimscroll JavaScript -->
+    <script src="../v3/dist/js/jquery.slimscroll.js"></script>
+    <!-- Fancy Dropdown JS -->
+    <script src="../v3/dist/js/dropdown-bootstrap-extended.js"></script>
+    <!-- Sweet-Alert  -->
+    <script src="../v3/vendors/bower_components/sweetalert/dist/sweetalert.min.js"></script>
+
+    <script src="../v4/config.js"></script>
+    <script type="text/javascript" src="../v4/node_modules/preload.js/dist/js/preload.js"></script>
+
+    <script src="../v3/main.js"></script>
+    <script src="../v4/core.0.2.1.js"></script>
+    <script src="../v4/pi.0.2.1.js"></script>
+
+    <script>
+      $(document).ready(function(){
+        pi.get_pi_info(true)
+      })
+    </script>
+
+  </body>
+</html>

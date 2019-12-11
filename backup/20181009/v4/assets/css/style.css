@@ -1,0 +1,302 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:300,400,500');
+html, body{
+  /* font-family: 'thsarabun'; */
+  line-height: normal;
+  /* font-size: 1.15em; */
+  text-transform: none;
+}
+
+.font-bold{
+  font-weight: 500;
+}
+
+.customtable ul {
+  list-style-type: none;
+  margin-bottom: 0px;
+  padding-left: 0px;
+  padding-bottom: 4px;
+}
+
+.fb{
+  font-weight: 500;
+}
+
+.input-hint{
+  padding: 5px;
+  font-size: 0.8em;
+  color: rgb(124, 124, 124);
+}
+
+a{
+  text-decoration: none !important;
+}
+
+.dn{
+  display:none;
+}
+
+.form-control{
+  /* font-size: 1.0em; */
+}
+
+.table{
+
+}
+
+table th{
+  font-size: 1em !important;
+  /* font-family: 'thsarabun-500'; */
+}
+
+table td{
+  font-size: 1em !important;
+}
+
+table.table td, table.table th {
+    padding-top: 0.7rem;
+    padding-bottom: 0.7rem;
+}
+
+.pt-0{ padding-top: 0px !important; }
+.pt-5{ padding-top: 5px !important; }
+.pt-10{ padding-top: 10px !important; }
+.pt-15{ padding-top: 15px !important; }
+.pt-20{ padding-top: 20px !important; }
+.pt-30{ padding-top: 30px !important; }
+
+.pb-0{ padding-bottom: 0px !important; }
+.pb-5{ padding-bottom: 5px !important; }
+.pb-10{ padding-bottom: 10px !important; }
+.pb-15{ padding-bottom: 15px !important; }
+.pb-20{ padding-bottom: 20px !important; }
+.pb-30{ padding-bottom: 30px !important; }
+
+.pl-0{ padding-left: 0px !important; }
+.pl-5{ padding-left: 5px !important; }
+.pl-10{ padding-left: 10px !important; }
+.pl-15{ padding-left: 15px !important; }
+.pl-20{ padding-left: 20px !important; }
+.pl-30{ padding-left: 30px !important; }
+
+.pr-0{ padding-right: 0px !important; }
+.pr-5{ padding-right: 5px !important; }
+.pr-10{ padding-right: 10px !important; }
+.pr-15{ padding-right: 15px !important; }
+.pr-20{ padding-right: 20px !important; }
+.pr-30{ padding-right: 30px !important; }
+
+.pd-0{ padding: 0px !important; }
+.pd-5{ padding: 5px !important; }
+.pd-10{ padding: 10px !important; }
+.pd-15{ padding: 15px !important; }
+.pd-20{ padding: 20px !important; }
+.pd-30{ padding: 30px !important; }
+
+.mt-0{ margin-top: 0px !important; }
+.mt-5{ margin-top: 5px !important; }
+.mt-10{ margin-top: 10px !important; }
+.mt-15{ margin-top: 15px !important; }
+.mt-20{ margin-top: 20px !important; }
+.mt-30{ margin-top: 30px !important; }
+
+.mb-0{ margin-bottom: 0px !important; }
+.mb-5{ margin-bottom: 5px !important; }
+.mb-10{ margin-bottom: 10px !important; }
+.mb-15{ margin-bottom: 15px !important; }
+.mb-20{ margin-bottom: 20px !important; }
+.mb-30{ margin-bottom: 30px !important; }
+
+.ml-0{ margin-left: 0px !important; }
+.ml-5{ margin-left: 5px !important; }
+.ml-10{ margin-left: 10px !important; }
+.ml-15{ margin-left: 15px !important; }
+.ml-20{ margin-left: 20px !important; }
+.ml-30{ margin-left: 30px !important; }
+
+.mr-0{ margin-right: 0px !important; }
+.mr-5{ margin-right: 5px !important; }
+.mr-10{ margin-right: 10px !important; }
+.mr-15{ margin-right: 15px !important; }
+.mr-20{ margin-right: 20px !important; }
+.mr-30{ margin-right: 30px !important; }
+
+.fz08{ font-size: 0.8em !important; }
+.fz09{ font-size: 0.9em !important; }
+.fz11{ font-size: 1.1em !important; }
+.fz12{ font-size: 1.2em !important; }
+.fz13{ font-size: 1.3em !important; }
+.fz14{ font-size: 1.4em !important; }
+
+.is-invalid{
+  background: rgb(254, 244, 244);
+}
+
+.bs{
+  box-shadow: 1px 1px 1px #dfdfdf;
+}
+
+.txt-dark{
+  color: rgb(45, 45, 45);
+}
+
+.txt-light{
+  color: rgb(255, 255, 255);
+}
+
+.txt-gray{
+  color: rgb(115, 115, 115);
+}
+
+a.txt-dark{
+  color: rgb(45, 45, 45);
+  text-decoration: none;
+}
+
+a.txt-dark:hover{
+  color: rgb(102, 102, 102);
+}
+
+.badge-mute{
+  background: rgb(194, 194, 194);
+  color: #fff;
+  padding-top: 7px;
+}
+
+.list-group-item:first-child {
+    border-top-left-radius: .0rem;
+    border-top-right-radius: .0rem;
+}
+
+.list-group-item:last-child {
+    border-bottom-left-radius: .0rem;
+    border-bottom-right-radius: .0rem;
+}
+
+.list-group-item{
+  background: rgb(241, 241, 241) !important;
+}
+
+.list-group-item:hover{
+  background: rgb(149, 149, 149) !important;
+  color: #fff;
+}
+
+.list-active{
+  color: #fff;
+  background: rgb(69, 123, 215) !important;
+}
+
+.modal-header{
+  border-top-left-radius: .0rem !important;
+  border-top-right-radius: .0rem !important;
+  background: rgb(0, 153, 238);
+  color: #fff;
+}
+
+.modal-content{
+  border-radius: .0rem;
+  border: none;
+}
+
+.leftmenu{
+  top: 0px;
+  left: 0px;
+  bottom: 0px;
+  width: 250px;
+  height: 100%;
+  position: fixed;
+  background: rgb(98, 98, 98);
+  z-index: 999998;
+}
+
+.menu-item{
+  padding: 10px 5px;
+  border: solid;
+  border-width: 0px 0px 1px 0px;
+  border-color: rgb(119, 119, 119);
+  cursor: pointer;
+}
+
+.menu-item.active{
+  font-weight: 500;
+}
+
+.mnhover:hover{
+  background: rgb(93, 93, 93);
+  color: rgb(0, 178, 255)
+}
+
+.menu-item-2{
+  padding: 10px 5px 10px 20px;
+}
+
+.modal{
+  z-index: 999999;
+}
+.custom-card{
+  background: rgb(255, 255, 255);
+  border: solid;
+  border-width: thin;
+  border-color: rgb(240, 240, 240);
+  margin-top: 10px;
+  -webkit-box-shadow: 0px 0px 33px -5px rgba(0,0,0,0.01);
+  -moz-box-shadow: 0px 0px 33px -5px rgba(0,0,0,0.01);
+  box-shadow: 0px 0px 33px -5px rgba(0,0,0,0.01);
+}
+
+.custom-card-body{
+  padding: 0px;
+}
+
+
+.btn{
+  font-family: 'thsarabun';
+  font-size: 0.9em;
+  padding-top: 7px;
+  padding-bottom: 7px;
+}
+
+.btn-success{
+  background: rgb(5, 159, 132) !important;
+}
+
+.btn-custom-1{
+  background: rgb(38, 177, 90) !important;
+  color: #fff;
+  box-shadow: none;
+  border: solid;
+  border-width: 0px 0px 0px 4px;
+  border-color: rgb(60, 60, 60);
+  border-radius: 0px;
+}
+
+.btn-custom-orange{
+  color: #fff;
+  border: solid;
+  border-width: 0px 0px 0px 4px;
+  border-color: rgb(79, 79, 79);
+  background: rgb(255, 69, 0);
+  /* background: rgb(173, 173, 173); */
+  box-shadow: none;
+}
+
+.btn.btn-square{
+    height: 42px;
+    width: 42px;
+    padding: 0;
+}
+
+.btn-sm.btn-square{
+    height: 32px;
+    width: 32px;
+    padding: 0;
+}
+
+.txt-danger{
+  color: rgb(242, 6, 6) !important;
+}
+
+.btn-secondary{
+  background: rgb(120, 120, 120) !important;
+  color: rgb(252, 252, 252) !important;
+}

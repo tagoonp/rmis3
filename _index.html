@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>RMIS:ระบบสารสนเทศเพื่อการจัดการงานวิจัย คณะแพทยศาสตร์ มอ.</title>
+        <!-- Meta Tags -->
+        <meta charset="UTF-8" />
+    		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+        <!-- CSS -->
+        <link rel="shortcut icon" href="./favicon.ico">
+
+        <!-- Custom CSS -->
+    		<link href="v3/dist/css/style.css" rel="stylesheet" type="text/css">
+        <link href="v3/fonts.css" rel="stylesheet" type="text/css">
+        <link href="v3/style_v2.css" rel="stylesheet" type="text/css">
+
+        <!--alerts CSS -->
+      	<link href="v3/vendors/bower_components/sweetalert/dist/sweetalert.css" rel="stylesheet" type="text/css">
+
+    </head>
+
+    <style>
+      body{
+        background: rgb(240, 240, 240) !important;
+      }
+    </style>
+    <div class="header bsd pd-15" style="background: #fff; border: solid; border-width: 0px 0px 5px 0px; border-color: rgb(1, 179, 93);">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-sm-5">
+              <a href="./"><img src="images/logo_header.png" alt="logo_header.png" class="img-responsive" style="text-align: center !important;"></a>
+          </div>
+          <div class="col-sm-2 col-sm-offset-5 text-right pt-15">
+            <!-- <button class="btn btn-success btn-block"  onclick="window.location = 'register.html'">สมัครใช้งานระบบสำหรับบุคคลภายนอก</button> -->
+            <button class="btn btn-success btn-block dn"  onclick="window.location = 'register.html'">คู่มือการใช้งาน</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <body>
+      <div class="container-fluid mg-30 mt-30 card" style="background: #fff;">
+        <div class="row">
+          <div class="col-sm-5 pd-30">
+            <div class="row">
+              <div class="col-sm-12">
+                <h3 class="f500 text-success">เข้าสู่ระบบ</h3>
+                <div class="cd">
+                  <form class="loginForm" autocomplete="off" onsubmit="return false;">
+                    <div class="form-group">
+                      <label class="control-label f500" for="val-username">E-mail address <span class="txt-danger">**</span></label>
+                      <input class="form-control" type="text" id="username" name="username" placeholder="กรอก E-mail address ..." autofocus />
+                    </div>
+                    <div class="form-group">
+                      <label class="control-label f500" for="val-username">Password <span class="txt-danger">**</span></label>
+                      <input class="form-control" type="password" id="password" name="password" placeholder="กรอกรหัสผ่าน ..." />
+                    </div>
+                    <div class="form-group">
+                      <label class="control-label f500" for="val-username">สิทธิ์การเข้าใช้งาน <span class="txt-danger">**</span></label>
+                      <select class="form-control" name="txt-role" id="txt-role">
+                        <option value="pm">นักวิจัยหลัก (หัวหน้าโครงการ)</option>
+                        <option value="staff">เจ้าหน้าที่</option>
+                        <option value="ec">เลขา EC</option>
+                        <option value="reviewer">ผู้เชี่ยวชาญอิสระ</option>
+                        <option value="chairman">ประธาน EC</option>
+                        <option value="administrator">ผู้ดูแลระบบ</option>
+                      </select>
+                    </div>
+
+
+                    <div class="form-group">
+                      <div class="">
+                        <button name="login" type="submit" value="เข้าสู่ระบบ" class="btn btn-success btn-custom btn-block ">เข้าสู่ระบบ</button>
+                        <button name="register" type="button" value="สมัครใช้งานสำหรับบุคลภายนอกคณะ" class="btn btn-success btn-custom btn-block" onclick="window.location = 'register.html'">สมัครใช้งานสำหรับบุคคลภายนอกคณะ</button>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+
+
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-sm-12 text-left" style="color:rgb(115, 115, 115);">
+                <!-- sample modal content -->
+                <div id="myModal_resetpassword" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header" style="background: #5cb85c;">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        <h5 class="modal-title f500 txt-light" id="myModalLabel">ลืมรหัสผ่าน</h5>
+                      </div>
+                      <div class="modal-body">
+                        <form class="register-form" onsubmit="return false;">
+                          <div class="form-group">
+                            <label for="" class="f500 txt-dark fs08">กรอก E-mail address ที่ท่านใช้สมัคร <span class="text-danger">**</span></label>
+                            <input type="email" class="form-control" placeholder="E-mail address ของท่าน ... " id="txtPassword2"/>
+                          </div>
+
+                          <button class="f500 btn btn-block btn-success" onclick="sendPassword()"  style="font-size: 1.1em; padding: 10px 0px;">ส่งรหัสผ่าน</button>
+                        </form>
+                      </div>
+                    </div>
+                    <!-- /.modal-content -->
+                  </div>
+                  <!-- /.modal-dialog -->
+                </div>
+                <!-- /.modal -->
+                <a href="#" class="txt-success" data-toggle="modal" data-target="#myModal_resetpassword">ลืมรหัสผ่าน</a>
+              </div>
+            </div>
+          </div>
+          <!-- .col-sm-5 -->
+          <div class="col-sm-7  pd-30">
+            <div>
+              <h5 class="f500" style="border: dashed; border-width: 0px 0px 2px 0px; border-color: rgb(232, 232, 232);"><i class="fa fa-rss"></i> ข่าวประกาศ</h5>
+            </div>
+
+            <div class="pt-10 ">
+              <h5 class="f500" style="border: dashed; border-width: 0px 0px 2px 0px; border-color: rgb(232, 232, 232);"><i class="fa fa-info"></i> แนะนำการใช้งาน</h5>
+              <div class="pd-10 mt-10 pt-0 fs08" style="background_: rgb(245, 245, 245); border-radius: 0px; border: solid; border-width: 0px 0px 0px 3px; border-color: rgb(221, 221, 221);">
+                <h5 class="mb-15"><span class="f500">เฉพาะบุคลากรคณะแพทย์</span> <u>(การเข้าระบบครั้งแรก)</u></h5>
+                <p class="txt-dark" style="color: #000;">
+                  <ol style="padding-left: 30px; padding-bottom: 10px;"  class="txt-dark">
+                    <li>Username = รหัสบุคลากร </li>
+                    <li>Password = วันเกิด ใช้ปี คศ. (dd/mm/yyyy) เช่น 07/08/1982 </li>
+                  </ol>
+                  <span class="txt-dark">ระบบจะเข้าสู่หน้าข้อมูลส่วนตัว ให้ท่านทำการตรวจสอบข้อมูลและแก้ไขให้ถูกต้อง <br>บันทึกชื่อ e-mail ที่จะใช้เป็น user name  และกำหนด password ใหม่ กดปุ่มบันทึก</span>
+                  <p class="f500 txt-danger pt-10" style="font-size: 0.9em;">
+                    * การเข้าใช้งานครั้งต่อไป ต้องใช้ e-mail address และ password ดังกล่าวเพื่อเข้าระบบ
+                  </p>
+                </p>
+              </div>
+
+              <div class="pd-10 mt-10 pt-0 fs08" style="background_: rgb(245, 245, 245); border-radius: 0px; border: solid; border-width: 0px 0px 0px 3px; border-color: rgb(221, 221, 221);">
+                <h5 class="mb-15"><span class="f500">สำหรับบุคลากรภายนอกคณะแพทย์</span> ให้ดำเนินการดังนี้เพื่อเริ่มต้นใช้งาน</h5>
+                <p class="txt-dark" style="color: #000;">
+                  <ol style="padding-left: 30px; padding-bottom: 10px;"  class="txt-dark">
+                    <li>กดปุ่ม "สมัครใช้งานสำหรับบุคคลภายนอกคณะแพทย์" </li>
+                    <li>กรอกข้อมูลในแบบฟอร์มลงทะเบียนเพื่อใช้งานระบบ (สำหรับบุคคลภายนอกคณะแพทยศาสตร์) ให้ครบถ้วน และกดปุ่ม "ลงทะเบียน"</li>
+                    <li>หากลงทะเบียนสำเร็จ ระบบจะส่งอีเมล์ไปยังอีเมลที่ท่านทำการสมัครเพื่อให้กด Link เพื่อยืนยันตัวตนอีกครั้ง</li>
+                    <li>เมื่อยืนยันตัวตนสำเร็จ ท่านสามารถใช้อีเมล์และรหัสผ่านที่สมัครเข้าสู่ระบบได้</li>
+                  </ol>
+                </p>
+              </div>
+
+              <div class="pd-10 mt-10 pt-0 fs08" style="background_: rgb(245, 245, 245); border-radius: 0px; border: solid; border-width: 0px 0px 0px 3px; border-color: rgb(221, 221, 221);">
+                <h5 class="mb-1 txt-danger f500">หากพบปัญหาการใช้งาน</h5>
+                <p class="f500 txt-danger pt-10" style="font-size: 0.9em;">
+                  ** พบปัญหา ติดต่อ คุณณัฎฐา (กิ๊ก) หน่วยส่งเสริมและพัฒนาทางวิชาการ (โทร. 1149, 1157)
+                </p>
+              </div>
+
+            </div>
+          </div>
+          <!-- .col-sm-7 -->
+        </div>
+      </div>
+
+      <div class="mg-30">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-sm-6 text-left" style="color:rgb(115, 115, 115);">
+              <h5 class="f500">RMIS :: Research Management Information System</h5>
+              Copyright &copy; 2013 หน่วยส่งเสริมและพัฒนาทางวิชาการ<br>คณะแพทยศาสตร์ มหาวิทยาลัยสงขลานครินทร์
+            </div>
+            <div class="col-sm-6 text-right">
+              <a href="" class="ml-5 mr-5">นโยบายความเป็นส่วนตัว</a> | <a href="" class="ml-5 mr-5">ความปลอดภัย</a> | <a href="" class="ml-5 mr-5">ติดต่อเรา</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+
+
+    <!-- jQuery -->
+		<script src="v3/vendors/bower_components/jquery/dist/jquery.min.js"></script>
+
+		<!-- Bootstrap Core JavaScript -->
+		<script src="v3/vendors/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+		<!-- Slimscroll JavaScript -->
+		<script src="v3/dist/js/jquery.slimscroll.js"></script>
+
+		<!-- Fancy Dropdown JS -->
+		<script src="v3/dist/js/dropdown-bootstrap-extended.js"></script>
+
+    <!-- Sweet-Alert  -->
+  	<script src="v3/vendors/bower_components/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="v3/main.js"></script>
+    <script src="v3/loading.js"></script>
+
+    <script type="text/javascript">
+
+      $(document).ready(function(){
+        localStorage.clear();
+        loading.hide()
+      })
+
+      $(function(){
+
+        $('.loginForm').submit(function(){
+            $check = 0;
+            if($('#username').val()==''){
+              $check++;
+              $('#username').parent().addClass('has-error')
+            }
+
+            if($('#password').val()==''){
+              $check++;
+              $('#password').parent().addClass('has-error')
+            }
+
+            if($('#txt-role').val()==''){
+              $check++;
+              $('#txt-role').parent().addClass('has-error')
+            }
+
+            if($check!=0){
+              swal("ขออภัย!", "กรุณากรอกข้อมูลให้ครบถ้วน!", "error")
+              return ;
+            }
+
+            loading.show()
+
+            var param = {
+              username: $('#username').val(),
+              password: $('#password').val(),
+              role: $('#txt-role').val()
+            }
+
+            var jxhr = $.post(ws_url + 'controller/authen.php', param, function(){}, 'json')
+                        .always(function(snap){
+                          // console.log(snap);
+                          // return ;
+                          if((snap!='') && (snap.length > 0)){
+                            snap.forEach(function(i){
+
+                              console.log(i.authen_status );
+
+                              if(i.authen_status == 'Already register'){
+                                localStorage.setItem('rmis_current_id_pm', $('#username').val())
+                                window.location = 'already-register.html';
+                              }else if(i.authen_status == 'Found by useraccount'){
+
+                                window.localStorage.setItem('rmis_current_user', i.data.id)
+                                window.localStorage.setItem('rmis_current_role', $('#txt-role').val())
+
+                                setTimeout(function(){
+                                  window.location = ws_url + $('#txt-role').val() + '/';
+                                }, 2000)
+
+
+                              }else if(i.authen_status == 'Found by personnel'){
+                                localStorage.setItem('rmis_current_id_pm', $('#username').val())
+                                window.location = 'personnel-register.html';
+                              }else{
+
+                                loading.hide()
+                                swal("ขออภัย!", "ไม่พบข้อมูลบัญชีผู้ใช้งานระบบ!", "error")
+                                return ;
+                              }
+
+                            })
+
+                          }else{
+                            lp.hl()
+                            swal("ขออภัย!", "ไม่พบข้อมูลบัญชีผู้ใช้งานระบบ!", "error")
+                            return ;
+                          }
+                        }, 'json')
+                        .fail(function(){
+                          lp.hl()
+                          swal("ขออภัย!", "ไม่สามารถเชื่อมต่อฐานข้อมูลได้!", "error")
+                          return ;
+                        })
+
+        })
+
+      })
+
+      function sendPassword(){
+        $pwd = $('#txtPassword2').val()
+        $check = 0;
+
+        if($('#txtPassword2').val()==''){
+          $('#txtPassword2').parent().addClass('has-error')
+          $check++;
+        }
+        if($check!=0){
+          swal("ขออภัย!", "กรุณากรอกข้อมูลให้ครบถ้วน!", "error")
+          return ;
+        }
+
+        lp.sl()
+        loading.show()
+
+        var param = {
+          email: $pwd
+        }
+
+        var jxhr = $.post(ws_url + 'controller/getPassword.php', param, function(){}, 'json')
+                    .always(function(snap){
+
+                      if((snap!='') && (snap.length > 0)){
+                        snap.forEach(function(i){
+                          var dataContent = '<h3>แจ้งรหัสผ่านสำหรับการเข้าใช้งานระบบ RMIS </h3>' +
+                                            '<p>เรียน คุณ' + i.fname + ' ' + i.lname + '</p>' +
+                                            '<p>เนื่องจากท่านได้ทำการขอทราบรหัสผ่านเพื่อเข้าใช้งานระบบสารสนเทศเพื่อการจัดการงานวิจัย (RMIS) ทั้งนี้ ท่านสามารถเข้าใช้งานระบบได้ทาง <a href="' + root_domain + '" target="_blank">' + root_domain + '</a> โดยใช้ข้อมูลดังต่อไปนี้' +
+                                            '</p>' +
+                                            '<p>ชื่อบัญชีผู้ใช้ : ' + $pwd + '<br>รหัสผ่าน <span style="color:red;">: ' + i.password + '<span></p>' +
+                                            '<p>จึงเรียนมาเพื่อทราบ <br>ระบบสารสนเทศเพื่อการจัดการงานวิจัย (RMIS)</p>' + '<p style="color:red;">** กรุณาเก็บข้อมูลอีเมล์ฉบับนี้ไว้เนื่องจากท่านอาจต้องใช้ในอนาคต</p>'
+
+                          var emailParam = {
+                            email: emailConfig.user,
+                            api_key: emailConfig.key,
+                            title: "{ No-reply } แจ้งรหัสผ่านสำหรับการเข้าใช้งานระบบ RMIS",
+                            to_email: $pwd,
+                            content: dataContent
+                          }
+
+                          var jxhr2 = $.post(emailProvider, emailParam, function(){})
+                                      .always(function(res){
+                                        if(res=='Y'){
+                                          loading.hide()
+                                          swal({
+                                          title: "ส่งข้อมูลสำเร็จ",
+                                          text: "ระบบได้ทำการส่งข้อมูลรหัสผ่านไปยังอีเมล์ของท่านเรียบร้อยแล้ว",
+                                          type: "success",
+                                          showCancelButton: false,
+                                          confirmButtonColor: "#DD6B55",
+                                          confirmButtonText: "รับทราบ",
+                                          closeOnConfirm: false },
+                                          function(){
+                                          window.location.reload()
+                                          });
+                                        }else{
+                                          swal("เกิดข้อผิดพลาด!", "ระบบไม่สามารถส่งข้อมูลไปยัง E-mail ของท่านได้ กรุณาติดต่อเจ้าหน้าที่เพื่อขอทราบรหัสผ่าน", "error")
+                                          lp.hl();
+                                          loading.hide()
+                                        }
+                                      })
+                        })
+                        return ;
+                      }else{
+                        lp.hl()
+                        loading.hide()
+                        swal("ขออภัย!", "ไม่พบข้อมูลผู้ใช้งาน กรุณาติดต่อเจ้าหน้าที่!", "error")
+                        return ;
+                      }
+                    }, 'json')
+                    .fail(function(){
+                      lp.hl()
+                      loading.hide()
+                      swal("ขออภัย!", "ไม่สามารถเชื่อมต่อฐานข้อมูลได้!", "error")
+                      return ;
+                    })
+
+      }
+    </script>
+</body>
+</html>

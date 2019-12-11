@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>RMIS:ระบบสารสนเทศเพื่อการจัดการงานวิจัย คณะแพทยศาสตร์ มอ.</title>
+    <!-- Meta Tags -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+    <!-- Data table CSS -->
+    <link href="../v4/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!--alerts CSS -->
+    <link href="../v3/vendors/bower_components/sweetalert/dist/sweetalert.css" rel="stylesheet" type="text/css">
+    <!-- Fontawesom -->
+    <link href="../v4/bower_components/fontawesome/web-fonts-with-css/css/fontawesome-all.css" rel="stylesheet">
+    <!-- Preload -->
+    <link rel="stylesheet" href="../v4/node_modules/preload.js/dist/css/preload.css">
+
+    <link rel="stylesheet" href="../v4/assets/css/style.0.1.1.css">
+
+    <style media="screen">
+      body{
+        background: rgb(242, 242, 242);
+      }
+    </style>
+  </head>
+  <body>
+
+    <nav class="navbar bs navbar-expand-lg navbar-light" style="background: #fff;">
+      <div class="navbar-brand">
+        <div class="d-block d-sm-none">
+          <a href="" class="btn btn-success mr-10">
+            <i class="fas fa-bars"></i>
+          </a>
+          <a href="index.html">
+            <img src="../images/logo-20190225-2.png" alt="" class="img-fluid" style="width: 150px;">
+          </a>
+        </div>
+
+        <div class="d-none d-sm-block">
+          <a href="index.html">
+            <img src="../images/logo-20190225-2.png" alt="" class="img-fluid" style="width: 150px;">
+          </a>
+        </div>
+
+
+      </div>
+
+      <div class="d-none d-sm-block">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </div>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="index.html">หน้าแรก <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="documents.html">คู่มือการใช้งาน</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="chat.html">ข้อความสนทนา</a>
+          </li>
+        </ul>
+
+        <div class="">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                สวัสดี, <span class="userFullname" style="color: #02946c; ">NA</span> (PI)
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="profile.html">ข้อมูลส่วนตัว</a>
+                <a class="dropdown-item" href="changepassword.html">เปลี่ยนรหัสผ่าน</a>
+                <a class="dropdown-item" href="activity.html">บันทึกกิจกรรม</a>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <form class="form-inline my-2 my-lg-0">
+          <button class="btn btn-success my-2 my-sm-0" type="button" onclick="core.signout()">ออกจากระบบ</button>
+        </form>
+      </div>
+    </nav>
+
+    <div class="main-content mt-20 mb-30">
+      <div class="container">
+        <h5>หน้าแรก <small class="text-muted">(Home)</small></h5>
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="alert alert-success alert-dismissible fade show mt-10" role="alert">
+              ท่านสามารถตรวสอบสถานะโครงการวิจัยของท่านได้ที่ปุ่ม "ตรวจสอบสถานะโครงการวิจัยทั้งหมดของท่าน" หรือ <a href="rs_list.html" style="font-weight: bold;" class="text-danger">คลิกที่นี่</a>
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+          </div>
+        </div>
+        <!-- .row -->
+
+        <div class="row">
+          <div class="col-sm-12">
+            <h6>เสนอโครงการวิจัย <small>(Initial Review)</small></h6>
+            <div class="row pl-10 pr-20">
+              <div class="col-md-2 col-4 pd-5" id="btn1_1">
+                <button class="btn btn-white btn-block bs pd-10 pt-30" style="background: #fff;">
+                  <img src="../images/pi-icon-1.png" alt="" class="img-fluid">
+                  <div class="fz08" style="display: block;">ลงทะเบียน<br>โครงการใหม่</div>
+                  <div class="fz08" style="height: 17px;"></div>
+                </button>
+              </div>
+              <div class="col-md-2 col-4 pd-5" id="btn1_2">
+                <button class="btn btn-white btn-block bs pd-10 pt-30" style="background: #fff;">
+                  <img src="../images/pi-icon-2.png" alt="" class="img-fluid">
+                  <div class="fz08">แบบเสนอ<br>ยังไม่ยืนยันส่ง</div>
+                  <div class="fz08">(<span>0</span> โครงการ)</div>
+                </button>
+              </div>
+              <div class="col-md-2 col-4 pd-5" id="btn1_3">
+                <button class="btn btn-white btn-block bs pd-10 pt-30" style="background: #fff;">
+                  <img src="../images/pi-icon-3.png" alt="" class="img-fluid">
+                  <div class="fz08">โครงการรอแก้ไข<br>ขั้นตรวจสอบ</div>
+                  <div class="fz08">(<span>0</span> โครงการ)</div>
+                </button>
+              </div>
+              <div class="col-md-2 col-4 pd-5" id="btn1_4">
+                <button class="btn btn-white btn-block bs pd-10 pt-30" style="background: #fff;">
+                  <img src="../images/pi-icon-4.png" alt="" class="img-fluid">
+                  <div class="fz08">โครงการรอแก้ไข<br>ขั้นการพิจารณา</div>
+                  <div class="fz08">(<span>0</span> โครงการ)</div>
+                </button>
+              </div>
+              <div class="col-md-2 col-4 pd-5" id="btn1_5">
+                <button class="btn btn-white btn-block bs pd-10 pt-30" style="background: #fff;">
+                  <img src="../images/pi-icon-5.png" alt="" class="img-fluid">
+                  <div class="fz08">โครงการวิจัย<br>ทั้งหมดของท่าน</div>
+                  <div class="fz08">(<span>0</span> โครงการ)</div>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- .row -->
+
+        <div class="row">
+          <div class="col-sm-12">
+            <hr>
+            <h6>ประวัติหัวหน้าโครงการ <small>(Project Investigator)</small></h6>
+            <div class="row pl-10 pr-20">
+              <div class="col-md-2 col-4 pd-5" id="btn1_1">
+                <button class="btn btn-white btn-block bs pd-10 pt-30" style="background: #fff;">
+                  <img src="../images/pi-icon-6.png" alt="" class="img-fluid">
+                  <div class="fz08" style="display: block;">ข้อมูลส่วนตัว<br>Profile</div>
+                </button>
+              </div>
+              <div class="col-md-2 col-4 pd-5" id="btn1_2">
+                <button class="btn btn-white btn-block bs pd-10 pt-30" style="background: #fff;">
+                  <img src="../images/pi-icon-9.png" alt="" class="img-fluid">
+                  <div class="fz08">เปลี่ยนรหัสผ่าน<br>Change PWD.</div>
+                </button>
+              </div>
+              <div class="col-md-2 col-4 pd-5" id="btn1_2">
+                <button class="btn btn-white btn-block bs pd-10 pt-30" style="background: #fff;">
+                  <img src="../images/pi-icon-7.png" alt="" class="img-fluid">
+                  <div class="fz08">เอกสารวิชาการ<br>Publications</div>
+                </button>
+              </div>
+              <div class="col-md-2 col-4 pd-5" id="btn1_3">
+                <button class="btn btn-white btn-block bs pd-10 pt-30" style="background: #fff;">
+                  <img src="../images/pi-icon-8.png" alt="" class="img-fluid">
+                  <div class="fz08">Academic P.<br> & GCP</div>
+                </button>
+              </div>
+              <div class="col-md-2 col-4 pd-5" id="btn1_3">
+                <button class="btn btn-white btn-block bs pd-10 pt-30" style="background: #fff;">
+                  <img src="../images/pi-icon-10.png" alt="" class="img-fluid">
+                  <div class="fz08">ผู้ช่วยวิจัย<br> Project-Co.</div>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- .row -->
+
+        <div class="row">
+          <div class="col-sm-12">
+            <hr>
+            <h6>อื่น ๆ <small>(Other)</small></h6>
+            <div class="row pl-10 pr-20">
+              <div class="col-md-2 col-4 pd-5" id="btn1_1">
+                <button class="btn btn-white btn-block bs pd-10 pt-30" style="background: #fff;">
+                  <img src="../images/pi-icon-11.png" alt="" class="img-fluid">
+                  <div class="fz08" style="display: block;">คู่มือการใช้งาน<br>Documents</div>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- .row -->
+
+      </div>
+      <!-- .container -->
+    </div>
+    <!-- .main-content -->
+
+
+    <!-- jQuery -->
+    <script src="../v3/vendors/bower_components/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="../v4/bower_components/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Slimscroll JavaScript -->
+    <script src="../v3/dist/js/jquery.slimscroll.js"></script>
+    <!-- Fancy Dropdown JS -->
+    <script src="../v3/dist/js/dropdown-bootstrap-extended.js"></script>
+    <!-- Sweet-Alert  -->
+    <script src="../v3/vendors/bower_components/sweetalert/dist/sweetalert.min.js"></script>
+
+    <script src="../v4/config.js"></script>
+    <script type="text/javascript" src="../v4/node_modules/preload.js/dist/js/preload.js"></script>
+
+    <script src="../v3/main.js"></script>
+    <script src="../v4/core.0.2.1.js"></script>
+    <script src="../v4/pi.0.2.1.js"></script>
+
+    <script>
+      $(document).ready(function(){
+        pi.get_pi_info(true)
+      })
+    </script>
+
+  </body>
+</html>

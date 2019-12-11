@@ -1,0 +1,52 @@
+INSERT INTO pm (id_prefix, fname, lname, id_dept, id_personnel, person_other, dept, expertise, rs_interest, address, tel_mobile, tel_office, tel_fax, user_id)
+SELECT
+b.id_prefix, b.name, b.surname, b.id_dept, b.id_personnel, b.person_other, b.dept, b.expertise, b.rs_interest, b.address, b.tel_mobile, b.tel_office, b.tel_fax, a.id
+FROM useraccount a LEFT JOIN pm_old b ON a.email = b.email AND b.Active = 'Yes'
+
+SELECT email,COUNT(email)  FROM `useraccount` GROUP BY email HAVING COUNT(email) > 1
+
+SELECT * FROM useraccount WHERE email IN
+(SELECT email FROM `useraccount` GROUP BY email HAVING COUNT(email) > 1) ORDER BY email
+
+SELECT * FROM useraccount a LEFT JOIN pm b ON a.id = b.user_id WHERE a.id_pm NOT IN (SELECT id_pm FROM research WHERE 1)
+
+DELETE FROM useraccount WHERE id_pm IN (
+SELECT a.id_pm FROM useraccount a LEFT JOIN pm b ON a.id = b.user_id WHERE a.id_pm NOT IN (SELECT id_pm FROM research WHERE 1))
+
+SELECT * FROM `useraccount` a LEFT JOIN pm_old b ON a.username = b.username AND a.email = b.email WHERE b.Active = 'No'
+
+INSERT INTO pm_team (co_prefix, co_fname, co_lname, co_email, co_ratio, co_rs_id)
+SELECT
+id_prefix, name, surname, email, ratio, id_rs
+FROM team
+WHERE status = '1'
+
+INSERT INTO file_research_attached (f_name, f_group, f_rs_id)
+SELECT tf_name, '10', tf_confirm_id FROM temp_file_research_add WHERE tf_confirm_id != 0
+
+INSERT INTO `useraccount` (`id_pm`, `username`, `password`, `email`, `usertype`, `active_status`, `delete_status`, `allow_status`, `reg_datetime`, `SID`, `profile`) VALUES
+('', 'tagoon.p', 'bWFuZHltb3Jlbm4=', 'dsrr.connect@gmail.com', 'staff', 1, 0, 1, '2017-11-24 00:00:00', '', ''),
+('', 'simanh.adm24@gmail.com', 'bWFuZHltb3Jlbm4=', 'simanh.adm24@gmail.com', 'administrator', 1, 0, 1, '2017-11-27 00:00:00', '', ''),
+('', 'wisnior.c@gmail.com', 'MTIzNDU2Nzg=', 'wisnior.c@gmail.com', 'staff', 1, 0, 1, '2017-11-29 04:51:28', NULL, ''),
+('PI_00710', 'chinjung_ns1@hotmail.com', 'MTE0OTExNTc=', 'chinjung_ns1@hotmail.com', 'staff', 1, 0, 1, '2017-11-29 04:59:34', NULL, ''),
+('60193', 'tagoon.p@psu.ac.th', 'MTIzNDU2Nzg=', 'tagoon.p@psu.ac.th', 'ec', 1, 0, 1, '2017-11-29 08:41:30', NULL, ''),
+('42394', 'tdolaya@medicine.psu.ac.th', 'cjJyNDIzOTQ=', 'tdolaya@medicine.psu.ac.th', 'staff', 1, 0, 1, '2017-12-01 09:34:43', NULL, ''),
+('1481', 'pocathikornanothai@live.com', 'MTIzNDU2Nzg=', 'pocathikornanothai@live.com', 'staff', 1, 0, 1, '2017-12-01 09:37:37', NULL, ''),
+('PI_00714', 'pocathikornanothai@gmail.com', 'MTIzNDU2Nzg=', 'pocathikornanothai@gmail.com', 'reviewer', 1, 0, 1, '2017-12-01 15:04:41', NULL, ''),
+('PI_00715', 'anothai.p@psu.ac.th', 'MTIzNDU2Nzg=', 'anothai.p@psu.ac.th', 'ec', 1, 0, 1, '2017-12-01 15:05:30', NULL, ''),
+('PI_00716', 'panothai@medicine.psu.ac.th', 'MTIzNDU2Nzg=', 'panothai@medicine.psu.ac.th', 'pm', 1, 0, 1, '2017-12-01 15:05:30', NULL, ''),
+('PI_00717', '5710121040@psu.ac.th', 'MTIzNDU2Nzg=', '5710121040@psu.ac.th', 'reviewer', 1, 0, 1, '2017-12-20 15:47:05', NULL, ''),
+('PI_00718', 'pigun113@gmail.com', 'MTIzNA==', 'pigun113@gmail.com', 'reviewer', 1, 0, 1, '2017-12-26 16:04:48', NULL, ''),
+('2533', 'utcharee@gmail.com', 'MTIzNDU2', 'utcharee@gmail.com', 'ec', 1, 0, 1, '2017-12-27 14:28:30', NULL, ''),
+('40035', 'napasporn.k@psu.ac.th', 'YXBkdTEyMzQ=', 'napasporn.k@psu.ac.th', 'staff', 1, 0, 1, '2017-12-29 13:20:53', NULL, ''),
+('PI_00721', 'tkunthid@medicin.psu.ac.th', 'NDU2Nw==', 'tkunthid@medicin.psu.ac.th', 'staff', 1, 0, 1, '2017-12-29 13:26:10', NULL, ''),
+('46238', 'jmaharwong@gmail.com', 'bWFoYXJ3b25n', 'jmaharwong@gmail.com', 'staff', 1, 0, 1, '2017-12-29 13:27:48', NULL, '');
+
+INSERT INTO userinfo (id_prefix, fname, lname, tel_mobile)
+SELECT id_prefix, fname, lname, phone FROM ec WHERE 1
+
+INSERT INTO userinfo (id_prefix, fname, lname, tel_mobile)
+SELECT id_prefix, fname, lname, phone FROM reviewer WHERE 1
+
+INSERT INTO userinfo (id_prefix, fname, lname, tel_mobile, user_id)
+SELECT id_prefix, fname, lname, phone, account_id FROM staff WHERE 1

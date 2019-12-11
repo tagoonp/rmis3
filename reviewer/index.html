@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8" />
+  	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  	<title>:: RMIS :: สำหรับผู้เชี่ยวชาญอิสระ ::</title>
+
+    <!-- Data table CSS -->
+  	<link href="../v4/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!--alerts CSS -->
+  	<link href="../v3/vendors/bower_components/sweetalert/dist/sweetalert.css" rel="stylesheet" type="text/css">
+
+    <!-- Data table CSS -->
+    <link href="../v3/vendors/bower_components/datatables/media/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css"/>
+
+    <!-- Fontawesom -->
+    <link href="../v4/bower_components/fontawesome/web-fonts-with-css/css/fontawesome-all.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <!-- <link href="../v3/dist/css/style.css" rel="stylesheet" type="text/css">
+    <link href="../v3/fonts.css" rel="stylesheet" type="text/css">
+    <link href="../v3/style_v2.css" rel="stylesheet" type="text/css"> -->
+    <!-- Preload -->
+    <link rel="stylesheet" href="../v4/node_modules/preload.js/dist/css/preload.css">
+
+    <!-- Material Design Bootstrap -->
+    <link href="../v4/node_modules/mdbootstrap/css/mdb.min.css" rel="stylesheet">
+    <link href="../v4/node_modules/mdbootstrap/css/style.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="../v4/assets/css/style.css">
+    <link rel="stylesheet" href="../v4/assets/css/fonts.css">
+
+  </head>
+
+  <style media="screen">
+    body{
+      background: rgb(245, 245, 245);
+    }
+  </style>
+
+  <body>
+
+    <div class="header fixed-top" style="background: rgb(31, 147, 12) !important; border: solid; border-width: 0px 0px 1px 0px; border-color: rgb(233, 233, 233);">
+      <div class="container">
+        <!--Navbar-->
+        <nav class="navbar navbar-expand-lg navbar-dark blue" style="background: rgb(31, 147, 12) !important; box-shadow: none;">
+
+          <!-- Navbar brand -->
+          <a class="navbar-brand th_font fw500  text-white" href="index.html" style="font-size: 1.9em; margin-top: -3px;">RMIS@Medicine</a>
+
+          <!-- Collapse button -->
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav" aria-controls="basicExampleNav"
+              aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <!-- Collapsible content -->
+          <div class="collapse navbar-collapse" id="basicExampleNav" style="margin-top: -4px;">
+              <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                <li class="nav-item active dn">
+                  <a href="index.html" class="nav-link active">หน้าแรก</a>
+                </li>
+              </ul>
+
+              <div class="form-inline my-2 my-lg-0">
+                <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                  <li class="nav-item ">
+                    <a href="profile.html" class="nav-link text-white">ยินดีต้อนรับ, <span class="userFullname text-white">NA</span> (REVIEWER)</a>
+                  </li>
+                  <li class="nav-item ">
+                    <a href="changepassword.html" class="nav-link text-white">เปลี่ยนรหัสผ่าน</a>
+                  </li>
+                  <li class="nav-item ">
+                    <a href="#" class="nav-link text-white" onclick="main.signout()">ออกจากระบบ</a>
+                  </li>
+                </ul>
+              </div>
+          </div>
+          <!-- Collapsible content -->
+
+        </nav>
+        <!--/.Navbar-->
+      </div>
+    </div>
+
+    <div class="group-1 pb-50" style="padding-top: 90px;">
+      <div class="container">
+
+        <div class="row">
+          <div class="col-sm-12">
+            <h3 class="fw500">หน้าแรก</h3>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-12 col-md-6">
+            <h5 class="panel-title txt-dark mb-10 fw500">โครงการวิจัยใหม่เพื่อการพิจารณา <br><small class="txt-dark pl-0">(Initial Review)</small></h5>
+            <button class="btn btn-custom-1 btn-block btn-lable-wrap left-label text-left pl-20 mb-5" id="btnN1" onclick="window.location = 'rs-wait-consider.html'">
+              <span class="btn-text"><i class="fas fa-bars mr-10"></i> โครงการที่ยังรอการพิจารณาจากท่าน <span class="NewRegister"></span></span>
+            </button>
+
+            <button class="btn btn-custom-1 btn-block btn-lable-wrap left-label text-left pl-20 mb-5" onclick="window.location = 'rs-consided.html'">
+              <span class="btn-text"><i class="fas fa-pencil-alt mr-5"></i> โครงการที่ท่านพิจารณาแล้ว <span class="NewWaitEdit"></span></span>
+            </button>
+          </div>
+
+          <div class="col-sm-12 col-md-6">
+            <h5 class="panel-title txt-dark mb-10 fw500">โครงการวิจัยที่กำลังดำเนินการ  <br><small class="txt-dark pl-0">(Continuing Review)</small></h5>
+
+            <button class="btn btn-custom-1 btn-block btn-lable-wrap left-label text-left pl-20 mb-5"  disabled>
+              <span class="btn-text"><i class="fas fa-bars mr-10"></i> โครงการที่รอการพิจารณาโดยท่าน <span class="NewRegister"></span></span>
+            </button>
+
+            <button class="btn btn-custom-1 btn-block btn-lable-wrap left-label text-left pl-20 mb-5" disabled>
+              <span class="btn-text"><i class="fas fa-pencil-alt mr-5"></i> โครงการที่ท่านพิจารณาแล้ว <span class="NewWaitEdit"></span></span>
+            </button>
+
+          </div>
+        </div>
+        <!-- .row -->
+
+
+
+
+      </div>
+    </div>
+
+    <div class="custom-footer pt-30">
+      <div class="container text-center">
+        2017 © RMIS. หน่วยส่งเสริมและพัฒนาทางวิชาการ คณะแพทยศาสตร์ มหาวิทยาลัยสงขลานครินทร์
+      </div>
+    </div>
+
+    <!-- jQuery -->
+    <script src="../v3/vendors/bower_components/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="../v3/vendors/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+  	<!-- Slimscroll JavaScript -->
+  	<script src="../v3/dist/js/jquery.slimscroll.js"></script>
+  	<!-- Fancy Dropdown JS -->
+  	<script src="../v3/dist/js/dropdown-bootstrap-extended.js"></script>
+    <!-- Sweet-Alert  -->
+  	<script src="../v3/vendors/bower_components/sweetalert/dist/sweetalert.min.js"></script>
+    <!-- Data table JavaScript -->
+    <script src="../v3/vendors/bower_components/datatables/media/js/jquery.dataTables.min.js"></script>
+    <script src="../v3/dist/js/dataTables-data.js"></script>
+    <!-- Data table JavaScript -->
+    <script type="text/javascript" src="../v3/vendors/bower_components/ckeditor/ckeditor.js"></script>
+
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="../v4/node_modules/mdbootstrap/js/mdb.min.js"></script>
+
+  	<!-- Init JavaScript -->
+    <script src="../v4/config.js"></script>
+  	<script src="../v3/dist/js/init.js"></script>
+    <script src="../v3/main.js"></script>
+    <script src="../v4/reviewer.js"></script>
+
+    <script type="text/javascript" src="../v4/node_modules/preload.js/dist/js/preload.js"></script>
+
+    <script type="text/javascript">
+
+      $(document).ready(function(){
+
+        reviewer.init()
+
+        reviewer.check_unreview()
+        // staff.checkNewWaitEdit()
+        // staff.checkNewWaitProgess()
+        // staff.checkNewRetro()
+
+        preload.hide()
+
+        window.localStorage.removeItem('current_selected_project_review_status');
+
+      })
+
+      $(function(){
+        $('#txtYear').change(function(){
+          loadList()
+        })
+      })
+
+      function goto_report(progress_id){
+        window.localStorage.setItem('rmis_current_progress_id', progress_id)
+        window.location = 'create_report.html'
+      }
+
+      function checkReviewerNonResponse(){
+        var jxhr = $.post(ws_url + 'controller/check-no-acknowledge-reviewer.php', function(){}, 'json')
+                    .always(function(snap){
+                      if((snap!='') && (snap.length > 0)){
+                        $('.NewWaitAllProcess2').text('(' + snap.length +')')
+                        // $('#btnN5').addClass('btn-error')
+                        // $('#btnN5').removeClass('btn-custom-1')
+                        // $('#btnN5').addClass('btn-orange')
+                        $('#btnN5').removeClass('btn-custom-1')
+                        $('#btnN5').addClass('btn-custom-orange')
+                      }
+                    }, 'json')
+      }
+
+      function checkReviewerWP(){
+        var jxhr = $.post(ws_url + 'controller/staff/check-new-wait-process-review.php', function(){}, 'json')
+                    .always(function(snap){
+                      console.log(snap);
+                      if((snap!='') && (snap.length > 0)){
+                        $('.NewWaitAllProcess3').text('(' + snap.length +')')
+                        $('#btnN6').removeClass('btn-custom-1')
+                        $('#btnN6').addClass('btn-custom-orange')
+                      }
+                    }, 'json')
+      }
+
+      function checkWaitApproval(){
+        var param = $.post(ws_url + 'controller/staff/rs-list-status-22.php', function(){},'json')
+                     .always(function(snap){
+                      if((snap!='') && (snap.length > 0)){
+                        $('.NewWaitApproval').text('('+snap.length+')')
+                        $('#btnN7').removeClass('btn-custom-1')
+                        $('#btnN7').addClass('btn-custom-orange')
+                      }
+                     })
+      }
+
+      function checkWaitBoardSummary(){
+        var param = $.post(ws_url + 'controller/staff/rs-list-status-15.php', function(){},'json')
+                     .always(function(snap){
+                      if((snap!='') && (snap.length > 0)){
+                        $('.NewWaitBoardSum').text('('+snap.length+')')
+                        $('#btnN8').removeClass('btn-custom-1')
+                        $('#btnN8').addClass('btn-custom-orange')
+                      }
+                     })
+      }
+
+    </script>
+
+  </body>
+</html>

@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>ลงทะเบียน RMIS</title>
+        <!-- Meta Tags -->
+        <meta charset="UTF-8" />
+    		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+        <!-- CSS -->
+        <link rel="shortcut icon" href="./favicon.ico">
+
+        <!-- Custom CSS -->
+    		<link href="v3/dist/css/style.css" rel="stylesheet" type="text/css">
+        <link href="v3/fonts.css" rel="stylesheet" type="text/css">
+        <link href="v3/style.css" rel="stylesheet" type="text/css">
+
+        <!--alerts CSS -->
+      	<link href="v3/vendors/bower_components/sweetalert/dist/sweetalert.css" rel="stylesheet" type="text/css">
+
+    </head>
+
+    <style>
+      .header{
+          background: rgb(39, 143, 5);
+      }
+    </style>
+    <div class="header bsd">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-xs-2">
+              <a href="./"><h1 style="color: #fff; font-size: 25px;">RMIS@2017</h1></a>
+          </div>
+          <div class="col-xs-10 text-right pt-10">
+              <button class="btn btn-default btn-rounded_ btn-outline txt-light" style="color: #fff !important;" onclick="window.location = 'index.html'">เข้าสู่ระบบ</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <body style="background: rgb(255, 255, 255);">
+
+      <div class="container">
+
+        <div class="ld dn">
+          <div class="row">
+            <div class="col-sm-12 text-center" style="padding: 50px 0px;">
+              <img src="./images/Rolling.gif" alt="" width="100px;">
+            </div>
+          </div>
+        </div>
+
+        <div class="cd">
+          <div class="row">
+            <div class="col-sm-12" style="margin-top: 20px;">
+              <div class="row">
+                <div class="col-sm-12">
+                  <div class="text-center">
+                    <h2>แบบฟอร์มลงทะเบียนเพื่อใช้งานระบบ <br><small>(สำหรับบุคคลภายนอกคณะแพทยศาสตร์)</small></h2>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-sm-12 pt-20">
+                  <div class="alert alert-success alert-dismissable">
+  											<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+  											<i class="zmdi zmdi-info-outline pr-15 pull-left"></i><p class="pull-left"> กรุณากรอกข้อมูลทุกส่วนให้ครบถ้วน โดยเฉพาะช่องที่มีเครื่องหมาย **</p>
+  											<div class="clearfix"></div>
+  										</div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-4 col-sm-12">
+                  <h4 class="f500 pb-10"><span class="txt-success">ส่วนที่ 1</span> ข้อมูลส่วนตัว</h4>
+                  <!-- <div class="form-group">
+                    <label for="" class="txt-dark f500 fs08">คำนำหน้าชื่อ (Prefix) <span class="txt-danger">**</span></label>
+                    <select class="form-control" name="txtPrefix" id="txtPrefix">
+                      <option value="">--- เลือกคำนำหน้าชื่อ ---</option>
+                    </select>
+                  </div> -->
+
+                  <div class="form-group">
+                    <label for="" class="txt-dark f500 fs08">คำนำหน้าชื่อที่ต้องการให้ปรากฏในใบรับรอง <span class="text-muted">(ถ้ามี)</span></label>
+                    <input type="text" class="form-control" placeholder="กรอกคำนำหน้าชื่อ ..." >
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-6 col-sm-6 col-xs-6">
+                      <div class="form-group">
+                        <label for="" class="txt-dark f500 fs08">ชื่อ <span class="txt-danger">**</span></label>
+                        <input type="text" class="form-control" placeholder="กรอกชื่อจริง ..." id="txtFname">
+                      </div>
+                    </div>
+
+                    <div class="col-md-6 col-sm-6 col-xs-6">
+                      <div class="form-group">
+                        <label for="" class="txt-dark f500 fs08">นามสกุล <span class="txt-danger">**</span></label>
+                        <input type="text" class="form-control" placeholder="กรอกนามสกุล ..." id="txtLname">
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="" class="txt-dark f500 fs08">Name title for the certificate of approval <span class="text-muted">(If any)</span></label>
+                    <input type="text" class="form-control" placeholder="Enter name title ...">
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-6 col-sm-12 col-xs-6">
+                      <div class="form-group">
+                        <label for="" class="txt-dark f500 fs08">Name <span class="txt-danger">**</span></label>
+                        <input type="text" class="form-control" placeholder="Enter your name ..." id="txtFname">
+                      </div>
+                    </div>
+
+                    <div class="col-md-6 col-sm-12 col-xs-6">
+                      <div class="form-group">
+                        <label for="" class="txt-dark f500 fs08">Surname <span class="txt-danger">**</span></label>
+                        <input type="text" class="form-control" placeholder="Enter your surname ..." id="txtLname">
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="" class="txt-dark f500 fs08">ประเภทบุคลากร (Personnel type) <span class="txt-danger">**</span></label>
+                    <select class="form-control" name="txtPosition" id="txtPosition">
+                      <option value="">--- เลือกประเภทบุคลากร ---</option>
+                    </select>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="" class="txt-dark f500 fs08">สาขาเชี่ยวชาญ (Expertise) <span class="txt-danger">**</span></label>
+                    <textarea name="txtExp" id="txtExp" rows="2" cols="80" class="form-control" placeholder="กรอกสาขาเชี่ยวชาญ โดยแต่ละสาขาให้คั่นด้วยเครื่องหมายคอมม่า (,)"></textarea>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="" class="txt-dark f500 fs08">สาขางานวิจัยที่สนใจ (Research interests) <span class="txt-danger">**</span></label>
+                    <textarea name="txtRI" id="txtRI" rows="2" cols="80" class="form-control" placeholder="กรอกสาขางานวิจัยที่สนใจ โดยแต่ละเรื่องให้คั่นด้วยเครื่องหมายคอมม่า (,)"></textarea>
+                  </div>
+                </div>
+
+
+                <div class="col-md-4 col-sm-12">
+                  <h4 class="pb-10 f500"><span class="txt-success">ส่วนที่ 2</span> หน่วยงานที่สังกัด</h4>
+
+                  <div class="form-group">
+                    <label for="" class="txt-dark f500 fs08">หน่วยงานต้นสังกัด <span class="txt-danger">**</span></label>
+                    <select class="form-control" name="txtInstitutionType" id="txtInstitutionType">
+                      <option value="">--- เลือกหน่วยงานต้นสังกัด ---</option>
+                      <option value="1">มหาวิทยาลัย</option>
+                      <option value="2">โรงพยาบาล</option>
+                      <option value="99">อื่น ๆ</option>
+                    </select>
+                    <!-- <p class="fs08 text-right">หากไม่พบในรายการ<a href="#" class="txt-success">คลิกที่นี่</a> เพื่อเพิ่มหน่วยงานต้นสังกัดของท่าน</p> -->
+                  </div>
+
+                  <div class="form-group dn_" id="otherInsition">
+                    <label for="" class="txt-dark f500 fs08">ระบุชื่อหน่วยงาน <span class="txt-danger">**</span></label>
+                    <input type="text" class="form-control" placeholder="ระบุชื่อหน่วยงานของท่าน ..." id="txtInstitutionName">
+                  </div>
+
+                  <h4 class="pb-10 f500"><span class="txt-success">ส่วนที่ 3</span> ข้อมูลการติดต่อ</h4>
+                  <div class="form-group">
+                    <label for="" class="txt-dark f500 fs08">ที่อยู่ที่ติดต่อได้ (Address) <span class="txt-danger">**</span></label>
+                    <textarea name="txtAddress" id="txtAddress" rows="2" cols="80" class="form-control" placeholder="กรอกที่อยู่ปัจจุบัน"></textarea>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="" class="txt-dark f500 fs08">โทรศัพท์มือถือ (Mobile) <span class="txt-danger">**</span></label>
+                    <input type="number" min="0" class="form-control" placeholder="กรอกหมายเลขโทรศัพท์มือถือ (เฉพาะตัวเลข) ..." id="txtMobile">
+                  </div>
+
+                  <div class="form-group">
+                    <label for="" class="txt-dark f500 fs08">โทรศัพท์ที่ทำงาน (Office) <span class="txt-danger">**</span></label>
+                    <input type="number" min="0" class="form-control" placeholder="กรอกหมายเลขโทรศัพท์ที่ทำงาน (เฉพาะตัวเลข) ..." id="txtOffice">
+                  </div>
+
+                  <div class="form-group">
+                    <label for="" class="txt-dark f500 fs08">อีเมล์ (E-mail address) <span class="txt-danger">**</span></label>
+                    <input type="email" class="form-control" placeholder="กรอกอีเมล์แอดเดรสของท่าน ..." id="txtEmail">
+                    <p class="fs08 txt-danger">** ระบบแนะนำให้ใช้ Gmail, Hotmail หรือ Yahoo</p>
+                  </div>
+
+                </div>
+
+                <div class="col-md-4 col-sm-12">
+
+
+                  <h4 class="pb-10 f500"><span class="txt-success">ส่วนที่ 4</span> ตั้งรหัสผ่าน</h4>
+                  <div class="form-group">
+                    <label for="" class="txt-dark f500 fs08">รหัสผ่าน <span class="txt-danger">**</span></label>
+                    <input type="text" class="form-control" placeholder="กำหนดรหัสผ่านของท่าน ..." id="txtPassword">
+                  </div>
+
+                </div>
+
+                <div class="row">
+                  <div class="col-sm-12 text-center">
+                    <button class="btn btn-success"  onclick="external_sianup()">ลงทะเบียน</button>
+                  </div>
+                </div>
+
+              </div>
+
+              <!-- <div class="row" style="margin-top: 30px;">
+                <div class="col-sm-12 text-center" style="color:rgb(115, 115, 115);">
+                  <a href="./" class="txt-success">เข้าสู่ระบบ</a> | <a href="documents.html" class="txt-success">คู่มือการใช้งาน</a> | <a href="resend-verification.html" class="txt-success">ส่ง Verification email ซ้ำ</a>
+                </div>
+              </div> -->
+
+
+              <div class="row" style="margin-top: 10px;">
+                <div class="col-sm-12 text-center" style="color:rgb(115, 115, 115);">
+                  Copyright &copy; 2013 หน่วยส่งเสริมและพัฒนาทางวิชาการ<br>คณะแพทยศาสตร์ มหาวิทยาลัยสงขลานครินทร์
+                </div>
+              </div>
+
+
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+
+
+
+
+    <!-- jQuery -->
+		<script src="v3/vendors/bower_components/jquery/dist/jquery.min.js"></script>
+
+		<!-- Bootstrap Core JavaScript -->
+		<script src="v3/vendors/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+		<!-- Slimscroll JavaScript -->
+		<script src="v3/dist/js/jquery.slimscroll.js"></script>
+
+		<!-- Fancy Dropdown JS -->
+		<script src="v3/dist/js/dropdown-bootstrap-extended.js"></script>
+
+    <!-- Sweet-Alert  -->
+  	<script src="v3/vendors/bower_components/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="v3/main.js"></script>
+
+    <script type="text/javascript">
+
+      $(document).ready(function(){
+
+        // main.init('', '', 'index.html')
+
+        main.load_prefix()
+        main.load_personnel_type_2()
+
+      })
+
+      function external_sianup(){
+        $check = 0;
+        $instNames = '';
+        $('.form-group').removeClass('has-error')
+
+        if($('#txtPid').val() == ''){
+          $('#txtPid').parent().addClass('has-error')
+          $check++;
+        }
+
+        if($('#txtPrefix').val() == ''){
+          $('#txtPrefix').parent().addClass('has-error')
+          $check++;
+        }
+
+        if($('#txtFname').val() == ''){
+          $('#txtFname').parent().addClass('has-error')
+          $check++;
+        }
+
+        if($('#txtLname').val() == ''){
+          $('#txtLname').parent().addClass('has-error')
+          $check++;
+        }
+
+        if($('#txtPosition').val() == ''){
+          $('#txtPosition').parent().addClass('has-error')
+          $check++;
+        }
+
+        if($('#txtExp').val() == ''){
+          $('#txtExp').parent().addClass('has-error')
+          $check++;
+        }
+
+        if($('#txtRI').val() == ''){
+          $('#txtRI').parent().addClass('has-error')
+          $check++;
+        }
+
+        if($('#txtInstitutionType').val() == ''){
+          $('#txtInstitutionType').parent().addClass('has-error')
+          $check++;
+        }
+
+        if($('#txtInstitutionName').val() == ''){
+          $('#txtInstitutionName').parent().addClass('has-error')
+          $check++;
+        }
+
+        if($('#txtAddress').val() == ''){
+          $('#txtAddress').parent().addClass('has-error')
+          $check++;
+        }
+
+        if($('#txtMobile').val() == ''){
+          $('#txtMobile').parent().addClass('has-error')
+          $check++;
+        }
+
+        if($('#txtOffice').val() == ''){
+          $('#txtOffice').parent().addClass('has-error')
+          $check++;
+        }
+
+        if($('#txtEmail').val() == ''){
+          $('#txtEmail').parent().addClass('has-error')
+          $check++;
+        }
+
+        if($('#txtPassword').val() == ''){
+          $('#txtPassword').parent().addClass('has-error')
+          $check++;
+        }
+
+        if($check!=0){
+          swal("ขออภัย!", "กรุณากรอกข้อมูลให้ครบถ้วน", "error")
+          return ;
+        }
+
+        lp.sl();
+
+        var param = {
+          email: $('#txtEmail').val(),
+          prefix: $('#txtPrefix').val(),
+          fname: $('#txtFname').val(),
+          lname: $('#txtLname').val(),
+          position: $('#txtPosition').val(),
+          instType: $('#txtInstitutionType').val(),
+          instName: $instNames,
+          exp: $('#txtExp').val(),
+          ri: $('#txtRI').val(),
+          address: $('#txtAddress').val(),
+          mobile: $('#txtMobile').val(),
+          office: $('#txtOffice').val(),
+          password: $('#txtPassword').val(),
+        }
+
+        var jxhr = $.post(ws_url + 'controller/external-register.php', param, function(){}, 'json')
+                    .always(function(resp){
+                      if(resp.status == 'D'){
+                        swal("ขออภัย!", "อีเมล์นี้เคยลงทะเบียนในระบบแล้ว!", "error")
+                        lp.hl();
+                        return ;
+                      }else if(resp.status == 'N'){
+                        swal("ขออภัย!", "ไม่สามารถทำการบันทึกข้อมูลได้ กรุณาลองใหม่ภายหลัง หรือติดต่อเจ้าหน้าที่", "error")
+                        lp.hl();
+                        return ;
+                      }else{
+                        // console.log(resp.data.fname);
+
+                        var dataContent = '<h3>แจ้งผลการลงทะเบียนเพื่อเข้าใช้งานระบบ RMIS </h3>' +
+                                          '<p>เรียน คุณ' + $('#txtFname').val() + ' ' + $('#txtLname').val() + '</p>' +
+                                          '<p>ท่านได้ทำการลงทะเบียนเพื่อใช้งานระบบสารสนเทศเพื่อการจัดการงานวิจัย (RMIS) เรียบร้อยแล้ว กรุณาทำการยืนยันบัญชีผู้ใช้โดยคลิกลิงค์นี้ <a href="' + root_domain +'controller/avtivate.php?email=' + resp.data.email + '&sid=' + resp.data.SID + '" target="_blank">' + root_domain +'controller/avtivate.php?email=' + resp.data.email + '&sid=' + resp.data.SID + '</a> ' +
+                                          '(ถ้าไม่สามารถคลิกได้ ให้ทำการคัดลอกและนำไปเปิดกับหน้าเว็บด้วยตัวท่านเอง) ทั้งนี้ ท่านสามารถเข้าใช้งานระบบได้ทาง <a href="' + root_domain + '" target="_blank">' + root_domain + '</a> โดยใช้ข้อมูลดังต่อไปนี้' +
+                                          '</p>' +
+                                          '<p>ชื่อบัญชีผู้ใช้ : ' + $('#txtEmail').val() + '<br>รหัสผ่าน <span style="color:red;">: ' + $('#txtPassword').val() + '<span></p>' +
+                                          '<p>จึงเรียนมาเพื่อทราบ <br>ระบบสารสนเทศเพื่อการจัดการงานวิจัย (RMIS)</p>' + '<p style="color:red;">** กรุณาเก็บข้อมูลอีเมล์ฉบับนี้ไว้เนื่องจากท่านอาจต้องใช้ในอนาคต</p>'
+
+                        var emailParam = {
+                          email: emailConfig.user,
+                          api_key: emailConfig.key,
+                          title: "{ No-reply } แจ้งผลการลงทะเบียนเพื่อเข้าใช้งานระบบ RMIS",
+                          to_email: $('#txtEmail').val(),
+                          content: dataContent
+                        }
+
+                        var jxhr2 = $.post(emailProvider, emailParam, function(){})
+                                    .always(function(res){
+                                      console.log(res);
+                                      if(res=='Y'){
+                                        window.location = 'register-success-2.html'
+                                      }else{
+                                        swal("เกิดข้อผิดพลาด!", "ระบบไม่สามารถส่งข้อมูลไปยัง E-mail ของท่านได้ กรุณาติดต่อเจ้าหน้าที่เพื่อทำการอนุมัติสิทธิการใช้งาน", "error")
+                                        lp.hl();
+                                      }
+                                    })
+                      }
+                      return ;
+
+
+
+                    }, 'json')
+                    .fail(function(){
+                      swal("ขออภัย!", "ไม่สามารถเชื่อมต่อฐานข้อมูลได้!", "error")
+                      lp.hl();
+                    })
+
+      }
+
+      $(function(){
+
+        // $('#txtInstitutionType').change(function(){
+        //   if($('#txtInstitutionType').val() == ''){
+        //     $('#otherInsition').addClass('dn')
+        //     $('#txtInstitutionName').val('')
+        //   }else if($('#txtInstitutionType').val() == '99'){
+        //     $('#otherInsition').removeClass('dn')
+        //   }else{
+        //     $('#txtInstitutionName').val('')
+        //     $('#otherInsition').addClass('dn')
+        //   }
+        // })
+
+        $('.loginForm').submit(function(){
+            $check = 0;
+            if($('#txtEmail').val()==''){
+              $check++;
+            }
+
+            if($check!=0){
+              swal("ขออภัย!", "กรุณากรอก E-mail address ที่ท่านได้ใช้ลงทะเบียนไว้!", "error")
+              return ;
+            }
+
+            var param = {
+              username: $('#username').val(),
+              password: $('#password').val(),
+              role: $('#role').val()
+            }
+
+            var jxhr = $.post(ws_domain + 'check_login.php', param, function(){}, 'json')
+                        .always(function(snap){
+                          console.log(snap);
+                          if(snap!=''){
+
+                            window.localStorage.setItem('rmis_current_user', snap.user)
+
+                            if(snap.login_status == 'Y'){
+                              window.location = './' + snap.next_page
+                            }else if(snap.login_status == 'N'){
+                              swal("ขออภัย!", "ไม่พบข้อมูลบัญชีผู้ใช้งานระบบ!", "error")
+                            }else{
+                              if(snap.next_page == 'account-not-activate/'){
+                                swal("ขออภัย", "บัญชีผู้ใช้ของท่านยังไม่ได้ทำการยืนยันการเข้าใช้งาน กรุณาตรวจสอบอีเมล์ที่ท่านสมัครไว้กับทางระบบ หรือ กดปุ่ม 'ส่งอีเมล์ยืนยันการสมัครอีกครั้ง' เพื่อให้ระบบส่งข้อมูลการสมัครไปยังอีเมลของท่าน", "error")
+                              }else{
+                                window.location = './' + snap.next_page
+                              }
+                            }
+                          }else{
+                            swal("ขออภัย!", "ไม่พบข้อมูลบัญชีผู้ใช้งานระบบ!", "error")
+                          }
+                        }, 'json')
+
+        })
+
+      })
+    </script>
+</body>
+</html>

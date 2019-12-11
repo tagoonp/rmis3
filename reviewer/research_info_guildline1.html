@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8" />
+  	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  	<title>:: RMIS :: สำหรับผู้เชี่ยวชาญอิสระ ::</title>
+
+    <!-- Data table CSS -->
+  	<link href="../v4/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!--alerts CSS -->
+  	<link href="../v3/vendors/bower_components/sweetalert/dist/sweetalert.css" rel="stylesheet" type="text/css">
+
+    <!-- Data table CSS -->
+    <link href="../v3/vendors/bower_components/datatables/media/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css"/>
+
+    <!-- Fontawesom -->
+    <link href="../v4/bower_components/fontawesome/web-fonts-with-css/css/fontawesome-all.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <!-- <link href="../v3/dist/css/style.css" rel="stylesheet" type="text/css">
+    <link href="../v3/fonts.css" rel="stylesheet" type="text/css">
+    <link href="../v3/style_v2.css" rel="stylesheet" type="text/css"> -->
+    <!-- Preload -->
+    <link rel="stylesheet" href="../v4/node_modules/preload.js/dist/css/preload.css">
+
+    <!-- Material Design Bootstrap -->
+    <link href="../v4/node_modules/mdbootstrap/css/mdb.min.css" rel="stylesheet">
+    <link href="../v4/node_modules/mdbootstrap/css/style.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="../v4/assets/css/style.css">
+    <link rel="stylesheet" href="../v4/assets/css/fonts.css">
+
+  </head>
+
+  <style media="screen">
+    body{
+      background: rgb(245, 245, 245);
+    }
+  </style>
+
+  <body>
+
+    <div class="header fixed-top" style="background: rgb(31, 147, 12) !important; border: solid; border-width: 0px 0px 1px 0px; border-color: rgb(233, 233, 233);">
+      <div class="container">
+        <!--Navbar-->
+        <nav class="navbar navbar-expand-lg navbar-dark blue" style="background: rgb(31, 147, 12) !important; box-shadow: none;">
+
+          <!-- Navbar brand -->
+          <a class="navbar-brand th_font fw500  text-white" href="index.html" style="font-size: 1.9em; margin-top: -3px;">RMIS@Medicine</a>
+
+          <!-- Collapse button -->
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav" aria-controls="basicExampleNav"
+              aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <!-- Collapsible content -->
+          <div class="collapse navbar-collapse" id="basicExampleNav" style="margin-top: -4px;">
+              <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                <li class="nav-item active dn">
+                  <a href="index.html" class="nav-link active">หน้าแรก</a>
+                </li>
+              </ul>
+
+              <div class="form-inline my-2 my-lg-0">
+                <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                  <li class="nav-item ">
+                    <a href="profile.html" class="nav-link text-white">ยินดีต้อนรับ, คุณ<span class="userFullname text-white">NA</span> (REVIEWER)</a>
+                  </li>
+                  <li class="nav-item ">
+                    <a href="changepassword.html" class="nav-link text-white">เปลี่ยนรหัสผ่าน</a>
+                  </li>
+                  <li class="nav-item ">
+                    <a href="#" class="nav-link text-white" onclick="main.signout()">ออกจากระบบ</a>
+                  </li>
+                </ul>
+              </div>
+          </div>
+          <!-- Collapsible content -->
+
+        </nav>
+        <!--/.Navbar-->
+      </div>
+    </div>
+
+    <div class="group-1 pb-50" style="padding-top: 90px;">
+      <div class="container">
+
+        <div class="row">
+          <div class="col-sm-12">
+            <h3 class="fw500">เอกสารแนบ</h3>
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index.html">หน้าแรก</a></li>
+                <li class="breadcrumb-item"><a href="index.html">โครงการรอการพิจารณา</a></li>
+                <li class="breadcrumb-item active" aria-current="page">REC.61-039-19-6</li>
+              </ol>
+            </nav>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-12 mb-10">
+            <div class="card mb-10">
+              <div class="card-header" style="background: rgb(31, 147, 12); color: #fff;">
+                ข้อมูลเบื้องต้นของโครงการวิจัย
+              </div>
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-sm-12">
+                    <div class="pl-20 txt-dark">
+                      <div class="row">
+                        <div class="col-sm-3 f500">รหัสโครงการ</div>
+                        <div class="col-sm-9"><span id="txtCode" class="txt-danger">ยังไม่กำหนด</span></div>
+                      </div>
+                      <div class="row">
+                        <div class="col-sm-3 f500">หัวหน้าโครงการ</div>
+                        <div class="col-sm-9"><span id="txtPi" class="txt-dark">NA</span></div>
+                      </div>
+                      <div class="row">
+                        <div class="col-sm-3 f500">ชื่อโครงการ (ภาษาไทย)</div>
+                        <div class="col-sm-9"><span id="txtThtitle">NA</span></div>
+                      </div>
+                      <div class="row">
+                        <div class="col-sm-3 f500">ชื่อโครงการ (ภาษาอังกฤษ)</div>
+                        <div class="col-sm-9"><span id="txtEntitle">NA</span></div>
+                      </div>
+                      <div class="row">
+                        <div class="col-sm-3 f500">คำสำคัญ</div>
+                        <div class="col-sm-9">
+                          [ภาษาไทย] <span id="txtThkeyword">NA</span>
+                          <br>
+                          [English] <span id="txtEnkeyword">NA</span>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-sm-3 f500">ประเภทโครงการวิจัย</div>
+                        <div class="col-sm-9"><span id="txtRtype">NA</span></div>
+                      </div>
+                      <div class="row">
+                        <div class="col-sm-3 f500">ระยะเวลาดำเนินการ</div>
+                        <div class="col-sm-9"><span id="txtRduration">NA</span></div>
+                      </div>
+                      <div class="row">
+                        <div class="col-sm-3 f500">ทุนวิจัย</div>
+                        <div class="col-sm-9"><span id="txtFundingtype">NA</span></div>
+                      </div>
+                      <div class="row">
+                        <div class="col-sm-3 f500">ชื่อแหล่งทุน</div>
+                        <div class="col-sm-9"><span  id="txtFundinggroup">NA</span></div>
+                      </div>
+                      <div class="row">
+                        <div class="col-sm-3 f500">งบประมาณ</div>
+                        <div class="col-sm-9"><span id="txtRBudget">NA</span></div>
+                      </div>
+                      <div class="row">
+                        <div class="col-sm-3 f500">ผู้ร่วมวิจัย</div>
+                        <div class="col-sm-9"><span id="txtCopi">NA</span></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="card mb-10">
+              <div class="card-header" style="background: rgb(31, 147, 12); color: #fff;">
+                รายการเอกสารแนบ
+              </div>
+              <div class="card-body">
+                <p class="card-text">
+                  <button class="btn btn-secondary" onclick="window.location='research_info.html'">ขั้นตอนการประเมิน<br>Assesment Instructions</button>
+                  <button class="btn btn-success" onclick="window.location='research_info_file_attached.html'">เอกสารแนบ<br>Documents</button>
+                  <button class="btn btn-secondary" onclick="window.location='research_info_guildline1.html'">คำแนะนำสำหรับกรรมการ<br>Guildline for Primary Reviewr</button>
+                </p>
+
+                <table class="table customtable table-bordered" border="0" style="border:none !important; font-size: 1.0em;">
+                  <tbody>
+                    <tr>
+                      <td style="width: 200px;" class="f500 txt-dark">Submission form</td>
+                      <td>
+                        <div class="ft1 pt-0">
+                          <ul class="" id="ft1">-</ul>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td style="width: 200px;" class="f500 txt-dark">Protocol</td>
+                      <td>
+                        <div class="ft2 pt-0">
+                          <ul class="" id="ft2">-</ul>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td style="width: 200px;" class="f500 txt-dark">Information sheet and Consent Form </td>
+                      <td>
+                        <div class="ft3 pt-0">
+                          <ul class="" id="ft3">-</ul>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td style="width: 200px;" class="f500 txt-dark">Case Record Form </td>
+                      <td>
+                        <div class="ft4 pt-0">
+                          <ul class="" id="ft4">-</ul>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td style="width: 200px;" class="f500 txt-dark">Subject Material </td>
+                      <td>
+                        <div class="ft5 pt-0">
+                          <ul class="" id="ft5">-</ul>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td style="width: 200px;" class="f500 txt-dark">Legal Document</td>
+                      <td>
+                        <div class="ft6 pt-0">
+                          <ul class="" id="ft6">-</ul>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td style="width: 200px;" class="f500 txt-dark">เอกสารประกอบอื่น ๆ</td>
+                      <td>
+                        <div class="ft7 pt-0">
+                          <ul class="" id="ft7">-</ul>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td style="width: 200px;" class="f500 txt-dark">Updated CV, หลักฐานการอบรมจริยธรรมวิจัย </td>
+                      <td>
+                        <div class="ft8 pt-0">
+                          <ul class="" id="ft8">-</ul>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <!-- .row -->
+
+
+
+
+      </div>
+    </div>
+
+    <div class="custom-footer pt-30 pb-30">
+      <div class="container text-center">
+        2017 © RMIS. หน่วยส่งเสริมและพัฒนาทางวิชาการ คณะแพทยศาสตร์ มหาวิทยาลัยสงขลานครินทร์. .
+      </div>
+    </div>
+
+    <!-- jQuery -->
+    <script src="../v3/vendors/bower_components/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="../v3/vendors/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+  	<!-- Slimscroll JavaScript -->
+  	<script src="../v3/dist/js/jquery.slimscroll.js"></script>
+  	<!-- Fancy Dropdown JS -->
+  	<script src="../v3/dist/js/dropdown-bootstrap-extended.js"></script>
+    <!-- Sweet-Alert  -->
+  	<script src="../v3/vendors/bower_components/sweetalert/dist/sweetalert.min.js"></script>
+    <!-- Data table JavaScript -->
+    <script src="../v3/vendors/bower_components/datatables/media/js/jquery.dataTables.min.js"></script>
+    <script src="../v3/dist/js/dataTables-data.js"></script>
+    <!-- Data table JavaScript -->
+    <script type="text/javascript" src="../v3/vendors/bower_components/ckeditor/ckeditor.js"></script>
+
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="../v4/node_modules/mdbootstrap/js/mdb.min.js"></script>
+
+  	<!-- Init JavaScript -->
+    <script src="../v4/config.js"></script>
+  	<script src="../v3/dist/js/init.js"></script>
+    <script src="../v3/main.js"></script>
+    <script src="../v4/reviewer.js"></script>
+
+    <script type="text/javascript" src="../v4/node_modules/preload.js/dist/js/preload.js"></script>
+    <script type="text/javascript" src="../v3/vendors/bower_components/ckeditor_lite/ckeditor.js"></script>
+
+    <script type="text/javascript">
+
+      var current_rs = window.localStorage.getItem('current_selected_project_session')
+      var current_rs_id = window.localStorage.getItem('current_selected_project_id')
+      var comment_other_1 = '', comment_other_2 = ''
+      var editData = '';
+      var reply_status = '0';
+      var numreplyfile = 0;
+      var files;
+      var eformnum = 0
+      var eformnum_success = 0
+
+      $(document).ready(function(){
+
+        reviewer.init()
+        reviewer.load_rs_info_2();
+
+        checkFileAttached()
+        setTimeout(function(){
+          preload.hide()
+        }, 1000)
+
+      })
+
+      $(function(){
+
+      })
+
+    </script>
+
+  </body>
+</html>

@@ -1,0 +1,1192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta http-equiv='cache-control' content='no-cache'>
+  <meta http-equiv='expires' content='0'>
+  <meta http-equiv='pragma' content='no-cache'>
+
+	<title>:: RMIS :: สำหรับเจ้าหน้าที่ ::</title>
+
+	<!-- Data table CSS -->
+	<link href="../v3/vendors/bower_components/datatables/media/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css"/>
+
+  <!--alerts CSS -->
+	<link href="../v3/vendors/bower_components/sweetalert/dist/sweetalert.css" rel="stylesheet" type="text/css">
+
+  <!-- Data table CSS -->
+  <link href="../v3/vendors/bower_components/datatables/media/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css"/>
+  <link rel="stylesheet" href="../v3/vendors/bower_components/bootstrap-datepicker/bootstrap-datepicker3.min.css" />
+  <link rel="stylesheet" href="../v3/vendors/bower_components/dropzonejs/dropzone.min.css" />
+
+	<!-- Custom CSS -->
+	<link href="../v3/dist/css/style.css" rel="stylesheet" type="text/css">
+  <link href="../v3/fonts.css" rel="stylesheet" type="text/css">
+  <link href="../v3/style.css" rel="stylesheet" type="text/css">
+  <style media="screen">
+    .log_info>ul{
+      list-style-type: disc;
+      padding-left: 20px;
+    }
+    .log_info>ol{
+      padding-left: 20px;
+    }
+    .doc_info p {
+      padding-top: 15px;
+    }
+
+    .pt15{
+      padding-top: 15px;
+    }
+  </style>
+</head>
+
+<body>
+	<!--Preloader-->
+	<div class="preloader-it">
+		<div class="la-anim-1"></div>
+	</div>
+	<!--/Preloader-->
+    <div class="wrapper theme-1-active pimary-color-red">
+
+        <!-- Top Menu Items -->
+		<nav class="navbar navbar-inverse navbar-fixed-top">
+			<div class="mobile-only-brand pull-left">
+				<div class="nav-header pull-left">
+					<div class="logo-wrap">
+						<a href="index.html">
+							<img class="brand-img" src="../v3/dist/img/logo.png" alt="brand"/>
+							<span class="brand-text">RMIS</span>
+						</a>
+					</div>
+				</div>
+				<a id="toggle_nav_btn" class="toggle-left-nav-btn inline-block ml-20 pull-left" href="javascript:void(0);"><i class="zmdi zmdi-menu"></i></a>
+				<a id="toggle_mobile_nav" class="mobile-only-view" href="javascript:void(0);"><i class="zmdi zmdi-more"></i></a>
+			</div>
+			<div id="mobile_only_nav" class="mobile-only-nav pull-right">
+				<ul class="nav navbar-right top-nav pull-right">
+          <li>
+            <a href="profile.html">ยินดีต้อนรับ <span class="userFullname text-info">NA</span> (STAFF)</a>
+          </li>
+					<li class="dropdown alert-drp">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="zmdi zmdi-notifications top-nav-icon"></i><span class="notification_number"></span></a>
+						<ul  class="dropdown-menu alert-dropdown" data-dropdown-in="bounceIn" data-dropdown-out="bounceOut">
+							<li>
+								<div class="notification-box-head-wrap">
+									<span class="notification-box-head pull-left inline-block">การแจ้งเตือน</span>
+									<a class="txt-danger pull-right clear-notifications inline-block" href="javascript:main.clear_notify()"> ล้างทั้งหมด </a>
+									<div class="clearfix"></div>
+									<hr class="light-grey-hr ma-0"/>
+								</div>
+							</li>
+              <li>
+                <div class="streamline message-nicescroll-bar notification_panal">
+                </div>
+              </li>
+							<li>
+								<div class="notification-box-bottom-wrap">
+									<hr class="light-grey-hr ma-0"/>
+									<a class="block text-center read-all" href="view_activity_log.html"> อ่านทั้งหมด </a>
+									<div class="clearfix"></div>
+								</div>
+							</li>
+						</ul>
+					</li>
+					<li class="dropdown auth-drp">
+						<a href="#" class="dropdown-toggle pr-0" data-toggle="dropdown"><span id="profileImg"></span><span class="user-online-status"></span></a>
+						<ul class="dropdown-menu user-auth-dropdown" data-dropdown-in="flipInX" data-dropdown-out="flipOutX">
+							<li>
+								<a href="profile.html"><i class="zmdi zmdi-account"></i><span>ข้อมูลส่วนตัว</span></a>
+							</li>
+							<li>
+								<a href="#" onclick="main.mailbox()"><i class="zmdi zmdi-email"></i><span>Inbox</span></a>
+							</li>
+							<li>
+								<a href="changepassword.html"><i class="zmdi zmdi-settings"></i><span>เปลี่ยนรหัสผ่าน</span></a>
+							</li>
+							<li class="divider"></li>
+							<li>
+								<a href="#" onclick="main.signout()"><i class="zmdi zmdi-power"></i><span>ออกจากระบบ</span></a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</nav>
+		<!-- /Top Menu Items -->
+
+		<!-- Left Sidebar Menu -->
+		<div class="fixed-sidebar-left">
+			<ul class="nav navbar-nav side-nav nicescroll-bar">
+				<li class="navigation-header">
+					<span>Main</span>
+					<i class="zmdi zmdi-more"></i>
+				</li>
+
+        <li>
+					<a  href="./"><div class="pull-left"><i class="zmdi zmdi-home mr-20"></i><span class="right-nav-text">หน้าแรก</span></div><div class="clearfix"></div></a>
+				</li>
+        <li>
+						<a href="javascript:void(0);" data-toggle="collapse" data-target="#dashboard_dr"><div class="pull-left"><i class="zmdi zmdi-landscape mr-20"></i><span class="right-nav-text">กระดานภาพรวม</span></div><div class="pull-right"><i class="zmdi zmdi-caret-down"></i></div><div class="clearfix"></div></a>
+						<ul id="dashboard_dr" class="collapse collapse-level-1">
+							<li>
+								<a href="dashboard_1.html">ภาพรวมโครงการวิจัย</a>
+							</li>
+						</ul>
+					</li>
+
+				<li><hr class="light-grey-hr mb-10"/></li>
+				<li class="navigation-header">
+					<span>อื่น ๆ</span>
+					<i class="zmdi zmdi-more"></i>
+				</li>
+
+        <li>
+					<a href="documentation.html"><div class="pull-left"><i class="zmdi zmdi-book mr-20"></i><span class="right-nav-text">คู่มือการใช้งาน (STAFF)</span></div><div class="clearfix"></div></a>
+				</li>
+
+			</ul>
+		</div>
+		<!-- /Left Sidebar Menu -->
+
+
+		<!-- Main Content -->
+		<div class="page-wrapper" style="padding-left: 15px; padding-right: 15px;">
+      <div class="container-fluid">
+
+				<!-- Title -->
+        <div class="row heading-bg mb-0">
+					<div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+						<h5 class="txt-dark">ใบรับทราบ</h5>
+					</div>
+					<!-- Breadcrumb -->
+					<div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+						<ol class="breadcrumb">
+							<li><a href="./">หน้าแรก</a></li>
+							<li class="active"><span>ใบรับทราบ</span></li>
+						</ol>
+					</div>
+					<!-- /Breadcrumb -->
+				</div>
+				<!-- /Title -->
+
+        <!-- Row -->
+        <div class="row">
+
+          <div class="col-sm-12">
+
+            <div class="row">
+              <div class="col-sm-8 col-xs-12 pl-10 pr-10 pb-10 pt-0 text-left">
+                <button class="btn btn-success btn-icon-anim btn-square_" onclick="window.location = 'generate_exempt_form_en.html'"><i class="zmdi zmdi-refresh"></i> เปลี่ยนภาษา</button>
+                <button class="btn btn-success btn-icon-anim btn-square_" id="btnEditInfo" onclick="setInnerInfo()" data-toggle="modal" data-target=".bs-example-modal-lg" ><i class="zmdi zmdi-wrench"></i> แก้ไขเนื้อหา</button>
+                <!-- <button class="btn btn-success btn-icon-anim btn-square_" onclick="genRefno();printForm('printArea');" id="btnPrint"><i class="zmdi zmdi-print"></i> พิมพ์</button> -->
+                <!-- <button class="btn btn-info btn-icon-anim btn-square_" onclick="saveReference()" id="btnPrint"><i class="zmdi zmdi-floppy"></i> บันทึกเป็นอ้างอิงสำหรับตรวจสอบ</button> -->
+                <button class="btn btn-info btn-icon-anim btn-square_" onclick="sendtoChairman()" id="btnPrint"><i class="zmdi zmdi-floppy"></i> ส่งประธานลงนาม</button>
+              </div>
+              <div class="col-sm-4 pl-10 pr-10 pb-10 pt-0 hidden-xs text-right">
+                <button class="btn btn-default btn-icon-anim btn-square_" onclick="window.close();"><i class="zmdi zmdi-close"></i> ปิดหน้าต่าง</button>
+              </div>
+            </div>
+
+            <div class="panel panel-default card-view">
+
+              <div class="panel-wrapper collapse in">
+								<div class="panel-body">
+
+                  <div class="loaddiv" style="padding: 100px 0px;">
+                    <div class="row">
+                      <div class="col-sm-2 col-sm-offset-5">
+                        <img src="../images/Rolling.gif" alt="" width="100%">
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="contentdiv dn">
+                    <div class="row txt-dark" id="printArea">
+                      <div class="col-md-12 pl-20 pr-20 pt-20">
+                        <div style="padding-left: 20px; padding-right: 20px;">
+                          <div style="position: relative; font-size: 14px; color: rgb(233, 233, 233); margin-top: -20px" class="text-right">
+                            <div class="row">
+                              <div class="col-xs-12 text-right">
+                                AL-001
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row pb-10">
+                            <div class="col-sm-12">
+                              <div class="text-center f500">
+                                <img src="../images/psu-bw-logo.jpg" alt="" width="55"><br>
+                                <div class="pt-10">
+                                  <span style="font-size: 14px;">หนังสือแจ้งผล<br>การพิจารณาโครงร่างการวิจัย</span>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row pb-10">
+                            <div class="col-xs-6">
+                              <div class="text-left dn">
+
+                              </div>
+                            </div>
+                            <div class="col-xs-6">
+                              <div class="text-right">
+                                <span style="font-size: 14px;">
+                                  สำนักงานจริยธรรมการวิจัยในมนุษย์<br>
+                                  15 ถ.กาญจนวณิชย์<br>
+                                  ต.คอหงส์ อ.หาดใหญ่ จ.สงขลา 90110
+                                </span>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row pb-20">
+                            <div class="col-xs-12">
+                              <div class="text-center">
+                                <span style="font-size: 14px;" id="doc_date_p"><span class="approveDate_1 txt-danger" >< แสดงหลังประธานลงนาม ></span></span>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="row pb-10">
+                            <div class="col-xs-12">
+                              <div class="text-left">
+                                <p>
+                                  <span style="font-size: 14px;"><span class="f500">เรื่อง</span> การแจ้งผลการพิจารณาด้านจริยธรรมการวิจัยในมนุษย์ </span>
+                                </p>
+                                <p>
+                                  <span style="font-size: 14px;"><span class="f500">เรียน</span> <span id="txtPi" class="txt-dark">NA</span></span>
+                                </p>
+
+                                  <!-- <p>&nbsp;</p> -->
+                                  <p style="padding-top: 10px; text-justify: inter-character !important;" >
+                                    <span style="font-size: 14px;" class="doc_info"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span>ตามที่ท่านได้ยื่นเสนอโครงร่างการวิจัยเพื่อรับพิจารณาจริยธรรมการวิจัยในมนุษย์ เรื่อง "<span id="txtThtitle" class="f500"></span>" (<span id="txtEntitle" class="f500"></span>) หมายเลขสำคัญโครงการ REC.<span id="txtCode" class="txt-danger">ยังไม่กำหนด</span> นั้น</span></span>
+                                  </p>
+
+
+                                  <p>
+                                    <span style="font-size: 14px;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; คณะกรรมการจริยธรรมการวิจัยในมนุษย์ ได้ทบทวนโครงร่างการวิจัย ผลการพิจารณา คือ
+  <span class="f500">โครงการเข้าข่ายยกเว้นการพิจารณาจริยธรรมการวิจัยในมนุษย์ (Exempt determination)
+  จึงออกใบรับทราบ เมื่อวันที่ <span class="approveDate_2 txt-danger">< แสดงหลังประธานลงนาม ></span></span>
+                                    </span><br>
+                                  </p>
+
+
+                                  <p style="padding-top: 10px;">
+                                    <span style="font-size: 14px;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ทั้งนี้  ได้บรรจุในวาระการประชุมคณะกรรมการพิจารณาจริยธรรม ครั้งที่ <span id="docround">........./..........</span> วาระ 3.3 เพื่อรับทราบต่อไป</span><br>
+                                  </p>
+
+                                  <p style="padding-top: 10px;">
+                                    <span style="font-size: 14px;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; จึงเรียนมาเพื่อโปรดทราบ</span><br>
+                                  </p>
+
+
+
+                                <div class="row pb-20 pt-20">
+                                  <div class="col-xs-12">
+                                    <div class="text-center">
+                                      <div class="sign_panal">
+                                        <div class="row">
+                                          <div class="col-xs-5 text-right" >ลงชื่อ</div>
+                                          <div class="col-xs-4 text-left" style="margin-left: -10px;">
+                                            <span class="signature">    < แสดงหลังประธานลงนาม >    </span>
+                                          </div>
+                                        </div>
+                                      </div>
+
+                                      <div style="text-align:center">(รศ.นพ.บุญสิน ตั้งตระกูลวนิช)</div>
+                                      <div style="text-align:center">ประธานคณะกรรมการจริยธรรมการวิจัยในมนุษย์</div>
+                                      <div style="text-align:center">คณะแพทยศาสตร์ มหาวิทยาลัยสงขลานครินทร์</div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+
+
+                          <div class="row pb-20">
+                            <div class="col-xs-12">
+                              <div style="padding: 10px; border:solid; border-width: 1px; border-color: rgb(82, 82, 82); font-size: 0.9em;">
+                                <div class="f500">หมายเหตุ</div>
+                                <div>
+                                  <ul>
+                                    <li>•	ท่านไม่ต้องรายงานความก้าวหน้าต่อคณะกรรมการจริยธรรมการวิจัยและไม่ต้องต่ออายุโครงการ แต่ยัง<u>คงต้องรายงานความก้าวหน้าต่อแหล่งทุนวิจัย</u></li>
+                                    <li>•	ท่านยังคงต้อง<u>ส่งรายงานสรุปผลการวิจัยแก่คณะกรรมการจริยธรรมการวิจัย เมื่อดำเนินการวิจัยเสร็จสิ้น</u></li>
+                                  </ul>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="row pb-20">
+                            <div class="col-xs-6 text-left fs08">
+                              คณะกรรมการจริยธรรมการวิจัยในมนุษย์<br>
+                              คณะแพทยศาสตร์ มหาวิทยาลัยสงขลานครินทร์<br>
+                              15 ถนนกาญจนวณิชย์ อำเภอหาดใหญ่ จังหวัดสงขลา 90110 <br>
+                              โทรศัพท์ 074451149, 074451157<br>
+                              โทรสาร 074212900
+                            </div>
+                            <div class="col-xs-6 text-right fs08">
+                              Ref no. <span id="refNo">NA</span><br>
+                              <span>ที่ มอ 351.7.2/ec.<span id="noDoc">< แสดงหลังประธานลงนาม ><span></span>
+                              <!-- Effective date: <span id="effDate">1 Jan 2017</span> -->
+                            </div>
+                          </div>
+
+            					</div>
+                    </div>
+                  </div>
+                  <!-- .contentdiv -->
+
+
+
+                </div>
+                <!-- .panel-body -->
+              </div>
+              <!-- .panel-wrapper -->
+            </div>
+            <!-- .panel -->
+          </div>
+
+        </div>
+        <!-- .Row -->
+
+
+
+
+
+
+
+
+
+
+				<!-- Footer -->
+				<footer class="footer container-fluid pl-30 pr-30">
+					<div class="row">
+						<div class="col-sm-12">
+							<p>2017 &copy; <a href="http://rmis.medicine.psu.ac.th/project/" target="_blank">RMIS</a>. หน่วยส่งเสริมและพัฒนาทางวิชาการ คณะแพทยศาสตร์ มหาวิทยาลัยสงขลานครินทร์. Develop by <a href="https://wisniorproject.com" target="_blank">Wisnior Corp.</a></p>
+						</div>
+					</div>
+				</footer>
+				<!-- /Footer -->
+			</div>
+		</div>
+        <!-- /Main Content -->
+
+    </div>
+    <!-- /#wrapper -->
+
+	<!-- JavaScript -->
+
+  <!-- jQuery -->
+  <script src="../v3/vendors/bower_components/jquery/dist/jquery.min.js"></script>
+
+  <!-- Bootstrap Core JavaScript -->
+  <script src="../v3/vendors/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+	<!-- Data table JavaScript -->
+	<script src="../v3/vendors/bower_components/datatables/media/js/jquery.dataTables.min.js"></script>
+	<script src="../v3/dist/js/dataTables-data.js"></script>
+
+	<!-- Slimscroll JavaScript -->
+	<script src="../v3/dist/js/jquery.slimscroll.js"></script>
+
+	<!-- Owl JavaScript -->
+	<script src="../v3/vendors/bower_components/owl.carousel/dist/owl.carousel.min.js"></script>
+
+	<!-- Switchery JavaScript -->
+	<script src="../v3/vendors/bower_components/switchery/dist/switchery.min.js"></script>
+
+	<!-- Fancy Dropdown JS -->
+	<script src="../v3/dist/js/dropdown-bootstrap-extended.js"></script>
+
+  <!-- Sweet-Alert  -->
+	<script src="../v3/vendors/bower_components/sweetalert/dist/sweetalert.min.js"></script>
+  <script src="../v3/vendors/bower_components/dropzonejs/dropzone.min.js"></script>
+
+  <script src="../v3/vendors/bower_components/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
+	<script src="../v3/vendors/bower_components/bootstrap-datepicker-thai-thai/js/bootstrap-datepicker-thai.js"></script>
+	<script src="../v3/vendors/bower_components/bootstrap-datepicker-thai-thai/js/locales/bootstrap-datepicker.th.js"></script>
+
+  <!-- Data table JavaScript -->
+  <script src="../v3/vendors/bower_components/datatables/media/js/jquery.dataTables.min.js"></script>
+  <script src="../v3/dist/js/dataTables-data.js"></script>
+
+  <script type="text/javascript" src="../v3/vendors/bower_components/ckeditor_full/ckeditor.js"></script>
+
+	<!-- Init JavaScript -->
+	<script src="../v3/dist/js/init.js"></script>
+  <script src="../v3/main.js"></script>
+  <script src="../v3/staff.js"></script>
+
+  <script type="text/javascript">
+
+    var current_user = window.localStorage.getItem('rmis_current_user')
+    var current_role = window.localStorage.getItem('rmis_current_role')
+    var current_rs = window.localStorage.getItem('current_selected_project_session')
+    var current_rs_id = window.localStorage.getItem('current_selected_project_id')
+    var editData = '';
+    var editData2 = '';
+    var editData3 = '';
+    var editData4 = '';
+    var filenum = 0;
+    var prev_contentData = '';
+    var filenum_approve_result = 0;
+    var cn_session_id = main_app.randomString(20);
+    var paramContent = null
+    $(document).ready(function(){
+
+      if(current_rs == null){
+        swal({    title: "เกิดข้อผิดพลาด",
+                    text: "ไม่พบข้อมูลงานวิจัยที่ต้องการ กรุณาลองใหม่ หรือติดต่อเจ้าหน้าที่!",
+                    type: "error",
+                    showCancelButton: false,
+                    confirmButtonColor: "#DD6B55",
+                    confirmButtonText: "รับทราบ",
+                    closeOnConfirm: false },
+                    function(){
+                     window.location = './'
+                    });
+      }
+
+      $('.docSess').val(cn_session_id)
+      $('.docSessID').val(current_rs_id)
+      $('.docUser').val(current_user)
+      $('#txtCodeBCIDRS').val(current_rs_id)
+      $('#COAIDRS').val(current_rs_id)
+
+      // console.log(cn_session_id);
+
+
+      main.load_year();
+
+      staff.init()
+
+      setTimeout(function(){
+        staff.load_rs_info_2();
+      }, 1000)
+
+      checkFileAttached()
+
+      setTimeout(function(){
+        loadCOAContent();
+      }, 2000)
+
+      editData = CKEDITOR.replace( 'brief_reports', {
+        height: '250px'
+      });
+
+
+
+      // setTimeout(function(){
+      //   editData.setData($('.doc_info').html());
+      // }, 3000)
+
+      var cdate = new Date();
+      $('#refNo').html(main_app.randomString(5) + '-' + main_app.randomString(5) + '-' + main_app.randomString(5) + '-' + main_app.randomString(5) + '-' + main_app.randomString(5))
+
+    })
+
+    function genRefno(){
+      $refnp = main_app.randomString(5) + '-' + main_app.randomString(5) + '-' + main_app.randomString(5) + '-' + main_app.randomString(5) + '-' + main_app.randomString(5)
+      $('#refNo').html($refnp)
+      var param = {
+        id: current_user,
+        id_rs: current_rs_id,
+        refNumber: $refnp
+      }
+
+      var jxhr = $.post(ws_url + 'controller/staff/add_temp_reference_acknowledge.php', param, function(){})
+                  .always(function(resp){
+                    console.log(prev_contentData);
+                    if(resp != 'Y'){
+                      swal("คำเตือน!", "ระบบไม่สามารถบันทึกเลขอ้างอิงได้!", "warning")
+                    }
+                  })
+    }
+
+    function sendtoChairman(){
+
+      if($('#doc_round').val() == ''){
+        swal("คำเตือน!", "กรุณาระบุครั้งที่ประชุมก่อน!", "warning")
+        return ;
+      }
+
+      swal({
+        title: "ยืนยันการดำเนินการ",
+        text: "ท่านยืนยันส่งข้อมูลนี้ไปยังประธานเพื่อลงนามหรือไม่",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#DD6B55",
+        confirmButtonText: "ยืนยันส่ง",
+        cancelButtonText: "ยกเลิก",
+        closeOnConfirm: true
+      },
+      function(){
+
+        $refnp = $('#refNo').text()
+
+        var param = {
+          id: current_user,
+          id_rs: current_rs_id,
+          refNumber: $refnp,
+          main_content: $('.doc_info').html(),
+          full_content: $('#printArea').html(),
+          panal: '3.3',
+          mround: $('#doc_round').val(),
+          doc_no: $('#doc_no').val(),
+          lang: 'th'
+        }
+
+        lp.sl()
+
+        var jxhr = $.post(ws_url + 'controller/staff/send_acknowledge_to_chairmain.php', param, function(){})
+                    .always(function(resp){
+                        if(resp == 'Y'){
+                          setTimeout(function(){
+                            swal({
+                              title: "ดำเนินการสำเร็จ",
+                              text: "โครงการและใบรับทราบถูกส่งไปยังประธานเพื่อลงนามเรียบร้อยแล้ว!",
+                              type: "warning",
+                              showCancelButton: false,
+                              confirmButtonColor: "#DD6B55",
+                              confirmButtonText: "กลับสู่หน้าหลัก",
+                              closeOnConfirm: false },
+                            function(){
+                              window.location = './index.html'
+                            });
+                          }, 1000)
+                        }else{
+                          swal("คำเตือน!", "ไม่สามารถดำเนินการได้ กรุณาติดต่อผู้ดูแลระบบ!", "warning")
+                          lp.hl()
+                          return ;
+                        }
+                    })
+                    .fail(function(){
+                      onFail()
+                    })
+
+      });
+
+
+
+
+
+    }
+
+    function saveReference(){
+      $refnp = $('#refNo').text()
+      var param = {
+        id: current_user,
+        id_rs: current_rs_id,
+        refNumber: $refnp
+      }
+
+      var jxhr = $.post(ws_url + 'controller/staff/confirm_reference_acknowledge.php', param, function(){})
+                  .always(function(resp){
+                    if(resp == 'Y'){
+
+                      swal({
+                        title: "ดำเนินการสำเร็จ",
+                        text: "ยืนยันหมายเลขอ้างอิงสำเร็จ",
+                        type: "success",
+                        showCancelButton: true,
+                        confirmButtonColor: "#DD6B55",
+                        confirmButtonText: "ปิดหน้านี้",
+                        cancelButtonText: "ตรวจสอบอีกครั้ง",
+                        closeOnConfirm: false,
+                        closeOnCancel: true
+                      },
+                      function(isConfirm){
+                           if (isConfirm) {
+                               window.close()
+                           } else {
+
+                           }
+                      });
+
+                    }else if(resp == 'N'){
+                      swal("คำเตือน!", "ไม่พบหมายเลขอ้างอิงจากการพิมพ์!", "warning")
+                    }else{
+                      swal("คำเตือน!", "ระบบไม่สามารถบันทึกเลขอ้างอิงได้!", "warning")
+                    }
+                  })
+    }
+
+    function  loadCOAContent(){
+
+      var research_type = $('#txtRTypess').text()
+
+      if(research_type == 'Exempt'){
+
+        var lang = $('#txtLanguage').val()
+        var param = {
+          id: current_user,
+          id_rs: current_rs_id
+        }
+
+        if(lang == 'th'){
+          var j1 = $.post(ws_url + 'controller/exempt_th_template.php', param, function(){})
+                    .always(function(resp){
+                      editData3.setData(resp)
+                    })
+        }else{
+          var j1 = $.post(ws_url + 'controller/exempt_en_template.php', param,  function(){})
+                    .always(function(resp){
+                      editData3.setData(resp)
+                    })
+        }
+
+      }else if(research_type == 'Expedited'){
+        $('#txtLanguage').parent().addClass('dn')
+      }else if((research_type == 'Fullboard (Social)') || (research_type == 'Fullboard (Bio)')){
+        var lang = $('#txtLanguage').val()
+        var param = {
+          id: current_user,
+          id_rs: current_rs_id
+        }
+
+        if(lang == 'th'){
+          var j1 = $.post(ws_url + 'controller/fb_th_template.php', param, function(){})
+                    .always(function(resp){
+                      editData3.setData(resp)
+                    })
+        }else{
+          var j1 = $.post(ws_url + 'controller/fb_en_template.php', param,  function(){})
+                    .always(function(resp){
+                      editData3.setData(resp)
+                    })
+        }
+      }
+    }
+
+
+
+
+    function setNewContent(){
+
+      if($('#doc_round').val() == ''){
+        swal("ขออภัย!", "กรุณารอกข้อมูลให้ครบถ้วน!", "warning")
+        return ;
+      }
+
+      $docno = $('#doc_no').val()
+      $doceff = $('#doc_effective').val()
+      $docdate = $('#doc_date').val()
+      $docround = $('#doc_round').val()
+      $doccontent = $('#brief_reports').val()
+
+      $('.doc_info').html($doccontent)
+      $('#doc_date_p').html($docdate)
+      $('#effDate').html($doceff)
+      // $('#noDoc').html($docno)
+      $('.doc_info p').css('padding-top', '15px')
+      $('#docround').html($docround)
+      prev_contentData = editData.getData()
+      // prev_contentData = $('#brief_reports').val()
+      $('.doc_info').html(prev_contentData)
+      setTimeout(function(){
+        paramContent = $('.doc_info').html()
+      }, 1000)
+
+      $('#clost1').trigger('click')
+    }
+
+    function setInnerInfo(){
+      editData.setData($('.doc_info').html())
+    }
+
+
+    $(function(){
+      // $('#btnEditInfo_').click(function(){
+        // prev_cont = $('.doc_info').html();
+        // if(prev_contentData == ''){
+        //   prev_contentData = $('.doc_info').html();
+        // }
+
+        // console.log(prev_contentData);
+        // editData.setData(prev_cont);
+      // })
+
+      $('.myForm').submit(function(){
+        if($('#txtResult').val() == '2'){
+          if(editData.getData() == ''){
+            swal("คำเตือน", "กรุณากรอกข้อความที่จะส่งถึงหัวหน้าโครงการวิจัยก่อนทำการบันทึก", "error")
+            return ;
+          }
+
+          var param = {
+            sess_id: current_rs,
+            id_rs: current_rs_id,
+            info: editData.getData(),
+            id: current_user,
+            next_status: '2'
+          }
+
+          var jxhr = $.post(ws_url + 'controller/staff/replay_back_2.php', param, function(){}, 'json')
+                      .always(function(snap){
+                        if((snap!='') && (snap.length > 0)){
+
+                          snap.forEach(function(i){
+
+                            if(i.status == 'Y'){
+
+                              var dataContent = '<h3>ผลการตรวจสอบความถูกต้องของเอกสารโครงการวิจัยเพื่อขอพิจารณาจริยธรรมการวิจัยในมนุษย์</h3>' +
+                                                '<p>เรียน ' + i.fullname + '</p>' +
+                                                '<p>เจ้าหน้าที่สำนักงานจริยธรรมการวิจัยในมนุษย์ได้ทำการตรวจสอบความครบถ้วนและถูกต้องเอกสารเรียบร้อยแล้ว โดยผลการพิจารณาได้แก่ <span style="font-size: 1.3em; color: red;">เอกสารไม่ถูกต้อง/ไม่ครบถ้วน</span> ตามข้อมูลดังต่อไปนี้' +
+                                                '</p>' +
+                                                '<p>' +
+                                                  '<div style="padding: 20px; background: rgb(240, 240, 240);">' + editData.getData() + '</div>' +
+                                                '</p>' +
+                                                '<p>ทั้งนี้ ท่านสามารถตรวจสอบข้อมูลอื่น ๆ เพิ่มเติมได้ที่ <a href="' + root_domain + '" target="_blank">' + root_domain +'</a></p>' +
+                                                '<p>จึงเรียนมาเพื่อทราบ <br>ระบบสารสนเทศเพื่อการจัดการงานวิจัย (RMIS)</p>';
+
+                              var emailParam = {
+                                email: emailConfig.user,
+                                api_key: emailConfig.key,
+                                title: "{ No-reply-from-RMIS } ผลการพิจารณาความถูกต้องของเอกสารโครงการวิจัยเพื่อขอพิจารณาจริยธรรมการวิจัยในมนุษย์",
+                                to_email: i.email ,
+                                content: dataContent
+                              }
+                              var jxhr = $.post(emailProvider, emailParam, function(){})
+                                          .always(function(res){
+                                            if(res!='Y'){
+                                              // main_app.emailErr('Change password', window.localStorage.getItem('rmis_current_user_email'))
+                                            }
+                                          })
+
+                              swal({
+                                title: "ดำเนินการสำเร็จ",
+                                text: "กดตกลงเพื่อกลับสู่หน้ารายการ",
+                                type: "success",
+                                showCancelButton: false,
+                                confirmButtonColor: "#126cd5",
+                                confirmButtonText: "ตกลง",
+                                closeOnConfirm: false
+                              },
+                              function(){
+                                window.location = 'rs-init-new.html'
+                              });
+
+                            }else{
+                              swal("เกิดข้อผิดพลาด", "ไม่สามารถส่งข้อมูลได้", "error")
+                              return ;
+                            }
+                          })
+                        }else{
+                          swal("เกิดข้อผิดพลาด", "ไม่สามารถส่งข้อมูลได้", "error")
+                          return ;
+                        }
+                      }, 'json')
+                      .fail(function(){
+                        swal("เกิดข้อผิดพลาด", "ไม่สามารถเชื่อมต่อฐานข้อมูลได้ กรุณาลองใหม่ภายหลัง", "error")
+                        return ;
+                      })
+        }
+        // In Correct
+        else {
+
+          var check = 0;
+          if(editData.getData() == ''){
+            check++;
+          }
+
+          if($('#txtEC').val() == ''){
+            check++;
+          }
+
+          if($('#txtYear').val() == ''){
+            check++;
+          }
+
+          if($('#txtDept').val() == ''){
+            check++;
+          }
+
+          if($('#txtPertype').val() == ''){
+            check++;
+          }
+
+          if(check!=0){
+            swal("คำเตือน", "กรุณากรอกข้อมูลให้ครบถ้วนก่อนทำการบันทึก", "error")
+            return ;
+          }
+
+          var param = {
+            sess_id: current_rs,
+            id_rs: current_rs_id,
+            info: editData.getData(),
+            id: current_user,
+            ec: $('#txtEC').val(),
+            year: $('#txtYear').val(),
+            dept: $('#txtDept').val(),
+            ptype: $('#txtPertype').val(),
+            next_status: '3'
+          }
+
+          swal({
+            title: "คำเตือน",
+            text: "ท่านต้องการปรับปรุงข้อมูลหรือไม่",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#DD6B55",
+            confirmButtonText: "ปรับปรุง",
+            cancelButtonText: "ไม่ปรับปรุง",
+            closeOnConfirm: false,
+            closeOnCancel: false
+          },
+            function(isConfirm){
+
+              lp.sl();
+               if (isConfirm) { // เปลี่ยนด้วย
+                  var jxhr = $.post(ws_url + 'controller/staff/replay_back_3_update.php', param, function(){}, 'json')
+                              .always(function(snap){
+
+                                if((snap!='') && (snap.length > 0)){
+
+                                  snap.forEach(function(i){
+
+                                    if(i.status == 'Y'){
+
+                                      var dataContent = '<h3>ผลการตรวจสอบความถูกต้องของเอกสารโครงการวิจัยเพื่อขอพิจารณาจริยธรรมการวิจัยในมนุษย์ REC.' + i.rec_id + '</h3>' +
+                                                        '<p>เรียน ' + i.fullname + '</p>' +
+                                                        '<p>เจ้าหน้าที่สำนักงานจริยธรรมการวิจัยในมนุษย์ได้ทำการตรวจสอบความครบถ้วนและถูกต้องเอกสารเรียบร้อยแล้ว โดยผลการพิจารณาได้แก่ <span style="font-size: 1.3em; color: green;">เอกสารเบื้องต้นถูกต้อง เสนอเลขา EC ตรวจสอบ</span> และอยู่ระหว่างกระบวนส่งต่อเลขา EC เพื่อทำการพิจารณาต่อไป' +
+                                                        '</p>' +
+                                                        '<p>ทั้งนี้ ท่านสามารถตรวจสอบข้อมูลอื่น ๆ เพิ่มเติมได้ที่ <a href="' + root_domain + '" target="_blank">' + root_domain +'</a></p>' +
+                                                        '<p>จึงเรียนมาเพื่อทราบ <br>ระบบสารสนเทศเพื่อการจัดการงานวิจัย (RMIS)</p>';
+
+                                      var emailParam = {
+                                        email: emailConfig.user,
+                                        api_key: emailConfig.key,
+                                        title: "{ No-reply } REC." + i.rec_id + " : ผลการพิจารณาความถูกต้องของเอกสารโครงการวิจัยเพื่อขอพิจารณาจริยธรรมการวิจัยในมนุษย์",
+                                        to_email: i.email ,
+                                        content: dataContent
+                                      }
+                                      var jxhr = $.post(emailProvider, emailParam, function(){})
+                                                  .always(function(res){
+                                                    if(res!='Y'){
+                                                      // main_app.emailErr('Change password', window.localStorage.getItem('rmis_current_user_email'))
+                                                    }
+                                                  })
+
+                                      swal({
+                                        title: "ดำเนินการสำเร็จ",
+                                        text: "กดตกลงเพื่อกลับสู่หน้ารายการ",
+                                        type: "success",
+                                        showCancelButton: false,
+                                        confirmButtonColor: "#126cd5",
+                                        confirmButtonText: "ตกลง",
+                                        closeOnConfirm: false
+                                      },
+                                      function(){
+                                        window.location = 'rs-init-new.html'
+                                      });
+
+                                    }else{
+                                      lp.hl();
+                                      swal("เกิดข้อผิดพลาด", "ไม่สามารถส่งข้อมูลได้", "error")
+                                      return ;
+                                    }
+                                  })
+                                }else{
+                                  lp.hl();
+                                  swal("เกิดข้อผิดพลาด", "ไม่สามารถส่งข้อมูลได้", "error")
+                                  return ;
+                                }
+                              }, 'json')
+                              .fail(function(){
+                                lp.hl();
+                                swal("เกิดข้อผิดพลาด", "ไม่สามารถเชื่อมต่อฐานข้อมูลได้ กรุณาลองใหม่ภายหลัง", "error")
+                                return ;
+                              })
+               }
+               else { //ไม่เปลี่ยน
+                 var jxhr = $.post(ws_url + 'controller/staff/replay_back_3.php', param, function(){}, 'json')
+                             .always(function(snap){
+
+                               if((snap!='') && (snap.length > 0)){
+
+                                 snap.forEach(function(i){
+
+                                   if(i.status == 'Y'){
+
+                                     var dataContent = '<h3>ผลการตรวจสอบความถูกต้องของเอกสารโครงการวิจัยเพื่อขอพิจารณาจริยธรรมการวิจัยในมนุษย์ REC.' + i.rec_id + '</h3>' +
+                                                       '<p>เรียน ' + i.fullname + '</p>' +
+                                                       '<p>เจ้าหน้าสำนักงานจริยธรรมการวิจัยในมนุษย์ได้ทำการตรวจสอบความครบถ้วนและถูกต้องเอกสารเรียบร้อยแล้ว โดยผลการพิจารณาได้แก่ <span style="font-size: 1.3em; color: green;">เอกสารถูกต้อง</span> และอยู่ระหว่างกระบวนส่งต่อเลขา EC เพื่อทำการพิจารณาต่อไป' +
+                                                       '</p>' +
+                                                       '<p>ทั้งนี้ ท่านสามารถตรวจสอบข้อมูลอื่น ๆ เพิ่มเติมได้ที่ <a href="' + root_domain + '" target="_blank">' + root_domain +'</a></p>' +
+                                                       '<p>จึงเรียนมาเพื่อทราบ <br>ระบบสารสนเทศเพื่อการจัดการงานวิจัย (RMIS)</p>';
+
+                                     var emailParam = {
+                                       email: emailConfig.user,
+                                       api_key: emailConfig.key,
+                                       title: "{ No-reply } REC." + i.rec_id + " : ผลการพิจารณาความถูกต้องของเอกสารโครงการวิจัยเพื่อขอพิจารณาจริยธรรมการวิจัยในมนุษย์",
+                                       to_email: i.email ,
+                                       content: dataContent
+                                     }
+                                     var jxhr = $.post(emailProvider, emailParam, function(){})
+                                                 .always(function(res){
+                                                   if(res!='Y'){
+                                                     // main_app.emailErr('Change password', window.localStorage.getItem('rmis_current_user_email'))
+                                                   }
+                                                 })
+
+                                     swal({
+                                       title: "ดำเนินการสำเร็จ",
+                                       text: "กดตกลงเพื่อกลับสู่หน้ารายการ",
+                                       type: "success",
+                                       showCancelButton: false,
+                                       confirmButtonColor: "#126cd5",
+                                       confirmButtonText: "ตกลง",
+                                       closeOnConfirm: false
+                                     },
+                                     function(){
+                                       window.location = 'rs-init-new.html'
+                                     });
+
+                                   }else{
+                                     lp.hl();
+                                     swal("เกิดข้อผิดพลาด", "ไม่สามารถส่งข้อมูลได้", "error")
+                                     return ;
+                                   }
+                                 })
+                               }else{
+                                 lp.hl();
+                                 swal("เกิดข้อผิดพลาด", "ไม่สามารถส่งข้อมูลได้", "error")
+                                 return ;
+                               }
+                             }, 'json')
+                             .fail(function(){
+                               lp.hl();
+                               swal("เกิดข้อผิดพลาด", "ไม่สามารถเชื่อมต่อฐานข้อมูลได้ กรุณาลองใหม่ภายหลัง", "error")
+                               return ;
+                             })
+               }
+          });
+
+        }
+      })
+    })
+
+    function loadLastComment(record_id){
+      console.log(record_id);
+      var param = {
+        id_rs: record_id
+      }
+
+      var jxhr = $.post(ws_url + 'controller/get-lastmsg2.php', param, function(){}, 'json')
+                  .always(function(snap){
+                    if((snap != '') && (snap.length > 0)){
+                       $('.lastcomment-detail').empty()
+                        snap.forEach(function(i){
+                          $buffer = '<div class="row mt-10 mb-10" style="border: solid; border-width: 0px 0px 1px 0px; border-color: rgb(232, 232, 232);">' +
+                                      '<div class="col-sm-3">' +
+                                        '<div class="fs08 text-muted">วันที่</div>' +
+                                        '<div class="txt-dark">' + main_app.convertThaidatetime(i.rwp_datetime) + '</div>' +
+                                      '</div>' +
+                                      '<div class="col-sm-9">' +
+                                      '<div class="fs08 text-muted">ข้อมูล</div>' +
+                                      '<div class="txt-dark"><span class="log_info">' + i.rwp_info + '</span></div>' +
+                                      '</div>' +
+                                    '</div>';
+                          $('.lastcomment-detail').append($buffer);
+                        })
+                    }else{
+                      console.log('asd');
+                    }
+                  }, 'json')
+                  .fail(function(){
+                    console.log('ไม่พบข้อมูล');
+                  })
+    }
+
+    function saveBoardResult(){
+      var result = $('#txtBoardResult').val()
+      if(result == ''){
+
+        swal("เกิดข้อผิดพลาด", "กรุณาเลือกผลการพิจารณา", "error")
+        return ;
+
+      }else if(result == 1){
+
+        swal({
+          title: "ยืนยันการดำเนินการ",
+          text: "คุณยืนยันการดำเนินการเพื่อปรับสถานะโครงการนี้เป็นผ่านการรับรอง และเข้าสู่ขั้นตอนการออกใบรับรองหรือไม่",
+          type: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#b92e13",
+          confirmButtonText: "ยืนยัน",
+          cancelButtonText: "ยกเลิก",
+          closeOnConfirm: false
+        },
+        function(){
+          var param = {
+            id_rs: current_rs_id,
+            id: current_user
+          }
+
+          var jxhr = $.post(ws_url + 'controller/staff/update_app_result_22.php', param, function(){})
+                      .always(function(resp){
+                          if(resp == 'Y'){
+                            swal({
+                              title: "ดำเนินการสำเร็จ",
+                              text: "กดตกลงเพื่อทำการรีโหลดข้อมูล",
+                              type: "success",
+                              showCancelButton: false,
+                              confirmButtonColor: "#126cd5",
+                              confirmButtonText: "ตกลง",
+                              closeOnConfirm: false
+                            },
+                            function(){
+                              window.location.reload()
+                            });
+                          }else{
+                            console.log(resp);
+                            alert(resp)
+                          }
+                      })
+        })
+
+      }else if(result == 2){
+        $('.progress_1').addClass('dn')
+        $('.progress_2').removeClass('dn')
+      }else if(result == 3){
+        $('.progress_1').addClass('dn')
+        $('.progress_2').removeClass('dn')
+      }
+    }
+
+    function saveArgendar(){
+
+      if(($('#txtArgendar').val() == '') || ($('#argendar_date').val() == '')){
+        swal("เกิดข้อผิดพลาด", "กรุณากรอกข้อมูลให้ครบถ้วน", "error")
+        return ;
+      }
+
+      swal({    title: "ยืนยันการดำเนินการ",
+          text: "คุณยืนยันการดำเนินการนี้หรือไม่",
+          type: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#b92e13",
+          confirmButtonText: "ยืนยัน",
+          cancelButtonText: "ยกเลิก",
+          closeOnConfirm: false
+      },
+      function(){
+
+        var param = {
+          id: current_user,
+          id_rs: current_rs_id,
+          argend: $('#txtArgendar').val(),
+          argend_date: $('#argendar_date').val()
+        }
+
+        var jxhr = $.post(ws_url + 'controller/staff/add_argendar.php', param, function(){})
+                    .always(function(resp){
+                      if(resp=='Y'){
+                        swal({    title: "ดำเนินการสำเร็จ",
+                        text: "กด 'ตกลง' เพื่อกลับสู่หน้าหลัก",
+                        type: "warning",
+                        showCancelButton: false,
+                        confirmButtonColor: "#0daf66",
+                        confirmButtonText: "ตกลง",
+                        closeOnConfirm: false },
+                        function(){
+                          window.location = 'index.html'
+                        });
+                      }else{
+                        alert(resp)
+                        console.log(resp);
+                      }
+                    })
+      });
+
+
+    }
+  </script>
+</body>
+
+<!-- sample modal content -->
+<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="display: none;">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header" style="background: rgb(64, 161, 37);">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true" id="clost1">×</button>
+        <h5 class="modal-title f500 txt-light" id="myLargeModalLabel">แก้ไขเนื้อหาใบรับทราบ</h5>
+      </div>
+      <div class="modal-body">
+        <form onsubmit="return false;">
+          <div class="form-group dn">
+            <label for="" class="txt-dark">เลขที่ มอ 351.7.2/ </label>
+            <input type="text" class="form-control" placeholder="กรุณากรอกเลขที่ ...." id="doc_no">
+          </div>
+
+          <!-- <div class="form-group">
+            <label for="" class="txt-dark">วันที่ออกเอกสาร <span class="txt-danger">**</span></label>
+            <input type="text" class="form-control" placeholder="กรุณาพิมพ์ด้วยตนเองในรูปแบบ วัน .... เดือน ............. พ.ศ. ....." value="วัน .... เดือน ............. พ.ศ. ....." id="doc_date">
+          </div> -->
+
+          <div class="form-group">
+            <label for="" class="txt-dark">ครั้งที่ประชุม <span class="txt-danger">**</span></label>
+            <input type="text" class="form-control" placeholder="ตัวอย่าง 1/2561" id="doc_round" name="doc_round">
+          </div>
+
+          <div class="form-group">
+            <label for="" class="txt-dark">เนื้อหา <span class="txt-danger">**</span></label>
+            <textarea name="brief_reports" id="brief_reports" rows="8" cols="80" class="form-control" placeholder="กรอกเนื้อหา ..."></textarea>
+          </div>
+
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger text-left" onclick="setNewContent()">ปรับปรุงเนื้อหา</button>
+      </div>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+
+<!-- sample modal content -->
+<div class="modal fade bs-example-modal-lg-copi" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="display: none;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header" style="background: rgb(64, 161, 37);">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true" id="clost1">×</button>
+        <h5 class="modal-title f500 txt-light" id="myLargeModalLabel">แก้ไขข้อมูลหน่วยงานผู้ร่วมวิจัย</h5>
+      </div>
+      <div class="modal-body">
+        <form onsubmit="return false;">
+
+          <div class="form-group">
+            <label for="" class="txt-dark">รหัสผู้ร่วมวิจัย <span class="txt-danger">**</span></label>
+            <input type="text" class="form-control" placeholder="ตัวอย่าง 1/2561" id="txtCopiid" name="txtCopiid" readonly>
+          </div>
+          <div class="form-group">
+            <label for="" class="txt-dark">ชื่อ <span class="txt-danger">**</span></label>
+            <input type="text" class="form-control" placeholder="ชื่อผู้ร่วมวิจัย" id="txtCopifname" name="txtCopifname" >
+          </div>
+          <div class="form-group">
+            <label for="" class="txt-dark">นามสกุล <span class="txt-danger">**</span></label>
+            <input type="text" class="form-control" placeholder="นามสกุลผู้ร่วมวิจัย" id="txtCopilname" name="txtCopilname" >
+          </div>
+          <div class="form-group">
+            <label for="" class="txt-dark">หน่วยงานผู้ร่วมวิจัย <span class="txt-danger">**</span></label>
+            <input type="text" class="form-control" placeholder="กรอกหน่วยงานผู้ร่วมวิจัย" id="txtCopidept" name="txtCopidept">
+          </div>
+
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger text-left" onclick="setNewCopiDept()">ปรับปรุงเนื้อหา</button>
+      </div>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+
+</html>

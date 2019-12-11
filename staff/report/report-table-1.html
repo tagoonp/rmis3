@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta http-equiv='cache-control' content='no-cache'>
+  <meta http-equiv='expires' content='0'>
+  <meta http-equiv='pragma' content='no-cache'>
+	<title>:: RMIS :: สำหรับเจ้าหน้าที่ ::</title>
+
+	<!-- Data table CSS -->
+	<link href="../../v3/vendors/bower_components/datatables/media/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css"/>
+
+  <!--alerts CSS -->
+	<link href="../../v3/vendors/bower_components/sweetalert/dist/sweetalert.css" rel="stylesheet" type="text/css">
+
+  <link rel="stylesheet" href="../../v3/vendors/bower_components/bootstrap-datepicker/bootstrap-datepicker3.min.css" />
+
+	<!-- Custom CSS -->
+	<link href="../../v3/dist/css/style.css" rel="stylesheet" type="text/css">
+  <link href="../../v3/fonts.css" rel="stylesheet" type="text/css">
+  <link href="../../v3/style.css" rel="stylesheet" type="text/css">
+
+</head>
+
+<body>
+	<!--Preloader-->
+	<div class="preloader-it">
+		<div class="la-anim-1"></div>
+	</div>
+	<!--/Preloader-->
+    <div class="wrapper theme-1-active pimary-color-red">
+
+        <!-- Top Menu Items -->
+		<nav class="navbar navbar-inverse navbar-fixed-top">
+			<div class="mobile-only-brand pull-left">
+				<div class="nav-header pull-left">
+					<div class="logo-wrap">
+						<a href="../index.html">
+							<img class="brand-img" src="../../v3/dist/img/logo.png" alt="brand"/>
+							<span class="brand-text">RMIS</span>
+						</a>
+					</div>
+				</div>
+				<a id="toggle_nav_btn" class="toggle-left-nav-btn inline-block ml-20 pull-left" href="javascript:void(0);"><i class="zmdi zmdi-menu"></i></a>
+				<a id="toggle_mobile_nav" class="mobile-only-view" href="javascript:void(0);"><i class="zmdi zmdi-more"></i></a>
+			</div>
+			<div id="mobile_only_nav" class="mobile-only-nav pull-right">
+				<ul class="nav navbar-right top-nav pull-right">
+          <li>
+            <a href="profile.html">ยินดีต้อนรับ <span class="userFullname text-info">NA</span> (STAFF)</a>
+          </li>
+					<li class="dropdown alert-drp">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="zmdi zmdi-notifications top-nav-icon"></i><span class="notification_number"></span></a>
+						<ul  class="dropdown-menu alert-dropdown" data-dropdown-in="bounceIn" data-dropdown-out="bounceOut">
+							<li>
+								<div class="notification-box-head-wrap">
+									<span class="notification-box-head pull-left inline-block">การแจ้งเตือน</span>
+									<a class="txt-danger pull-right clear-notifications inline-block" href="javascript:main.clear_notify()"> ล้างทั้งหมด </a>
+									<div class="clearfix"></div>
+									<hr class="light-grey-hr ma-0"/>
+								</div>
+							</li>
+              <li>
+                <div class="streamline message-nicescroll-bar notification_panal">
+                </div>
+              </li>
+							<li>
+								<div class="notification-box-bottom-wrap">
+									<hr class="light-grey-hr ma-0"/>
+									<a class="block text-center read-all" href="view_activity_log.html"> อ่านทั้งหมด </a>
+									<div class="clearfix"></div>
+								</div>
+							</li>
+						</ul>
+					</li>
+          <li class="dropdown auth-drp">
+						<a href="#" class="dropdown-toggle pr-0" data-toggle="dropdown"><span id="profileImg"></span><span class="user-online-status"></span></a>
+						<ul class="dropdown-menu user-auth-dropdown" data-dropdown-in="flipInX" data-dropdown-out="flipOutX">
+							<li>
+								<a href="profile.html"><i class="zmdi zmdi-account"></i><span>ข้อมูลส่วนตัว</span></a>
+							</li>
+							<li>
+								<a href="#" onclick="main.inbox()"><i class="zmdi zmdi-email"></i><span>Inbox</span></a>
+							</li>
+							<li>
+								<a href="changepassword.html"><i class="zmdi zmdi-settings"></i><span>เปลี่ยนรหัสผ่าน</span></a>
+							</li>
+							<li class="divider"></li>
+							<li>
+								<a href="#" onclick="main.signout()"><i class="zmdi zmdi-power"></i><span>ออกจากระบบ</span></a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</nav>
+		<!-- /Top Menu Items -->
+
+		<!-- Left Sidebar Menu -->
+    <div class="fixed-sidebar-left">
+			<ul class="nav navbar-nav side-nav nicescroll-bar">
+				<li class="navigation-header">
+					<span>Main</span>
+					<i class="zmdi zmdi-more"></i>
+				</li>
+
+        <li>
+					<a class="active" href="./"><div class="pull-left"><i class="zmdi zmdi-home mr-20"></i><span class="right-nav-text">หน้าแรก</span></div><div class="clearfix"></div></a>
+				</li>
+        <li>
+						<a href="javascript:void(0);" data-toggle="collapse" data-target="#dashboard_dr"><div class="pull-left"><i class="zmdi zmdi-landscape mr-20"></i><span class="right-nav-text">กระดานภาพรวม</span></div><div class="pull-right"><i class="zmdi zmdi-caret-down"></i></div><div class="clearfix"></div></a>
+						<ul id="dashboard_dr" class="collapse collapse-level-1">
+							<li>
+								<a href="dashboard_1.html">ภาพรวมโครงการวิจัย</a>
+							</li>
+						</ul>
+					</li>
+
+				<li><hr class="light-grey-hr mb-10"/></li>
+				<li class="navigation-header">
+					<span>อื่น ๆ</span>
+					<i class="zmdi zmdi-more"></i>
+				</li>
+
+        <li>
+					<a href="documentation.html"><div class="pull-left"><i class="zmdi zmdi-book mr-20"></i><span class="right-nav-text">คู่มือการใช้งาน (STAFF)</span></div><div class="clearfix"></div></a>
+				</li>
+
+			</ul>
+		</div>
+		<!-- /Left Sidebar Menu -->
+
+
+		<!-- Main Content -->
+		<div class="page-wrapper" style="padding-left: 15px; padding-right: 15px;">
+      <div class="container-fluid">
+
+				<!-- Title -->
+				<div class="row heading-bg mb-0">
+					<div class="col-sm-7">
+						<h5 class="txt-dark">รายงานประเภทการพิจารณา <small class="pl-0">(Report table - 1)</small></h5>
+					</div>
+					<!-- Breadcrumb -->
+					<div class="col-sm-5">
+						<ol class="breadcrumb">
+							<li><a href="../">หน้าแรก</a></li>
+							<li class="active"><span>รายงานประเภทการพิจารณา</span></li>
+						</ol>
+					</div>
+					<!-- /Breadcrumb -->
+				</div>
+				<!-- /Title -->
+
+        <!-- Row -->
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="panel panel-default card-view">
+              <div class="panel-heading">
+								<div class="pull-left">
+									<h6 class="panel-title txt-dark">กำหนดการค้นหา</h6>
+								</div>
+								<div class="clearfix"></div>
+							</div>
+
+              <div class="panel-wrapper collapse in">
+								<div class="panel-body">
+                  <div class="contentdiv">
+                    <div class="row">
+                      <div class="col-md-5 col-xs-12">
+                        <div class="form-group">
+                          <label for="">ตั้งแต่วันที่ <span class="txt-danger">**</span></label>
+                          <input class="form-control js-datepicker "  type="text" id="start_date" name="start_date"  data-provide="datepicker" data-date-language="th-th"  data-date-format="yyyy-mm-dd" placeholder="yyyy-mm-dd" style="margin-bottom: 0px;" readonly />
+                        </div>
+            					</div>
+
+                      <div class="col-sm-5">
+                        <div class="form-group">
+                          <label for="">ถึงวันที่ <span class="txt-danger">**</span></label>
+                          <input class="form-control js-datepicker "  type="text" id="end_date" name="end_date"  data-provide="datepicker" data-date-language="th-th"  data-date-format="yyyy-mm-dd" placeholder="yyyy-mm-dd" style="margin-bottom: 0px;" readonly />
+                        </div>
+                      </div>
+
+                      <div class="col-sm-2 pt-20">
+                        <div class="form-group">
+                          <button class="btn btn-success btn-block" type="button" onclick="countReport()">แสดงผล</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- .contentdiv -->
+
+                </div>
+                <!-- .panel-body -->
+
+              </div>
+              <!-- .panel-wrapper -->
+            </div>
+            <!-- .panel -->
+
+
+
+          </div>
+          <!-- .col-sm-4 -->
+
+          <div class="col-sm-12">
+            <div class="panel panel-default card-view">
+              <div class="panel-heading">
+								<div class="pull-left">
+									<h6 class="panel-title txt-dark">ผลการค้นหา <small>(กดปุ่ม "แสดงผล" เพื่อทำการคำนวณ)</small></h6>
+								</div>
+								<div class="clearfix"></div>
+							</div>
+
+              <div class="panel-wrapper collapse in">
+								<div class="panel-body">
+
+                  <div class="row dn" id="exportBtn">
+                    <div class="col-sm-12 text-right pb-20">
+                      <button class="btn btn-success" onclick="exportReport()"><i class="zmdi zmdi-download"></i> Download</button>
+                    </div>
+                  </div>
+
+                  <div class="loaddiv dn" style="padding: 100px 0px;">
+                    <div class="row">
+                      <div class="col-sm-2 col-sm-offset-5">
+                        <img src="../../images/Rolling.gif" alt="" width="100%">
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="contentdiv txt-dark" id="resultSpan">
+
+                    <div class="row">
+                      <div class="col-sm-12">
+                        <table class="table table-bordered">
+                          <thead>
+                            <tr style="background: rgb(236, 236, 236);">
+                              <th class="f500 text-center" style="width: 50%;">
+                                 ประเภทการพิจารณา
+                              </th>
+                              <th class="text-center">จำนวนโครงการ</th>
+                              <th class="text-center">ร้อยละ (%)</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td class="f500">Exempt</td>
+                              <td class="text-center"><span class="n_num_exm">NA</span></td>
+                              <td class="text-center"><span class="n_num_pct_exm">NA</span></td>
+                            </tr>
+                            <tr>
+                              <td class="f500">Expedited</td>
+                              <td class="text-center"><span class="n_num_exp">NA</span></td>
+                              <td class="text-center"><span class="n_num_pct_exp">NA</span></td>
+                            </tr>
+                            <tr>
+                              <td class="f500">Fullboard (Social)</td>
+                              <td class="text-center"><span class="n_num_social">NA</span></td>
+                              <td class="text-center"><span class="n_num_pct_social">NA</span></td>
+                            </tr>
+                            <tr>
+                              <td class="f500">Fullboard (Bio)</td>
+                              <td class="text-center"><span class="n_num_bio">NA</span></td>
+                              <td class="text-center"><span class="n_num_pct_bio">NA</span></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- .contentdiv -->
+
+                </div>
+                <!-- .panel-body -->
+
+              </div>
+              <!-- .panel-wrapper -->
+            </div>
+            <!-- .panel -->
+
+            <div class="panel panel-default card-view">
+              <div class="panel-heading">
+								<div class="pull-left">
+									<h6 class="panel-title txt-dark">ผลการค้นหา <small>(กดปุ่ม "แสดงผล" เพื่อทำการคำนวณ)</small></h6>
+								</div>
+								<div class="clearfix"></div>
+							</div>
+
+              <div class="panel-wrapper collapse in">
+								<div class="panel-body">
+
+                  <div class="row dn" id="exportBtn">
+                    <div class="col-sm-12 text-right pb-20">
+                      <button class="btn btn-success" onclick="exportReport()"><i class="zmdi zmdi-download"></i> Download</button>
+                    </div>
+                  </div>
+
+                  <div class="loaddiv dn" style="padding: 100px 0px;">
+                    <div class="row">
+                      <div class="col-sm-2 col-sm-offset-5">
+                        <img src="../../images/Rolling.gif" alt="" width="100%">
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="contentdiv txt-dark" id="resultSpan">
+
+                    <div class="row">
+                      <div class="col-sm-12">
+                        <table class="table table-bordered">
+                          <thead>
+                            <tr style="background: rgb(236, 236, 236);">
+                              <th class="f500 text-center" style="width: 50%;">
+                                 ประเภทการพิจารณา
+                              </th>
+                              <th class="text-center">จำนวนโครงการ</th>
+                              <th class="text-center">ร้อยละ (%)</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td class="f500">Exempt</td>
+                              <td class="text-center"><span class="n_num_exm">NA</span></td>
+                              <td class="text-center"><span class="n_num_pct_exm">NA</span></td>
+                            </tr>
+                            <tr>
+                              <td class="f500">Expedited</td>
+                              <td class="text-center"><span class="n_num_exp">NA</span></td>
+                              <td class="text-center"><span class="n_num_pct_exp">NA</span></td>
+                            </tr>
+                            <tr>
+                              <td class="f500">Fullboard (Social)</td>
+                              <td class="text-center"><span class="n_num_social">NA</span></td>
+                              <td class="text-center"><span class="n_num_pct_social">NA</span></td>
+                            </tr>
+                            <tr>
+                              <td class="f500">Fullboard (Bio)</td>
+                              <td class="text-center"><span class="n_num_bio">NA</span></td>
+                              <td class="text-center"><span class="n_num_pct_bio">NA</span></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- .contentdiv -->
+
+                </div>
+                <!-- .panel-body -->
+
+              </div>
+              <!-- .panel-wrapper -->
+            </div>
+            <!-- .panel -->
+
+
+
+          </div>
+          <!-- .col-sm-4 -->
+
+        </div>
+        <!-- .Row -->
+
+        <!-- sample modal content -->
+        <div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h5 class="modal-title" id="myModalLabel">ข้อตกลงและเงื่อนไข</h5>
+              </div>
+              <div class="modal-body">
+                <p>
+                  <ol class="pl-20">
+                    <li>การลงทะเบียนงานวิจัยในส่วนนี้ หมายถึง <span class="txt-danger">การลงทะเบียนงานวิจัยทีไม่่เคยส่งขอพิจารณาจริยธรรมการวิจัยในมนุษย์มาก่อน</span></li>
+                    <li>ในแต่ละโครงการวิจัยที่จำต้องทำการขอพิจารณาจริยธรรมการวิจัยในมนุษย์ <span class="txt-danger">ต้องเป็นหัวหน้าโครงการเท่านั้น</span></li>
+                  </ol>
+                </p>
+                <p>
+                  ตอบ "ตกลง" เพื่อยอมรับเงื่อนไขและทำการลงทะเบียนงานวิจัยใหม่
+                </p>
+
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-info" onclick="window.location = 'research_register.html'">ตกลง</button>
+              </div>
+            </div>
+            <!-- /.modal-content -->
+          </div>
+          <!-- /.modal-dialog -->
+        </div>
+        <!-- /.modal -->
+
+
+
+
+
+				<!-- Footer -->
+				<footer class="footer container-fluid pl-30 pr-30">
+					<div class="row">
+						<div class="col-sm-12">
+							<p>2017 &copy; <a href="http://rmis.medicine.psu.ac.th/project/" target="_blank">RMIS</a>. หน่วยส่งเสริมและพัฒนาทางวิชาการ คณะแพทยศาสตร์ มหาวิทยาลัยสงขลานครินทร์. Develop by <a href="https://wisniorproject.com" target="_blank">Wisnior Corp.</a></p>
+						</div>
+					</div>
+				</footer>
+				<!-- /Footer -->
+			</div>
+		</div>
+        <!-- /Main Content -->
+
+    </div>
+    <!-- /#wrapper -->
+
+	<!-- JavaScript -->
+
+  <!-- jQuery -->
+  <script src="../../v3/vendors/bower_components/jquery/dist/jquery.min.js"></script>
+
+  <!-- Bootstrap Core JavaScript -->
+  <script src="../../v3/vendors/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+	<!-- Data table JavaScript -->
+	<script src="../../v3/vendors/bower_components/datatables/media/js/jquery.dataTables.min.js"></script>
+	<script src="../../v3/dist/js/dataTables-data.js"></script>
+
+	<!-- Slimscroll JavaScript -->
+	<script src="../../v3/dist/js/jquery.slimscroll.js"></script>
+
+	<!-- Owl JavaScript -->
+	<script src="../../v3/vendors/bower_components/owl.carousel/dist/owl.carousel.min.js"></script>
+
+	<!-- Switchery JavaScript -->
+	<script src="../../v3/vendors/bower_components/switchery/dist/switchery.min.js"></script>
+
+	<!-- Fancy Dropdown JS -->
+	<script src="../../v3/dist/js/dropdown-bootstrap-extended.js"></script>
+
+  <!-- Sweet-Alert  -->
+	<script src="../../v3/vendors/bower_components/sweetalert/dist/sweetalert.min.js"></script>
+
+  <script src="../../v3/vendors/bower_components/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
+	<script src="../../v3/vendors/bower_components/bootstrap-datepicker-thai-thai/js/bootstrap-datepicker-thai.js"></script>
+	<script src="../../v3/vendors/bower_components/bootstrap-datepicker-thai-thai/js/locales/bootstrap-datepicker.th.js"></script>
+
+	<!-- Init JavaScript -->
+	<script src="../../v3/dist/js/init.js"></script>
+  <script src="../../v3/main.js"></script>
+  <script src="../../v3/staff.js"></script>
+
+  <script type="text/javascript">
+
+    var dt = $('#tableView').dataTable().api();
+    var current_user = window.localStorage.getItem('rmis_current_user')
+    var current_role = window.localStorage.getItem('rmis_current_role')
+    var current_page = 'changepassword.html';
+    var summn = 0
+
+    $(document).ready(function(){
+
+      staff.init()
+
+      var today_date_en = get_today_date();
+      let cdate = today_date_en.split('-');
+      let cdate_th = (parseInt(cdate[0]) + 543) + '-' + cdate[1] + '-' + cdate[2]
+
+      $('#start_date').val('2561-01-01')
+      $('#end_date').val(cdate_th)
+
+      setTimeout(function(){
+        // main.load_notify_pm();
+        countReport()
+      }, 10)
+    })
+
+    $(function(){
+    })
+
+    function countReport(){
+      var sdate = $('#start_date').val()
+      var edate = $('#end_date').val()
+
+      if((sdate == '') || (edate == '')){
+        alert('Invalid parameters')
+        return ;
+      }
+
+      var sdate_en = main_app.check_dateformat(sdate)
+      var edate_en = main_app.check_dateformat(edate)
+
+      var param = {
+        sd: sdate_en,
+        ed: edate_en
+      }
+
+      summn = 0;
+
+      $('.loaddiv').removeClass('dn')
+      $('.contentdiv').addClass('dn')
+
+      //Calculate N
+      var jxr = $.post(ws_url + 'controller/report/get-report-table-1.php', param, function(){}, 'json')
+                 .always(function(snap){
+
+                    if((snap != '') && (snap.length > 0)){
+
+                      lp.hl()
+                      $summ = 0
+                      snap.forEach(function(i){
+                        if(i.rct_type == 'Exempt'){
+                          $('.n_num_exm').text(i.cm)
+                          $summ += parseInt(i.cm)
+                        }else if(i.rct_type == 'Expedited'){
+                          $('.n_num_exp').text(i.cm)
+                          $summ += parseInt(i.cm)
+                        }else if(i.rct_type == 'Fullboard (Bio)'){
+                          $('.n_num_bio').text(i.cm)
+                          $summ += parseInt(i.cm)
+                        }else if(i.rct_type == 'Fullboard (Social)'){
+                          $('.n_num_social').text(i.cm)
+                          $summ += parseInt(i.cm)
+                        }
+                      })
+
+                      console.log($summ);
+
+                      snap.forEach(function(i){
+                        $pct = 0;
+                        console.log(i.cm + ' ' + $summ);
+                        if(i.rct_type == 'Exempt'){
+                          $pct = ((parseInt(i.cm) * 100) / $summ).toFixed(2)
+                          $('.n_num_pct_exm').text($pct)
+                        }else if(i.rct_type == 'Expedited'){
+                          $pct = ((parseInt(i.cm) * 100) / $summ).toFixed(2)
+                          $('.n_num_pct_exp').text($pct)
+                        }else if(i.rct_type == 'Fullboard (Bio)'){
+                          $pct = ((parseInt(i.cm) * 100) / $summ).toFixed(2)
+                          $('.n_num_pct_bio').text($pct)
+                        }else if(i.rct_type == 'Fullboard (Social)'){
+                          $pct = ((parseInt(i.cm) * 100) / $summ).toFixed(2)
+                          $('.n_num_pct_social').text($pct)
+                        }
+                      })
+                    }else{
+
+                    }
+
+                 })
+                 .fail(function(){
+
+                 })
+
+    }
+
+    function calNormal(Nnum, sdate_en, edate_en, checkstatus){
+      var param = {
+        sd: sdate_en,
+        ed: edate_en,
+        fid: 2,
+        status: checkstatus
+      }
+
+      if(checkstatus != 4){
+        var jxr = $.post(ws_url + 'controller/report/get-report-2.php', param, function(){})
+                   .always(function(resp){
+                     // console.log(resp);
+                     if(resp != ''){
+
+                      summn += parseInt(resp)
+
+                      $('.n_num_' + checkstatus).html(resp)
+                      $('.n_num_pct_' + checkstatus).text(((resp * 100)/Nnum).toFixed(2))
+                     }
+                   })
+      }else{
+
+        var diff = parseInt(Nnum) - summn
+        var p_3 = parseInt($('.n_num_3').text())
+
+        console.log(diff);
+        console.log(p_3);
+        p_3 = p_3 + diff;
+        console.log(p_3);
+
+        $('.n_num_3').html(p_3)
+        $('.n_num_pct_3').text(((p_3 * 100)/Nnum).toFixed(2))
+      }
+
+
+    }
+
+    function exportReport(){
+      if($('#txtVara').val()=='3.3')
+        window.open('../../controller/report/export-report-1.php?vara=' + $('#txtVara').val() + '&tm=' + $('#txtTimemeeting').val())
+      else if($('#txtVara').val() == '3.4')
+        window.open('../../controller/report/export-report-1-2.php?vara=' + $('#txtVara').val() + '&tm=' + $('#txtTimemeeting').val())
+    }
+
+
+    function goto_report(progress_id){
+      window.localStorage.setItem('rmis_current_progress_id', progress_id)
+      window.location = 'create_report.html'
+    }
+  </script>
+</body>
+
+</html>

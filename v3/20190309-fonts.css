@@ -1,0 +1,46 @@
+@font-face {
+  font-family: 'sukhumvit';
+  src: url('../fonts/SukhumvitSet-Text.ttf') format('truetype');
+  /*src: url('../../fonts/THSarabun.ttf') format('truetype');*/
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* color: #5fc7ae */
+
+@font-face {
+  font-family: 'sukhumvit-500';
+  src: url('../fonts/SukhumvitSet-SemiBold.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'thsarabun-500';
+  src: url('../fonts/THSarabun Bold.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  /*font-size: 1.5em !important;*/
+}
+
+@font-face {
+  font-family: 'thsarabun';
+  src: url('../fonts/THSarabun.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  /*font-size: 1.5em !important;*/
+}
+
+.dropzone {
+    min-height: 200px;
+    background-color: #f9f9f9;
+    border: 2px dashed #bbb;
+    border-radius: 3px;
+    -webkit-transition: all 0.2s ease-out;
+    transition: all 0.2s ease-out;
+}
+
+.f500{
+  /* font-family: sukhumvit-500; */
+  font-family: 'thsarabun-500';
+}

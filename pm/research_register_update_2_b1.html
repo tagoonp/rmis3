@@ -1,0 +1,1315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<title>:: RMIS :: สำหรับหัวหน้าโครงการ ::</title>
+
+	<!-- Data table CSS -->
+	<link href="../v3/vendors/bower_components/datatables/media/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css"/>
+  <!-- switchery CSS -->
+	<link href="../v3/vendors/bower_components/switchery/dist/switchery.min.css" rel="stylesheet" type="text/css"/>
+
+  <link rel="stylesheet" href="../v3/vendors/bower_components/dropzonejs/dropzone.min.css" />
+  <!--alerts CSS -->
+	<link href="../v3/vendors/bower_components/sweetalert/dist/sweetalert.css" rel="stylesheet" type="text/css">
+
+  <!-- bootstrap-select CSS -->
+	<link href="../v3/vendors/bower_components/bootstrap-select/dist/css/bootstrap-select.min.css" rel="stylesheet" type="text/css"/>
+
+  <link rel="stylesheet" href="../v3/vendors/bower_components/bootstrap-datepicker/bootstrap-datepicker3.min.css" />
+
+  <!-- Bootstrap Switches CSS -->
+	<link href="../v3/vendors/bower_components/bootstrap-switch/dist/css/bootstrap3/bootstrap-switch.min.css" rel="stylesheet" type="text/css"/>
+	<!-- Custom CSS -->
+	<link href="../v3/dist/css/style.css" rel="stylesheet" type="text/css">
+  <link href="../v3/fonts.css" rel="stylesheet" type="text/css">
+  <link href="../v3/style.css" rel="stylesheet" type="text/css">
+
+</head>
+
+<body>
+	<!--Preloader-->
+	<div class="preloader-it">
+		<div class="la-anim-1"></div>
+	</div>
+	<!--/Preloader-->
+    <div class="wrapper theme-1-active pimary-color-red">
+
+        <!-- Top Menu Items -->
+		<nav class="navbar navbar-inverse navbar-fixed-top">
+			<div class="mobile-only-brand pull-left">
+				<div class="nav-header pull-left">
+					<div class="logo-wrap">
+						<a href="./">
+							<img class="brand-img" src="../v3/dist/img/logo.png" alt="brand"/>
+							<span class="brand-text">RMIS</span>
+						</a>
+					</div>
+				</div>
+				<a id="toggle_nav_btn" class="toggle-left-nav-btn inline-block ml-20 pull-left" href="javascript:void(0);"><i class="zmdi zmdi-menu"></i></a>
+				<a id="toggle_mobile_nav" class="mobile-only-view" href="javascript:void(0);"><i class="zmdi zmdi-more"></i></a>
+			</div>
+			<div id="mobile_only_nav" class="mobile-only-nav pull-right">
+				<ul class="nav navbar-right top-nav pull-right">
+          <li>
+            <a href="profile.html">ยินดีต้อนรับ <span class="userFullname text-info">NA</span> (PI)</a>
+          </li>
+
+
+					<li class="dropdown alert-drp">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="zmdi zmdi-notifications top-nav-icon"></i><span class="notification_number"></span></a>
+						<ul  class="dropdown-menu alert-dropdown" data-dropdown-in="bounceIn" data-dropdown-out="bounceOut">
+							<li>
+								<div class="notification-box-head-wrap">
+									<span class="notification-box-head pull-left inline-block">การแจ้งเตือน</span>
+									<a class="txt-danger pull-right clear-notifications inline-block" href="javascript:main.clear_notify()"> ล้างทั้งหมด </a>
+									<div class="clearfix"></div>
+									<hr class="light-grey-hr ma-0"/>
+								</div>
+							</li>
+              <li>
+                <div class="streamline message-nicescroll-bar notification_panal">
+                </div>
+              </li>
+							<li>
+								<div class="notification-box-bottom-wrap">
+									<hr class="light-grey-hr ma-0"/>
+									<a class="block text-center read-all" href="view_activity_log.html"> อ่านทั้งหมด </a>
+									<div class="clearfix"></div>
+								</div>
+							</li>
+						</ul>
+					</li>
+
+          <li class="dropdown auth-drp">
+						<a href="#" class="dropdown-toggle pr-0" data-toggle="dropdown"><span id="profileImg"></span><span class="user-online-status"></span></a>
+						<ul class="dropdown-menu user-auth-dropdown" data-dropdown-in="flipInX" data-dropdown-out="flipOutX">
+							<li>
+								<a href="profile.html"><i class="zmdi zmdi-account"></i><span>ข้อมูลส่วนตัว</span></a>
+							</li>
+							<li>
+								<a href="#" onclick="main.inbox()"><i class="zmdi zmdi-email"></i><span>Inbox</span></a>
+							</li>
+							<li>
+								<a href="changepassword.html"><i class="zmdi zmdi-settings"></i><span>เปลี่ยนรหัสผ่าน</span></a>
+							</li>
+							<li class="divider"></li>
+							<li>
+								<a href="#" onclick="main.signout()"><i class="zmdi zmdi-power"></i><span>ออกจากระบบ</span></a>
+							</li>
+						</ul>
+					</li>
+
+
+				</ul>
+			</div>
+		</nav>
+		<!-- /Top Menu Items -->
+
+		<!-- Left Sidebar Menu -->
+		<div class="fixed-sidebar-left">
+			<ul class="nav navbar-nav side-nav nicescroll-bar">
+				<li class="navigation-header">
+					<span>Main</span>
+					<i class="zmdi zmdi-more"></i>
+				</li>
+
+        <li>
+					<a href="./"><div class="pull-left"><i class="zmdi zmdi-home mr-20"></i><span class="right-nav-text">หน้าแรก</span></div><div class="clearfix"></div></a>
+				</li>
+        <li>
+						<a href="javascript:void(0);" data-toggle="collapse" data-target="#dashboard_dr"><div class="pull-left"><i class="zmdi zmdi-landscape mr-20"></i><span class="right-nav-text">กระดานภาพรวม</span></div><div class="pull-right"><i class="zmdi zmdi-caret-down"></i></div><div class="clearfix"></div></a>
+						<ul id="dashboard_dr" class="collapse collapse-level-1">
+							<li>
+								<a href="dashboard_1.html">ภาพรวมโครงการวิจัย</a>
+							</li>
+						</ul>
+					</li>
+
+				<li><hr class="light-grey-hr mb-10"/></li>
+				<li class="navigation-header">
+					<span>จัดการงานวิจัย</span>
+					<i class="zmdi zmdi-more"></i>
+				</li>
+				<li>
+					<a class="active" href="javascript:void(0);" data-toggle="collapse" data-target="#ui_dr"><div class="pull-left"><i class="zmdi zmdi-edit mr-20"></i><span class="right-nav-text">โครงการวิจัยใหม่</span></div><div class="pull-right"><i class="zmdi zmdi-caret-down"></i></div><div class="clearfix"></div></a>
+					<ul id="ui_dr" class="collapse collapse-level-1 two-col-list">
+						<li>
+							<a class="active-page" data-toggle="modal" data-target="#myModal">ลงทะเบียนโครงการวิจัย (ใหม่)</a>
+						</li>
+            <li>
+							<a href="research_unconf_list.html">โครงการวิจัยที่ยังไม่ยืนยันการส่ง</a>
+						</li>
+            <li>
+							<a href="research_draft_list.html">แบบเสนอโครงการฉบับร่าง</a>
+						</li>
+						<li>
+							<a href="research_reply_list.html">แบบเสนอโครงการที่รอแก้ไข</a>
+						</li>
+						<li>
+							<a href="rs_list.html">โครงการวิจัยใหม่ทั้งหมด</a>
+						</li>
+					</ul>
+				</li>
+
+        <li>
+					<a href="javascript:void(0);" data-toggle="collapse" data-target="#ui_dr2"><div class="pull-left"><i class="zmdi zmdi-flip-to-back mr-20"></i><span class="right-nav-text">โครงการวิจัยย้อนหลัง</span></div><div class="pull-right"><i class="zmdi zmdi-caret-down"></i></div><div class="clearfix"></div></a>
+					<ul id="ui_dr2" class="collapse collapse-level-1 two-col-list">
+						<li>
+							<a href="../rs_add_back.php">ลงทะเบียนโครงการวิจัย (ย้อนหลัง)</a>
+						</li>
+						<li>
+							<a href="../rs_back_list_nc.php">โครงการวิจัยที่ยังไม่ยืนยันการส่ง</a>
+						</li>
+						<li>
+							<a href="../rs_back_list.php">โครงการวิจัยย้อนหลัง</a>
+						</li>
+					</ul>
+				</li>
+
+        <li>
+					<a href="javascript:void(0);" data-toggle="collapse" data-target="#ui_dr3"><div class="pull-left"><i class="zmdi zmdi-8tracks mr-20"></i><span class="right-nav-text">โครงการกำลังดำเนินการ</span></div><div class="pull-right"><i class="zmdi zmdi-caret-down"></i></div><div class="clearfix"></div></a>
+					<ul id="ui_dr3" class="collapse collapse-level-1 two-col-list">
+            <li>
+							<a href="goto_report_cont.html">โครงการที่อยู่ระหว่างการดำเนินการทั้งหมด</a>
+						</li>
+						<li>
+							<a href="#" onclick="goto_report(1)">รายงานความก้าวหน้า (Progress report)</a>
+						</li>
+						<li>
+							<a href="#" onclick="goto_report('2')" >ขอต่ออายุการรับรอง (Renewal)</a>
+						</li>
+						<li>
+							<a href="#" onclick="goto_report('3')" >ขอปรับปรุงแก้ไขโครงการวิจัย (Amendment)</a>
+						</li>
+            <li>
+							<a href="#" onclick="goto_report('4')" >รายงานเหตุการณ์ไม่พึงประสงค์ (SAE)</a>
+						</li>
+            <li>
+							<a href="#" onclick="goto_report('5')" >รายงานการดำเนินงานที่เบี่ยงเบน (Deviation/Violation)</a>
+						</li>
+            <li>
+							<a href="#" onclick="goto_report('6')" >รายงานการยุติ/สิ้นสุดโครการ (Termination/Closing)</a>
+						</li>
+            <li>
+							<a href="goto_report_edit.html" >โครงการวิจัยที่ต้องแก้ไข</a>
+						</li>
+					</ul>
+				</li>
+
+				<li><hr class="light-grey-hr mb-10"/></li>
+				<li class="navigation-header">
+					<span>อื่น ๆ</span>
+					<i class="zmdi zmdi-more"></i>
+				</li>
+				<li>
+					<a href="javascript:void(0);" data-toggle="collapse" data-target="#pages_dr2"><div class="pull-left"><i class="zmdi zmdi-account mr-20"></i><span class="right-nav-text">ข้อมูลหัวหน้าโครงการ</span></div><div class="pull-right"><i class="zmdi zmdi-caret-down"></i></div><div class="clearfix"></div></a>
+					<ul id="pages_dr2" class="collapse collapse-level-1 two-col-list">
+						<li>
+							<a href="../curriculum_vitae_add.php">Academic performance & CGP</a>
+						</li>
+
+            <li>
+							<a href="../curriculum_vitae_list.php">การตีพิมพ์ผลงานวิจัย</a>
+						</li>
+					</ul>
+				</li>
+
+        <li>
+					<a href="../rs_list_beforepayment.php"><div class="pull-left"><i class="zmdi zmdi-filter-list mr-20"></i><span class="right-nav-text">นำส่งเงินค่าธรรมเนียม</span></div><div class="clearfix"></div></a>
+				</li>
+
+        <li>
+					<a href="documentation.html"><div class="pull-left"><i class="zmdi zmdi-book mr-20"></i><span class="right-nav-text">คู่มือการใช้งาน (PI)</span></div><div class="clearfix"></div></a>
+				</li>
+
+			</ul>
+		</div>
+		<!-- /Left Sidebar Menu -->
+
+
+		<!-- Main Content -->
+		<div class="page-wrapper" style="padding-left: 15px; padding-right: 15px;">
+      <div class="container-fluid">
+
+				<!-- Title -->
+				<div class="row heading-bg">
+					<div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+						<h5 class="txt-dark">ลงทะเบียนเสนอโครงการวิจัย<br><small class="pl-0">(Research registration)</small></h5>
+					</div>
+					<!-- Breadcrumb -->
+					<div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+						<ol class="breadcrumb">
+							<li><a href="./">หน้าแรก</a></li>
+							<li class="active"><span>ลงทะเบียนเสนอโครงการวิจัย</span></li>
+						</ol>
+					</div>
+					<!-- /Breadcrumb -->
+				</div>
+				<!-- /Title -->
+
+        <!-- Row -->
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="panel panel-default card-view">
+
+              <div class="panel-wrapper collapse in">
+								<div class="panel-body">
+
+                  <div class="loaddiv dn" style="padding: 100px 0px;">
+                    <div class="row">
+                      <div class="col-sm-2 col-sm-offset-5">
+                        <img src="../images/Rolling.gif" alt="" width="100%">
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="contentdiv">
+
+                    <div class="alert alert-success alert-dismissable">
+											<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+											<i class="zmdi zmdi-info-outline pr-15 pull-left"></i><p class="pull-left">กรุณากรอกข้อมูลให้ครบถ้วน โดยเฉพาะส่วนที่มีเครื่องหมาย **</p>
+											<div class="clearfix"></div>
+										</div>
+
+                    <div class="alert alert-success alert-dismissable">
+											<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+											<i class="zmdi zmdi-info-outline pr-15 pull-left"></i><p class="pull-left">กรุณากรอกข้อมูลให้ครบถ้วนทุกส่วน (ทางซ้ายมือ) จนกว่าจะมีเครื่องหมาย <i class="fa fa-check-circle"></i> แสดงในแต่ละส่วนจนครบ</p>
+											<div class="clearfix"></div>
+										</div>
+
+                    <div  class="tab-struct vertical-tab custom-tab-1 mt-40">
+
+
+
+  										<ul role="tablist" class="nav nav-tabs ver-nav-tab" id="myTabs_8">
+  											<li class="active" role="presentation"><a aria-expanded="true" class="partTab"  onclick="checkPart(1)" data-toggle="tab" role="tab" id="home_tab_8" href="#home_8"><span class="f500 txt-success"><span class="st1"></span>ส่วนที่ 1</span> ข้อมูลโครงการวิจัย </a></li>
+  											<li role="presentation" class=""><a  class="partTab" onclick="checkPart(2)"  data-toggle="tab" id="profile_tab_1" role="tab" href="#profile_1" aria-expanded="false"><span class="f500 txt-success"><span class="st2"></span>ส่วนที่ 2</span> ผู้ร่วมวิจัย</a></li>
+                        <li role="presentation" class=""><a  class="partTab" onclick="checkPart(3)"  data-toggle="tab" id="profile_tab_2" role="tab" href="#profile_2" aria-expanded="false"><span class="f500 txt-success"><span class="st3"></span>ส่วนที่ 3</span> ทุนวิจัย </a></li>
+                        <li role="presentation" class=""><a  class="partTab" onclick="checkPart(4)"  data-toggle="tab" id="profile_tab_3" role="tab" href="#profile_3" aria-expanded="false"><span class="f500 txt-success"><span class="st4"></span>ส่วนที่ 4</span> สรุปย่อโครงการวิจัย </a></li>
+                        <li role="presentation" class=""><a  class="partTab" onclick="checkPart(5)" data-toggle="tab" id="profile_tab_4" role="tab" href="#profile_4" aria-expanded="false"><span class="f500 txt-success"><span class="st5"></span>ส่วนที่ 5</span> อัพโหลดไฟล์เอกสาร </a></li>
+  										</ul>
+
+  										<div class="tab-content" id="myTabContent_8">
+  											<div  id="home_8" class="tab-pane fade active in" role="tabpanel">
+                          <form class="form-horizontal" onsubmit="return false;">
+                            <!-- <div class="form-group dn">
+                              <label for="exampleInputuname_3" class="col-sm-4 control-label"><span class="f500">ปี พ.ศ. <span class="txt-danger">**</span> </span><br>
+                                <span style="padding: 0px 5px; font-size: 0.8em;" class="txt-dark">ระบุปี พ.ศ. ที่ทำการขอใบรับรองจริยธรรมการทดลองในมนุษย์</span>
+                              </label>
+                              <div class="col-sm-8">
+                                <select class="selectpicker" id="txtYear" data-style="form-control btn-default btn-outline">
+                                  <option value="">--- เลือกปี พ.ศ. ---</option>
+                                </select>
+                                <p class="text-danger text-right dn req" id="r1">** กรุณาเลือกคำนำหน้าชื่อ</p>
+                              </div>
+                            </div> -->
+
+
+
+                            <div class="form-group">
+                              <label for="exampleInputuname_3" class="col-sm-4 control-label"><span class="f500">ชื่อโครงการวิจัย (ภาษาไทย) <span class="txt-danger">**</span> </span>
+                              </label>
+                              <div class="col-sm-8">
+                                <textarea name="txtTitleTH" id="txtTitleTH" rows="4" cols="80" class="form-control" placeholder="กรอกชื่อโครงการวิจัยภาษาไทย หากไม่มี ใส่เครื่องหมายลบ (-) ..."></textarea>
+                                <p class="text-danger text-right dn req" id="r1">** กรุณาเลือกคำนำหน้าชื่อ</p>
+                              </div>
+                            </div>
+
+                            <div class="form-group">
+                              <label for="exampleInputuname_3" class="col-sm-4 control-label"><span class="f500">ชื่อโครงการวิจัย (ภาษาอังกฤษ) <span class="txt-danger">**</span> </span></label>
+                              <div class="col-sm-8">
+                                <textarea name="txtTitleEN" id="txtTitleEN" rows="4" cols="80" class="form-control" placeholder="กรอกชื่อโครงการวิจัยภาษาอังกฤษ หากไม่มี ใส่เครื่องหมายลบ (-) ..."></textarea>
+                                <p class="text-danger text-right dn req" id="r1">** กรุณาเลือกคำนำหน้าชื่อ</p>
+                              </div>
+                            </div>
+
+                            <div class="form-group">
+                              <label for="exampleInputuname_3" class="col-sm-4 control-label"><span class="f500">คำสำคัญ 2-5 คำ (ภาษาไทย) <span class="txt-danger">**</span> </span></label>
+                              <div class="col-sm-8">
+                                <textarea name="txtKeywordTH" id="txtKeywordTH" rows="3" cols="80" class="form-control" placeholder="กรอกคำสำคัญ 2-5 คำ (ภาษาไทย) หากไม่มี ใส่เครื่องหมายลบ (-) ตัวอย่าง คำค้น 1, คำค้น 2, คำค้น 3 ..."></textarea>
+                                <p class="text-danger text-right dn req" id="r1">** กรุณาเลือกคำนำหน้าชื่อ</p>
+                              </div>
+                            </div>
+
+                            <div class="form-group">
+                              <label for="exampleInputuname_3" class="col-sm-4 control-label"><span class="f500">Keywords 2-5 คำ (ภาษาอังกฤษ) <span class="txt-danger">**</span> </span></label>
+                              <div class="col-sm-8">
+                                <textarea name="txtKeywordEN" id="txtKeywordEN" rows="3" cols="80" class="form-control" placeholder="กรอก Keyword 2-5 คำ (ภาษาอังกฤษ) หากไม่มี ใส่เครื่องหมายลบ (-) ตัวอย่าง keyword 1, keyword 2, keyword 3 ..."></textarea>
+                                <p class="text-danger text-right dn req" id="r1">** กรุณาเลือกคำนำหน้าชื่อ</p>
+                              </div>
+                            </div>
+
+
+
+                            <div class="form-group">
+                              <label for="exampleInputuname_3" class="col-sm-4 control-label"><span class="f500">ประเภทของการวิจัย <span class="txt-danger">**</span> </span></label>
+                              <div class="col-sm-8">
+                                <select class="selectpicker" id="txtResearchType" name="txtResearchType" data-style="form-control btn-default btn-outline">
+                                  <option value="" selected>--- เลือกประเภทของการวิจัย ---</option>
+                                </select>
+                                <p class="text-danger text-right dn req" id="r1">** กรุณาเลือกคำนำหน้าชื่อ</p>
+                              </div>
+                            </div>
+
+                            <div class="form-group">
+                              <label for="exampleInputuname_3" class="col-sm-4 control-label"><span class="f500">วันที่คาดว่าจะเริ่มโครงการ <span class="txt-danger">**</span> </span></label>
+                              <div class="col-sm-8">
+                                <input class="form-control js-datepicker "  type="text" id="start_date" name="start_date"  data-provide="datepicker" data-date-language="th-th"  data-date-format="yyyy-mm-dd" placeholder="yyyy-mm-dd" style="margin-bottom: 0px;" readonly />
+                                <p class="text-danger text-right dn req" id="r1">** กรุณาเลือกคำนำหน้าชื่อ</p>
+                              </div>
+                            </div>
+
+                            <div class="form-group">
+                              <label for="exampleInputuname_3" class="col-sm-4 control-label"><span class="f500">วันที่คาดว่าโครงการสิ้นสุด <span class="txt-danger">**</span> </span></label>
+                              <div class="col-sm-8">
+                                <input class="form-control js-datepicker"  type="text" id="finish_date" name="finish_date" data-provide="datepicker" data-date-language="th-th" value="" data-date-format="yyyy-mm-dd" placeholder="yyyy-mm-dd" style="margin-bottom: 0px;" readonly />
+                                <p class="text-danger text-right dn req" id="r1">** กรุณาเลือกคำนำหน้าชื่อ</p>
+                              </div>
+                            </div>
+
+                          </form>
+  											</div>
+  											<div  id="profile_1" class="tab-pane fade" role="tabpanel">
+                          <div class="row">
+                            <div class="col-sm-12 mb-20">
+                              <div class="form-group">
+                                <label for="exampleInputuname_3" class="col-sm-4 control-label pl-0 "><span class="f500">โครงการนี้หัวหน้าโครงการเป็นนักศึกษา<span class="txt-danger">ที่ไม่มีรหัสบุคลากร</span>ใช่หรือไม่ <span class="txt-danger">**</span> </span></label>
+                                <div class="col-sm-8 pr-0">
+                                  <select class="selectpicker" id="txtRtype" data-style="form-control btn-default btn-outline">
+                                    <option value="1" selected>1. ไม่ใช่</option>
+                                    <option value="2">2. ใช่ (อาจารย์ที่ปรึกษาลงข้อมูลแทนนักศึกษา)</option>
+                                  </select>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="row dn">
+                            <div class="col-sm-12 mb-20">
+                              <label for="" class="f500 txt-dark">จำนวนผู้ร่วมวิจัย (คน) <span class="txt-danger">**</span></label>
+                              <input type="number" class="form-control" value="" id="num_copi" placeholder="กรุณาระบุจำนวนผู้ร่วมวิจัยทั้งหมด ถ้าไม่มี ให้ใส่ศูนย์ (0)" min="0" max="50">
+                            </div>
+                          </div>
+
+
+                          <div class="pa-20 mb-20 txt-dark" style="background: rgb(244, 244, 244); border: dashed; border-width: 2px; border-color: rgb(177, 177, 177);">
+
+
+                            <form onsubmit="return false;" autocomplete="off">
+                              <h4 class="txt-info mb-10">เพิ่มข้อมูลผู้ร่วมวิจัย</h4>
+
+                              <div class="alert alert-warning alert-dismissable">
+          											<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+          											<i class="zmdi zmdi-alert-circle-o pr-15 pull-left"></i><p class="pull-left"> กรุณากรอกข้อมูลให้ครบถ้วน และสัดส่วนรวมทั้งโครงการไม่เกิน 100%.</p>
+          											<div class="clearfix"></div>
+          										</div>
+                              <div class="row">
+                                <div class="col-sm-4">
+                                  <div class="form-group" style="z-index: 99999999;">
+                                    <label for="">คำนำหน้าชื่อ <span class="txt-danger">**</span></label>
+                                    <!-- <input type="text" class="form-control" placeholder="กรอกคำนำหน้าชื่อ ..." id="txtPrefix"> -->
+                                    <select class="form-control" name="copi_prefix" id="copi_prefix">
+                                      <option value="">-- เลือกคำนำหน้าชื่อ --</option>
+                                    </select>
+                                  </div>
+                                </div>
+                                <div class="col-sm-4">
+                                  <div class="form-group">
+                                    <label for="">ชื่อ <span class="txt-danger">**</span></label>
+                                    <input type="text" class="form-control" placeholder="กรอกชื่อผู้ร่วมวิจัย ..." id="copi_fname">
+                                  </div>
+                                </div>
+                                <div class="col-sm-4">
+                                  <div class="form-group">
+                                    <label for="">นามสกุล <span class="txt-danger">**</span></label>
+                                    <input type="text" class="form-control" placeholder="กรอกนามสกุลผู้ร่วมวิจัย ..." id="copi_lname">
+                                  </div>
+                                </div>
+                              </div>
+
+                              <div class="row">
+                                <div class="col-sm-12">
+                                  <div class="form-group">
+                                    <label for="">E-mail address <span class="txt-danger">**</span></label>
+                                    <input type="email" class="form-control" placeholder="กรอก E-mail address ของผู้ร่วมวิจัย ..." id="copi_email">
+                                  </div>
+                                </div>
+
+                              </div>
+
+                              <div class="row">
+                                <div class="col-sm-4">
+                                  <div class="form-group">
+                                    <label for="">สัดส่วน (%) <span class="txt-danger">**</span></label>
+                                    <input type="number" class="form-control" placeholder="กรอก % การมีส่วนร่วมต่อการวิจัย ..." id="copi_pct" min="0" max="100">
+                                  </div>
+                                </div>
+                                <div class="col-sm-8">
+                                  <div class="form-group">
+                                    <label for="">ความรับผิดชอบในโครงการ <span class="txt-danger">**</span></label>
+                                    <input type="text" class="form-control" placeholder="กรอกหน้าที่/ความรับผิดชอบในโครงการ ..." id="repot">
+                                  </div>
+                                </div>
+
+                              </div>
+
+                              <div class="row">
+                                <div class="col-sm-12 pt-10 text-center">
+                                  <button class="btn btn-success" onclick="addCoPI()">เพิ่ม</button>
+                                </div>
+                              </div>
+                            </form>
+                          </div>
+  												<div class="table-wrap">
+  												  <table class="table table-bordered">
+  												    <thead>
+  												      <tr>
+  												        <th style="background: rgb(19, 156, 94); color: #fff;">ลำดับที่</th>
+                                  <th style="background: rgb(19, 156, 94); color: #fff;">ชื่อ - นามสกุล</th>
+                                  <th style="background: rgb(19, 156, 94); color: #fff;">E-mail</th>
+                                  <th style="background: rgb(19, 156, 94); color: #fff;">สัดส่วน (%)</th>
+                                  <th style="background: rgb(19, 156, 94); color: #fff;"></th>
+  												      </tr>
+  												    </thead>
+                              <tbody id="copi_list">
+                                <td colspan="5">ไม่พบข้อมูลผู้ร่วมวิจัย</td>
+                              </tbody>
+  												  </table>
+  												</div>
+
+                          <div class="row">
+                            <div class="col-sm-6">
+                              <label for="" class="f500 txt-dark">สัดส่วนการทดลองของหัวหน้าโครงการ (%) <span class="txt-danger">**</span></label>
+                              <input type="number" class="form-control" value="100" readonly id="pi_cpt">
+                            </div>
+                            <div class="col-sm-6">
+                              <label for="" class="f500 txt-dark">ความรับผิดชอบในโครงการ <span class="txt-danger">**</span></label>
+                              <input type="text" class="form-control" id="pi_cpt_job" placeholder="กรอกหน้าที่ ความรับผิดชอบของหัวหน้าโครงการ ...">
+                            </div>
+                          </div>
+  											</div>
+  											<div  id="profile_2" class="tab-pane fade " role="tabpanel">
+                          <form class="form-horizontal" onsubmit="return false;">
+                            <div class="form-group">
+                              <label for="exampleInputuname_3" class="col-sm-4 control-label"><span class="f500">งบประมาณทั้งโครงการ <span class="txt-danger">**</span> </span><br>
+                                <span style="padding: 0px 5px; font-size: 0.8em;" class="txt-danger">** ให้กรอกเฉพาะตัวเลขโดยไม่ต้องใส่ , (comma) และสามารถใส่จุดทศนิยมได้ และหากไม่มี ให้ใส่ศูนย์ (0)</span>
+                              </label>
+                              <div class="col-sm-8">
+                                <input type="number" name="txtBudget" id="txtBudget" min="0" value="" class="form-control" placeholder="กรอกงบประมาณทั้งโครงการ โดยกรอกเฉพาะตัวเลข ...">
+                              </div>
+                            </div>
+
+                            <div class="form-group">
+                              <label for="exampleInputuname_3" class="col-sm-4 control-label"><span class="f500">ทุนวิจัย <span class="txt-danger">**</span> </span><br>
+                                <span style="padding: 0px 5px; font-size: 0.8em;" class="txt-danger">** หากเป็นการวิจัยที่ได้รับทุนวิจัยจากแหล่งทุนในๆ กรุณาเลือก "มีทุนวิจัยสนุบสนุนจากแหล่งทุน" แต่หากเป็นโครงการที่ไม่ได้มีการขอทุนจากแหล่งทุนใดๆ ให้เลือก "เป็นโครงการที่ไม่ได้ขอทุนวิจัยจากแหล่งทุนใดๆ"</span>
+                              </label>
+                              <div class="col-sm-8">
+                                <select class="selectpicker" id="txtFund" data-style="form-control btn-default btn-outline">
+                                  <option value="1" selected>มีทุนวิจัยจากแหล่งทุน</option>
+                                  <option value="0">เป็นโครงการที่ไม่ได้ขอทุนวิจัยจากแหล่งทุนใดๆ</option>
+                                </select>
+                              </div>
+                            </div>
+
+                            <div class="fundDiv">
+                              <div class="form-group">
+                                <label for="exampleInputuname_3" class="col-sm-4 control-label"><span class="f500">แหล่งทุนวิจัย <span class="txt-danger">**</span> </span></label>
+                                <div class="col-sm-8 txt-dark">
+                                  <div class="checkbox checkbox-success">
+          													<input id="cb1" type="checkbox">
+          													<label for="cb1"> ทุนวิจัยคณะแพทยศาสตร์ </label>
+          												</div>
+
+                                  <div class="checkbox checkbox-success">
+          													<input id="cb7" type="checkbox">
+          													<label for="cb7"> ทุนภาคเอกชน (Industry Sponsored Trial) </label>
+          												</div>
+
+                                  <div class="checkbox checkbox-success">
+          													<input id="cb2" type="checkbox">
+          													<label for="cb2"> ทุนงบประมาณแผ่นดิน </label>
+          												</div>
+
+                                  <div class="checkbox checkbox-success">
+          													<input id="cb3" type="checkbox">
+          													<label for="cb3"> เงินรายได้มหาวิทยาลัย <div style="padding-left: 0px; font-size: 0.8em;" class="txt-danger">** เช่น ทุนพัฒนานักวิจัย</div></label>
+          												</div>
+
+                                  <div class="checkbox checkbox-success">
+          													<input id="cb4" type="checkbox">
+          													<label for="cb4"> ทุนอื่นภายในประเทศ <div style="padding-left: 0px; font-size: 0.8em;" class="txt-danger">** เช่น สกว. สสส. สวทช. ฯลฯ</div> </label>
+          												</div>
+
+                                  <div class="checkbox checkbox-success">
+          													<input id="cb5" type="checkbox">
+          													<label for="cb5"> ทุนอื่นภายนอกประเทศ  <div style="padding-left: 0px; font-size: 0.8em;" class="txt-danger">** เช่น NIH, WHO, EU ฯลฯ</div> </label>
+          												</div>
+
+                                  <div class="checkbox checkbox-success">
+          													<input id="cb6" type="checkbox">
+          													<label for="cb6"> ทุนอื่น ๆ นอกเหนือจากรายการข้างต้น โปรดระบุ </label>
+          												</div>
+
+                                  <!-- <div class="mb-5" id="cb1a"><input type="checkbox" id="cb1" class="js-switch js-switch-1" data-color="#469408" data-size="" /> ทุนวิจัยคณะแพทยศาสตร์ </div> -->
+                                  <!-- <div class="mb-5" id="cb5a"><input type="checkbox" id="cb7" class="js-switch js-switch-1" data-color="#469408" data-size="" /> ทุนภาคเอกชน (Industry Sponsored Trial)</div> -->
+                                  <!-- <div class="mb-5" id="cb2a"><input type="checkbox" id="cb2" class="js-switch js-switch-1" data-color="#469408" data-size="" /> ทุนงบประมาณแผ่นดิน</div>
+                                  <div class="mb-5" id="cb3a"><input type="checkbox" id="cb3" class="js-switch js-switch-1" data-color="#469408" data-size="" /> เงินรายได้มหาวิทยาลัย <div style="padding-left: 68px; font-size: 0.8em;" class="txt-danger">** เช่น ทุนพัฒนานักวิจัย</div></div>
+                                  <div class="mb-5" id="cb4a"><input type="checkbox" id="cb4" class="js-switch js-switch-1" data-color="#469408" data-size="" /> ทุนอื่นภายในประเทศ <div style="padding-left: 68px; font-size: 0.8em;" class="txt-danger">** เช่น สกว. สสส. สวทช. ฯลฯ</div></div>
+                                  <div class="mb-5" id="cb5a"><input type="checkbox" id="cb5" class="js-switch js-switch-1" data-color="#469408" data-size="" /> ทุนอื่นภายนอกประเทศ  <div style="padding-left: 68px; font-size: 0.8em;" class="txt-danger">** เช่น NIH, WHO, EU ฯลฯ</div></div>
+                                  <div class="mb-5" id="cb6a"><input type="checkbox" id="cb6" class="js-switch js-switch-1" data-color="#469408" data-size="" /> ทุนอื่น ๆ นอกเหนือจากรายการข้างต้น โปรดระบุ</div> -->
+                                </div>
+                              </div>
+
+                              <div class="form-group dn" id="otherfunding">
+                                <label for="exampleInputuname_3" class="col-sm-4 control-label"><span class="f500">แหล่งทุนวิจัยกลุ่มอื่น ๆ <span class="txt-danger">**</span> </span><br>
+                                  <span style="padding: 0px 5px; font-size: 0.8em;" class="txt-danger">** ระบุกลุ่มของทุนวิจัยที่ไม่ได้อยู่ในกลุ่มที่ระบุในข้อกลุ่มแหล่งทุนวิจัย</span>
+                                </label>
+                                <div class="col-sm-8">
+                                  <input type="text" name="txtOtherFundSource" id="txtOtherFundSource" value="" class="form-control" placeholder="ระบุกลุ่มของทุนวิจัยที่ไม่ได้อยู่ในกลุ่มที่ระบุในข้อกลุ่มแหล่งทุนวิจัย ...">
+                                </div>
+                              </div>
+
+                              <div class="form-group">
+                                <label for="exampleInputuname_3" class="col-sm-4 control-label"><span class="f500">ชื่อแหล่งทุนวิจัย <span class="txt-danger">**</span> </span><br>
+                                  <span style="padding: 0px 5px; font-size: 0.8em;" class="txt-danger">** หากไม่มี ให้ใส่เครื่องหมายลบ "-"</span></label>
+                                <div class="col-sm-8">
+                                  <textarea name="txtFundsname" id="txtFundsname" rows="3" cols="80" class="form-control" placeholder="กรอกชื่อแหล่งทุนวิจัย หรือ ใส่เครื่องหมายลบ (-) ..."></textarea>
+                                  <p class="text-danger text-right dn req" id="r1">** กรุณาเลือกคำนำหน้าชื่อ</p>
+                                </div>
+                              </div>
+                            </div>
+
+
+
+                          </form>
+  											</div>
+  											<div  id="profile_3" class="tab-pane fade" role="tabpanel">
+                          <form onsubmit="return false;">
+
+                            <div class="form-group">
+                              <label for="exampleInputuname_3" class="control-label"><span class="f500">Synopsis (สรุปย่อโครงการวิจัย): ความยาวไม่เกิน 500 คำ <span class="txt-danger">**</span> </label>
+                              <textarea name="brief_reports" id="brief_reports" rows="8" cols="80" class="form-control" placeholder="สรุปย่อโครงการวิจัย หรือ ใส่เครื่องหมายลบ (-) ..."></textarea>
+                              <p class="text-danger text-right dn req" id="r1">** กรุณาเลือกคำนำหน้าชื่อ</p>
+                            </div>
+
+                          </form>
+  											</div>
+                        <div  id="profile_4" class="tab-pane fade" role="tabpanel">
+  												<table class="table table-bordered">
+  												  <tbody>
+  												    <tr>
+  												      <td class="col-sm-4 f500  txt-dark" style="vertical-align: top;">Submission form <span class="txt-danger">**</span>
+                                  <div class="txt-danger" style="font-size: 0.8em;">
+                                    (ต้องเป็น scanned file ที่มีลายเซ็นและเลขที่หนังสือจากหน่วยงานต้นสังกัดครบถ้วน)
+                                    <div class="form-group">
+                                      <input type="number" class="form-control" value="0" id="ftn1" readonly min="0">
+                                    </div>
+                                  </div>
+                                </td>
+                                <td style="vertical-align: top;">
+                  								<form class="dropzone" id="myFile1" action="../controller/upload_file_research_registration.php" style="max-height: 100px !important; min-height: 120px;" >
+                  								  <input type="text" value="1" id="docType1" name="docType" readonly class="dn">
+                                    <input type="text" value="" id="docSess1" name="docSess" class="docSess dn" readonly>
+                                    <input type="text" value="" id="docSessuser1" name="docSessuser" class="docSessuser dn" readonly>
+                  								</form>
+                                  <div class="ft1 pt-10">
+                                    <ul class="" id="ft1"></ul>
+                                  </div>
+                                </td>
+  												    </tr>
+                              <tr>
+  												      <td class="col-sm-4 f500  txt-dark" style="vertical-align: top;">Protocol <span class="txt-danger">**</span>
+                                  <div class="form-group">
+                                    <input type="number" class="form-control" value="0" id="ftn2" readonly min="0">
+                                  </div>
+                                </td>
+                                <td style="vertical-align: top;">
+                                  <form class="dropzone" id="myFile2" action="../controller/upload_file_research_registration.php" style="max-height: 100px !important; min-height: 120px;" >
+                                    <input type="text" value="2" id="docType2" name="docType" readonly class="dn">
+                                    <input type="text" value="" id="docSess2" name="docSess" class="docSess dn" readonly>
+                                    <input type="text" value="" id="docSessuser2" name="docSessuser" class="docSessuser dn" readonly>
+                                  </form>
+                                  <div class="ft2 pt-10">
+                                    <ul class="" id="ft2"></ul>
+                                  </div>
+                                </td>
+  												    </tr>
+                              <tr>
+  												      <td class="col-sm-4" style="vertical-align: top;"><span class="f500 txt-dark">Information sheet and Consent Form </span><br>
+                                  <div class="txt-danger" style="font-size: 0.8em;">
+                                    หากเป็นภาษาไทยให้แนบไฟล์ word (.doc, .docx) ด้วย
+                                  </div>
+                                  <span class="text-muted">เอกสารชี้แจงและขอความยินยอม หรือเอกสารขอยกเว้นการขอความยินยอมจากอาสาสมัคร</span>
+                                  <div class="form-group dn">
+                                    <input type="number" class="form-control" value="0" id="ftn3" readonly min="0">
+                                  </div>
+                                </td>
+                                <td style="vertical-align: top;">
+                                  <form class="dropzone" id="myFile3" action="../controller/upload_file_research_registration.php" style="max-height: 100px !important; min-height: 120px;" >
+                                    <input type="text" value="3" id="docType3" name="docType" readonly class="dn">
+                                    <input type="text" value="" id="docSess3" name="docSess" class="docSess dn" readonly>
+                                    <input type="text" value="" id="docSessuser3" name="docSessuser" class="docSessuser dn" readonly>
+                                  </form>
+                                  <div class="ft3 pt-10">
+                                    <ul class="" id="ft3"></ul>
+                                  </div>
+                                </td>
+  												    </tr>
+                              <tr>
+  												      <td class="col-sm-4" style="vertical-align: top;"><span class="f500 txt-dark">Case Record Form </span><br><span class="text-muted">เช่น แบบบันทึกข้อมูล แบบสอบถาม</span>
+                                  <div class="form-group dn">
+                                    <input type="number" class="form-control" value="0" id="ftn4" readonly min="0">
+                                  </div>
+                                </td>
+                                <td style="vertical-align: top;">
+                                  <form class="dropzone" id="myFile4" action="../controller/upload_file_research_registration.php" style="max-height: 100px !important; min-height: 120px;" >
+                                    <input type="text" value="4" id="docType4" name="docType" readonly class="dn">
+                                    <input type="text" value="" id="docSess4" name="docSess" class="docSess dn" readonly class="">
+                                    <input type="text" value="" id="docSessuser4" name="docSessuser" class="docSessuser dn" readonly class="">
+                                  </form>
+                                  <div class="ft4 pt-10">
+                                    <ul class="" id="ft4"></ul>
+                                  </div>
+                                </td>
+  												    </tr>
+                              <tr>
+  												      <td class="col-sm-4" style="vertical-align: top;"><span class="f500 txt-dark">Subject Material </span><br><span class="text-muted">เช่น ใบประชาสัมพันธ์ Telephone script คู่มืออาสาสมัคร</span>
+                                  <div class="form-group dn">
+                                    <input type="number" class="form-control" value="0" id="ftn5" readonly min="0">
+                                  </div>
+                                </td>
+                                <td style="vertical-align: top;">
+                                  <form class="dropzone" id="myFile5" action="../controller/upload_file_research_registration.php" style="max-height: 100px !important; min-height: 120px;" >
+                                    <input type="text" value="5" id="docType5" name="docType" readonly class="dn">
+                                    <input type="text" value="" id="docSess5" name="docSess" class="docSess dn" readonly class="">
+                                    <input type="text" value="" id="docSessuser5" name="docSessuser" class="docSessuser dn" readonly class="">
+                                  </form>
+                                  <div class="ft5 pt-10">
+                                    <ul class="" id="ft5"></ul>
+                                  </div>
+                                </td>
+  												    </tr>
+                              <tr>
+  												      <td class="col-sm-4" style="vertical-align: top;"><span class="f500 txt-dark">Legal Document</span><br><span class="text-muted">เอกสารทางกฏหมาย เช่น MTA, CTA, Insurance</span>
+                                  <div class="form-group dn">
+                                    <input type="number" class="form-control" value="0" id="ftn6" readonly min="0">
+                                  </div>
+                                </td>
+                                <td style="vertical-align: top;">
+                                  <form class="dropzone" id="myFile6" action="../controller/upload_file_research_registration.php" style="max-height: 100px !important; min-height: 120px;" >
+                                    <input type="text" value="6" id="docType6" name="docType" readonly class="dn">
+                                    <input type="text" value="" id="docSess6" name="docSess" class="docSess dn" readonly class="">
+                                    <input type="text" value="" id="docSessuser6" name="docSessuser" class="docSessuser dn" readonly class="">
+                                  </form>
+                                  <div class="ft6 pt-10">
+                                    <ul class="" id="ft6"></ul>
+                                  </div>
+                                </td>
+  												    </tr>
+                              <tr>
+  												      <td class="col-sm-4" style="vertical-align: top;"><span class="f500 txt-dark">เอกสารประกอบอื่น ๆ</span><br><span class="text-muted">เช่น Investigator's Brochure, Data agreement</span>
+                                  <div class="form-group dn">
+                                    <input type="number" class="form-control" value="0" id="ftn7" readonly min="0">
+                                  </div>
+                                </td>
+                                <td style="vertical-align: top;">
+                                  <form class="dropzone" id="myFile7" action="../controller/upload_file_research_registration.php" style="max-height: 100px !important; min-height: 120px;" >
+                                    <input type="text" value="7" id="docType7" name="docType" readonly class="dn">
+                                    <input type="text" value="" id="docSess7" name="docSess" class="docSess dn" readonly class="">
+                                    <input type="text" value="" id="docSessuser7" name="docSessuser" class="docSessuser dn" readonly class="">
+                                  </form>
+                                  <div class="ft7 pt-10">
+                                    <ul class="" id="ft7"></ul>
+                                  </div>
+                                </td>
+  												    </tr>
+
+                              <tr>
+  												      <td class="col-sm-4 f500 txt-dark" style="vertical-align: top;">Updated CV, หลักฐานการอบรมจริยธรรมวิจัย (GCP/Human subject protection course) <span class="txt-danger">**</span>
+                                  <div class="form-group">
+                                    <input type="number" class="form-control" value="0" id="ftn8" readonly min="0">
+                                  </div>
+                                </td>
+                                <td style="vertical-align: top;">
+                                  <form class="dropzone" id="myFile8" action="../controller/upload_file_research_registration.php" style="max-height: 100px !important; min-height: 120px;" >
+                                    <input type="text" value="8" id="docType8" name="docType" readonly class="dn">
+                                    <input type="text" value="" id="docSess8" name="docSess" class="docSess dn" readonly class="">
+                                    <input type="text" value="" id="docSessuser8" name="docSessuser" class="docSessuser dn" readonly class="">
+                                  </form>
+                                  <div class="ft8 pt-10">
+                                    <ul class="" id="ft8"></ul>
+                                  </div>
+                                </td>
+  												    </tr>
+
+                              <tr>
+  												      <td class="col-sm-4 f500 txt-dark" style="vertical-align: top;">ใบนำส่งเงินค่าธรรมเนียม <span class="txt-danger">**</span> <br><span class="text-muted">ให้ทำการ scan และแนบไฟล์ที่ลงนามเรียบร้อยแล้ว</span>
+                                  <div class="form-group">
+                                    <input type="number" class="form-control" value="0" id="ftn9" readonly min="0">
+                                  </div>
+                                </td>
+                                <td style="vertical-align: top;">
+                                  <form class="dropzone" id="myFile9" action="../controller/upload_file_research_registration.php" style="max-height: 100px !important; min-height: 120px;" >
+                                    <input type="text" value="9" id="docType9" name="docType" readonly class="dn">
+                                    <input type="text" value="" id="docSess9" name="docSess" class="docSess dn" readonly class="">
+                                    <input type="text" value="" id="docSessuser9" name="docSessuser" class="docSessuser dn" readonly class="">
+                                  </form>
+                                  <div class="ft9 pt-10">
+                                    <ul class="" id="ft9"></ul>
+                                  </div>
+                                </td>
+  												    </tr>
+
+                              <tr>
+  												      <td class="col-sm-4 f500 txt-dark" style="vertical-align: top;">อื่น ๆ <span class="txt-danger">** สำหรับโครงการที่ลงทะเบียนก่อน 1 มกราคม พ.ศ. 2561 เท่านั้น</span>
+                                  <div class="form-group dn">
+                                    <input type="number" class="form-control" value="0" id="ftn10" readonly min="0">
+                                  </div>
+                                </td>
+                                <td style="vertical-align: top;">
+                                  <form class="dropzone" id="myFile10" action="../controller/upload_file_research_registration.php" style="max-height: 100px !important; min-height: 120px;" >
+                                    <input type="text" value="9" id="docType10" name="docType" readonly class="dn">
+                                    <input type="text" value="" id="docSess10" name="docSess" class="docSess dn" readonly class="">
+                                    <input type="text" value="" id="docSessuser10" name="docSessuser" class="docSessuser dn" readonly class="">
+                                  </form>
+                                  <div class="ft10 pt-10">
+                                    <ul class="" id="ft10"></ul>
+                                  </div>
+                                </td>
+  												    </tr>
+                              
+  												  </tbody>
+  												</table>
+  											</div>
+
+                        <div class="row">
+                          <div class="col-sm-6 pa-20">
+                            <div class="pl-10 text-left txt-danger pt-10">
+                              ** จะไม่สามารถบันทึกได้ เนื่องจากยังกรอกข้อมูลไม่ครบทุกส่วน
+                              <div class="notify-info"></div>
+                            </div>
+                          </div>
+                          <div class="col-sm-6 text-right mb-20 mt-20 pr-10">
+                            <button class="btn btn-primary" id="recheckBtn" data-toggle="tooltip" data-placement="top" title="ทำการตรวจสอบความครบถ้วนของข้อมูลอีกครั้ง"><i class="zmdi zmdi-refresh-alt"></i></button>
+                            <button class="btn btn-primary" onclick="saveDraft()" data-toggle="tooltip" data-placement="top" title="ท่านสามารถบันทึกแบบเป็นร่างและนำมาแก้ไข หรือเพิ่มเติมภายหลังได้">บันทึกแบบร่าง</button>
+                            <button class="btn btn-danger disabled dn" id="saveAllBtn" type="button">บันทึก</button>
+                          </div>
+                        </div>
+  										</div>
+
+  									</div>
+
+
+
+
+
+                  </div>
+                  <!-- .contentdiv -->
+
+                </div>
+                <!-- .panel-body -->
+              </div>
+              <!-- .panel-wrapper -->
+            </div>
+            <!-- .panel -->
+
+
+
+          </div>
+          <!-- .col-sm-4 -->
+
+        </div>
+        <!-- .Row -->
+
+
+
+				<!-- Footer -->
+				<footer class="footer container-fluid pl-30 pr-30">
+					<div class="row">
+						<div class="col-sm-12">
+							<p>2017 &copy; <a href="http://rmis.medicine.psu.ac.th/project/" target="_blank">RMIS</a>. หน่วยส่งเสริมและพัฒนาทางวิชาการ คณะแพทยศาสตร์ มหาวิทยาลัยสงขลานครินทร์. Develop by <a href="https://wisniorproject.com" target="_blank">Wisnior Corp.</a></p>
+						</div>
+					</div>
+				</footer>
+				<!-- /Footer -->
+			</div>
+		</div>
+        <!-- /Main Content -->
+
+    </div>
+    <!-- /#wrapper -->
+
+    <!-- sample modal content -->
+    <div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h5 class="modal-title" id="myModalLabel">ข้อตกลงและเงื่อนไข</h5>
+          </div>
+          <div class="modal-body">
+            <p>
+              <ol class="pl-20">
+                <li>การลงทะเบียนงานวิจัยในส่วนนี้ หมายถึง <span class="txt-danger">การลงทะเบียนงานวิจัยทีไม่่เคยส่งขอพิจารณาจริยธรรมการวิจัยในมนุษย์มาก่อน</span></li>
+                <li>ในแต่ละโครงการวิจัยที่จำต้องทำการขอพิจารณาจริยธรรมการวิจัยในมนุษย์ <span class="txt-danger">ต้องเป็นหัวหน้าโครงการเท่านั้น</span></li>
+              </ol>
+            </p>
+            <p>
+              ตอบ "ตกลง" เพื่อยอมรับเงื่อนไขและทำการลงทะเบียนงานวิจัยใหม่
+            </p>
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-info" onclick="window.location = 'research_register.html'">ตกลง</button>
+          </div>
+        </div>
+        <!-- /.modal-content -->
+      </div>
+      <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+
+    <button class="dn" id="btnNotify" data-toggle="modal" data-target=".bs-example-modal-sm" >notify</button>
+    <!-- sample modal content -->
+    <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" style="display: none;">
+      <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true" id="btnClosecheck">×</button>
+            <h5 class="modal-title" id="mySmallModalLabel">การตรวจสอบข้อมูล</h5>
+          </div>
+          <div class="modal-body">
+            <div class="row">
+              <div class="col-sm-12 text-center">
+                <div class="lp1 pt-50 pb-50">
+                  <img src="../images/Rolling.gif" alt="" width="100"><br>
+                  <span class="loadMsg"></span>
+                </div>
+
+                <div class="cp1 dn">
+                  <p id="nofity_msg"></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- /.modal-content -->
+      </div>
+      <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+
+	<!-- JavaScript -->
+
+  <!-- jQuery -->
+  <script src="../v3/vendors/bower_components/jquery/dist/jquery.min.js"></script>
+
+  <!-- Bootstrap Core JavaScript -->
+  <script src="../v3/vendors/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+	<!-- Data table JavaScript -->
+	<script src="../v3/vendors/bower_components/datatables/media/js/jquery.dataTables.min.js"></script>
+	<script src="../v3/dist/js/dataTables-data.js"></script>
+
+	<!-- Slimscroll JavaScript -->
+	<script src="../v3/dist/js/jquery.slimscroll.js"></script>
+
+	<!-- Owl JavaScript -->
+	<script src="../v3/vendors/bower_components/owl.carousel/dist/owl.carousel.min.js"></script>
+
+	<!-- Switchery JavaScript -->
+	<script src="../v3/vendors/bower_components/switchery/dist/switchery.min.js"></script>
+
+	<!-- Fancy Dropdown JS -->
+	<script src="../v3/dist/js/dropdown-bootstrap-extended.js"></script>
+
+  <!-- Bootstrap Switch JavaScript -->
+	<script src="../v3/vendors/bower_components/bootstrap-switch/dist/js/bootstrap-switch.min.js"></script>
+
+  <!-- Select2 JavaScript -->
+	<script src="../v3/vendors/bower_components/select2/dist/js/select2.full.min.js"></script>
+
+  <!-- Bootstrap Tagsinput JavaScript -->
+	<script src="../v3/vendors/bower_components/bootstrap-tagsinput/dist/bootstrap-tagsinput.min.js"></script>
+
+	<!-- Bootstrap Touchspin JavaScript -->
+	<script src="../v3/vendors/bower_components/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.js"></script>
+
+	<!-- Multiselect JavaScript -->
+	<script src="../v3/vendors/bower_components/multiselect/js/jquery.multi-select.js"></script>
+
+  <!-- Sweet-Alert  -->
+	<script src="../v3/vendors/bower_components/sweetalert/dist/sweetalert.min.js"></script>
+
+  <script src="../v3/vendors/bower_components/dropzonejs/dropzone.min.js"></script>
+
+  <!-- Bootstrap Select JavaScript -->
+	<script src="../v3/vendors/bower_components/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
+
+  <script src="../v3/vendors/bower_components/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
+	<script src="../v3/vendors/bower_components/bootstrap-datepicker-thai-thai/js/bootstrap-datepicker-thai.js"></script>
+	<script src="../v3/vendors/bower_components/bootstrap-datepicker-thai-thai/js/locales/bootstrap-datepicker.th.js"></script>
+
+  <!-- Form Advance Init JavaScript -->
+	<script src="../v3/dist/js/form-advance-data.js"></script>
+
+  <script type="text/javascript" src="../v3/vendors/bower_components/ckeditor/ckeditor.js"></script>
+	<!-- Init JavaScript -->
+	<script src="../v3/dist/js/init.js"></script>
+  <script src="../v3/main.js"></script>
+  <script src="../v3/pi.js"></script>
+  <script src="../v3/rs_register.js"></script>
+
+  <script type="text/javascript">
+
+    var dt = $('#tableView').dataTable().api();
+    var current_user = window.localStorage.getItem('rmis_current_user')
+    var current_role = window.localStorage.getItem('rmis_current_role')
+    var log_login_session = window.localStorage.getItem('rmis_login_session_check');
+    var current_page = 'research_register.html';
+    var editData = '';
+    var pi_pct = 100;
+    var co_pi = [];
+    var rr_notify = [];
+    var num_file_upload = 0;
+    var num_cv = 0;
+    var session_id = main_app.randomString(20);
+    var last_session_id = window.localStorage.getItem('rmis_current_rs_session_id');
+    var selectes_session = window.localStorage.getItem('current_selected_project_session');
+    var current_session_id = last_session_id;
+
+    $(document).ready(function(){
+
+      pi.init()
+
+      if(last_session_id == null){
+        window.localStorage.setItem('rmis_current_rs_session_id', session_id)
+        current_session_id = session_id;
+      }
+
+      if(selectes_session!=null){
+        window.localStorage.setItem('rmis_current_rs_session_id', selectes_session)
+        current_session_id = selectes_session;
+      }
+
+      loadPrevData(current_session_id)
+      loadPrevCopiData(current_session_id)
+
+      console.log('Current session id ' + current_session_id);
+      $('.docSess').val(current_session_id)
+      $('.docSessuser').val(current_user)
+
+      main.load_researchtype()
+      main.load_prefix()
+
+      checkFileAttached();
+
+      setTimeout(function(){
+        main.load_notify_pm();
+        listCopi()
+      }, 10)
+
+      editData = CKEDITOR.replace( 'brief_reports', {
+        wordcount : {
+					showCharCount : false,
+					showWordCount : true,
+          maxWordCount: 500
+				},
+        height: '550px'
+      });
+
+
+
+      setInterval(function(){
+        saveDraftCheck()
+        reloadD()
+      }, 60000);
+      // }, 3000);
+
+    })
+
+
+
+    $(function(){
+
+
+
+      $('#saveAllBtn').click(function(){
+
+        rr_notify = [];
+        rr_form.part1()
+        rr_form.part2()
+        rr_form.part3()
+        rr_form.part4()
+        rr_form.part5()
+
+
+
+        if(rr_notify.length > 0){
+
+        }else{
+
+
+          swal({
+              title: "ยืนยันการดำเนินการ",
+              text: "ท่านยืนยันการส่งข้อมูลที่ถูกปรับปรุงนี้หรือไม่!",
+              type: "warning",
+              showCancelButton: true,
+              confirmButtonColor: "#DD6B55",
+              confirmButtonText: "ยืนยัน",
+              cancelButtonText: "ยกเลิก",
+              closeOnConfirm: true },
+          function(){
+            $('.loadMsg').text('กำลังทำการตรวจสอบ ...')
+
+            $('#btnNotify').trigger('click');
+
+            setTimeout(function(){
+              $('.loadMsg').text('กำลังทำการบันทึกข้อมูล ...')
+
+              var param = {
+                id: current_user,
+                sess_id: current_session_id
+              }
+
+              var jxhr = $.post(ws_url + 'controller/pm/set_updated_version.php', param, function(){})
+                          .always(function(resp){
+
+                            // console.log(resp);
+                            // return ;
+
+                            if(resp == 'Y'){
+
+                              window.localStorage.setItem('current_selected_project_session', current_session_id)
+                              window.location = 'research_info_edit_success.html'
+
+                            }else if(resp == 'D'){
+                              setTimeout(function(){
+                                $('#btnClosecheck').trigger('click');
+                                swal("ขออภัย!", "ระบบตรวจพบว่าท่านเคยมีโครงการที่มีชื่อคล้ายกัน (Similariry > 90%) ส่งไปยังสำนักงานจริยธรรมการวิจัยในมนุษย์แล้ว กรุณาทำการตรวจสอบข้อมูลอีกครั้ง หรือติดต่อเจ้าหน้าที่หากท่านยืนยันว่าข้อมูลนี้เป็นโครงการคนละชุดกัน", "error")
+                              }, 2000)
+                            }else{
+                              setTimeout(function(){
+                                $('#btnClosecheck').trigger('click');
+                                swal("ขออภัย!", "ไม่สามารถบันทึกข้อมูลได้ กรุณาลองใหม่อีกครั้ง หรือติดต่อเจ้าหน้าที่", "error")
+                              }, 2000)
+                            }
+                          })
+                          .fail(function(){
+                            setTimeout(function(){
+                              $('#btnClosecheck').trigger('click');
+                              swal("ขออภัย!", "ไม่สามารถบันทึกข้อมูลได้ กรุณาลองใหม่อีกครั้ง หรือติดต่อเจ้าหน้าที่", "error")
+                            }, 2000)
+                          })
+
+            }, 2000)
+          });
+
+
+
+
+        }
+
+      });
+
+      $('#txtFund').change(function(){
+        if($('#txtFund').val()==0){
+          $('.fundDiv').addClass('dn')
+          if($("#cb1").is(':checked')){
+            $("#cb1").trigger('click')
+          }
+
+          if($("#cb2").is(':checked')){
+            $("#cb2").trigger('click')
+          }
+
+          if($("#cb3").is(':checked')){
+            $("#cb3").trigger('click')
+          }
+
+          if($("#cb4").is(':checked')){
+            $("#cb4").trigger('click')
+          }
+
+          if($("#cb5").is(':checked')){
+            $("#cb5").trigger('click')
+          }
+
+          if($("#cb6").is(':checked')){
+            $("#cb6").trigger('click')
+          }
+
+          if($("#cb7").is(':checked')){
+            $("#cb7").trigger('click')
+          }
+
+          $('#txtFundsname').val('')
+        }else{
+          $('.fundDiv').removeClass('dn')
+        }
+      })
+
+      $('.cpwdform').submit(function(){
+          if($('#txtNewpwd').val()==''){
+            swal("ขออภัย", "กรุณาตั้งรหัสผ่านใหม่ก่อนดำเนินการ", "error")
+            return ;
+          }
+
+          var newPwd = $('#txtNewpwd').val();
+          if(newPwd.length < 8){
+            swal("ขออภัย", "กรุณาตั้งรหัสผ่านอย่างน้อย 8 ตัวอักษร", "error")
+            return ;
+          }
+
+          $('.loaddiv').removeClass('dn')
+          $('.contentdiv').addClass('dn')
+
+          main.changepassword();
+      })
+
+      $('.partTab, #recheckBtn').click(function(){
+        rr_notify = [];
+        num_file_upload = 0;
+        rr_form.part1()
+        rr_form.part2()
+        rr_form.part3()
+        rr_form.part4()
+        rr_form.part5()
+        rr_form.fn_summary()
+        saveDraftCheck()
+        saveCopi();
+      })
+
+      $('#cb6').click(function(){
+        if($("#cb6").is(':checked')){
+          $("#otherfunding").removeClass('dn');  // checked
+        }
+        else{
+          $("#otherfunding").addClass('dn');  // checked
+          $('#txtOtherFundSource').val('')
+        }
+      });
+
+    })
+
+    function addCoPI(){
+      $check = 0;
+      if($('#copi_preifx').val()==''){
+        $check++;
+      }
+
+      if($('#copi_fname').val()==''){
+        $check++;
+      }
+
+      if($('#copi_lname').val()==''){
+        $check++;
+      }
+
+      if($('#copi_email').val()==''){
+        $check++;
+      }
+
+      if($('#copi_pct').val()==''){
+        $check++;
+      }
+
+      if($('#repot').val()==''){
+        $check++;
+      }
+
+      if($check!=0){
+        swal("ขออภัย!", "กรุณากรอกข้อมูลให้คนบถ้วนก่อนการเพิ่มผู้ร่วมวิจัย", "error")
+        return ;
+      }
+
+      var lat_co_pct = pi_pct - parseInt($('#copi_pct').val());
+
+      if(lat_co_pct < 0){
+        swal("ขออภัย!", "สัดส่วนรวมไม่เกิน 100%", "error")
+        return ;
+      }
+
+      pi_pct = lat_co_pct;
+      $('#pi_cpt').val(lat_co_pct)
+
+      var copi_record = {
+        prefix: $('#copi_prefix').val(),
+        prefix_name: $('#copi_prefix option:selected').text(),
+        fname: $('#copi_fname').val(),
+        lname: $('#copi_lname').val(),
+        email: $('#copi_email').val(),
+        pct: $('#copi_pct').val(),
+        repot: $('#repot').val(),
+        session_id: current_session_id,
+        id: current_user
+      }
+
+      var jxhr = $.post(ws_url + 'controller/pm/save_co_pi.php', copi_record, function(){}, '')
+                  .always(function(resp){
+                    if(resp != 'Y'){
+                      alert('ไม่สามารถบันทึกข้อมูลได้')
+                      console.log(resp);
+                    }else{
+                      co_pi.push(copi_record)
+
+                      $('#copi_prefix').val('')
+                      $('#copi_fname').val('')
+                      $('#copi_lname').val('')
+                      $('#copi_email').val('')
+                      $('#copi_pct').val('')
+                      $('#repot').val('');
+                      $('#copi_prefix').focus();
+
+                      listCopi();
+                    }
+                  })
+
+
+
+
+
+    }
+
+    function checkPart(pid){
+      if(pid == 5){
+        $('#saveAllBtn').removeClass('dn')
+      }else{
+        $('#saveAllBtn').addClass('dn')
+      }
+    }
+
+
+
+    function saveDraft(){
+      saveDraftCheck()
+    }
+
+    function reloadD(){
+
+      rr_notify = [];
+      rr_form.part1()
+      rr_form.part2()
+      rr_form.part3()
+      rr_form.part4()
+      rr_form.part5()
+      rr_form.fn_summary()
+
+    }
+
+    function saveCopi(){
+      if(co_pi.length != 0){
+
+      }
+    }
+
+    function goto_report(progress_id){
+      window.localStorage.setItem('rmis_current_progress_id', progress_id)
+      window.location = 'create_report.html'
+    }
+  </script>
+</body>
+
+</html>

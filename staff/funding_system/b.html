@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8" />
+  	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  	<title>:: RMIS Funding :: สำหรับเจ้าหน้าที่ ::</title>
+
+    <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css" >
+    <link rel="stylesheet" href="./node_modules/owl.carousel/dist/assets/owl.carousel.css">
+    <link rel="stylesheet" href="./node_modules/owl.carousel/dist/assets/owl.theme.default.min.css">
+    <link rel="stylesheet" href="./node_modules/@fortawesome/fontawesome-free/css/all.css">
+
+    <link rel="stylesheet" href="./assets/admin_template/css/style.css">
+    <link rel="stylesheet" href="./assets/admin_template/css/components.css">
+    <link rel="stylesheet" href="./assets/core/css/master-style.css">
+  </head>
+  <body>
+
+    <div style="padding: 10px; background: rgb(45, 218, 176); color: #fff;">
+      <div class="container-fluid">
+        <span style="font-size: 2em;">RMIS @ Funding</span>
+      </div>
+    </div>
+
+    <div class="mt-3">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-3">
+            <button class="btn btn-primary btn-block text-left bsdn"><i class="fas fa-search mr-1"></i> ค้นหาโครงการวิจัย</button>
+            <!-- <button class="btn btn-primary btn-block text-left"><i class="fas fa-wrench mr-1"></i> จัดการข้อมูลทุน</button> -->
+            <button class="btn btn-primary btn-block text-left bsdn"><i class="fas fa-bars mr-1"></i> โครงการทั้งหมด</button>
+            <button class="btn btn-primary btn-block text-left bsdn"><i class="fas fa-download mr-1"></i> ส่งออกข้อมูล</button>
+          </div>
+          <div class="col-9">
+            <div class="text-left mt-5">
+              <form onsubmit="return false;" id="search_project_form">
+                <div class="col-8 offset-sm-2">
+                  <h4>ค้นหาโครงการวิจัย</h4>
+                  <input type="text" id="txtSearchbox" class="form-control" placeholder="กรอกรหัส REC.">
+                  <div class="form-group mt-2">
+                    <button class="btn btn-primary">ค้นหา</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+
+            <div class="row">
+              <div class="col-12">
+                <table class="table table-bordered">
+                  <thead>
+                    <tr>
+                      <td>#</td>
+                      <td>REC</td>
+                      <td>Title</td>
+                      <td></td>
+                    </tr>
+                  </thead>
+                  <tbody id="result_list">
+                    <tr>
+                      <td colspan="4" class="text-danger">ไม่มีรายการโครงการวิจัย</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <script type="text/javascript" src="./node_modules/jquery/dist/jquery.min.js" ></script>
+    <script type="text/javascript" src="./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="./node_modules/popper.js/dist/umd/popper.min.js"></script>
+    <script type="text/javascript" src="./node_modules/owl.carousel/dist/owl.carousel.min.js"></script>
+    <script type="text/javascript" src="./node_modules/preload.js/dist/js/preload.js"></script>
+
+    <script src="../../v4/config.js"></script>
+    <script src="../../v3/main.js"></script>
+    <script src="../../v4/staff.js"></script>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        preload.hide()
+      })
+      $(function(){
+        $('#search_project_form').submit(function(){
+          $('#txtSearchbox').removeClass('is-invalid')
+          if($('#txtSearchbox').val() == ''){
+            $('#txtSearchbox').addClass('is-invalid')
+            return ;
+          }
+
+          // preload.show()
+
+          var param = {
+            search_id: $('#txtSearchbox').val(),
+            uid: current_user
+          }
+
+          var jxhr = $.post(ws_url + 'controller/funding/get_research_info.php', param, function(){},'json')
+                      .always(function(snap){
+                        if((snap.length > 0) && (snap != '')){
+                          $('#result_list').empty()
+                          $c = 1;
+                          snap.forEach(i=>{
+                            $btn = '<button class="btn btn-primary btn-sm" onclick="window.location = \'manage.php?pid=' + i.id_rs + '\'"><i class="fas fa-wrench"></i></button>'
+                            $('#result_list').append('<tr>' +
+                              '<td>' + $c + '</td>' +
+                              '<td>' + i.code_apdu + '</td>' +
+                              '<td>' + i.title_th + '</td>' +
+                              '<td>' + $btn + '</td>' +
+                            '</tr>')
+                            $c++;
+                          })
+                        }
+                      })
+        })
+      })
+    </script>
+
+  </body>
+</html>
